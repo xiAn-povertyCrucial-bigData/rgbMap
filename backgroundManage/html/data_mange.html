@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>对象监管</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/wyp.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/commer.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <style type="text/css">
+          .select,.select dt{display: flex;color: #555}
+          .select{padding:0;margin: 15px 0;}
+          .select dt dl{margin-left: 10px;padding:2px 6px;cursor: pointer;}
+          .active{background: #70c1ff!important;color: #fff!important;border-radius: 12px;}
+          .panel>.main1>.select label{color: #555;font-weight: bold;}
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>对象监管</strong>
+    </div>
+    <div class="main1"> 
+        <ul class="select select1"> 
+            <label  class="label1">年份：</label>
+            <dt id="YearSelected">
+                <dl sleep="2017">2016年</dl>
+                <dl sleep="201712">2017年</dl>
+                <dl sleep="201808" class="active">2018年</dl>
+            </dt>
+        </ul>
+        <div class="ClearContent clearfix">
+          <ul id="objectMange">
+            <li class="allLi">
+              <p new="脱贫户未解决两不愁三保障">• 脱贫户未解决两不愁三保障<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow1">
+                <ol>
+                  <li>2014年初脱贫户人均纯收入低于国家贫困标准2952元</li>
+                  <li>2015年初脱贫户人均纯收入低于国家贫困标准2952元</li>
+                  <li>2016年初脱贫户人均纯收入低于国家贫困标准2952元</li>
+                  <li>2017年初脱贫户人均纯收入低于国家贫困标准2952元</li>
+                  <li>2014年初脱贫户有义务教育辍学情况（健康适龄儿童辍学）</li>
+                  <li>2015年初脱贫户有义务教育辍学情况（健康适龄儿童辍学）</li>
+                  <li>2016年初脱贫户有义务教育辍学情况（健康适龄儿童辍学）</li>
+                  <li>2017年初脱贫户有义务教育辍学情况（健康适龄儿童辍学）</li>
+                  <li>2014年初脱贫户住危房</li>
+                  <li>2015年初脱贫户住危房</li>
+                  <li>2016年初脱贫户住危房</li>
+                  <li>2017年初脱贫户住危房</li>
+                  <li>2014年初脱贫户未解决饮水问题</li>
+                  <li>2015年初脱贫户未解决饮水问题</li>
+                  <li>2016年初脱贫户未解决饮水问题</li>
+                  <li>2017年初脱贫户未解决饮水问题</li>
+                  <li>2014年初因病致贫脱贫户有患病成员但未参加大病保险</li>
+                  <li>2015年初因病致贫脱贫户有患病成员但未参加大病保险</li>
+                  <li>2016年初因病致贫脱贫户有患病成员但未参加大病保险</li>
+                  <li>2017年初因病致贫脱贫户有患病成员但未参加大病保险</li>
+                  <li>2014年初脱贫户住房面积为0（含空）</li>
+                  <li>2015年初脱贫户住房面积为0（含空）</li>
+                  <li>2016年初脱贫户住房面积为0（含空）</li>
+                  <li>2017年初脱贫户住房面积为0（含空）</li>
+                </ol>
+              </div>
+            </li>
+            <li class="allLi">
+              <p new="证件号码异常">• 证件号码异常<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow2">
+                <ol>
+                  <li>证件号码位数异常（证件号码非15、18、20、22位）</li>
+                  <li>15位证件号码需要升级为18位</li>
+                  <li>身份证号码不符合校验规则</li>
+                  <li>残疾人证不符合校验规则</li>
+                </ol>
+              </div>
+            </li>
+            <li class="allLi">
+              <p new="重要指标为空">• 重要指标为空<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow3">
+                <ol>
+                  <li>民族为空</li>
+                  <li>文化程度为空（非在校生）</li>
+                  <li>在校生情况为空（6-23岁）</li>
+                  <li>健康状况为空</li>
+                  <li>劳动能力为空（16-65岁）</li>
+                  <li>贫困户无户主</li>
+                  <li>残疾人无残疾证</li>
+                  <li>主要致贫原因为空</li>
+                  <li>是否通生产用电为空</li>
+                  <li>是否加入农民专业合作社为空</li>
+                  <li>与村主干路距离为空</li>
+                  <li>入户路类型为空</li>
+                  <li>住房面积为空</li>
+                  <li>是否通生活用电为空</li>
+                  <li>饮水是否困难为空</li>
+                  <li>饮水是否安全为空</li>
+                  <li>主要燃料类型为空</li>
+                  <li>有无卫生厕所为空</li>
+                </ol>
+              </div>
+            </li>
+            <li class="allLi">
+              <p new="致贫原因问题">• 致贫原因问题<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow4">
+                <ol>
+                  <li>主要致贫原因为“因病”，而贫困家庭成员均健康</li>
+                  <li>主要致贫原因为“因学”，而贫困家庭无在校生</li>
+                  <li>主要致贫原因为“因残”，而贫困家庭无残疾人口</li>
+                  <li>其他致贫原因与主要致贫原因重复</li>
+                </ol>
+              </div>
+            </li>
+            <li class="allLi">
+              <p new="贫困户低保、五保问题">• 贫困户低保、五保问题<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow5">
+                <ol>
+                  <li>低保（贫困）户中家庭中无享受低保成员</li>
+                  <li>一般农（贫困）户中家庭有享受低保成员</li>
+                  <li>五保（贫困）户存在16-65周岁的劳动力</li>
+                  <li>同时领取低保金和五保金</li>
+                  <li>一般农（贫困）户领取低保五保金</li>
+                  <li>低保（贫困）户领取低保金为0（含空）</li>
+                  <li>五保（贫困）户领取五保金为0（含空）</li>
+                </ol>
+              </div>
+            </li>
+            <li class="allLi">
+              <p new="劳动能力问题">• 劳动能力问题<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow6">
+                <ol>
+                  <li>劳动年龄健康人口丧失劳动力</li>
+                  <li>劳动年龄非在校生健康人口（非在校生）无劳动力</li>
+                </ol>
+              </div>
+            </li>
+            <li class="allLi">
+              <p new="收入问题">• 收入问题<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow7">
+                <ol>
+                  <li>有生产经营性收入无生产经营性支出</li>
+                  <li>人均纯收入小于等于0（含空）或超过10万</li>
+                </ol>
+              </div>
+            </li>
+            <li class="allLi">
+              <p new="务工状况问题">• 务工状况问题<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow8">
+                <ol>
+                  <li>务工时间不符合逻辑或录入规则（0-12个月）</li>
+                  <li>有务工情况（有务工地）但务工时间为0（含空）</li>
+                  <li>无务工情况（无务工地）但有务工时间（1-12个月）</li>
+                  <li>贫困人口无劳动能力或丧劳-有外出务工情况（有务工地、有务工时间）</li>
+                  <li>贫困户有工资性收入，无务工人员</li>
+                  <li>贫困户家庭有务工人员，无工资性收入</li>
+                </ol>
+              </div>
+            </li>
+            <li class="allLi">
+              <p new="帮扶责任人问题">• 帮扶责任人问题<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow9">
+                <ol>
+                  <li>贫困户无帮扶责任人</li>
+                  <li>既是帮扶责任人又是贫困人口</li>
+                </ol>
+              </div>
+            </li>
+            <li class="allLi">
+              <p new="指标值异常或指标间逻辑错误">• 指标值异常或指标间逻辑错误<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow10">
+                <ol>
+                  <li>贫困户空挂</li>
+                  <li>“与户主关系”与“性别”对应关系异常</li>
+                  <li>户主与配偶同性别</li>
+                  <li>人均耕地面积数值过大（大于50亩）</li>
+                  <li>人均林地面积数值过大（大于70亩）</li>
+                  <li>与村主干路距离超过50公里</li>
+                  <li>14岁及以下在校生状况为高中及以上</li>
+                  <li>20岁及以上在校生状况为小学及以下</li>
+                  <li>三年指标相同的在校生</li>
+                </ol>
+              </div>
+            </li>
+            <li class="allLi">
+              <p new="人员重复问题">• 人员重复问题<span> ？</span></p>
+              <p><strong></strong> 户</p>
+              <div class="shadow shadow11">
+                <ol>
+                  <li>市内县外人员重复</li>
+                  <li>县内人员重复</li>
+                </ol>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/wyp.js"></script>
+<script>
+  var ali=$('.allLi');
+  var aStrong=$('.ClearContent ul strong');//获取所有strong户数标签
+  var aOl=$('.ClearContent ul ol');//获取所有ol指标标签
+  // console.log(aStrong[0])
+  // console.log(aOl[0])
+  //alert(ali.length);
+  ruleEvent(201808)
+  clickEvent(201808) 
+  
+  $("#YearSelected dl").click(function(){
+        aStrong.html("");
+        $(this).addClass("active").siblings().removeClass("active");
+        YearCode=$(this).attr("sleep");      //parseInt($(this).html());//获取选中的值
+        console.log(YearCode);
+        ruleEvent(YearCode);
+        clickEvent(YearCode);       
+  })
+
+
+  $(".ClearContent span").each(function(){
+      $(this).mouseover(function(){
+          $(this).parent().siblings(".shadow").show();//获取$(this)同级元素.shadow
+      })
+      $(this).mouseout(function(){//mouseout
+          $(this).parent().siblings(".shadow").hide();//获取$(this)同级元素.shadow
+      })
+  });
+</script>
+
+</body>
+</html>

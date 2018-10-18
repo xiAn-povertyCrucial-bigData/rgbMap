@@ -1,0 +1,691 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>帮困户</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <link rel="stylesheet" href="../css/multiple-select.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+	<script type="text/javascript" src="../js/selectPerson.js"></script>
+	<script src="../js/selectHome.js"></script>
+	<script src="../js/showHelpPoor.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+    <style>
+         .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr th,.form-01 table tr td{height: 35px;border: 1px solid #d2d2d2;line-height: 35px;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-05{display: none}
+        .form-04 table tr td {width:11%}
+        .no-pass{color: #ee3333}
+        .form-01 table tr td a{
+            display: inline-block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+        }
+		.form-01 dt{
+        	height: 30px;
+		    line-height: 30px;
+		    float: left;
+		    margin-right: 10px;
+		    border-radius: 12px;
+		    text-align: center;
+		    padding: 2px 6px;
+		    cursor: pointer;
+		    position: relative;
+		    color: #555;
+		}
+        .form-01 table tr td a:first-child{
+            background: #229ffd;
+        }
+        .form-01 table tr td a:last-child{
+            background: #ff7680;
+        }
+        .marginR{
+            margin-right: 14px;
+        }
+        .black_overlay{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index:1001;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=88);
+        }
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 55%;
+            height: 30%;
+            padding: 20px;
+            border: 5px solid #ccc;
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
+        .drzb>li{
+				list-style: none;
+				width: 100%;
+				float: left;
+				text-indent: 10px;
+			}
+		.jbqk>li,.wgqk>li{
+			width: 25%;
+			float: left;
+			list-style: none;
+			height: 35px;
+			line-height: 35px;
+		}
+		.jbqk>li label,.wgqk>li label{
+			width: 50%;
+			display: inline-block;
+			margin-left: 10px;
+			cursor: default;
+		}
+		.jbqk>li input,.wgqk>li input{
+			width: 40%;
+			border: 1px solid #c9d7e0;
+			background-color: #fff;
+			padding: 3px 0;
+			border-radius: 3px;
+			vertical-align: middle;
+			outline: 0;
+			color: #555;
+			font-size: 12px;
+			text-indent: 10px;
+			margin-left: 4px;
+		}
+		.jbqk>li select,.wgqk>li select{
+			width: 40%;
+			border: 1px solid #c9d7e0;
+			background-color: #fff;
+			padding: 3px 0;
+			border-radius: 3px;
+			vertical-align: middle;
+			outline: 0;
+			color: #555;
+			font-size: 12px;
+			margin-right: 3px;
+			text-indent: 10px;
+		}
+		.btn_blue1{
+			color: #fff;
+			background: #428bca;
+			border: 1px solid #2698FB;
+			width: 70px;
+			text-align: center;
+			margin: 10px;
+			border-radius: 3px;
+		}
+		.btn_orange1{
+			color: #fff;
+			background: #f0ad4e;
+			border: 1px solid #FFAC37;
+			width: 50px;
+			text-align: center;
+			margin: 10px;
+			border-radius: 3px;
+		}
+		.zbclick,.zbclick1{
+			text-indent: 10px;
+			background: #00aaee;
+			color: white;
+		}
+		.xixian dt dl{
+		float: left;
+		width: 100px;
+		text-align: center;
+		margin-left: 15px;
+	  }
+	   .active{background: #70c1ff!important;color: #fff!important;border-radius: 12px;}
+		#person,#home{
+			width:100%;
+		}
+		#input,#input1{
+			border:none;
+			margin-left: 10px;
+		}
+		input[type="button"]{
+			margin-left: 10px;
+			}
+		#show,#show1{
+			margin-top:10px;
+			margin-bottom: 20px;
+			border-collapse:collapse;
+			width: 100%;
+		}
+		#show tr th, #show tr td ,#show1 tr th, #show1 tr td {
+			border: 1px solid black;
+			}
+		#show tr input,	#show1 tr input{
+			border:none;
+			}
+		#selectFind,#selectFind1{
+			margin-right: 3px;
+			padding: 0px auto;
+			margin-bottom: 10px;
+		}
+		#selectFind select,#selectFind1 select{
+				margin-right: 20px;
+				width: 120px;
+		}
+		#selectFind label,#selectFind1 label{
+			margin-right: 10px;
+		}
+		#empty,#delete,#add,#empty1,#delete1,#add1{
+			width: 100px;
+			height: 24px;
+			line-height: 24px;
+			background-color: #2f8ee5;
+			color:#fff;
+			border: none;
+			border-radius: 2px;
+		}
+		#add,#add1{
+			margin-left: 80px;
+		}
+
+		.upload{
+			padding: 4px 10px;
+			/*height: 20px;
+			line-height: 20px;*/
+			position: relative;
+			border: 1px solid #0ae;
+			text-decoration: none;
+			color: #666;
+		}
+		.change{
+			position: absolute;
+			overflow: hidden;
+			top: 0;
+			opacity: 0;
+		}
+        #doc,#doc1,#dataImport{cursor: pointer;}
+        /*加载动画*/
+        .spinner {
+            margin: 5% auto;
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+        .container1 > div, .container2 > div, .container3 > div {
+            width: 14px;
+            height: 14px;
+            background-color: #858585;
+            border-radius: 100%;
+            position: absolute;
+            -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+            animation: bouncedelay 1.2s infinite ease-in-out;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        .spinner .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .container2 {
+            -webkit-transform: rotateZ(45deg);
+            transform: rotateZ(45deg);
+        }
+        .container3 {
+            -webkit-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+        }
+        .circle1 { top: 0; left: 0; }
+        .circle2 { top: 0; right: 0; }
+        .circle3 { right: 0; bottom: 0; }
+        .circle4 { left: 0; bottom: 0; }
+        .container2 .circle1 {
+            -webkit-animation-delay: -1.1s;
+            animation-delay: -1.1s;
+        }
+        .container3 .circle1 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+        .container1 .circle2 {
+            -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s;
+        }
+        .container2 .circle2 {
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+        }
+        .container3 .circle2 {
+            -webkit-animation-delay: -0.7s;
+            animation-delay: -0.7s;
+        }
+        .container1 .circle3 {
+            -webkit-animation-delay: -0.6s;
+            animation-delay: -0.6s;
+        }
+        .container2 .circle3 {
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        }
+        .container3 .circle3 {
+            -webkit-animation-delay: -0.4s;
+            animation-delay: -0.4s;
+        }
+        .container1 .circle4 {
+            -webkit-animation-delay: -0.3s;
+            animation-delay: -0.3s;
+        }
+        .container2 .circle4 {
+            -webkit-animation-delay: -0.2s;
+            animation-delay: -0.2s;
+        }
+        .container3 .circle4 {
+            -webkit-animation-delay: -0.1s;
+            animation-delay: -0.1s;
+        }
+        @-webkit-keyframes bouncedelay {
+            0%, 80%, 100% { -webkit-transform: scale(0.0) }
+            40% { -webkit-transform: scale(1.0) }
+        }
+        @keyframes bouncedelay {
+            0%, 80%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 40% {
+                  transform: scale(1.0);
+                  -webkit-transform: scale(1.0);
+              }
+        }
+	</style>
+</head>
+<body>
+<div class="panel admin-panel">
+     <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>扶贫对象-帮困户</strong>
+	 <a href="addHelpPoor.html" class="button border-main icon-plus-square-o">添加内容</a>
+	    <!--<span class="button border-main marginR upload"  style="margin-right:20px;">
+		<a href="four.html" style="color:#229ffd">添加四书四照 </a>
+		</span>-->
+	 <div class="data_tracking">
+		 <!--<span class="button border-main marginR upload" >
+			 <input type="file" id="doc" style="width:130px;"  class="change" onchange="uploadFile1()"/>导入家庭成员信息
+		</span>-->
+		  <!--<span class="button border-main marginR upload" >
+			<form enctype="multipart/form-data" id="upload1" method="post">
+			<input type="file" id="doc1" class="change1" /> <input type="button" value="提交" onclick="uploadPic();"/></form></span>-->
+	 <span class="button border-main marginR upload" >
+			<input  type="file" id="doc1"  style="width:130px;"  class="change"  onchange="uploadFile()"/>导入帮困户信息
+	 </span>
+	<span class="button border-main marginR"  id="dataImport">导出</span>
+	<!--<a href = "HelpPoor_datatrack.html" class="button border-main" >数据追踪</a>--></div>
+		</div>
+   	<div class="form-01">
+   		<div class="search searchs" style="display: block;">
+            <div>
+                <label for="">行政区划</label>
+                <input type="text" value="陕西省" disabled>
+                <!--<input type="text" value="西安市" disabled>-->
+	              <select name="" id="p_shi">
+	              	<option value="">全部</option>
+	              </select>
+	              <select name="" id="p_qv" >
+	              	 <option value="">县(区)</option>
+	              </select>
+                <select name="" id="p_x" >
+                	<option  value="">乡镇</option>
+                 </select>
+                <select name="" id="p_cun">
+                	<option  value="">村</option>
+                </select>
+                <select id="p_year">
+	                <option value="201808">2018年</option>
+					<option value="201712">2017年</option>
+					<option value="2017">2016年</option>
+					<option value="2016">2015年</option>
+					<option value="2015">2014年</option>
+				</select>
+            </div>
+            <div>
+              <div class="form-group">
+                  <label for="">家庭成员姓名</label>
+                  <input id="p_name" type="text">
+              </div>
+              <div class="form-group idNum" style="width:40%;">
+                  <label for="">成员证件号码</label>
+                  <input id="p_number" type="text" style="width:200px;">
+              </div>
+          </div>
+          <div class="" style="clear: both;">
+              <div class="form-group">
+                  <label for="">识别标准</label>
+                  <select name="" id="p_biaozhun">
+                      <option value="">--请选择--</option>
+                      <option value="01">国家标准</option>
+                      <option value="02">省定标准</option>
+                      <option value="03">市定标准</option>
+                  </select>
+              </div>
+            </div>
+			<div class="shuxing" style="clear: both;">
+				<dl id="p_shuxing">
+					<dt style="margin-right: 50px;padding-left:0">贫困户属性</dt>
+					<dt sleep="" class="active">全部</dt>
+					<dt sleep="01">一般贫困户</dt>
+					<dt sleep="04">低保贫困户</dt>
+					<dt sleep="06">五保贫困户</dt>
+					<dt sleep="05">一般农户</dt>
+					<dt sleep="02">低保户</dt>
+					<dt sleep="03">五保户</dt>
+				</dl>
+			</div>
+           <div class="tuopin" style="clear: both;margin-top:50px;">
+              	<dl id="p_status">
+              		<dt style="margin-right: 60px;padding-left:0">脱贫状态</dt>
+              		<dt sleep="" class="active">全部</dt>
+              		<dt sleep="1">已脱贫（享受政策）</dt>
+              		<dt sleep="4">已脱贫（不享受政策）</dt>
+              		<dt sleep="0">未脱贫</dt>
+              		<dt sleep="3">返贫</dt>
+              		<!--<dt sleep="2">预脱贫</dt>-->
+              	</dl>
+         	 </div>
+
+        </div>
+   	</div>
+
+     <div class="form-01">
+      <p>高级搜索        <span id="oneCheck" style="margin-right:80px;margin-left:60px;cursor: pointer;">到人指标</span><span id="twoCheck" style="cursor: pointer;">到户指标</span>
+        	<span class="pack_up">展开+</span></p>
+
+    <!--start-->
+	<!--<div class="con" id="con" style="width: 100%;height: auto;overflow:scroll;display: none;">-->
+		<!--<div style="width: 100%;float: left;">-->
+		<!--<p class="zbclick"><span>查询条件一</span><span style="float:right;margin-right:10px;">展开 +</span></p>-->
+		<div id="person"  style="display: none;text-align: center">
+			<p><span style="padding:1px;float:left;">到人指标:</span></p>
+			<div id="selectFind">
+				<label>指标类型</label><select id="cmbProvince" name="cmbProvince"></select>
+				<label>操作符</label><select id="cmbCity" name="cmbCity"></select>
+				<label>指标值</label><select id="cmbArea" style="width:120px;height:21px;"  name="cmbArea"></select>
+				<input id="input" style="width:80px;height:16px;margin-left:-140px;"  type="text" value="" />
+				<input id = "add" type="button" value="添加条件">
+				<input id = "delete" type="button" value="删除条件">
+				<input id = "empty" type="button" value="清空条件">
+				<input type="text" style="display:none" value="详" onblur="if(this.value=''){this.value=''}" onfocus="if(this.value=''){this.value='';this.style.color='#ff0000'}">
+			</div>
+			<table id="show" style="display: none">
+				<tbody>
+				<tr>
+					<th>序号</th>
+					<th>指标类型</th>
+					<th>操作符</th>
+					<th>指标值</th>
+				</tr>
+				<tr>
+						<td class="td"></td>
+						<td class="p"></td>
+						<td class="c"></td>
+						<td class="a"></td>
+				</tr>
+				</tbody>
+				</table>
+		</div>
+		<!--</div>-->
+<!--
+		<div style="width: 100%;float: left;">-->
+			<!--<p class="zbclick1"><span>查询条件二</span><span style="float:right;margin-right:10px;">展开 +</span> </p>-->
+			<div id="home"  style="display:none;text-align: center">
+			<div id="selectFind1">
+				<p><span style="padding:1px;float:left;">到户指标:</span></p>
+				<label>指标类型</label><select id="cmbProvince1" name="cmbProvince1"></select>
+				<label>操作符</label><select id="cmbCity1" name="cmbCity1"></select>
+				<label>指标值</label><select id="cmbArea1" style="width:120px;height:21px;"  name="cmbArea1"></select>
+				<input id="input1" style="width:80px;height:16px;margin-left:-140px;"  type="text" value="全选" />
+				<input id = "add1" type="button" value="添加条件">
+				<input id = "delete1" type="button" value="删除条件">
+				<input id = "empty1" type="button" value="清空条件">
+				<input type="text" style="display:none" value="详" onblur="if(this.value=''){this.value=''}" onfocus="if(this.value=''){this.value='';this.style.color='#ff0000'}">
+			</div>
+			<table id="show1" style="display:none">
+				<tbody>
+				<tr>
+					<th>序号</th>
+					<th>指标类型</th>
+					<th>操作符</th>
+					<th>指标值</th>
+				</tr>
+				<tr>
+					<td class="td1"></td>
+					<td class="p1"></td>
+					<td class="c1"></td>
+					<td class="a1"></td>
+				</tr>
+				</tbody>
+				</table>
+		</div>
+
+		 <div>
+            <input type="button" class="btn_orange1" style="float: right;" name="" value="查询">
+            <input type="button" class="btn_blue1" style="float: right;" name="" value="重置条件">
+        </div>
+        <div class="spinner" style="display: none;z-index: 999">
+	          <div class="spinner-container container1">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	          <div class="spinner-container container2">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	          <div class="spinner-container container3">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	    </div>
+      <table id="formSubmit2" class="form-x">
+      </table>
+      <div class="pages">
+          <div class="paging" style="width:600px;">
+              <div id="Pagination"></div>
+              <div class="searchPage">
+                  <span class="page-sum">共<strong class="allPage"></strong>页</span>
+				  <span id="total"></span>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<!--<div id="showMes"></div>-->
+<script>
+	function ShowLoading() {
+	    $(".spinner").show();
+	}
+	function HideLoading() {
+	    $(".spinner").hide();
+	}
+	let token=$.cookie("token");
+	function uploadFile() {
+			// var form = document.getElementById('upload1'),
+			// formData = new FormData(form);
+	var file = $("#doc1").get(0).files[0];
+    var formData = new FormData();
+    formData.append("file" , file);  
+			$.ajax({
+				url:url+"table/pkh/excel/holder/import",
+				type:"post",
+				data:formData,
+				beforeSend:function(request){
+		            request.setRequestHeader("Authorization",token);
+		            request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+		            ShowLoading()
+		        },
+				processData:false,
+				contentType:false,
+				success:function(res){
+					if(res.code==2000){
+					  alert("上传成功！");
+					}else{
+						alert("上传失败");
+					}
+				},
+				complete:function(){
+				     HideLoading();
+				},
+				error:function(err){
+				  alert("上传失败",err);
+				}
+			})
+		}
+
+function uploadFile1() {
+			// var form = document.getElementById('upload1'),
+			// formData = new FormData(form);
+	var file = $("#doc").get(0).files[0];
+    var formData = new FormData();
+    formData.append("file" , file);  
+			$.ajax({
+				url:url+"pkh/excel/family/import",
+				type:"post",
+				data:formData,
+				processData:false,
+				contentType:false,
+				success:function(res){
+				if(res.code==2000){
+				  alert("上传成功！");
+				}else{
+					alert("上传失败");
+				}
+				},
+				error:function(err){
+				  alert("上传失败",err);
+				}
+
+			})
+
+		}
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("1");
+
+    /*筛选条件收起展开*/
+    $(".pack_up").click(function(){
+        //$(".search").toggle();
+		if($(".pack_up").text()=="展开+"){
+			$('#person').show();
+			$('#home').hide();
+			$('#oneCheck').css({'background':'#ddd','color':'black'});
+			$("#twoCheck").css({'background':'#00aaee','color':'white'});
+		}else{
+			$('#person').hide();
+			$('#home').hide();
+			$("#oneCheck").css({'background':'#00aaee','color':'white'});
+			$("#twoCheck").css({'background':'#00aaee','color':'white'});
+		}
+        $(".pack_up").text($(".pack_up").text()=="展开+"?"收起-":"展开+");
+    })
+
+	  $("#oneCheck").click(function(){
+		$(".pack_up").text($(".pack_up").text()=="展开+"?"收起-":"展开+");
+        $('#person').toggle();
+        $('#home').hide();
+        $(this).css({'background':'#ddd','color':'black'});
+        $("#twoCheck").css({'background':'#00aaee','color':'white'});
+    })
+	  $("#twoCheck").click(function(){
+		$(".pack_up").text($(".pack_up").text()=="展开+"?"收起-":"展开+");
+        $('#person').hide();
+        $('#home').toggle();
+        $(this).css({'background':'#ddd','color':'black'});
+        $("#oneCheck").css({'background':'#00aaee','color':'white'});
+    })
+    $(".xixian dt >dl:nth-child(2)").siblings().click(function(){
+		$(this).parent().children(':nth-child(2)').removeClass("active");
+		$(this).toggleClass("active");
+		//给点击对象添加类
+      });
+	$(".xixian dt >dl:nth-child(2)").click(function(){
+		$(this).toggleClass("active")
+		$(this).siblings().removeClass('active');
+		if ($(".xixian dt ").children().hasClass("active")) {
+			$(":checkbox").attr("checked",true);
+		} else{
+			$(":checkbox").attr("checked",false);
+		}
+       })
+    $(":checkbox").change(function () {
+    if($(this).is(':checked')){
+        $(this).parent().parent().parent().children(':nth-child(2)').addClass("active");
+       }
+    });
+	$(".tuopin dl >dt:nth-child(2)").nextAll().click(function(){
+               $(".tuopin dl >dt:nth-child(2)").removeClass("active");
+               $(this).toggleClass("active");
+               //$(this).toggleClass("active").siblings().removeClass("active");
+              //给点击对象添加类
+          });
+       $(".tuopin dl >dt:nth-child(2)").click(function(){
+            $(this).addClass('active');
+       		$(this).siblings().removeClass('active');
+       })
+
+        $(".shuxing dl >dt:nth-child(2)").nextAll().click(function(){
+            $(".shuxing dl >dt:nth-child(2)").removeClass("active");
+            $(this).toggleClass("active");
+            //$(this).toggleClass("active").siblings().removeClass("active");
+            //给点击对象添加类
+        });
+        $(".shuxing dl >dt:nth-child(2)").click(function(){
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+        })
+
+	  $("#p_number").blur(function(){
+        if(parseFloat($(this).val())>0 && $(this).val().length>=18){
+        }else if($(this).val()!=''){
+            $(this).val("(*请输入有效值)")
+            $(this).css("color","red");
+        }
+      //  alert($(this).val())
+    })
+   $("#p_number").focus(function(){
+        if($(this).val()=="(*请输入有效值)"){
+            $(this).val("");
+            $(this).css("color","#333333")
+        }
+    })
+})
+</script>
+</body>
+</html>

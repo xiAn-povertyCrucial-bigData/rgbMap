@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>帮扶单位</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/show_team_inform.js"></script>
+    <!--<script src="../js/show_team_detail_inform.js"></script>
+    <script src="../js/add_team.js"></script>-->
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr th{/*width: 10%;*/height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table tr td{/*width: 10%;*/height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-05{display: none}
+        .form-04 table tr td {width:11%}
+        .no-pass{color: #ee3333}
+        .form-01 table tr td a{
+            display: inline-block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+        }
+        .form-01 table tr td a:first-child{
+            background: #FEAE1B;
+        }
+        .form-01 table tr td a:nth-child(2){
+            background: #229ffd;
+        }
+        .form-01 table tr td a:last-child{
+            background: #ff7680;
+        }
+     input[type=date]::-webkit-inner-spin-button { visibility: hidden; } 
+      .panel>.form-01>.search >div>.form-group> input[type=date]{
+            width: 130px;
+        }
+        span,table tr td,a{
+        	cursor: pointer;
+        }
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>帮扶单位</strong><a href="addTeam.html" class="button border-main icon-plus-square-o">添加内容</a><div class="search"></div>
+  		<span  id="dataImport" class="button border-main dataImport1" style="float: right;margin-right: 15px;">导出</span>
+  </div>
+    <div class="form-01">
+        <!--<p>数据筛选 <span class="pack_up">收起-</span></p>-->
+        <div class="search searchs" style="display: block;">
+            <!--<div>
+                <label for="">行政区划</label>
+                <input type="text" value="陕西省" disabled>
+                <input type="text" value="西安市" disabled>
+                <select name="" id="country">
+                    <option value="">县（区）</option>
+                    <option value="">新城区</option>
+                    <option value="">碑林区</option>
+                    <option value="">莲湖区</option>
+                    <option value="">灞桥区</option>
+                    <option value="">未央区</option>
+                    <option value="">雁塔区</option>
+                    <option value="">阎良区</option>
+                    <option value="">临潼区</option>
+                    <option value="">长安区</option>
+                    <option value="">蓝田县</option>
+                    <option value="">周至县</option>
+                    <option value="">鄠邑区</option>
+                </select>
+                <select name="" id="township">
+                    <option value="">乡（镇）</option>
+                    <option value="">新城区</option>
+                    <option value="">碑林区</option>
+                    <option value="">莲湖区</option>
+                    <option value="">灞桥区</option>
+                    <option value="">未央区</option>
+                    <option value="">雁塔区</option>
+                    <option value="">阎良区</option>
+                    <option value="">临潼区</option>
+                    <option value="">长安区</option>
+                    <option value="">蓝田县</option>
+                    <option value="">周至县</option>
+                    <option value="">鄠邑区</option>
+                </select>
+                <select name="" id="village">
+                    <option value="">村</option>
+                    <option value="">新城区</option>
+                    <option value="">碑林区</option>
+                    <option value="">莲湖区</option>
+                    <option value="">灞桥区</option>
+                    <option value="">未央区</option>
+                    <option value="">雁塔区</option>
+                    <option value="">阎良区</option>
+                    <option value="">临潼区</option>
+                    <option value="">长安区</option>
+                    <option value="">蓝田县</option>
+                    <option value="">周至县</option>
+                    <option value="">鄠邑区</option>
+                </select>
+            </div>-->
+            <div>
+                <div class="form-group">
+                    <label for="">隶属关系</label>
+                    <select name="" id="shuxing">
+                        <!--<option value="">--请选择--</option>                       
+                        <option value="40">市、地区</option>
+                        <option value="50">县（区）</option>                      
+                        <option value="60">街道、镇、乡</option>
+                        <option value="73">村两委</option>
+                        <option value="80">军队</option>
+                        <option value="90">其他</option>-->
+                       
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">单位名称</label><input type="text" id="company"/>                   
+                </div>
+                <div class="form-group">
+                    <label for="">对口帮扶区县</label><input type="text" value="" id="city" />                   
+                </div>
+                <div class="form-group">
+                    <label for="">对口帮扶村</label><input type="text" id="area" />                   
+                </div>               
+            </div>
+            <div id="" style="clear: both;">
+            	<div class="form-group">
+                    <label for="">开始时间</label><input id="start" type="date" style="margin-left: 5px;"/>                   
+                </div>
+                <div class="form-group">
+                    <label for="">结束时间</label><input type="date" id="end" />                   
+                </div> 
+            </div>
+            <br />
+            <div>
+                <input type="button" id="btn_orange" class="btn_orange" style="float: right;" name="" value="查询">
+                <input type="button" class="btn_blue" style="float: right;" name="" value="重置条件">
+            </div>
+        </div>
+        <div id="" style="overflow-x: scroll;">
+        	
+        
+      <table id="table" style="border-collapse: collapse; width: 1400px;">
+       
+
+      </table>
+      </div>
+        <div class="pages">
+            <div class="paging">
+                <div id="Pagination"></div>
+                <div class="searchPage">
+                    <span class="page-sum">共<strong class="allPage">1</strong>页</span>
+                    <!--<span class="page-go">到<input type="text">页</span>
+                    <a href=" " class="page-btn">确定</a>-->
+                    <span id="total">总数： 0</span>
+                </div>
+            </div>
+        </div>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("1");
+
+    })
+    /*筛选条件收起展开*/
+    $(".pack_up").click(function(){
+        $(".search").toggle();
+        $(".pack_up").text($(".pack_up").text()=="高级查询+"?"收起-":"高级查询+");
+    })
+ 
+</script>
+</body>
+</html>

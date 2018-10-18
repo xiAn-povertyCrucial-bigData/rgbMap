@@ -1,0 +1,3063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>西安市脱贫成效监测系统</title>
+	<link rel="stylesheet" href="css/ryg.css">
+	<link rel="stylesheet" href="css/adapter.css">
+	<style>
+		.con-right .module-1 div div canvas{
+			height: 240px;
+		}
+	</style>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="../supportMeasures/js/commer.js"></script>
+	<script src="../index/js/jquery.cookie.js"></script>
+	<script src="../index/js/tooltips.js"></script>
+	<script src="js/employBussiness.js"></script>
+</head>
+<body>
+	<div class="container">
+		<!--遮罩-->
+		<div class="box" style="opacity: 0;top:-100%;"></div>
+		<!--左下点击红黄绿(镇/街道)-->
+		<div class="pop-up5" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="countyName">周至县</span>各镇（街）就业扶贫实施情况</h1>
+			<div class="module-box">
+				<div id="module-10" class='m-item'></div>
+			</div>
+		</div>
+		<!--左下点击红黄绿(村)-->
+		<div class="pop-up6" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="villageName">板房子镇</span>各村就业扶贫实施情况</h1>
+			<div class="module-box">
+				<div id="module-11" class='m-item'></div>
+			</div>
+		</div>
+		<!--左下点击红黄绿(户)-->
+		<div class="pop-up7" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="houseName">东石门村</span>各户就业扶贫实施情况</h1>
+			<div class="module-box">
+				<div class="Top_Record" style="width:100%">
+					<div class="topRec_List" style="width:100%;">
+						<dl style="background: url('images/title.png') no-repeat center/cover">
+							<dd style="width:50%;color:#fff;border:1px solid #fff;">姓名</dd>
+							<dd style="width:50%;color:#fff;border:1px solid #fff;border-left:none;">达标情况</dd>
+						</dl>
+						<div class="maquee maquee2 maquee4" style="height:346px;">
+							<ul style="height:346px;overflow-y: auto;" id="nameList" class="scroll">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--右上(县)-->
+        <div class="pop-up" style="opacity: 0;top:-100%;">
+            <div class="close"></div>
+            <h1 class="title">全市各县区<span id="project"></span>分类统计</h1>
+            <div class="module-box">
+                <div id="module-6" class='m-item'></div>
+            </div>
+        </div>
+		<!--右上(镇/街道)-->
+		<div class="pop-up8" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="countyName2">周至县</span><span>各镇（街）</span><span id="project2"></span>分类统计</h1>
+			<div class="module-box">
+				<div id="module-12" class='m-item'></div>
+			</div>
+		</div>
+		<!--右上(村)-->
+		<div class="pop-up9" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="street">板房子镇</span><span>各村</span><span id="project3"></span>分类统计</h1>
+			<div class="module-box">
+				<div id="module-13" class='m-item'></div>
+			</div>
+		</div>
+		<!--右上(户)-->
+		<div class="pop-up10" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="villageName2">东石门村</span>各户<span id="project4"></span>分类统计</h1>
+			<div class="module-box">
+				<div class="Top_Record" style="width:100%">
+					<div class="topRec_List" style="width:100%;">
+						<div class="maquee maquee2" style="height:385px;">
+							<div class="maquee maquee2 maquee3" style="height:385px;">
+								<ul style="height:385px;overflow-y: auto;" id="nameList2">
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--右中(县)-->
+		<div class="pop-up2" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title">全市各县区<span id="method">自主发展</span>就业方式分类统计</h1>
+			<div class="module-box">
+				<div id="module-7" class='m-item'></div>
+			</div>
+		</div>
+		<!--右中(镇/街道)-->
+		<div class="pop-up11" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="countyName3">周至县</span>各镇（街）就业方式培训情况</h1>
+			<div class="module-box">
+				<div id="module-14" class='m-item'></div>
+			</div>
+		</div>
+		<!--右中(村)-->
+		<div class="pop-up12" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="street2">板房子镇</span>各村就业方式培训情况</h1>
+			<div class="module-box">
+				<div id="module-15" class='m-item'></div>
+			</div>
+		</div>
+		<!--右中(户)-->
+		<div class="pop-up13" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="villageName3">东石门村</span>各户就业方式培训情况</h1>
+			<div class="module-box">
+				<div class="Top_Record" style="width:100%">
+					<div class="topRec_List" style="width:100%;">
+						<dl style="background: url('images/title.png') no-repeat center/cover">
+							<dd style="width:50%;color:#fff;border:1px solid #fff;">姓名</dd>
+							<dd style="width:50%;color:#fff;border:1px solid #fff;border-left:none;">培训情况</dd>
+						</dl>
+						<div class="maquee maquee2" style="height:342px;">
+							<ul style="height:342px;overflow-y: auto;" id="nameList3" class="scroll">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--右下（未培训）(县)-->
+		<div class="pop-up3" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span>全市各县区</span>就业培训情况</h1>
+			<div class="module-box">
+				<div id="module-8" class='m-item'></div>
+			</div>
+		</div>
+		<!--右下（未培训）(镇/街道)-->
+		<div class="pop-up14" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title">全市各区县<span id="projects"></span>户数情况</h1>
+			<div class="module-box">
+				<div id="module-16" class='m-item'></div>
+			</div>
+		</div>
+		<!--右下（未培训）(村)-->
+		<div class="pop-up15" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="countyName6"></span>各镇(街)<span id="projects2"></span>户数情况</h1>
+			<div class="module-box">
+				<div id="module-17" class='m-item'></div>
+			</div>
+		</div>
+		<div class="pop-up16" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="countyName7"></span>各村<span id="projects3"></span>户数情况</h1>
+			<div class="module-box">
+				<div id="module-18" class='m-item'></div>
+			</div>
+		</div>
+		<!--右下（未培训）(户)-->
+		<div class="pop-up17" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="houseName3"></span>各户就业未培训情况</h1>
+			<div class="module-box">
+				<div class="Top_Record" style="width:100%">
+					<div class="topRec_List" style="width:100%;">
+						<dl>
+							<dd style="width:100%;background: #DD4F43;color:#fff;border:1px solid #fff;">未培训</dd>
+							<!--<dd style="width:33.333333%;background: #FFCE43;color:#fff;border:1px solid #fff;">实施中</dd>-->
+							<!--<dd style="width:33.333333%;background: #1FA463;color:#fff;border:1px solid #fff;">已达标</dd>-->
+						</dl>
+						<div class="maquee maquee2 maquee3" style="height:346px;">
+							<ul style="height:385px;overflow-y: auto;" id="nameList4">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--&lt;!&ndash;右下（已培训）&ndash;&gt;
+		<div class="pop-up4" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span>全市各县区</span>就业已培训情况</h1>
+			<div class="module-box">
+				<div id="module-9" class='m-item'></div>
+			</div>
+		</div>
+		&lt;!&ndash;右下（已培训）(镇/街道)&ndash;&gt;
+		<div class="pop-up17" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="countyName7">周至县</span>各镇（街）就业已培训情况</h1>
+			<div class="module-box">
+				<div id="module-18" class='m-item'></div>
+			</div>
+		</div>
+		&lt;!&ndash;右下（已培训）(村)&ndash;&gt;
+		<div class="pop-up18" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="countyName8">板房子镇</span>各村就业已培训情况</h1>
+			<div class="module-box">
+				<div id="module-19" class='m-item'></div>
+			</div>
+		</div>
+		&lt;!&ndash;右下（已培训）(户)&ndash;&gt;
+		<div class="pop-up19" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="villageName4">东石门村</span>各户就业已培训情况</h1>
+			<div class="module-box">
+				<div class="Top_Record" style="width:100%">
+					<div class="topRec_List" style="width:100%;">
+						<dl>
+							<dd style="width:100%;background: #1FA463;color:#fff;border:1px solid #fff;">已培训</dd>
+							&lt;!&ndash;<dd style="width:33.333333%;background: #FFCE43;color:#fff;border:1px solid #fff;">实施中</dd>&ndash;&gt;
+							&lt;!&ndash;<dd style="width:33.333333%;background: #1FA463;color:#fff;border:1px solid #fff;">已达标</dd>&ndash;&gt;
+						</dl>
+						<div class="maquee maquee2 maquee3" style="height:346px;">
+							<ul style="height:346px;">
+								<li>
+									<div>周宇</div>
+									<div>李箐</div>
+									<div>李慧</div>
+								</li>
+								<li>
+									<div>周宇</div>
+									<div>张启成</div>
+									<div>李慧</div>
+								</li>
+								<li>
+									<div>周宇</div>
+									<div>李箐</div>
+									<div>张启成</div>
+								</li>
+								<li>
+									<div>周宇</div>
+									<div>李箐</div>
+									<div>李慧</div>
+								</li>
+								<li>
+									<div>周宇</div>
+									<div>李箐</div>
+									<div>张启成</div>
+								</li>
+								<li>
+									<div>李箐</div>
+									<div>张启成</div>
+									<div>李慧</div>
+								</li>
+								<li>
+									<div>周宇</div>
+									<div>李箐</div>
+									<div>张启成</div>
+								</li>
+								<li>
+									<div>周宇</div>
+									<div>张启成</div>
+									<div>李慧</div>
+								</li>
+								<li>
+									<div>李箐</div>
+									<div>张启成</div>
+									<div>李慧</div>
+								</li>
+								<li>
+									<div>周宇</div>
+									<div>张启成</div>
+									<div>李慧</div>
+								</li>
+								<li>
+									<div>周宇</div>
+									<div>李箐</div>
+									<div>李慧</div>
+								</li>
+								<li>
+									<div>周宇</div>
+									<div>李箐</div>
+									<div>张启成</div>
+								</li>
+								<li>
+									<div>周宇</div>
+									<div>李箐</div>
+									<div>张启成</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+		<div class="main">
+			<div class="main-title clearfix">
+				<p>西安市脱贫成效监测系统</p>
+			</div>
+			<div class="btns">
+				<div class="cunhu" style="width:76px;">
+					<!--<a href="supportMeasures.html"><img src="images/icon_cun.png" alt=""></a>
+					<a href="infrastructure_city.html"><img src="images/icon_hu.png" alt=""></a>-->
+				</div>
+				<div class="itemBtn">
+					<a class="btn" href="../poorStatus/City1.html">脱贫状态</a>
+					<a class="btn" href="supportMeasures.html">帮扶措施</a>
+				</div>
+				<div class="home_return">
+					<a class="a-item home" href="supportMeasures.html">首页</a>
+					<a class="a-item return	" href="javascript:history.back(-1)">返回</a>
+				</div>
+			</div>
+			<div class="con">
+				<div class="con-left">
+					<div class="module-1">
+					<h3 class="c-title"><span class="fpVill"></span>全市就业扶贫实施情况统计</h3>
+						<div id="module-1" class='m-item'></div>
+					</div>
+					<div class="module-1" style="height:52%">
+						<h3 class="c-title"><span class="fpVill"></span>全市各区县就业扶贫实施情况</h3>
+						<div id="module-2" class='m-item'></div>
+					</div>
+				</div>
+				<div class="map-content content map-content2">
+					<span class="line left-top"></span>
+					<span class="line left-bottom"></span>
+					<span class="line top-left"></span>
+					<span class="line top-right"></span>
+					<span class="line right-top"></span>
+					<span class="line right-bottom"></span>
+					<span class="line bottom-left"></span>
+					<span class="line bottom-right"></span>
+					<h3 style="text-align: center;font-size: 22px;line-height: 70px;height:70px;">西安市就业扶贫</h3>
+					<div class="map">
+						<!--<iframe src="../dist/index.html" frameborder="0" style="width:800px;height:500px;" id="mapService" class="maps"></iframe>-->
+						<div id="imgBox" style="width: 614px;height: 542px;position:relative;margin:0 auto;" class="imgbox">
+							<img src="images/mapaa.png" alt="" usemap="#Map" name="Map" style="width:614px;height:542px;position:absolute;top:50%;left:50%;transform: translate(-50%,-50%)">
+						</div>
+						<map name="Map">
+							<area shape="poly" id="zhouzhi" coords="123,240,134,238,143,239,151,243,154,246,163,242,168,239,174,246,182,251,189,254,194,250,204,254,208,257,214,254,222,253,229,253,237,250,243,250,250,245,252,251,257,253,255,260,250,258,247,261,247,262,243,273,241,280,241,290,241,297,240,305,238,314,238,322,237,331,235,337,234,340,232,346,230,350,230,359,228,368,228,374,230,382,230,390,227,398,224,408,222,416,218,423,214,434,210,444,207,453,199,457,195,462,192,466,186,463,182,469,178,470,174,478,171,485,166,485,162,488,157,485,156,491,145,494,140,488,135,493,131,487,128,485,122,487,119,495,109,490,102,486,98,480,93,481,87,474,83,482,78,481,74,473,72,474,72,482,69,486,63,490,62,497,58,500,51,502,47,496,46,494,42,493,35,489,26,489,20,483,12,484,10,473,3,463,6,455,7,446,9,438,16,426,18,418,18,412,20,404,23,396,24,386,24,382,31,374,38,370,42,369,45,362,50,355,58,350,62,354,69,359,73,354,78,350,81,347,82,350,85,354,90,354,93,350,94,344,91,338,91,330,95,325,97,324,101,317,102,311,110,306,110,296,113,290,110,286,113,276,118,269,119,260,121,249,122,240" href="#">
+							<area shape="poly" id="huyi" coords="254,244,258,240,264,239,271,238,276,234,278,228,282,225,284,227,284,230,286,234,287,238,285,244,285,248,286,250,283,254,282,256,286,260,286,262,289,268,292,270,297,268,302,269,303,274,304,278,307,283,307,286,308,290,314,294,317,294,320,301,317,306,314,308,317,313,314,315,314,322,319,327,320,337,319,348,322,352,322,356,322,359,322,365,323,371,322,378,322,387,318,394,315,394,316,402,314,405,310,412,307,422,301,432,292,433,285,434,282,439,278,449,276,457,274,463,272,470,266,468,262,463,258,459,254,456,248,454,240,450,235,457,226,463,218,469,214,466,210,462,208,458,206,455,206,450,210,442,210,432,214,421,218,415,225,405,228,396,230,388,229,377,227,366,228,362,229,355,232,346,233,339,234,334,238,327,239,318,238,314,238,306,239,298,239,294,240,286,243,278,244,273,244,269,244,262,246,258,251,258,253,261,255,256,252,251,252,246" href="#">
+							<area shape="poly" id="changan" coords="322,371,321,363,322,360,322,356,321,352,320,346,320,338,320,331,320,329,316,322,315,318,315,310,315,307,315,303,320,303,320,297,319,294,316,294,310,289,309,283,306,279,306,274,305,271,302,267,299,263,299,259,303,260,308,263,310,267,314,267,317,268,321,273,324,271,327,270,334,266,338,262,339,258,345,263,350,263,354,267,355,270,358,270,361,269,364,266,369,266,372,266,374,263,378,266,384,267,391,265,398,260,401,268,404,270,406,266,407,264,408,262,408,260,410,264,416,267,418,266,423,266,427,266,432,273,431,277,430,282,432,286,434,290,438,292,442,294,442,298,439,302,438,302,435,303,430,304,426,302,424,301,422,305,424,309,426,314,429,318,430,322,430,326,432,332,432,335,434,342,436,349,437,353,440,362,443,364,446,370,447,380,447,385,447,390,447,393,450,394,451,400,453,404,454,409,454,414,446,415,438,414,434,412,430,413,424,414,420,414,419,406,419,402,416,398,409,395,404,392,402,391,399,397,394,399,394,403,387,410,381,411,377,413,369,416,368,423,365,426,363,429,359,432,354,434,349,441,343,441,340,441,335,442,331,447,328,450,322,447,318,442,315,435,315,432,310,435,306,437,302,433,303,426,306,418,307,412,312,409,314,405,316,401,317,397,318,391,321,382,322,373" href="#">
+							<area shape="poly" id="lantian" coords="443,294,438,290,434,288,432,284,433,275,430,266,432,263,433,261,430,258,429,254,433,252,431,249,426,244,423,235,422,230,429,222,434,218,438,217,440,219,445,213,446,209,454,204,456,202,458,206,459,214,462,218,466,218,470,218,473,218,478,223,480,222,480,216,482,210,483,205,486,198,490,197,492,204,496,210,499,206,502,204,505,213,508,214,512,217,514,222,519,226,526,229,531,229,533,227,538,227,544,230,547,234,551,237,556,235,562,235,568,236,572,237,577,239,582,240,584,246,587,249,590,253,590,258,593,262,597,265,599,270,602,270,610,278,611,282,606,285,598,287,594,285,594,293,590,298,591,305,586,311,578,307,575,305,569,305,565,308,563,313,562,317,548,319,542,326,542,328,545,332,543,337,540,341,542,347,539,354,542,359,547,364,552,371,558,378,560,386,557,394,558,398,556,402,551,406,546,409,544,418,541,422,534,426,525,428,520,428,516,434,506,431,502,428,497,426,490,426,488,422,482,422,478,425,472,424,470,422,466,414,458,414,457,415,456,415,454,408,452,404,452,398,446,395,446,390,446,385,447,378,448,370,446,366,443,364,441,361,438,352,437,344,433,333,430,327,432,326,426,318,423,311,421,306,422,303,422,301,426,303,430,306,435,304,439,303,442,298,444,296" href="#">
+							<area shape="poly" id="xixian" coords="269,159,274,160,278,163,282,167,289,165,296,164,299,162,300,160,298,155,298,152,296,144,294,139,295,134,298,130,298,126,302,122,302,118,300,114,302,109,306,106,309,110,311,110,314,112,316,114,319,116,322,120,329,123,329,122,328,117,329,111,331,108,336,106,344,105,350,106,356,105,363,102,369,100,373,106,374,110,374,115,374,120,377,123,376,129,376,136,375,142,375,146,375,150,372,148,372,154,372,159,369,162,367,166,360,170,352,171,348,174,336,180,336,182,336,183,339,187,341,188,342,193,342,195,343,197,343,203,343,207,344,211,346,215,344,221,343,226,343,232,340,234,338,234,334,237,334,238,335,245,335,248,336,249,338,250,339,253,339,256,338,262,333,264,330,267,326,270,322,273,319,269,317,266,312,266,310,265,307,262,304,260,302,260,300,263,294,268,290,266,286,262,286,260,284,259,286,256,286,253,284,249,285,242,287,239,285,234,284,230,286,226,290,224,293,218,294,211,297,205,303,201,307,196,313,192,318,189,318,187,314,186,307,190,299,191,294,195,290,196,284,199,282,202,276,204,271,206,262,206,261,202,259,197,259,191,261,183,262,178,262,170,266,162" href="#">
+							<area shape="poly" id="gaoling" coords="370,98,374,96,377,94,380,91,385,89,390,87,394,87,398,89,402,90,406,91,406,94,410,91,414,94,414,98,416,103,418,107,421,113,425,121,423,128,424,132,425,136,426,143,427,148,427,154,424,150,419,157,414,155,412,154,408,152,404,151,402,146,400,142,400,146,396,147,391,151,387,151,382,152,375,154,372,158,371,150,376,151,374,146,377,138,374,118,374,106,370,102,370,98" href="#">
+							<area shape="poly" id="guoji" coords="389,153,394,150,397,147,398,142,402,154,408,155,411,157,414,155,416,158,421,155,422,151,427,153,423,162,421,165,418,170,418,177,417,186,414,194,406,199,402,195,401,192,392,187,386,185,387,174,386,166,385,160,387,155" href="#">
+							<area shape="poly" id="baqiao" coords="384,183,389,186,394,186,401,190,403,195,405,199,414,194,417,195,417,198,419,205,421,208,429,210,431,212,437,210,441,206,445,202,452,202,449,206,445,210,441,215,438,221,434,218,431,222,424,234,424,238,425,243,429,248,433,250,432,253,429,255,427,258,432,258,431,260,428,262,428,266,427,267,421,266,419,266,415,267,412,265,411,262,407,259,408,263,408,266,405,266,403,270,399,265,397,258,398,252,398,245,399,239,397,234,396,230,391,231,391,228,390,222,390,218,384,215,386,213,386,210,390,207,393,204,393,202,389,198,388,195,386,187" href="#">
+							<area shape="poly" id="lintong" coords="414,95,413,86,413,80,412,75,415,70,418,68,421,67,423,71,429,77,429,78,431,84,432,88,435,90,442,92,450,90,462,89,467,84,472,81,472,77,472,71,472,68,479,68,481,68,486,65,490,64,490,72,493,77,493,82,493,91,494,98,497,102,497,106,497,110,493,116,488,119,484,121,486,126,489,130,485,134,486,139,490,143,492,147,493,151,495,157,497,160,498,163,500,170,503,174,506,180,505,189,506,196,506,204,500,207,496,209,493,204,493,201,492,197,487,196,484,198,481,202,479,211,480,218,479,221,475,218,471,216,465,215,462,214,459,210,459,206,458,201,452,200,448,199,444,202,443,206,438,208,434,210,430,208,425,210,420,206,419,204,421,199,419,194,415,194,415,188,416,183,418,175,421,167,422,162,425,154,427,149,428,145,426,141,424,134,424,126,422,118,420,108,417,103,416,98" href="#">
+						</map>
+					</div>
+				</div>
+				<div class="con-right">
+					<div class="module-1">
+						<h3 class="c-title"><span class="fpVill"></span>全市就业方式分类统计</h3>
+						<div id="module-3" class='m-item'></div>
+					</div>
+					<div class="module-1">
+						<h3 class="c-title"><span class="fpVill"></span>全市就业方式培训情况</h3>
+						<div id="module-4" class='m-item'></div>
+					</div>
+					<div class="module-1">
+						<h3 class="c-title"><span class="fpVill"></span>全市就业方式户数情况</h3>
+						<div id="module-5" class='m-item'></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="../index/js/config.js"></script>
+<script type="text/javascript">
+    var hosts=config.host;
+    var host = hosts+'/supportMeasures/';
+
+    /*读取本地用户名*/
+    let loginMessaage=JSON.parse($.cookie('loginMessage'));
+    let uname=loginMessaage.userCode
+    let ucode=loginMessaage.aar008;
+    if(uname!="超级管理员"&&uname!="领导"){
+        $(".home").attr("href","../index/index.html");
+    }
+    if(uname=="就业创业"){
+        $(".itemBtn a").removeAttr("href");
+    }
+    /**************** 地图调用 ************************/
+    var gis = null;
+    function giscallback(type, param){
+        switch (type) {
+            case 'mapinit':
+                // 地图初始化完成
+                break;
+            case 'county_select':
+                // 区域点击事件
+                var url = host + 'employBussiness_county.html?name=' + param
+                window.location.href = url;
+                break;
+            case 'village_select':
+                // 村点击事件
+                var url = host + 'employBussiness_village.html?county='+ param.county + '&name=' + param.village + '&villageCode=' + param.villagecode;
+                window.location.href = url;
+                break;
+            case 'city_show':
+                break;
+            default:
+                console.log(type +':' + param)
+                break;
+        }
+    }
+    function gisready(){
+        gis = document.getElementById("mapService").contentWindow
+        gis.gisapp.init(giscallback)
+    }
+
+    /*区县点击事件*/
+    $("#zhouzhi").click(function(){
+        window.location.href="employBussiness_county.html?name="+"周至县"+"&map="+"zhouzhi";
+    })
+    $("#huyi").click(function(){
+        window.location.href="employBussiness_county.html?name="+"鄠邑区"+"&map="+"huyi";
+    })
+    $("#lantian").click(function(){
+        window.location.href="employBussiness_county.html?name="+"蓝田县"+"&map="+"lantian";
+    })
+    $("#xixian").click(function(){
+        window.location.href="employBussiness_county.html?name="+"西咸新区"+"&map="+"xixian"
+    })
+    $("#lintong").click(function(){
+        window.location.href="employBussiness_county.html?name="+"临潼区"+"&map="+"lintong";
+    })
+    $("#gaoling").click(function(){
+        window.location.href="employBussiness_county.html?name="+"高陵区"+"&map="+"gaoling";
+    })
+    $("#guoji").click(function(){
+        window.location.href="employBussiness_county.html?name="+"国际港务区"+"&map="+"guoji";
+    })
+    $("#baqiao").click(function(){
+        window.location.href="employBussiness_county.html?name="+"灞桥区"+"&map="+"baqiao";
+    })
+    $("#changan").click(function(){
+        window.location.href="employBussiness_county.html?name="+"长安区"+"&map="+"changan";
+    })
+    /*地图上142个贫困村的渲染*/
+    $(document).ready(function(){
+        $.ajax({
+            url:url+"/map/house/detail",
+            data:{},
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                let datas=data.data;
+                getVillage(datas);
+            }
+        })
+        var chat=[];
+        function getVillage(data){
+            for(let i=0;i<data.length;i++){
+                let address=data[i].address.split("-");
+                let obj={"county":address[1],"name":address[3],"villageCode":data[i].disctId,"isReach":data[i].isReach,"x":0,"y":0};
+                chat.push(obj);
+            }
+            chat[0].x=86;chat[0].y=50;//西安市-蓝田县-九间房镇-桐花沟村
+            chat[1].x=85;chat[1].y=51;//西安市-蓝田县-九间房镇-公王村委会
+            chat[2].x=89;chat[2].y=53;//西安市-蓝田县-九间房镇-何家川村委会
+            chat[3].x=88;chat[3].y=54;//西安市-蓝田县-九间房镇-张家坪村
+            chat[4].x=86;chat[4].y=51;//西安市-蓝田县-九间房镇-九间房村
+            chat[5].x=87;chat[5].y=52;//西安市-蓝田县-九间房镇-峪口村
+            chat[6].x=35;chat[6].y=52;//西安市-周至县-终南镇-长杨村委会
+            chat[7].x=57;chat[7].y=24;//西安市-泾河新城-高庄镇-新庄村委会
+            chat[8].x=79;chat[8].y=33;//西安市-临潼区-小金街道-安庙村委会
+            chat[9].x=78.5;chat[9].y=34;//西安市-临潼区-小金街道-小金村委会
+            chat[10].x=77;chat[10].y=32;//西安市-临潼区-小金街道-欠湾村委会
+            chat[11].x=80;chat[11].y=32;//西安市-临潼区-小金街道-炮岭村委会
+            chat[12].x=77;chat[12].y=33;//西安市-临潼区-小金街道-毛湾村委会
+            chat[13].x=30;chat[13].y=60;//西安市-周至县-楼观镇-就峪村委会
+            chat[14].x=76;chat[14].y=70;//西安市-蓝田县-小寨镇-岱峪村
+            chat[15].x=74;chat[15].y=68;//西安市-蓝田县-小寨镇-蔡岩村
+            chat[16].x=73.5;chat[16].y=69;//西安市-蓝田县-小寨镇-湖滩村
+            chat[17].x=75;chat[17].y=70;//西安市-蓝田县-小寨镇-南寨村
+            chat[18].x=35;chat[18].y=50;//西安市-周至县-集贤镇-马滩村委会
+            chat[19].x=34;chat[19].y=54;//西安市-周至县-集贤镇-六合社区居委会
+            chat[20].x=40;chat[20].y=60;//西安市-鄠邑区-蒋村镇-甘峪口村委会
+            chat[21].x=39;chat[21].y=60;//西安市-鄠邑区-蒋村镇-白龙沟村村委会
+            chat[22].x=49;chat[22].y=62;//西安市-鄠邑区-蒋村镇-郝家寨村村委会
+            chat[23].x=39;chat[23].y=56;//西安市-鄠邑区-蒋村镇-柳泉口村村委会
+            chat[24].x=70.5;chat[24].y=61;//西安市-蓝田县-汤峪镇-东山村委会
+            chat[25].x=27;chat[25].y=52;//西安市-周至县-马召镇-群三兴村委会
+            chat[26].x=26;chat[26].y=53;//西安市-周至县-马召镇-辛口村委会
+            chat[27].x=28;chat[27].y=52.5;//西安市-周至县-马召镇-上马村委会
+            chat[28].x=27.5;chat[28].y=53;//西安市-周至县-马召镇-四群村委会
+            chat[29].x=28.5;chat[29].y=53;//西安市-周至县-马召镇-郭寨村委会
+            chat[30].x=28;chat[30].y=56;//西安市-周至县-马召镇-涌泉寺村委会
+            chat[31].x=75;chat[31].y=35.5;//西安市-临潼区-仁宗街道-茨林村委会
+            chat[32].x=74;chat[32].y=36;//西安市-临潼区-仁宗街道-芋坡村委会
+            chat[33].x=74;chat[33].y=34;//西安市-临潼区-仁宗街道-庄王村委会
+            chat[34].x=72;chat[34].y=33;//西安市-临潼区-仁宗街道-仁宗村委会
+            chat[35].x=74.5;chat[35].y=32;//西安市-临潼区-仁宗街道-玉川村委会
+            chat[36].x=71;chat[36].y=34;//西安市-临潼区-仁宗街道-房岩村委会
+            chat[37].x=70.5;chat[37].y=35;//西安市-临潼区-仁宗街道-壕栗村委会
+            chat[38].x=3;chat[38].y=83;//西安市-周至县-厚畛子镇-老县城村委会
+            chat[39].x=17;chat[39].y=71;//西安市-周至县-厚畛子镇-八一村委会
+            chat[40].x=8;chat[40].y=86;//西安市-周至县-厚畛子镇-花耳坪村委会
+            chat[41].x=8;chat[41].y=70;//西安市-周至县-厚畛子镇-厚畛子村委会
+            chat[42].x=22;chat[42].y=50;//西安市-周至县-翠峰镇-东红村委会
+            chat[43].x=23;chat[43].y=54;//西安市-周至县-翠峰镇-陈家村委会
+            chat[44].x=22;chat[44].y=52;//西安市-周至县-翠峰镇-清河村委会
+            chat[45].x=21;chat[45].y=53;//西安市-周至县-翠峰镇-下宝玉村委会
+            chat[46].x=49;chat[46].y=61;//西安市-鄠邑区-草堂镇-紫阁峪村村委会
+            chat[47].x=78;chat[47].y=49;//西安市-蓝田县-三里镇-磨李村
+            chat[48].x=77;chat[48].y=48;//西安市-蓝田县-三里镇-北小寨村
+            chat[49].x=76;chat[49].y=50.5;//西安市-蓝田县-三里镇-樊家村委会
+            chat[50].x=30;chat[50].y=47;//西安市-周至县-富仁镇-渭友村委会
+            chat[51].x=22;chat[51].y=47;//西安市-周至县-哑柏镇-景联社区居委会
+            chat[52].x=21;chat[52].y=46;//西安市-周至县-哑柏镇-五联村委会
+            chat[53].x=41;chat[53].y=48;//西安市-鄠邑区-甘河镇-侯王村村委会
+            chat[54].x=18;chat[54].y=80;//西安市-周至县-板房子镇-高潮村委会
+            chat[55].x=23;chat[55].y=80.5;//西安市-周至县-板房子镇-新红村委会
+            chat[56].x=15.5;chat[56].y=84;//西安市-周至县-板房子镇-长坪村委会
+            chat[57].x=19;chat[57].y=84.5;//西安市-周至县-板房子镇-东石门村委会
+            chat[58].x=20;chat[58].y=80;//西安市-周至县-板房子镇-清水河村委会
+            chat[59].x=71;chat[59].y=46.5;//西安市-蓝田县-孟村镇-石官寨村
+            chat[60].x=70;chat[60].y=45;//西安市-蓝田县-孟村镇-姚村
+            chat[61].x=20;chat[61].y=50;//西安市-周至县-竹峪镇-张龙村委会
+            chat[62].x=19;chat[62].y=50;//西安市-周至县-竹峪镇-中军岭村委会
+            chat[63].x=18.5;chat[63].y=51;//西安市-周至县-竹峪镇-丹阳村委会
+            chat[64].x=19.5;chat[64].y=52;//西安市-周至县-竹峪镇-东大墙村委会
+            chat[65].x=20;chat[65].y=53;//西安市-周至县-竹峪镇-东寨村委会
+            chat[66].x=21;chat[66].y=49;//西安市-周至县-竹峪镇-鸭沟村委会
+            chat[67].x=20;chat[67].y=50.5;//西安市-周至县-竹峪镇-民主村委会
+            chat[68].x=21;chat[68].y=51;//西安市-周至县-竹峪镇-五星村委会
+            chat[69].x=21.5;chat[69].y=50;//西安市-周至县-竹峪镇-岭梅村委会
+            chat[70].x=23;chat[70].y=51;//西安市-周至县-竹峪镇-西沟村委会
+            chat[71].x=19;chat[71].y=46;//西安市-周至县-竹峪镇-兰梅塬村委会
+            chat[72].x=20;chat[72].y=47;//西安市-周至县-竹峪镇-塔庙村委会
+            chat[73].x=28;chat[73].y=76;//西安市-周至县-王家河镇-东涧沟村委会
+            chat[74].x=25;chat[74].y=75;//西安市-周至县-王家河镇-十亩地村委会
+            chat[75].x=25.5;chat[75].y=77;//西安市-周至县-王家河镇-白杨林村委会
+            chat[76].x=29;chat[76].y=73;//西安市-周至县-王家河镇-双庙子村委会
+            chat[77].x=30;chat[77].y=76;//西安市-周至县-王家河镇-玉皇庙村委会
+            chat[78].x=27;chat[78].y=79;//西安市-周至县-王家河镇-老庄子村委会
+            chat[79].x=88;chat[79].y=48;//西安市-蓝田县-玉山镇-峒峪村
+            chat[80].x=87;chat[80].y=47;//西安市-蓝田县-玉山镇-杨寨村委会
+            chat[81].x=85;chat[81].y=46;//西安市-蓝田县-玉山镇-上陈村委会
+            chat[82].x=86;chat[82].y=45;//西安市-蓝田县-玉山镇-刘寨村
+            chat[83].x=86;chat[83].y=70;//西安市-蓝田县-葛牌镇-金坪村
+            chat[84].x=83;chat[84].y=66;//西安市-蓝田县-葛牌镇-白家村
+            chat[85].x=85;chat[85].y=66;//西安市-蓝田县-葛牌镇-石船沟村
+            chat[86].x=81;chat[86].y=65;//西安市-蓝田县-葛牌镇-阳坡村
+            chat[87].x=84;chat[87].y=69.5;//西安市-蓝田县-葛牌镇-葛牌村
+            chat[88].x=85.5;chat[88].y=74;//西安市-蓝田县-葛牌镇-瓦屋庄村
+            chat[89].x=87;chat[89].y=73.5;//西安市-蓝田县-葛牌镇-东沟村
+            chat[90].x=46.5;chat[90].y=51;//西安市-鄠邑区-玉蝉镇-联西村村委会
+            chat[91].x=80;chat[91].y=60;//西安市-蓝田县-辋川镇-西河村
+            chat[92].x=78;chat[92].y=62;//西安市-蓝田县-辋川镇-锡水洞村
+            chat[93].x=80;chat[93].y=72;//西安市-蓝田县-辋川镇-七安子村
+            chat[94].x=76;chat[94].y=64;//西安市-蓝田县-辋川镇-董家岩村
+            chat[95].x=78;chat[95].y=69;//西安市-蓝田县-辋川镇-红门寺村
+            chat[96].x=80;chat[96].y=69;//西安市-蓝田县-辋川镇-核桃沟村
+            chat[97].x=81;chat[97].y=72;//西安市-蓝田县-辋川镇-甘家坪村
+            chat[98].x=73;chat[98].y=42;//西安市-蓝田县-洩湖镇-后李坪村委会
+            chat[99].x=75;chat[99].y=40;//西安市-蓝田县-洩湖镇-马王村委会
+            chat[100].x=76.5;chat[100].y=41;//西安市-蓝田县-洩湖镇-唐付村
+            chat[101].x=77;chat[101].y=45;//西安市-蓝田县-洩湖镇-骞湾村
+            chat[102].x=37;chat[102].y=51;//西安市-周至县-九峰镇-余家村委会
+            chat[103].x=35.5;chat[103].y=50;//西安市-周至县-九峰镇-何家寨村委会
+            chat[104].x=35;chat[104].y=51;//西安市-周至县-九峰镇-耿西村委会
+            chat[105].x=35;chat[105].y=49;//西安市-周至县-九峰镇-魏家庄村委会
+            chat[106].x=24;chat[106].y=53;//西安市-周至县-骆峪镇-向阳村委会
+            chat[107].x=25;chat[107].y=54;//西安市-周至县-骆峪镇-复兴村委会
+            chat[108].x=23;chat[108].y=55;//西安市-周至县-骆峪镇-神灵村委会
+            chat[109].x=26.5;chat[109].y=52;//西安市-周至县-骆峪镇-黄家湾社区居委会
+            chat[110].x=22;chat[110].y=53.5;//西安市-周至县-骆峪镇-尚兴村委会
+            chat[111].x=23;chat[111].y=54;//西安市-周至县-骆峪镇-骆峪村委会
+            chat[112].x=23.5;chat[112].y=55;//西安市-周至县-骆峪镇-红旗村委会
+            chat[113].x=45;chat[113].y=58;//西安市-鄠邑区-石井镇-沙窝村委会
+            chat[114].x=43;chat[114].y=57;//西安市-鄠邑区-石井镇-西河村委会
+            chat[115].x=48;chat[115].y=55;//西安市-鄠邑区-石井镇-八里坪村委会
+            chat[116].x=47;chat[116].y=56;//西安市-鄠邑区-石井镇-蔡家坡村村委会
+            chat[117].x=78;chat[117].y=50;//西安市-蓝田县-普化镇-贺凹村
+            chat[118].x=77.5;chat[118].y=49;//西安市-蓝田县-普化镇-民李村委会
+            chat[119].x=77;chat[119].y=50;//西安市-蓝田县-普化镇-邵家寨村委会
+            chat[120].x=80;chat[120].y=51;//西安市-蓝田县-普化镇-穆家坡村
+            chat[121].x=77;chat[121].y=42;//西安市-蓝田县-三官庙镇-北苍湾村
+            chat[122].x=76;chat[122].y=41;//西安市-蓝田县-三官庙镇-南湾岭村
+            chat[123].x=78.5;chat[123].y=38;//西安市-蓝田县-三官庙镇-龙门村委会
+            chat[124].x=78;chat[124].y=43;//西安市-蓝田县-三官庙镇-过风岭村委会
+            chat[125].x=79;chat[125].y=43.5;//西安市-蓝田县-三官庙镇-新房村委会
+            chat[126].x=25;chat[126].y=50;//西安市-周至县-广济镇-陈公坊村委会
+            chat[127].x=26;chat[127].y=49;//西安市-周至县-广济镇-黄兴村委会
+            chat[128].x=23.5;chat[128].y=52;//西安市-周至县-广济镇-双兴村委会
+            chat[129].x=83;chat[129].y=61.5;//西安市-蓝田县-蓝桥镇-野竹坪村委会
+            chat[130].x=21;chat[130].y=68;//西安市-周至县-陈河镇-黑虎村委会
+            chat[131].x=19;chat[131].y=66;//西安市-周至县-陈河镇-孙六村委会
+            chat[132].x=20;chat[132].y=67;//西安市-周至县-陈河镇-窑岭村委会
+            chat[133].x=21.5;chat[133].y=68;//西安市-周至县-陈河镇-金井村委会
+            chat[134].x=24;chat[134].y=69;//西安市-周至县-陈河镇-共兴村委会
+            chat[135].x=78;chat[135].y=34;//西安市-临潼区-穆寨街道-业池村委会
+            chat[136].x=79;chat[136].y=35;//西安市-临潼区-穆寨街道-王湾村委会
+            chat[137].x=76;chat[137].y=36;//西安市-临潼区-穆寨街道-东岳村委会
+            chat[138].x=78;chat[138].y=32;//西安市-临潼区-穆寨街道-穆柯寨村委会
+            chat[139].x=78;chat[139].y=34.5;//西安市-临潼区-穆寨街道-西岳村委会
+            chat[140].x=76;chat[140].y=37;//西安市-临潼区-穆寨街道-门岩村委会
+            chat[141].x=75;chat[141].y=36;//西安市-临潼区-穆寨街道-三庙村委会
+
+            for(let i=0;i<chat.length;i++){
+                let $imgBox=$("#imgBox");
+                /*否:未脱贫;是:已脱贫*/
+                if(chat[i].isReach=="否"){
+                    let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage.png' alt='' style='width:20px;height:14px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px","zIndex":10});
+                    $imgBox.append($village);
+                }else if(chat[i].isReach=="是"){
+                    let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage2.png' alt='' style='width:12px;height:12px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px"});
+                    $imgBox.append($village);
+                }
+            }
+            /*村悬浮事件*/
+            let $tips=$("<div style='width:40px;height:38px;background: #fff;color:#000;font-size:10px;line-height:12px;padding:2px 3px;z-index: 10;'></div>");
+            $("#imgBox .village").hover(function(){
+                let index=$(this).index();
+                $("#imgBox .village").eq(index-1).css("transform","scale(1.2,1.2)");
+                $tips.text(chat[index-1].name);
+                $tips.css({"display":"block","position":"absolute","bottom":'-40px',"right":"-50px"});
+                $(this).append($tips).css({"zIndex":999});
+                /*村点击事件*/
+                $("#imgBox .village").click(function(){
+                    let county=$(this).attr("county");
+                    let village=$(this).attr("name");
+                    let villagecode=$(this).attr("id");
+                    var url = host + 'employBussiness_village.html?county='+ county + '&name=' + village + '&villageCode=' + villagecode;
+                    window.location.href = url;
+                })
+            },function(){
+                $tips.css("display","none");
+                $(this).css({"transform":"scale(1,1)","zIndex":10});
+            })
+        }
+    })
+</script>
+<script src="js/echarts.js"></script>
+<script>
+/*****************module-1******************/
+//var dom1 = document.getElementById("module-1");
+//var myChart = echarts.init(dom1);
+//var dataC=[
+//  {value: 679, name: '未实施'},
+//  {value: 1548, name: '已实施'}
+//]
+//option = {
+//  color:  ['#DD4F43','#1FA463'],
+//  title: {
+//      text: '全市就业扶贫实施情况统计',
+//      left: 15,
+//      top:10,
+//      textStyle: {
+//          fontWeight: '800',
+//          color: '#ffffff',
+//          fontSize: 16
+//      }
+//  },
+//  legend: {
+//      //orient: 'vertical',
+//      x: '49%',
+//      y:"5%",
+//      data: ['未实施','已实施'],
+//      textStyle:{
+//          fontSize:14,
+//          color:"#fff"
+//      }
+//  },
+//  series: [{
+//      name: '实施状态',
+//      type: 'pie',
+//      radius: [0, '41%'],
+//      center:["50%","55%"],
+//      label: {
+//          normal: {
+//              formatter: '  {b|{b}：} {per|{d}%}  ',
+//              backgroundColor: '#06283A',
+//              borderColor: '#06283A',
+//              borderWidth: 1,
+//              borderRadius: 4,
+//              rich: {
+//                  a: {
+//                      color: '#00cefc',
+//                      lineHeight: 22,
+//                      align: 'center'
+//                  },
+//                  b: {
+//                      fontSize: 16,
+//                      lineHeight: 33
+//                  },
+//                  per: {
+//                      color: '#eee',
+//                      fontSize:14,
+//                      backgroundColor: '#061a2d',
+//                      padding: [2, 4],
+//                      borderRadius: 2
+//                  }
+//              }
+//          }
+//      },
+//      data:[]
+//  }]
+//};
+//if (option && typeof option === "object") {
+//  myChart.setOption(option, true);
+//}
+///****************************module-2*************************************/
+//var dom2 = document.getElementById("module-2");
+//var myChart2 = echarts.init(dom2);
+//option = {
+//  color:  ['#DD4F43','#1FA463'],
+//  title: {
+//      text: '全市各区县就业扶贫实施情况',
+//      left: 15,
+//      top:10,
+//      textStyle: {
+//          fontWeight: '800',
+//          color: '#ffffff',
+//          fontSize: 16
+//      }
+//  },
+//  tooltip : {
+//      trigger: 'axis',
+//      axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+//          type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+//      }
+//  },
+//  legend: {
+//      data: ['未实施','已实施'],
+//      x: 'right',
+//      y:"3%",
+//      textStyle:{    //图例文字的样式
+//          color:'#fff'
+//      }
+//  },
+//  grid: {
+//      top: "20%",
+//      left: '2%',
+//      right: '5%',
+//      bottom: '5%',
+//      containLabel: true
+//  },
+//  yAxis:  {
+//      type: 'value',
+//      axisLine:{  
+//              lineStyle:{  
+//                  color:'#fff'
+//              }  
+//          }  
+//  },
+//  xAxis: {
+//      type: 'category',
+//      data: [],
+//      axisLabel:{
+//          triggerEvent:true,
+//          interval:0,
+//          rotate:-30,
+//			textStyle:{
+//              fontSize:10
+//          },
+//      },
+//      triggerEvent:true,
+//      axisLine:{  
+//              lineStyle:{  
+//                  color:'#fff'
+//              }  
+//          }  
+//  },
+//  series: [
+//      {
+//          name: '未实施',
+//          type: 'bar',
+//          stack: '总量',
+//          barWidth: 10,
+//          data: [],
+//          itemStyle: {
+//                      //柱形图圆角，鼠标移上去效果
+//                      emphasis: {
+//                          barBorderRadius: [5, 5, 0, 0]
+//                      },
+//                       
+//                      normal: {
+//                          //柱形图圆角，初始化效果
+//                          barBorderRadius:[5, 5, 0, 0]
+//                      }
+//                  }
+//      },
+//      {
+//          name: '已实施',
+//          type: 'bar',
+//          stack: '总量',
+//          barWidth: 10,
+//          
+//          data: [],
+//          itemStyle: {
+//                      //柱形图圆角，鼠标移上去效果
+//                      emphasis: {
+//                          barBorderRadius: [5, 5, 5, 5]
+//                      },
+//                      normal: {
+//                          //柱形图圆角，初始化效果
+//                          barBorderRadius:[5, 5, 5, 5]
+//                      }
+//                  }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart2.setOption(option, true);
+//}
+///****************************module-3*************************************/
+//var dom3 = document.getElementById("module-3");
+//var myChart3 = echarts.init(dom3);
+//option = {
+//  color: ['#4ddead'],
+//  title: {
+//      text: '全市就业方式分类统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['劳动力转移就业','公益性岗位','自主创业'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:0,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "30%",
+//      left: '2%',
+//      right: '5%',
+//      bottom: '5%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：户',
+//          min: 0,
+//          max: 2,
+//          interval: 0.5,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//
+//
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart3.setOption(option, true);
+//}/****************************module-4*************************************/
+//var pieRadius=['45%', '62%'];
+//var yHeight='38%';
+//var dom4 = document.getElementById("module-4");
+//var myChart4= echarts.init(dom4);
+///*var data = [{
+//  value: 3661,
+//  name: '未培训'
+//}, {
+//  value: 4938,
+//  name: '已培训'
+//}];*/
+//option = {
+//  title: {
+//      text: '全市就业方式培训情况',
+//      left: 15,
+//      top:10,
+//      textStyle: {
+//          fontWeight: '800',
+//          color: '#ffffff',
+//          fontSize: 16
+//      }
+//  },
+//  legend: {
+//      data: ['未培训', '已培训'],
+//      x: '65%',
+//      y:"10%",
+//      textStyle:{    //图例文字的样式
+//          color:'#fff'
+//      }
+//  },
+//  grid: {
+//      top: "20%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  tooltip: {
+//      show: true,
+//      trigger: 'item',
+//      position:"right",
+//      formatter: "{b}: {c} ({d}%)"
+//  },
+//  series: [{
+//      type: 'pie',
+//      selectedMode: 'single',
+//      radius: pieRadius,
+//      center:["50%","65%"],
+//      color: ['#DD4F43','#1FA463'],
+//      label: {
+//          normal: {
+//              position: 'inner',
+//              formatter: '{b}:{d}%',
+//              textStyle: {
+//                  color: '#00cefc',
+//                  fontWeight: 'bold',
+//                  fontSize: 12
+//              }
+//          }
+//      },
+//      labelLine: {
+//          normal: {
+//              show: false
+//          }
+//      },
+//      data: []
+//  }]
+//};
+//if (option && typeof option === "object") {
+//  myChart4.setOption(option, true);
+//}
+///****************************module-5*************************************/
+//var dom5 = document.getElementById("module-5");
+//var myChart5 = echarts.init(dom5);
+//option = {
+//  color: ['#d420c8'],
+//  // title: {
+//  //     text: '全市产业扶贫发展方式分类统计',
+//  //     left: 10,
+//  //     top:5,
+//  //     textStyle: {
+//  //         color: '#fff',
+//  //         fontSize: 16,
+//  //     },
+//  // },
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['就业培训','创业培训'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:0,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "30%",
+//      left: '2%',
+//      right: '5%',
+//      bottom: '5%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：人',
+//          min: 0,
+//          max: 2,
+//          interval: 0.5,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart5.setOption(option, true);
+//}
+/****************************module-20*************************************/
+/*var pieRadius=['35%', '50%'];
+var yHeight='30%';
+var dom20 = document.getElementById("module-20");
+var myChart20 = echarts.init(dom20);
+var data = [
+    {
+        value: 3661,
+        name: '未完成'
+    },
+    {
+        value: 4938,
+        name: '正实施'
+    },
+    {
+        value: 3221,
+        name: '已完成'
+    },
+];
+option = {
+    title: {
+        text: '总水利设施各区县实施情况',
+        left: 15,
+        top:10,
+        textStyle: {
+            fontWeight: '800',
+            color: '#ffffff',
+            fontSize: 16
+        }
+    },
+    grid: {
+        top: "30%",
+        left: '8%',
+        right: '2%',
+        bottom: '15%'
+    },
+    // legend: {
+    //     data: ['已培训', '未培训'],
+    //     x: '65%',
+    //     y:"10%",
+    //     textStyle:{    //图例文字的样式
+    //         color:'#fff'
+    //     }
+    // },
+    tooltip: {
+        show: true,
+        trigger: 'item',
+        position:"right",
+        formatter: "{b}: {c} ({d}%)"
+    },
+    series: [{
+        type: 'pie',
+        selectedMode: 'single',
+        radius: pieRadius,
+        color: ['#DD4F43','#FFCE43','#1FA463'],
+        label: {
+            normal: {
+                position: 'inner',
+                formatter: '{b}:{d}%',
+                textStyle: {
+                    color: '#00cefc',
+                    fontWeight: 'bold',
+                    fontSize: 12
+                }
+            }
+        },
+        labelLine: {
+            normal: {
+                show: false
+            }
+        },
+        data: data
+    }]
+};
+if (option && typeof option === "object") {
+    myChart20.setOption(option, true);
+}*/
+/****************************module-20*************************************/
+/*var pieRadius2=['35%', '50%'];
+var yHeight2='30%';
+var dom21 = document.getElementById("module-21");
+var myChart21 = echarts.init(dom21);
+var data = [
+    {
+        value: 3661,
+        name: '未完成'
+    },
+    {
+        value: 4938,
+        name: '正实施'
+    },
+    {
+        value: 3221,
+        name: '已完成'
+    }
+];
+option = {
+    title: {
+        text: '总电力设施各区县实施情况',
+        left: 15,
+        top:10,
+        textStyle: {
+            fontWeight: '800',
+            color: '#ffffff',
+            fontSize: 16
+        }
+    },
+    grid: {
+        top: "30%",
+        left: '8%',
+        right: '2%',
+        bottom: '15%'
+    },
+    // legend: {
+    //     data: ['已培训', '未培训'],
+    //     x: '65%',
+    //     y:"10%",
+    //     textStyle:{    //图例文字的样式
+    //         color:'#fff'
+    //     }
+    // },
+    tooltip: {
+        show: true,
+        trigger: 'item',
+        position:"right",
+        formatter: "{b}: {c} ({d}%)"
+    },
+    series: [{
+        type: 'pie',
+        selectedMode: 'single',
+        radius: pieRadius2,
+        color: ['#1FA463',  '#DD4F43'],
+        label: {
+            normal: {
+                position: 'inner',
+                formatter: '{b}:{d}%',
+                textStyle: {
+                    color: '#00cefc',
+                    fontWeight: 'bold',
+                    fontSize: 12
+                }
+            }
+        },
+        labelLine: {
+            normal: {
+                show: false
+            }
+        },
+        data: data
+    }]
+};
+if (option && typeof option === "object") {
+    myChart21.setOption(option, true);
+}*/
+/****************************module-20*************************************/
+/*var pieRadius2=['35%', '50%'];
+var yHeight2='30%';
+var dom22 = document.getElementById("module-22");
+var myChart22 = echarts.init(dom22);
+var data = [
+    {
+        value: 3661,
+        name: '未完成'
+    },
+    {
+        value: 4938,
+        name: '正实施'
+    },
+    {
+        value: 3221,
+        name: '已完成'
+    }
+];
+option = {
+    title: {
+        text: '总道路设施各区县实施情况',
+        left: 15,
+        top:10,
+        textStyle: {
+            fontWeight: '800',
+            color: '#ffffff',
+            fontSize: 16
+        }
+    },
+    grid: {
+        top: "30%",
+        left: '8%',
+        right: '2%',
+        bottom: '15%'
+    },
+    // legend: {
+    //     data: ['已培训', '未培训'],
+    //     x: '65%',
+    //     y:"10%",
+    //     textStyle:{    //图例文字的样式
+    //         color:'#fff'
+    //     }
+    // },
+    tooltip: {
+        show: true,
+        trigger: 'item',
+        position:"right",
+        formatter: "{b}: {c} ({d}%)"
+    },
+    series: [{
+        type: 'pie',
+        selectedMode: 'single',
+        radius: pieRadius2,
+        color: ['#1FA463',  '#DD4F43'],
+        label: {
+            normal: {
+                position: 'inner',
+                formatter: '{b}:{d}%',
+                textStyle: {
+                    color: '#00cefc',
+                    fontWeight: 'bold',
+                    fontSize: 12
+                }
+            }
+        },
+        labelLine: {
+            normal: {
+                show: false
+            }
+        },
+        data: data
+    }]
+};
+if (option && typeof option === "object") {
+    myChart22.setOption(option, true);
+}*/
+/****************************module-6*************************************/
+/*右上弹出框的echarts*/
+//var dom6 = document.getElementById("module-6");
+//var myChart6 = echarts.init(dom6);
+//option = {
+//  color: ['#4ddead'],
+//  /*title: {
+//      text: '各个子项目实施完成情况统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },*/
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['周至县','蓝田县','鄠邑区','长安区','临潼区','西咸新区','灞桥区','高陵区','国际港务区','阎良区'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：个',
+//          min: 0,
+//          max: 5,
+//          interval: 1,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//
+//
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[2,1,3,4,2,1,3,4,5,2,3],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart6.setOption(option, true);
+//}
+///****************************module-7*************************************/
+///*右中弹出框的echarts*/
+//var dom7 = document.getElementById("module-7");
+//var myChart7 = echarts.init(dom7);
+//option = {
+//  color: ['#d420c8'],
+//  /*title: {
+//      text: '各个子项目实施完成情况统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },*/
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['周至县','蓝田县','鄠邑区','长安区','临潼区','西咸新区','灞桥区','高陵区','国际港务区','阎良区'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：个',
+//          min: 0,
+//          max: 5,
+//          interval: 1,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//
+//
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[2,1,3,4,2,1,3,4,5,2,3],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart7.setOption(option, true);
+//}
+///****************************module-14*************************************/
+///*右中弹出框的echarts*/
+//var dom14 = document.getElementById("module-14");
+//var myChart14 = echarts.init(dom14);
+//option = {
+//  color: ['#d420c8'],
+//  /*title: {
+//      text: '各个子项目实施完成情况统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },*/
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['板房子镇','陈河镇','翠峰镇','富仁镇','广济镇','厚畛子镇','集贤镇','九峰镇','楼观镇','骆峪镇','马召镇','王家河镇','哑柏镇','终南镇','竹峪镇'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：个',
+//          min: 0,
+//          max: 5,
+//          interval: 1,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//
+//
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[2,1,3,4,2,1,3,4,5,2,3,4,5,1,2],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart14.setOption(option, true);
+//}
+///****************************module-15*************************************/
+///*右中弹出框的echarts*/
+//var dom15 = document.getElementById("module-15");
+//var myChart15 = echarts.init(dom15);
+//option = {
+//  color: ['#d420c8'],
+//  /*title: {
+//      text: '各个子项目实施完成情况统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },*/
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['东石门村','高潮村','清水河村','新红村','长坪村'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：个',
+//          min: 0,
+//          max: 5,
+//          interval: 1,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[2,1,3,4,2],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart15.setOption(option, true);
+//}
+///****************************module-8*************************************/
+///*右下弹出框（未培训）的echarts*/
+//var dom8 = document.getElementById("module-8");
+//var myChart8 = echarts.init(dom8);
+//option = {
+//  color: ['#DD4F43'],
+//  /*title: {
+//      text: '各个子项目实施完成情况统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },*/
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['周至县','蓝田县','长安区','鄠邑区','临潼区','阎良区','高陵区','国际港务区','灞桥区','西咸新区'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：个',
+//          min: 0,
+//          max: 5,
+//          interval: 1,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[2,1,3,4,2,1,3,4,5,2,3],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart8.setOption(option, true);
+//}
+///****************************module-16*************************************/
+///*右下弹出框（未培训）的echarts*/
+//var dom16 = document.getElementById("module-16");
+//var myChart16 = echarts.init(dom16);
+//option = {
+//  color: ['#DD4F43'],
+//  /*title: {
+//      text: '各个子项目实施完成情况统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },*/
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['板房子镇','陈河镇','翠峰镇','富仁镇','广济镇','厚畛子镇','集贤镇','九峰镇','楼观镇','骆峪镇','马召镇','王家河镇','哑柏镇','终南镇','竹峪镇'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：个',
+//          min: 0,
+//          max: 5,
+//          interval: 1,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[2,1,3,4,2,1,3,4,5,2,3,2,4,2,3],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart16.setOption(option, true);
+//}
+///****************************module-17*************************************/
+///*右下弹出框（未培训）的echarts*/
+//var dom17 = document.getElementById("module-17");
+//var myChart17 = echarts.init(dom17);
+//option = {
+//  color: ['#DD4F43'],
+//  /*title: {
+//      text: '各个子项目实施完成情况统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },*/
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['东石门村','高潮村','清水河村','新红村','长坪村'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：个',
+//          min: 0,
+//          max: 5,
+//          interval: 1,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[2,1,3,4,2],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart17.setOption(option, true);
+//}
+///****************************module-9*************************************/
+///*右下弹出框（未培训）的echarts*/
+//var dom9 = document.getElementById("module-9");
+//var myChart9 = echarts.init(dom9);
+//option = {
+//  color: ['#1FA463'],
+//  /*title: {
+//      text: '各个子项目实施完成情况统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },*/
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['周至县','蓝田县','长安区','鄠邑区','临潼区','阎良区','高陵区','国际港务区','灞桥区','西咸新区'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：个',
+//          min: 0,
+//          max: 5,
+//          interval: 1,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//
+//
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[2,1,3,4,2,1,3,4,5,2,3],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart9.setOption(option, true);
+//}
+///****************************module-18*************************************/
+///*右下弹出框（未培训）的echarts*/
+//var dom18 = document.getElementById("module-18");
+//var myChart18 = echarts.init(dom18);
+//option = {
+//  color: ['#1FA463'],
+//  /*title: {
+//      text: '各个子项目实施完成情况统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },*/
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['板房子镇','陈河镇','翠峰镇','富仁镇','广济镇','厚畛子镇','集贤镇','九峰镇','楼观镇','骆峪镇','马召镇','王家河镇','哑柏镇','终南镇','竹峪镇'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：个',
+//          min: 0,
+//          max: 5,
+//          interval: 1,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[2,1,3,4,2,1,3,4,5,2,3,2,4,2,3],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart18.setOption(option, true);
+//}
+///****************************module-17*************************************/
+///*右下弹出框（未培训）的echarts*/
+//var dom19 = document.getElementById("module-19");
+//var myChart19 = echarts.init(dom19);
+//option = {
+//  color: ['#1FA463'],
+//  /*title: {
+//      text: '各个子项目实施完成情况统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },*/
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['东石门村','高潮村','清水河村','新红村','长坪村'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '8%',
+//      right: '2%',
+//      bottom: '15%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：个',
+//          min: 0,
+//          max: 5,
+//          interval: 1,
+//          axisLabel: {
+//              formatter: '{value}'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          },
+//      },
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[2,1,3,4,2],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart19.setOption(option, true);
+//}
+///****************************module-10*************************************/
+//var dom10 = document.getElementById("module-10");
+//var myChart10 = echarts.init(dom10);
+//option = {
+//  color:  ['#DD4F43','#1FA463'],
+//  // title: {
+//  //     text: '周至县镇/街道产业扶贫情况统计',
+//  //     left: 15,
+//  //     top:10,
+//  //     textStyle: {
+//  //         fontWeight: '800',
+//  //         color: '#ffffff',
+//  //         fontSize: 16
+//  //     }
+//  // },
+//  tooltip : {
+//      trigger: 'axis',
+//      axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+//          type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+//      }
+//  },
+//  legend: {
+//      data: ['未实施', '已实施'],
+//      x: 'right',
+//      y:"3%",
+//      textStyle:{    //图例文字的样式
+//          color:'#fff'
+//      }
+//  },
+//  grid: {
+//      top: "10%",
+//      left: '2%',
+//      right: '5%',
+//      bottom: '10%',
+//      containLabel: true
+//  },
+//  yAxis:  {
+//      type: 'value',
+//      axisLine:{
+//          lineStyle:{
+//              color:'#fff'
+//          }
+//      }
+//  },
+//  xAxis: {
+//      triggerEvent:true,
+//      type: 'category',
+//      data: [],
+//      axisLabel:{
+//          interval:0,
+//          rotate:-30,
+//          textStyle:{
+//              fontSize:10
+//          }
+//      },
+//      axisLine:{
+//          lineStyle:{
+//              color:'#fff'
+//          }
+//      }
+//  },
+//  series: [
+//      {
+//          name: '未实施',
+//          type: 'bar',
+//          stack: '总量',
+//          barWidth: 10,
+//
+//          data: [],
+//          itemStyle: {
+//              //柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [5, 5, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[5, 5, 0, 0]
+//              }
+//          }
+//      },
+//      {
+//          name: '已实施',
+//          type: 'bar',
+//          stack: '总量',
+//          barWidth: 10,
+//
+//          data: [],
+//          itemStyle: {
+//              //柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [5, 5, 5, 5]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[5, 5, 5, 5]
+//              }
+//          }
+//      }
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart10.setOption(option, true);
+//}
+///****************************module-11*************************************/
+//var dom11 = document.getElementById("module-11");
+//var myChart11 = echarts.init(dom11);
+//option = {
+//  color:  ['#DD4F43','#1FA463'],
+//  // title: {
+//  //     text: '周至县镇/街道产业扶贫情况统计',
+//  //     left: 15,
+//  //     top:10,
+//  //     textStyle: {
+//  //         fontWeight: '800',
+//  //         color: '#ffffff',
+//  //         fontSize: 16
+//  //     }
+//  // },
+//  tooltip : {
+//      trigger: 'axis',
+//      axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+//          type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+//      }
+//  },
+//  legend: {
+//      data: ['未实施','已实施'],
+//      x: 'right',
+//      y:"3%",
+//      textStyle:{    //图例文字的样式
+//          color:'#fff'
+//      }
+//  },
+//  grid: {
+//      top: "10%",
+//      left: '2%',
+//      right: '5%',
+//      bottom: '10%',
+//      containLabel: true
+//  },
+//  yAxis:  {
+//      type: 'value',
+//      axisLine:{
+//          lineStyle:{
+//              color:'#fff'
+//          }
+//      }
+//  },
+//  xAxis: {
+//      triggerEvent:true,
+//      type: 'category',
+//      data: [],
+//      axisLabel:{
+//          interval:0,
+//          rotate:-30,
+//          textStyle:{
+//              fontSize:10
+//          }
+//      },
+//      axisLine:{
+//          lineStyle:{
+//              color:'#fff'
+//          }
+//      }
+//  },
+//  series: [
+//      {
+//          name: '未实施',
+//          type: 'bar',
+//          stack: '总量',
+//          barWidth: 10,
+//
+//          data: [],
+//          itemStyle: {
+//              //柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [5, 5, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[5, 5, 0, 0]
+//              }
+//          }
+//      },
+//      {
+//          name: '已实施',
+//          type: 'bar',
+//          stack: '总量',
+//          barWidth: 10,
+//
+//          data: [],
+//          itemStyle: {
+//              //柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [5, 5, 5, 5]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[5, 5, 5, 5]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart11.setOption(option, true);
+//}
+///****************************module-12*************************************/
+//var dom12 = document.getElementById("module-12");
+//var myChart12 = echarts.init(dom12);
+//option = {
+//  color: ['#4ddead'],
+//  // title: {
+//  //     text: '各个子项目实施完成情况统计',
+//  //     left: 10,
+//  //     top:5,
+//  //     textStyle: {
+//  //         color: '#fff',
+//  //         fontSize: 16,
+//  //     },
+//  // },
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['板房子镇','陈河镇','翠峰镇','富仁镇','广济镇','厚畛子镇','集贤镇','九峰镇','楼观镇','骆峪镇','马召镇','王家河镇','哑柏镇','终南镇','竹峪镇'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '2%',
+//      right: '5%',
+//      bottom: '10%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：户',
+//          min: 0,
+//          max: 2,
+//          interval: 0.5,
+//          axisLabel: {
+//              formatter: '{value} 万'
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//              show:false
+//          }
+//      },
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,1.8,1.7,1.5,1.3,1,1.2],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart12.setOption(option, true);
+//}
+///****************************module-13*************************************/
+//var dom13 = document.getElementById("module-13");
+//var myChart13 = echarts.init(dom13);
+//option = {
+//  color: ['#4ddead'],
+//  // title: {
+//  //     text: '各个子项目实施完成情况统计',
+//  //     left: 10,
+//  //     top:5,
+//  //     textStyle: {
+//  //         color: '#fff',
+//  //         fontSize: 16,
+//  //     },
+//  // },
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['东石门村','高潮村','清水河村','新红村','长坪村'],
+//          axisLabel:{
+//              interval:0,
+//              rotate:-30,
+//              textStyle:{
+//                  fontSize:10
+//              }
+//          },
+//          axisLine:{
+//              lineStyle:{
+//                  color:'#fff'
+//              }
+//          }
+//      }
+//  ],
+//  grid: {
+//      top: "10%",
+//      left: '2%',
+//      right: '5%',
+//      bottom: '10%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：户',
+//          min: 0,
+//          max: 2,
+//          interval: 0.5,
+//          axisLabel: {
+//              formatter: '{value} 万'
+//          },
+//          axisLine:{
+	//              lineStyle:{
+	//                  color:'#fff'
+	//              }
+	//          },
+	//          boundaryGap: false,
+	//          splitLine:{
+//              show:false
+//          },
+//      },
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//          label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[1.1,1.2,1.3,1.4,1.6],
+//          itemStyle: {
+//              //a柱形图圆角，鼠标移上去效果
+//              emphasis: {
+//                  barBorderRadius: [3, 3, 0, 0]
+//              },
+//
+//              normal: {
+//                  //柱形图圆角，初始化效果
+//                  barBorderRadius:[3, 3, 0, 0]
+//              }
+//          }
+//      },
+//
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart13.setOption(option, true);
+//}
+
+</script>
+<script src="js/common.js"></script>
+<script>
+    /*脱贫状态和帮扶措施切换*/
+	$(document).ready(function(){
+	    $(".btns>a").click(function(){
+			$(".btns>a").css("background","url('images/bg_4.png') no-repeat center/cover");
+	        $(this).css("background","url('images/btn1.png') center/cover");
+		})
+
+     /*界面左下弹出框（红黄绿）*/
+     $(".container>.pop-up5>.close").click(function(){
+         $(".pop-up5").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up6>.close").click(function(){
+         $(".pop-up6").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up7>.close").click(function(){
+         $(".pop-up7").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     /*界面右上弹出框*/
+     $(".container>.pop-up>.close").click(function(){
+         $(".pop-up").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up8>.close").click(function(){
+         $(".pop-up8").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up9>.close").click(function(){
+         $(".pop-up9").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up10>.close").click(function(){
+         $(".pop-up10").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+		/*界面右中弹出框*/
+     $(".container>.pop-up2>.close").click(function(){
+         $(".pop-up2").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up11>.close").click(function(){
+         $(".pop-up11").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up12>.close").click(function(){
+         $(".pop-up12").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up13>.close").click(function(){
+         $(".pop-up13").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     /*界面右下弹出框（未培训）*/
+     $(".container>.pop-up3>.close").click(function(){
+         $(".pop-up3").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up14>.close").click(function(){
+         $(".pop-up14").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up15>.close").click(function(){
+         $(".pop-up15").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up16>.close").click(function(){
+         $(".pop-up16").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     /*界面右下弹出框（已培训）*/
+     $(".container>.pop-up4>.close").click(function(){
+         $(".pop-up4").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up17>.close").click(function(){
+         $(".pop-up17").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up18>.close").click(function(){
+         $(".pop-up18").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+     $(".container>.pop-up19>.close").click(function(){
+         $(".pop-up19").css({"opacity":0,"top":"-100%"});
+         $(".container>.box").css({"opacity":0,"top":"-100%"});
+     })
+	})
+//</script>
+//<script>
+//	/*echarts点击事件*/
+//
+//  /*左下*/
+//  /*点击县到镇*/
+//  myChart2.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#countyName").text(params.value);
+//          $(".container>.box").css({"opacity":"1","top":"0"});
+//          $(".pop-up5").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//  /*点击镇到村*/
+//  myChart10.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#villageName").text(params.value);
+//          $(".pop-up5").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up6").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//  /*点击村到户*/
+//  myChart11.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#houseName").text(params.value);
+//          $(".pop-up6").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up7").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//
+//	/*右上*/
+//		/*点击查看县整体情况*/
+//  myChart3.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#project").text(params.value);
+//          $(".container>.box").css({"opacity":"1","top":"0"});
+//          $(".pop-up").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//		/*点击县到镇*/
+//  myChart6.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#countyName2").text(params.value);
+//          $("#project2").text($("#project").text());
+//          $(".pop-up").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up8").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//		/*点击镇到村*/
+//  myChart12.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#street").text(params.value);
+//          $("#project3").text($("#project").text());
+//          $(".pop-up8").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up9").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//		/*点击村到户*/
+//  myChart13.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#villageName2").text(params.value);
+//          $("#project4").text($("#project3").text());
+//          $(".pop-up9").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up10").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//
+//  /*右中*/
+//		/*点击查看县整体情况*/
+//  myChart4.on("click", eConsole3);
+//  function eConsole3(param) {
+//      console.log(param.dataIndex);
+//      $(".container>.box").css({"opacity":"1","top":"0"});
+//      if(param.dataIndex==1){
+//          $(".pop-up4").css({"opacity":"1","top":"50%"});
+//          /*点击县到镇*/
+//          myChart9.on("click",function(params){
+//              console.log(params)
+//              if(params.componentType == "xAxis"){
+//                  $("#countyName7").text(params.value);
+//                  $(".pop-up4").css({"opacity":0,"top":"-100%"});
+//                  $(".pop-up17").css({"opacity":"1","top":"50%"});
+//                  // alert("单击了"+params.value+"x轴标签");
+//              }else{
+//                  // alert("单击了"+params.name+"柱状图");
+//              }
+//          })
+//          /*点击镇到村*/
+//          myChart18.on("click",function(params){
+//              console.log(params)
+//              if(params.componentType == "xAxis"){
+//                  $("#countyName8").text(params.value);
+//                  $(".pop-up17").css({"opacity":0,"top":"-100%"});
+//                  $(".pop-up18").css({"opacity":"1","top":"50%"});
+//                  // alert("单击了"+params.value+"x轴标签");
+//              }else{
+//                  // alert("单击了"+params.name+"柱状图");
+//              }
+//          })
+//          /*点击村到户*/
+//          myChart19.on("click",function(params){
+//              console.log(params)
+//              if(params.componentType == "xAxis"){
+//                  $("#villageName4").text(params.value);
+//                  $(".pop-up18").css({"opacity":0,"top":"-100%"});
+//                  $(".pop-up19").css({"opacity":"1","top":"50%"});
+//                  // alert("单击了"+params.value+"x轴标签");
+//              }else{
+//                  // alert("单击了"+params.name+"柱状图");
+//              }
+//          })
+//
+//      }else if(param.dataIndex==0){
+//          $(".pop-up3").css({"opacity":"1","top":"50%"});
+//          /*点击县到镇*/
+//          myChart8.on("click",function(params){
+//              console.log(params)
+//              if(params.componentType == "xAxis"){
+//                  $("#countyName5").text(params.value);
+//                  $(".container>.box").css({"opacity":"1","top":"0"});
+//                  $(".pop-up3").css({"opacity":0,"top":"-100%"});
+//                  $(".pop-up14").css({"opacity":"1","top":"50%"});
+//                  // alert("单击了"+params.value+"x轴标签");
+//              }else{
+//                  // alert("单击了"+params.name+"柱状图");
+//              }
+//          })
+//          /*点击镇到村*/
+//          myChart16.on("click",function(params){
+//              console.log(params)
+//              if(params.componentType == "xAxis"){
+//                  $("#countyName6").text(params.value);
+//                  $(".pop-up14").css({"opacity":0,"top":"-100%"});
+//                  $(".pop-up15").css({"opacity":"1","top":"50%"});
+//                  // alert("单击了"+params.value+"x轴标签");
+//              }else{
+//                  // alert("单击了"+params.name+"柱状图");
+//              }
+//          })
+//          /*点击村到户*/
+//          myChart17.on("click",function(params){
+//              console.log(params)
+//              if(params.componentType == "xAxis"){
+//                  $("#houseName3").text(params.value);
+//                  $(".pop-up15").css({"opacity":0,"top":"-100%"});
+//                  $(".pop-up16").css({"opacity":"1","top":"50%"});
+//                  // alert("单击了"+params.value+"x轴标签");
+//              }else{
+//                  // alert("单击了"+params.name+"柱状图");
+//              }
+//          })
+//      }
+//  }
+//		/*点击县到镇*/
+//  myChart7.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#countyName3").text(params.value);
+//          $("#method2").text($("#method").text());
+//          $(".pop-up2").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up11").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//		/*点击镇到村*/
+//  myChart14.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#street2").text(params.value);
+//          $("#method3").text($("#method").text());
+//          $(".pop-up11").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up12").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//		/*点击村到户*/
+//  myChart15.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#villageName3").text(params.value);
+//          $("#project5").text($("#method3").text());
+//          $(".pop-up12").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up13").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//
+//  /*右下*/
+//  /*点击查看县整体情况*/
+//  myChart5.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#method").text(params.value);
+//          $(".container>.box").css({"opacity":"1","top":"0"});
+//          $(".pop-up2").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//  /*点击县到镇*/
+//  myChart7.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#countyName3").text(params.value);
+//          $("#method2").text($("#method").text());
+//          $(".pop-up2").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up11").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//  /*点击镇到村*/
+//  myChart14.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#street2").text(params.value);
+//          $("#method3").text($("#method").text());
+//          $(".pop-up11").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up12").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//  /*点击村到户*/
+//  myChart15.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#villageName3").text(params.value);
+//          $("#project5").text($("#method3").text());
+//          $(".pop-up12").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up13").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+</script>
+<!--
+<script>
+    /*列表滚动*/
+    function autoScroll(obj){
+        $(obj).find("ul").animate({
+            marginTop : "-39px"
+        },500,function(){
+            $(this).css({marginTop : "0px"}).find("li:first").appendTo(this);
+        })
+    }
+    $(function(){
+        setInterval('autoScroll(".maquee")',3000);
+    })
+</script>-->

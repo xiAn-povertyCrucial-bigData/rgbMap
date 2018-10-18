@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登陆</title>
+	<link rel="stylesheet" href="css/public.css">
+	<script src="js/jquery.min.js"></script>
+</head>
+<script>
+    function doLogin(){
+	
+    	location.href ="index.html";
+    }
+     document.onkeydown = function(e){
+            if(!e) e = window.event;//火狐中是 window.event
+            if((e.keyCode || e.which) == 13){
+                doLogin();
+            }
+       }
+</script>
+<body>
+	<div class="homePg">
+		<div class="titleDiv">
+			<div class="logoPg">
+				<img class="logoImg" src="images/logo.png">
+			</div>
+			<div class="title">
+				<span>西安市脱贫攻坚大数据平台</span>
+			</div>
+		</div>
+		<div class="login-con clearfix">
+				<div class="login-item">
+					<p class="l-title">用户登录</p>
+					<div class="input-item clearfix">
+						<span class="icon user left"></span>
+						<input class="input-text left" type="text" name="username" placeholder="请输入用户名">
+					</div>
+					<div class="input-item clearfix">
+						<span class="icon pwd left"></span>
+						<input class="input-text left" type="password" name="password" placeholder="请输入密码">
+					</div>
+					<div class="input-code clearfix">
+						<input class="input-text left" type="text" name="code"  placeholder="请输入验证码">
+						<img class="img-code right" src="images/code.png">
+					</div>
+					<div class="log-btm clearfix">
+						<input type="checkbox" name="remember" id="remember" class="left">
+						<label for="remember" class="left">记住账号和密码</label>
+						<button class="login-btn left" onclick="doLogin();">登录</button>
+					</div>
+				</div>
+			</div>
+	</div>
+</body>
+</html>

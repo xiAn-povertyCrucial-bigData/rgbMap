@@ -1,0 +1,460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>计划脱贫统计</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr th{/*width: 10%;*/height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table tr td{/*width: 10%;*/height: 30px;border: 1px solid #d2d2d2;line-height: 30px;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-05{display: none}
+        .form-04 table tr td {width:11%}
+        .no-pass{color: #ee3333}
+        .form-01 table tr td a{
+            display: inline-block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+        }
+        .form-01 table tr td a:first-child{
+            background: #229ffd;
+        }
+        .btn_blue{
+				color: #fff;
+			    background: #428bca;
+			    border: 1px solid #2698FB;
+			    width: 70px;
+			    text-align: center;
+			    margin: 10px;
+			    border-radius: 3px;
+			}
+		.btn_orange{
+				color: #fff;
+			    background: #f0ad4e;
+			    border: 1px solid #FFAC37;
+			    width: 50px;
+			    text-align: center;
+			    margin: 10px;
+			    border-radius: 3px;
+			}
+        .form-01 table tr td a:last-child{
+            background: #ff7680;
+        }
+        .marginR{margin-right: 14px;}
+        .black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 55%; 
+            height: 30%; 
+            padding: 20px; 
+            border: 5px solid #ccc; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        } 
+           .container .select{padding: 0.5%;border-bottom: 1px solid #b1bfd1;}
+            .container .select li{padding: 5px 0;color: #767272;}
+            .container li label{width: 100px;display: inline-block;vertical-align: middle;}
+            .container li dt{display: inline-block;vertical-align: middle;}
+            .container li dt dl{float: left;margin-right: 10px;border-radius: 12px;text-align: center;padding: 2px 6px;cursor: pointer;position: relative;color: #555;height: 30px;line-height: 30px;}
+            .active{background: #70c1ff!important;color: #fff!important;}
+            .obtn{position: absolute;top: 45%;right: 4%;}
+            .obtn input{background: #e9ebef;border:0;border: 1px solid #D2D2D2;line-height: 14px;padding: 6px 12px;border-radius: 3px;cursor: pointer;}
+            .obtnActive{background: #428bca!important;color: #fff!important;border-radius: 1px solid #2698FB!important;}
+
+            .box{display: flex;align-items: center;height: 50%;width: 100%;padding-top: 2%;}
+            #pieElsePoverty,#barElsePoverty{width: 100%;height: 100%;}
+            .search li{
+               width: 100%;
+               }
+            .panel>.form-01>.search label{
+               width: 92px;
+              }  
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+	  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>计划脱贫统计</strong><!--<a href="add_village_inform.html" class="button border-main icon-plus-square-o">添加内容</a>-->
+	  	<div class="data_tracking"><a href="" class="button border-main marginR" id="btn-orange">导出</a>
+	  	<!--<a href = "javascript:void(0)" class="button border-main"  >数据分析报告</a>-->
+	  	</div>
+	  </div> 	              
+    <div class="form-01">
+        <p>数据筛选 <span class="pack_up">收起-</span></p>
+         <div class="search searchs" style="display: block;">
+             <div>
+                <label for="">行政区划</label>
+                <input type="text" value="陕西省" disabled>
+                <input type="text" value="西安市" disabled>
+                <select name="" id="country">
+                    <!--<option value="">县（区）</option>
+                    <option value="">新城区</option>
+                    <option value="">碑林区</option>
+                    <option value="">莲湖区</option>
+                    <option value="">灞桥区</option>
+                    <option value="">未央区</option>
+                    <option value="">雁塔区</option>
+                    <option value="">阎良区</option>
+                    <option value="">临潼区</option>
+                    <option value="">长安区</option>
+                    <option value="">蓝田县</option>
+                    <option value="">周至县</option>
+                    <option value="">鄠邑区</option>-->
+                </select>
+                <select name="" id="township">
+                    <!--<option value="">乡（镇）</option>
+                    <option value="">板房子镇</option>
+                    <option value="">陈河镇</option>
+                    <option value="">翠峰镇</option>
+                    <option value="">富仁镇</option>
+                    <option value="">广济镇</option>
+                    <option value="">厚畛子镇</option>
+                    <option value="">集贤镇</option>
+                    <option value="">九峰镇</option>
+                    <option value="">楼观镇</option>
+                    <option value="">落峪镇</option>
+                    <option value="">马召镇</option>
+                    <option value="">王家河镇</option>-->
+                </select>
+                <select name="" id="village">
+                    <!--<option value="">村</option>
+                    <option value="">郭寨村</option>
+                    <option value="">群三兴村</option>
+                    <option value="">上马村</option>
+                    <option value="">辛口村</option>
+                    <option value="">涌泉寺村</option>
+                    <option value="">白杨林村</option>
+                    <option value="">东涧沟村</option>
+                    <option value="">老庄子村</option>
+                    <option value="">十亩地村</option>
+                    <option value="">景联社区</option>
+                    <option value="">五联村</option>
+                    <option value="">长洋村</option>-->
+                </select>
+                <select name="" id="year">
+                    <!--<option>年份</option>
+                    <option>2014年</option>
+                    <option>2015年</option>
+                    <option>2016年</option>
+                    <option>2017年</option>-->
+                </select>
+            </div>
+         <div class="container" id="container">
+          <ul class="select">
+            <li>
+              <label class="label1">贫困户属性：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>一般贫困户</dl>
+                <dl>低保贫困户</dl>
+                <dl>五保贫困户</dl>
+              </dt>
+            </li><li>
+              <label class="label1">致贫原因：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>因病</dl>
+                <dl>因残</dl>
+                <dl>因学</dl>
+                <dl>因灾</dl>
+                <dl>缺土地</dl>
+                <dl>缺技术</dl>
+                <dl>缺水</dl>
+                <dl>缺劳动力</dl>
+                <dl>缺资金</dl>
+                <dl>交通条件落后</dl>
+                <dl>自身发展力不足</dl>
+                <dl>其他</dl>
+                <dl>未知</dl>
+              </dt>
+            </li><li>
+              <label class="label1">识别标准：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>国家标准</dl>
+                <dl>省定标准</dl>
+                <dl>市定标准</dl>
+              </dt>
+            </li>
+          </ul>
+          <div class="obtn">
+           
+          </div>       
+        </div>
+		</div>
+            <div>
+                <input type="button" class="btn_orange" style="float: right;" name="" value="查询">
+                <input type="button" class="btn_blue" style="float: right;" name="" value="重置条件">
+            </div>
+   
+      <!--startprint-->
+      <div style="overflow-x: scroll; width:100%;">
+      <table id="formSubmit2" class="form-x" style="border-collapse: collapse;width:1800px;" >
+        <tr rowspan="2">
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">单位</td>
+					<td colspan="2">2017年底剩余贫困人口	</td>
+					<td colspan="2">2018年计划脱贫人口</td>
+					<td colspan="2">产业扶持</td>
+					<td colspan="2">就业创业</td>						
+					<td colspan="2">生态补偿</td>						
+					<td colspan="2">异地搬迁</td>						
+					<td colspan="2">危房改造</td>						
+					<td colspan="2">医疗救助</td>						
+					<td colspan="2">教育支持</td>						
+					<td colspan="2">兜底保障</td>						
+				</tr>					
+				<tr >						
+					<td>户数（户）</td>
+					<td>人数（人）</td>
+					<td>户数（户）</td>
+					<td>人数（人）</td>
+					<td>户数（户）</td>
+					<td>人数（人）</td>
+					<td>户数（户）</td>
+					<td>人数（人）</td>
+					<td>户数（户）</td>
+					<td>人数（人）</td>
+					<td>户数（户）</td>
+					<td>人数（人）</td>
+					<td>户数（户）</td>
+					<td>人数（人）</td>
+					<td>户数（户）</td>
+					<td>人数（人）</td>
+					<td>户数（户）</td>
+					<td>人数（人）</td>
+					<td>户数（户）</td>
+					<td>人数（人）</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>周至县</td>
+					<td>19356</td>
+					<td>48756</td>
+					<td>16785</td>
+					<td>46258</td>
+					<td>10965</td>
+					<td>39657</td>
+					<td>10235</td>
+					<td>38654</td>
+					<td>15762</td>
+					<td>46821</td>
+					<td>3014</td>
+					<td>7865</td>
+					<td>781</td>
+					<td>2348</td>
+					<td>3358</td>
+					<td>8694</td>
+					<td>15795</td>
+					<td>56124</td>
+					<td>15795</td>
+					<td>56124</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>周至县</td>
+					<td>19356</td>
+					<td>48756</td>
+					<td>16785</td>
+					<td>46258</td>
+					<td>10965</td>
+					<td>39657</td>
+					<td>10235</td>
+					<td>38654</td>
+					<td>15762</td>
+					<td>46821</td>
+					<td>3014</td>
+					<td>7865</td>
+					<td>781</td>
+					<td>2348</td>
+					<td>3358</td>
+					<td>8694</td>
+					<td>15795</td>
+					<td>56124</td>
+					<td>15795</td>
+					<td>56124</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>周至县</td>
+					<td>19356</td>
+					<td>48756</td>
+					<td>16785</td>
+					<td>46258</td>
+					<td>10965</td>
+					<td>39657</td>
+					<td>10235</td>
+					<td>38654</td>
+					<td>15762</td>
+					<td>46821</td>
+					<td>3014</td>
+					<td>7865</td>
+					<td>781</td>
+					<td>2348</td>
+					<td>3358</td>
+					<td>8694</td>
+					<td>15795</td>
+					<td>56124</td>
+					<td>15795</td>
+					<td>56124</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>周至县</td>
+					<td>19356</td>
+					<td>48756</td>
+					<td>16785</td>
+					<td>46258</td>
+					<td>10965</td>
+					<td>39657</td>
+					<td>10235</td>
+					<td>38654</td>
+					<td>15762</td>
+					<td>46821</td>
+					<td>3014</td>
+					<td>7865</td>
+					<td>781</td>
+					<td>2348</td>
+					<td>3358</td>
+					<td>8694</td>
+					<td>15795</td>
+					<td>56124</td>
+					<td>15795</td>
+					<td>56124</td>
+				</tr>
+               <tr>
+					<td>1</td>
+					<td>周至县</td>
+					<td>19356</td>
+					<td>48756</td>
+					<td>16785</td>
+					<td>46258</td>
+					<td>10965</td>
+					<td>39657</td>
+					<td>10235</td>
+					<td>38654</td>
+					<td>15762</td>
+					<td>46821</td>
+					<td>3014</td>
+					<td>7865</td>
+					<td>781</td>
+					<td>2348</td>
+					<td>3358</td>
+					<td>8694</td>
+					<td>15795</td>
+					<td>56124</td>
+					<td>15795</td>
+					<td>56124</td>
+				</tr>
+      </table>
+      </div>
+       <!--endprint-->
+</div>
+    <div class="pages">
+        <div class="paging">
+            <div id="Pagination"></div>
+            <div class="searchPage">
+                <span class="page-sum">共<strong class="allPage">15</strong>页</span>
+                <span class="page-go">到<input type="text">页</span>
+                <a href=" " class="page-btn">确定</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+
+    })
+    /*筛选条件收起展开*/
+    $(".pack_up").click(function(){
+        $(".search").toggle();
+        $(".pack_up").text($(".pack_up").text()=="高级查询+"?"收起-":"高级查询+");
+    })
+     $("li dt >dl:nth-child(1)").siblings().click(function(){
+               $(this).parent().children(':first').removeClass("active");
+               $(this).toggleClass("active");
+              //给点击对象添加类
+          });
+           $("li dt >dl:nth-child(1)").click(function(){
+             	$(this).toggleClass("active")
+           		$(this).siblings().removeClass('active');
+           })
+    
+    window.onload=function(){
+    	 var btnPrint = document.getElementById("btn-orange");
+            btnPrint.onclick = function(){           
+                printTable();//打印表格
+            }             
+        function printTable(){      
+        bdhtml=window.document.body.innerHTML;
+         sprnstr="<!--startprint-->";
+         eprnstr="<!--endprint-->";
+         prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+17);
+         prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+         var newwin = window.open("");
+         var css="<style>#formSubmit2>tbody{width: 100%;font-size: 14px;}"      
+         +"#formSubmit2>tbody>tr>th{border:1px solid #ccc;}"
+         +"#formSubmit2>tbody>tr>th:first-child{width: 10%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(2){width: 10%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(3){width: 20%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(4){width: 15%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(5){width: 10%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(6){width: 25%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(7){width: 10%;}"
+         +"#formSubmit2>tbody tr td{height: 34px;line-height: 34px;text-align: center;border:1px solid #ccc; border-collapse:collapse;border-spacing:0;border-padding:0;}"
+         +"#formSubmit2>tbody tr td a{display: inline-block;border-radius: 3px;background: #fff;border:none;color: #fff;width: 48px;height: 22px;text-align: center;line-height: 22px;}"
+         +"#formSubmit2>tbody tr td a:nth-child(2){background-color: #229ffd;}"
+		 +"#formSubmit2>tbody tr td a:last-child{background-color: #ff7680;}"
+         +"#formSubmit2>tbody tr td a:first-child{background-color: #FEAE1B;}</style>"           
+         newwin.document.body.innerHTML=prnhtml+css;
+         newwin.print();   
+         newwin.close();
+        }           
+    }
+</script>
+</body>
+</html>

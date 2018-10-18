@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>日志管理</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/show_log_ranking.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr th{width: 15%;height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-01 table tr td{/*width: 15%;*/height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-05{display: none}
+        .form-04 table tr td {width:11%}
+        .no-pass{color: #ee3333}
+        .form-01 table tr td a{
+            display: inline-block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+        }
+        .form-01 table tr td a:first-child{
+            background: #229ffd;
+        }
+        .form-01 table tr td a:last-child{
+            background: #ff7680;
+        }
+        .form-01 table tr td img{width:200px;}
+        .marginR{margin-right: 14px;}
+        .black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 55%; 
+            height: 30%; 
+            padding: 20px; 
+            border: 5px solid #ccc; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        } 
+         input[type=date]::-webkit-inner-spin-button { visibility: hidden; } 
+      .panel>.form-01>.search >div>.form-group> input[type=date]{
+            width: 110px;
+        }
+
+        #zhucun{
+            border:1px solid #ccc;
+            padding: 6px;
+            margin-left: 30px;
+            border-radius: 3px;
+        }
+        .active{
+            background-color:#0ae;
+            color: #fff;
+            border-radius: 3px;
+        }
+    
+        #bangfu{
+            border: 1px solid #ccc;
+            padding: 6px;
+            margin-left: 10px;
+            border-radius: 3px;    
+        }
+        .bf{
+            display: none;
+        }
+   		#formSubmit2{
+   			table-layout: fixed;  
+   		}
+        #formSubmit2 tr td:nth-child(4){       	
+        	text-overflow: ellipsis; /* for IE */  
+		    -moz-text-overflow: ellipsis; /* for Firefox,mozilla */  
+		    overflow: hidden;  
+		    white-space: nowrap;
+        }
+        /*#formSubmit2 tr td:nth-child(4){
+        	display: -webkit-box;        	
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			overflow: hidden; 
+        }*/
+		span,table tr td{
+        	cursor: pointer;
+        }
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>日志管理</strong><!--<a href="" class="button border-main icon-plus-square-o">添加内容</a>-->
+     <span id="zhucun" class="active">驻村日志</span><span id="bangfu">帮扶日志</span>
+	    <div class="data_tracking">
+	    	<!--<a href="" class="button border-main marginR" id="btn-orange">导出</a>
+	  		<a href = "javascript:void(0)" class="button border-main" >数据分析报告</a>-->
+	    </div>
+    </div>       
+    
+    <div class="form-01">
+        <p>数据筛选 <span class="pack_up">收起-</span></p>
+        <div class="search searchs" style="display: block;">
+        	<div id="zc">
+                 <label for="">驻村工作队</label>            
+                <select name="" id="country">
+                </select>
+                <select name="" id="town">
+                </select>
+                <select name="" id="village">
+                </select>
+                <!--<select name="" id="group">
+                    <option value="">所在组</option>
+                    <option value="">一组</option>
+                    <option value="">二组</option>
+                    <option value="">三组</option>
+                    <option value="">四组</option>
+                    <option value="">五组</option>
+                    <option value="">六祖</option>
+                    <option value="">七组</option>
+                </select>-->
+                <select name="" id="villageType">
+                    <!--<option value="">村属性</option>
+                    <option value="01">贫困村</option>
+                    <option value="02">非贫困村</option>
+                    <option value="03">经济薄弱村</option>
+                    <option value="04">十二五贫困村</option>
+                    <option value="05">十三五贫困村</option>                -->
+                </select>              
+            </div> 
+        <div id="bf">
+            <div class="bf">
+                 <label for="">贫困户所在地</label>            
+                <select name="" id="country1">
+                </select>
+                <select name="" id="township1">
+                </select>
+                <select name="" id="village1">
+                </select>
+                <!--<select name="" id="group1">
+                    <option value="">所在组</option>
+                    <option value="">一组</option>
+                    <option value="">二组</option>
+                    <option value="">三组</option>
+                    <option value="">四组</option>
+                    <option value="">五组</option>
+                    <option value="">六祖</option>
+                    <option value="">七组</option>
+                </select>-->
+            </div>
+            <div class="bf">
+            	<label for="">帮扶责任人姓名</label><input type="text" value="" style="margin-left: 4px;" id="xingming">
+             	<label for="" style="margin-left: 49px;">帮扶责任人单位</label><input type="text" value="" id="danwei"> 
+            </div>  
+            <div class="bf">
+            	<label for="">开始时间</label><input type="date" value="" style="margin-left: 4px;width: 130px;text-indent: 5px;" id="start"><span style="margin-left: 40px;">结束时间</span><input type="date" value="" style="width: 130px;text-indent: 5px;margin-left:10px;" id="end"> 
+            </div>
+        </div>
+            <div>
+                <input type="button" class="btn_orange" style="float: right;" name="" value="查询">
+                <input type="button" class="btn_blue" style="float: right;" name="" value="重置条件">
+            </div>     	
+        </div>
+      <!--startprint-->
+      <table id="formSubmit2" class="form-x" style="border-collapse: collapse;">
+          <tr>
+              <th>序号</th>
+              <th>干部姓名</th>
+              <th>日志时间</th>
+              <th>日志内容</th>
+              <th>日志图片</th>
+              <th>所在地</th>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>吴芳</td>
+              <td>2016/5/3</td>
+              <td>这是我的的第一篇日志</td>
+              <td><img src="../images/sishu.jpg" alt=""></td>
+              <td>西安市 - 灞桥区 - 灞桥街道 - 灞桥堡村委会</td>
+          </tr>
+          <tr>
+              <td>2</td>
+              <td>惠一鸣</td>
+              <td>2016/5/3</td>
+              <td>这是我的第二篇日志</td>
+              <td><img src="../images/sishu.jpg" alt=""></td>
+              <td>西安市 - 灞桥区 - 灞桥街道 - 灞桥堡村委会</td>
+          </tr>
+          <tr>
+              <td>3</td>
+              <td>吴永东</td>
+              <td>2016/5/3</td>
+              <td>这是我的的第三篇日志</td>
+              <td><img src="../images/sishu.jpg" alt=""></td>
+              <td>西安市 - 灞桥区 - 灞桥街道 - 灞桥堡村委会</td>
+          </tr>
+          
+      </table>
+      
+       <!--endprint-->
+</div>
+    <div class="pages">
+        <div class="paging">
+            <div id="Pagination"></div>
+            <div class="searchPage">
+                <span class="page-sum">共<strong class="allPage">1</strong>页</span>
+                <!--<span class="page-go">到<input type="text">页</span>
+                <a href=" " class="page-btn">确定</a>-->
+                <span id="total">总数：0</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("1");
+
+    })
+    /*筛选条件收起展开*/
+    $(".pack_up").click(function(){
+        $(".search").toggle();
+        $(".pack_up").text($(".pack_up").text()=="收起-"?"展开+":"收起-");
+    })
+        
+    $("#zhucun").on("click",(function(){
+        $("#zc").show();
+        $(".bf").hide();
+        $(this).siblings().removeClass("active");
+        $(this).addClass("active");
+      })
+    )
+    $("#bangfu").click(function(){
+        $("#zc").hide();
+        $(".bf").show();
+        $(this).siblings().removeClass("active");
+
+        $(this).addClass("active");
+    })
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>帮扶签到详情</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+</head>
+<style>
+    .container_assitLog{
+        width: 100%;
+        height: 100%;
+        padding:20px 20px;
+    }
+    .container_assitLog h3{
+        font-size: 24px;
+        font-weight:500;
+        line-height: 60px;
+        margin-bottom: 10px;
+        border-bottom: 1px dashed #ccc;
+    }
+    .container_assitLog table{
+        width: 100%;
+        height: 100%;
+    }
+    .container_assitLog tr{
+        width: 100%;
+        height: 40px;
+    }
+    .container_assitLog th{
+        width: 33.333333%;
+        height: 40px;
+        text-align: center;
+        border:1px solid #ccc;
+        vertical-align: middle;
+    }
+    .container_assitLog td{
+        width: 33.333333%;
+        height: 30px;
+        text-align: center;
+        border:1px solid #ccc;
+        vertical-align: middle;
+    }
+</style>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>帮扶签到详情</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+    <div class="container_assitLog">
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>时间</th>
+                <th>地点</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>2018.5.25</td>
+                <td>西安市丝路旅游服务中心</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    /*初始化分页*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+
+    })
+    /*详细情况点击事件*/
+    $(".tips").click(function(){
+        $(this).addClass('on').siblings().removeClass('on');
+        let index=$(this).index();
+        console.log(index)
+        $(".form-03").eq(index).show().siblings(".form-03").hide();
+    })
+</script>
+</body>
+</html>

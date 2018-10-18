@@ -1,0 +1,84 @@
+﻿@media (max-width: 1300px){
+/*>=1024的设备*/
+/*----------------西安市------------------------*/
+    .main .pop-up{height: 530px;overflow: auto;}
+    .main-title h3{font-size: 1.8rem;}
+    .content .c-title, .content .c-title span{font-size: 13px!important;text-indent: 10px;}
+    .content .wrap .wordExp span, .content .wrap .wordExp a, .content .grids li i, .content .wrap .wordExp, .content .wrap .wordExp i, table td, table td div, table td p, .content .wrap5 .item, .content .wrap5 .item span, .content .wrap8 .helpInfo p, .content .wrap8 .helpInfo span, .content .wrap9 .helpLog li, .content .wrap7 .right h2, .content .title h1, .content .grids li, .map .item p, .map .item span, .content-8 .wrap10 .grids3 .item{font-size: 10px!important;}
+    .mapMap{width: 126%!important;}
+    .mapMap iframe{    
+        width: 100%;
+        transform: scale(0.75);
+        margin-left: -11%;
+        margin-top: -11%;
+    }
+    .content .wrap{height: 77%;}
+
+/*----------------区县------------------------*/
+    .TopTitle{font-size: 20px;}
+    .c-title span{margin-right: -10px!important;}
+    .c-title .detail{margin-right: 10px!important;}
+
+/*----------------村------------------------*/
+    #poorList dd,.maquee1 ul li div,.topRec_List ul li div{font-size: 14px;}
+    .maquee1{height: 290px!important;}
+    .maquee101{height: 96px!important;}
+    .content2 .wrap2{height: 83%!important;}
+    .wrap2 li .left .icon_img{margin: 0!important;}
+    .content .left{width: 5%;}
+    .wrap li .title h1{width: 495px!important;line-height: 20px!important;}
+    .content .wrap2 li {
+        height: 13%;
+        padding: 1px 0;
+        margin: 0!important;
+        
+    }
+
+    .content .wrap7 .item, .content .wrap7 .itemReason{
+        width: 48%;
+        height: 27%;
+        padding: 0px;
+    }
+    .container-4 .wrap7 .right h2{font-size: 8px!important;}
+    .container-4 .wrap7 .right p{font-size: 8px!important;}
+    .content .wrap4 table tr th{font-size: 12px;}
+    .content .baseSatiation{padding: 1% 1%!important;}
+    .content .baseSatiation .item{height: 20px!important;line-height: 20px;}
+    .content .wrap8 .right{width: 30%;}
+    .content-8 .wrap10 .grids3{padding: 0!important;}
+    .content-8 .wrap10 .grids3 .item{height: 26px;line-height: 26px;margin: 1% 3% 0 0;}
+    .content .c-title .vPersonName{margin-right: 0px!important;}
+}
+
+
+@media (min-width: 1100px) {
+body{font-size: 20px}
+} /*>=1024的设备*/
+
+@media (min-width: 1280px) {
+body{font-size: 22px;}
+} 
+
+@media (min-width: 1366px) {
+
+body{font-size: 24px;}
+}  
+
+@media (min-width: 1440px) {
+body{font-size: 25px !important;}
+} 
+
+@media (min-width: 1680px) {
+body{font-size: 28px;}
+} 
+@media (min-width: 1920px) {
+body{font-size: 33px;}
+}
+@media (min-width:1560px) and (max-width:1920px){
+    #bangfu .grid .left{
+        width:110px;
+    }
+    #bangfu .grid .helpInfo{
+        width:calc(100% - 13% - 82px);
+    }
+}

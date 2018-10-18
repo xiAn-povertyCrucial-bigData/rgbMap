@@ -1,0 +1,304 @@
+* {
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    list-style: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #e8e8f9;
+}
+body {
+    width: 100%;
+    height: 100%;
+    font: 14px/1.5 "Microsoft Yahei",arial, "Hiragino Sans GB", sans-serif;
+    color: #fff;
+    position: relative;
+}
+input,button{
+    background: none;
+    border:none;
+    outline: none;
+}
+a,
+a:hover,
+a:active {
+    outline: none;
+    text-decoration: none;
+}
+.left{
+    float: left;
+}
+.right{
+    float:right;
+}
+.clearfix{
+    *zoom:1;
+}
+.clearfix:after{
+    display:block; 
+    overflow:hidden; 
+    clear:both; 
+    height:0; 
+    visibility:hidden; 
+    content:".";
+}
+.title{
+    width:100%;
+    height: 130px;
+    text-align: center;
+    color:#34495e;
+    padding:36px 0 10px;
+}
+.wrap{
+    width: 100%;
+    height: calc(100% - 170px);
+    background: url('../images/bg.jpg') no-repeat center;
+    padding:3% 5%;
+    position:relative;
+    display: flex;
+    justify-content: space-between;
+    overflow:hidden;
+}
+.wrap .box{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding:0 12%;
+}
+.pBox{
+    width: 50%;
+    height:100%;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: left;
+    text-indent:32px;
+    position:relative;
+    float: left;
+}
+.pBox>.intro{
+    width:100%;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    line-height: 40px;
+    font-size: 22px;
+    text-indent:48px;
+}
+.login-con{
+    width:50%;
+    height:100%;
+    float: right;
+    /*background: rgba(0,0,0,.3);*/
+    border-radius: 5px;
+    position: relative;
+}
+.login-item{
+    width: 60%;
+    height: 85%;
+    padding-top:7%;
+    background: rgba(0,0,0,.3);
+    float:left;
+    border-radius: 5px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-40%,-55%);
+    box-shadow: 0 0 10px 6px rgba(0,0,0,0.5);
+}
+.l-title{
+    font-size: 22px;
+    color:#fff;
+    text-align: center;
+    margin:40px 0;
+    background: url('../images/t_bg.png') center bottom no-repeat;
+    padding-bottom: 36px;
+}
+
+.input-item{
+    width: 350px;
+    height: 50px;
+    background: #e1e4e7;
+    margin:0 auto 40px;
+    border-radius: 5px;
+    line-height: 52px;
+}
+
+.input-item .icon{
+    width: 60px;
+    height: 50px;
+}
+.input-item .user{
+    background: url('../images/user.png') center no-repeat;
+}
+.input-item .pwd{
+    background: url('../images/pwd.png') center no-repeat;
+}
+.input-item .input-text{
+    width: 235px;
+    height: 50px;
+    padding-left:10px;
+    box-shadow: 0px 0px 5px #ccc;
+    background: #e9eaeb;
+    border-radius: 0 5px 5px 0;
+    color: #000;
+    font-size: 16px;
+ 
+}
+.input-code {
+   width: 350px;
+   height: 50px;
+   margin:0 auto 35px;
+  
+
+}
+.input-code .input-text{
+    width: 132px;
+    height: 50px;
+    padding:0 15px;
+    background: #e9ebeb;
+    border-radius: 5px;
+    color: #000;
+    font-size: 16px;
+    text-align: center;
+}
+.img-code{
+    width: 132px;
+    height: 46px;
+    margin-top:2px;
+    cursor: pointer;
+}
+.log-btm{
+    width: 350px;
+    margin:0 auto;
+    line-height: 48px;
+}
+#remember{
+    margin-left: 132px;
+    margin-top: 18px;
+}
+.log-btm label{
+    color:#fff;
+    margin:0 42px 0 8px;
+}
+.login-btn{
+    width: 350px;
+    height: 48px;
+    text-align: center;
+    line-height: 48px;
+    display: block;
+    background: url('../images/login_btn.png') no-repeat;
+    background-size: 350px 48px;
+    border-radius: 5px;
+    color:#fff;
+    font-size: 18px;
+    cursor: pointer;
+    margin:0 auto;
+}
+.forget{
+    color:#fff;
+}
+.items{
+    /*position: absolute;*/
+    /*top:132px;*/
+    /*right: 2%;*/
+    color:#000;
+}
+.items .operate{
+    float: right;
+    margin-right:2%;
+}
+.items a{
+    color:#000;
+    font-size: 16px;
+    padding: 0 20px;
+}
+.support{
+    display: block;
+    width: 100%;
+    height: 40px;
+    color:#000;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
+}
+.support img{
+    height: 24px;
+    margin-left: 5px;
+}
+.box a{
+    display: inline-block;
+    width:280px;
+    height:280px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.5);
+}
+.box a .bgImg{
+    display: inline-block;
+    width:280px;
+    height:280px;
+    position: absolute;
+    top:0;
+    left:0;
+    background: url("../images/circle.png") no-repeat center/cover;
+    -webkit-animation: spin 20s linear infinite;
+    vertical-align: middle;
+}
+/*.box .title-1:hover .bgImg{*/
+    /*-webkit-transform: scale(1.05);*/
+    /*-ms-transform: scale(1.05);*/
+    /*transform: scale(1.05);*/
+    /*zoom: 1.1;*/
+/*}*/
+.box a .bgWord{
+    width:180px;
+    height:100px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.85);
+    background: url("../images/word1.png") no-repeat center/cover;
+}
+.box a .bgWord2{
+    display:inline-block;
+    width:254px;
+    height:140px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.65);
+    background: url("../images/word3.png") no-repeat center/cover;
+}
+.box a .bgWord3{
+    display:inline-block;
+    width:254px;
+    height:140px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.65);
+    background: url("../images/word2.png") no-repeat center/cover;
+}
+.title-1,.title-2,.title-3{
+    position:relative;
+}
+
+@-webkit-keyframes spin { /*兼容性写法。spin是关键帧的动画名称*/
+    from { /*动画起始状态*/
+        -webkit-transform: rotate(0deg);
+    }
+    to { /*动画结束状态*/
+        -webkit-transform: rotate(360deg);
+    }
+}

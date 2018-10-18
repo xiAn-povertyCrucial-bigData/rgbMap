@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>对象监管详情</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/wyp.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script type="text/javascript">
+      //截取Url里面的参数   
+        function GetRequest() {  
+            var url = location.search; //获取url中"?"符后的字串 
+            url=decodeURI(url);
+            var theRequest = new Object();  
+            if (url.indexOf("?") != -1) {  
+                var str = url.substr(1);  
+                //alert(str);  
+                strs = str.split("&");  
+                for (var i = 0; i < strs.length; i++) {  
+                    theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);//获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>，（unescape只针对数字，中文乱码)  
+                }  
+            }  
+            return theRequest;  
+        }     
+        var data = new Object();  //通过url取数
+        data = GetRequest();  
+        var titleName = data['name'];
+        var year = data['year'];
+        console.log(titleName);
+    </script>
+    <style >
+        table{width: 100%!important;}
+        .btn_blue{
+          color: #fff;
+          background: #428bca;
+          border: 1px solid #2698FB;
+          width: 70px;
+          text-align: center;
+          margin: 10px;
+          border-radius: 3px;
+        }
+        .container .select{list-style: none;}
+        .btn_orange{
+          color: #fff;
+            background: #f0ad4e;
+            border: 1px solid #FFAC37;
+            width: 50px;
+            text-align: center;
+            margin: 10px;
+            border-radius: 3px;
+        }
+              .marginR{margin-right: 14px;}
+             .container .select{padding: 0.5%;border-bottom: 1px solid #b1bfd1;}
+              .container .select li{padding: 5px 0;color: #767272;}
+              .container li label{width: 100px;display: inline-block;vertical-align: middle;}
+              .container li dt{display: inline-block;vertical-align: middle;}
+              .container li dt dl{float: left;margin-right: 10px;border-radius: 12px;text-align: center;padding: 2px 6px;cursor: pointer;position: relative;color: #555;height: 30px;line-height: 30px;}
+              .active{background: #70c1ff!important;color: #fff!important;}
+              .obtn{position: absolute;top: 45%;right: 4%;}
+              .obtn input{background: #e9ebef;border:0;border: 1px solid #D2D2D2;line-height: 14px;padding: 6px 12px;border-radius: 3px;cursor: pointer;}
+              .obtnActive{background: #428bca!important;color: #fff!important;border-radius: 1px solid #2698FB!important;}
+
+              .box{display: flex;align-items: center;height: 50%;width: 100%;padding-top: 2%;}
+              #pieElsePoverty,#barElsePoverty{width: 100%;height: 100%;}
+              .search li{
+                 width: 100%;
+                 }
+              .panel>.form-01>.search label{
+                 width: 92px;
+                }  
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head">
+      <strong><span class="icon-pencil-square-o TitleTop"></span></strong>
+      <div class="data_tracking">
+        <!-- <a href="" class="button border-main marginR" id="btn-orange">导出</a> -->
+        <!-- <a href = "javascript:void(0)" class="button border-main"  >数据分析报告</a> -->
+        <a href="javascript:history.go(-1)" class="data_tracking button border-main">返回</a>
+      </div>
+    </div>                
+    <div class="form-01">
+        <div class="search searchs" style="display: block;">
+            <div class="container">
+              <!-- <ul class="select">
+                <li>
+                  <label class="label1">年份：</label>
+                  <dt>
+                    <dl class="active">全部</dl>
+                    <dl>2016</dl>
+                    <dl>2017</dl>
+                  </dt>
+                </li>
+                <li>
+                  <label class="label1">识别标准</label>
+                  <dt>
+                    <dl class="active">全部</dl>
+                    <dl>国家标准</dl>
+                    <dl>省定标准</dl>
+                  </dt>
+                </li>
+              </ul>   -->  
+            </div>
+        </div>
+            <!-- <div class="TopSelect">
+                <a href="data_mange.html">对象监管首页</a> /
+                <a href="#" class="navActive">西安市</a>
+            </div> -->
+   
+      <!--startprint-->
+        <div style="overflow-x: scroll; width:100%;">
+          <table id="formSubmit2" class="form-x" style="border-collapse: collapse;width:1800px;" ></table>
+        </div>
+        <div class="pages">
+            <div class="paging">
+                <div id="Pagination"></div>
+                <div class="searchPage">
+                    <span class="page-sum"></span>
+                    <!--<span class="page-go">到<input type="text" id="currentPage">页</span>
+                    <a class="page-btn" style="cursor:pointer;">确定</a>-->
+                    <span id="allTotal"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+       <!--endprint-->
+<script src="../js/wyp.js"></script>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("1");
+    })
+    
+    $('.TitleTop').append(titleName);
+
+    var formInfos = $('#formSubmit2');
+    var page = $(".allPage");
+    if(titleName=='脱贫户未解决两不愁三保障'){RequestData4(url +"smallDetail/TwoNoWarry");}
+    if(titleName=='证件号码异常'){RequestData4(url +"smallDetail/IDNumberNotNormal");}
+    if(titleName=='重要指标为空'){RequestData4(url +"smallDetail/ImportantTarget");}
+    if(titleName=='致贫原因问题'){RequestData4(url +"smallDetail/PovertyCause");}
+    if(titleName=='贫困户低保、五保问题'){RequestData4(url +"smallDetail/PovertyBottom");}
+    if(titleName=='劳动能力问题'){RequestData4(url +"smallDetail/LaborAbility");}
+    if(titleName=='收入问题'){RequestData4(url +"smallDetail/Income");}
+    if(titleName=='务工状况问题'){RequestData4(url +"smallDetail/LaborStatus");}
+    if(titleName=='帮扶责任人问题'){RequestData4(url +"smallDetail/HelpPerson");}
+    if(titleName=='指标值异常或指标间逻辑错误'){RequestData4(url +"smallDetail/targetNoTrue");}
+    if(titleName=='人员重复问题'){RequestData4(url +"smallDetail/DistrictNumber");}
+    
+    
+    // window.onload=function(){
+    //    var btnPrint = document.getElementById("btn-orange");
+    //         btnPrint.onclick = function(){           
+    //             printTable();//打印表格
+    //         }             
+    //     function printTable(){      
+    //     bdhtml=window.document.body.innerHTML;
+    //      sprnstr="<!--startprint-->";
+    //      eprnstr="<!--endprint-->";
+    //      prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+17);
+    //      prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+    //      var newwin = window.open("");
+    //      var css="<style>#formSubmit2>tbody{width: 100%;font-size: 14px;}"      
+    //      +"#formSubmit2>tbody>tr>th{border:1px solid #ccc;}"
+    //      +"#formSubmit2>tbody>tr>th:first-child{width: 10%;}"
+    //      +"#formSubmit2>tbody>tr>th:nth-child(2){width: 10%;}"
+    //      +"#formSubmit2>tbody>tr>th:nth-child(3){width: 20%;}"
+    //      +"#formSubmit2>tbody>tr>th:nth-child(4){width: 15%;}"
+    //      +"#formSubmit2>tbody>tr>th:nth-child(5){width: 10%;}"
+    //      +"#formSubmit2>tbody>tr>th:nth-child(6){width: 25%;}"
+    //      +"#formSubmit2>tbody>tr>th:nth-child(7){width: 10%;}"
+    //      +"#formSubmit2>tbody tr td{height: 34px;line-height: 34px;text-align: center;border:1px solid #ccc; border-collapse:collapse;border-spacing:0;border-padding:0;}"
+    //      +"#formSubmit2>tbody tr td a{display: inline-block;border-radius: 3px;background: #fff;border:none;color: #fff;width: 48px;height: 22px;text-align: center;line-height: 22px;}"
+    //      +"#formSubmit2>tbody tr td a:nth-child(2){background-color: #229ffd;}"
+    //  +"#formSubmit2>tbody tr td a:last-child{background-color: #ff7680;}"
+    //      +"#formSubmit2>tbody tr td a:first-child{background-color: #FEAE1B;}</style>"           
+    //      newwin.document.body.innerHTML=prnhtml+css;
+    //      newwin.print();   
+    //      newwin.close();
+    //     }           
+    // }
+</script>
+</body>
+</html>

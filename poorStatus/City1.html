@@ -1,0 +1,1366 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>西安市脱贫成效监测系统</title>
+	<link rel="stylesheet" href="css/ryg.css">
+	<link rel="stylesheet" href="css/pagination.css"/>
+	<link rel="stylesheet" href="css/city.css" />
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/style2.css"/>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery.pagination.js"></script>
+	<script src="js/iconfont.js"></script>
+	<script src="../index/js/jquery.cookie.js"></script>
+	<script src="../index/js/tooltips.js"></script>
+	<script src="js/commer.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/city1.js"></script>
+	<script src="js/city2.js"></script>
+	<script src="js/city3.js"></script>
+	<script src="js/city4.js"></script>
+	<script src="js/City5.js"></script>
+	<script src="js/city5-1.js"></script>
+	<script src="js/city4-1.js"></script>
+</head>
+<body>
+	<div class="main">
+		<div class="main-title clearfix">
+			<p>西安市脱贫成效监测系统</p>
+		</div>
+		<div class="btns">
+			<div class="cunhu" style="width:76px;">
+				<!--<a href="supportMeasures.html"><img src="images/icon_cun.png" alt=""></a>
+				<a href="infrastructure_city.html"><img src="images/icon_hu.png" alt=""></a>-->
+			</div>
+			<div class="itemBtn">
+				<a class="btn" href="#" style="background: url('images/btn1.png') no-repeat center/cover;">脱贫状态</a>
+				<a class="btn" href="../supportMeasures/supportMeasures.html">帮扶措施</a>
+			</div>
+			<div class="home_return" style="position:relative;width: 28.5%;left: 2%;">
+				<form class="s-form" action="" method="get" style="position:absolute;right:30%;width:70%;">
+					<input class="keywords" type="text" name="keywords" placeholder="村名、户名、电话号码..." style="color:#fff;"/>
+					<input class="submit" value=" " style="position:absolute;left:83%;top:5px;"/>
+				</form>
+				<div class="searchBox" style="width:320px;right:-2px;">
+					<table width="100%">
+						<thead>
+						<tr>
+							<th width="15">县区名</th>
+							<th width="25">镇街名</th> <!-- style="width:15%!important;" -->
+							<th width="20">村名</th>
+							<!-- <th width="10">户主姓名</th> -->
+							<th width="8">操作</th>
+						</tr>
+						</thead>
+						<tbody id="ZZsearchInfo">
+
+						</tbody>
+					</table>
+				</div>
+				<a class="a-item home" href="../index/index.html" style="right: 55px;">首页</a>
+				<a class="a-item return	" href="javascript:history.back(-1)" style="right: 0;">返回</a>
+			</div>
+		</div>
+		<!--搜索村名-->
+		<div id="search-cun">
+			    <div class="t-list">
+			    	<h2><span>xx村</span>七项退出指标达标情况<span class="search-cun-close" style="float:right;color: white;padding-right: 10px;">X</span></h2>
+			        <div class="itme-des active">
+			        	<a class="t-item red" style="margin-left:8px;">
+			        		<div class="tubiao">
+				        		<img src="images/icon_1.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">贫困发生率(总分30)</p><p >贫困发生率低于3%</p>
+				        	</div>
+			        	</a><span style="display: none ;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item green">
+			        		<div class="tubiao">
+				        		<img src="images/icon_2.png" />
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">行政村通沥青(水泥)路(总分10)</p><p >行政村通沥青(水泥)路</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item green">
+			        		<div class="tubiao">
+				        		<img src="images/icon_3.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">电力入户率(总分10)</p><p >电力入户率达到100%</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item red">
+			        		<div class="tubiao">
+				        		<img src="images/icon_10.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">有集体经济或合作组织(总分10)</p><p >有集体经济或合作组织、互助资金组织</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="itme-des" style="height: 55px;">
+			        	<a class="t-item green" style="height: 65px;">
+			        		<div class="tubiao">
+				        		<img src="images/icon_5.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">人均可支配收入(总分20)</p><p style="font-size: 12px;">退出村中脱贫户家庭年人均纯收入占全县农村居民年人均纯收入比重高于上年水平</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item red">
+			        		<div class="tubiao">
+				        		<img src="images/icon_6.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">有安全饮水(总分10)</p><p >有安全饮水</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item green">
+			        		<div class="tubiao">
+				        		<img src="images/icon_9.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">有标准化村卫生室(总分10)</p><p >有标准化村卫生室</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="reason"> </div>
+			    </div>
+			</div>
+
+		<!--搜索户名-->
+		<div id="search-hu">
+			    <div class="t-list">
+			    	<h2><span>张三</span>五项退出指标达标情况<span class="search-hu-close" style="float:right;color: white;padding-right: 10px;">X</span></h2>
+			        <div class="itme-des active" >
+			        	<a class="t-item green" style="position:absolute;left: 18px;">
+			        		<div class="tubiao">
+				        		<img src="images/icon_8.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">无义务教育阶段辍学学生(20分)</p><p >无义务教育阶段辍学学生</p>
+				        	</div>
+			        	</a><span style="display: block;">无义务教育阶段辍学学生详情</span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item red">
+			        		<div class="tubiao">
+				        		<img src="images/icon_4.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">新农合或大病保险(20分)</p><p >家庭成员全部参加新型农村合作医疗和大病保险</p>
+				        	</div>
+			        	</a><span style="display: none;">新农合或大病保险详情</span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item green">
+			        		<div class="tubiao">
+				        		<img src="images/icon_5.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">人均纯收入(20分)</p><p >家庭年人均纯收入超过3070元</p>
+				        	</div>
+			        	</a><span style="display: none;">人均纯收入详情</span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item red">
+			        		<div class="tubiao">
+				        		<img src="images/icon_6.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">有安全饮水(20分)</p><p >有安全饮水</p>
+				        	</div>
+			        	</a><span style="display: none;">有安全饮水详情</span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item green">
+			        		<div class="tubiao">
+				        		<img src="images/icon_7.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">有安全住房(20分)</p><p >有安全住房</p>
+				        	</div>
+			        	</a><span style="display: none;">有安全住房详情</span>
+			        </div>
+			        <div class="reason"> </div>
+			    </div>
+			</div>
+<!--开始	-->
+
+		<div class="content-1 content" id="city1" style="height: 27.5%;overflow: hidden">
+			<h3 class="c-title ">全市贫困状态概况</h3>
+            <div class="other-item" style="height:calc(100% - 30px);margin:0">
+                <div class="other other-1">
+            		<p style="float: right;"><span style="background:#DD4F43;display:inline-block;width:25px;height:15px;border-radius:3px;position: relative;top: 3px;" ></span>
+                    <span>未达标</span>
+                    <span style="background:#FFCE43;display:inline-block;width:25px;height:15px;border-radius:3px;position: relative;top: 3px;"></span>
+                    <span>兜底保障</span>
+                    <span style=";background:#1FA463;display:inline-block;width:25px;height:15px;border-radius:3px;position: relative;top: 3px;"></span>
+            		<span>已达标</span></p>
+                </div>
+                <div class="boxs" style="display: flex;justify-content: space-between;flex-direction:column;height:calc(100% - 23px)">
+                	<div class="other other-1" style="height:33.333333%;padding-left:3%;font-size：1.3em;">
+                		<p>贫困县：<span class="c-red" style="color:#1fa463;font-weight: bold;font-size:18px;">周至县</span></p>
+                	</div>
+	               <div style="height:33.333333%">
+	               		<div id="echarts-3" style="width: 95%;height:100%"></div>
+	               </div>
+	               <div style="height: 33.333333%">
+	               		<div id="echarts-31" style="height:100%"></div>
+	               </div>
+                </div>
+
+            </div>
+		</div>
+
+		<div class="content-2 content" style="overflow:hidden;" id="city2">
+			<h3 class="c-title">全市贫困村达标情况及数量分布统计</h3>
+			<div class="echarts">
+				<div id="echarts-4"></div>
+			</div>
+		</div>
+
+		<div class="content-2-1 content" style="overflow:hidden;left:14%;">
+			<div id="content-2-1-right" style="float: left;overflow: hidden;width: 50%;height: 100%;">
+				<div id="right-top">
+					<h3 class="c-title"><span id="xianming"></span>贫困村达标情况及数量分布统计<span class="content-2-1-close" style="float:right;color: white;padding-right: 15px;">X</span></h3>
+					<div class="echarts">
+						<div id="echarts-2-1"></div>
+					</div>
+				</div>
+				<div id="right-bottom">
+						<div id="scroll-y" style="overflow-y: scroll;height:100%;">
+						<h3 class="c-title" ><span id="zhenming"></span>贫困村达标情况及数量分布统计</h3>
+						<table width="98%" class="table" id="tablecun">
+				        <thead>
+				            <tr>
+				                <th>  镇街  </th>
+				                <th>  村名  </th>
+				                <th>  达标情况  </th>
+				            </tr>
+				        </thead>
+				    </table>
+				  </div>
+				</div>
+			</div>
+			<div id="content-2-1-left" style="float: left;">
+				<div class="t-list" style="overflow: hidden;">
+					<h3 class="c-title" style="text-indent: 0px;overflow: hidde;text-overflow: ellipsis;white-space: nowrap;"><span id="cunming"></span>七项退出指标达标情况 得分(<span id="cun-score"></span>)分</h3>
+					<div class="itme-des active">
+						<a class="t-item t-item2" style="margin-left:absolute;left: 8px;" id="colorh01">
+							<div class="tubiao">
+								<img src="images/icon_1.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;" class="firstp">贫困发生率<span style="font-size: 18px;">(总分30 得分<span id="defen01"></span>)</span></p><p >贫困发生率低于3%</p>
+							</div>
+						</a><span style="display: none ;"></span></div>
+					<div class="itme-des">
+						<a class="t-item t-item2" id="colorh02">
+							<div class="tubiao">
+								<img src="images/icon_2.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;" class="firstp">行政村通沥青(水泥)路<span style="font-size: 18px;">(总分10 得分<span id="defen02"></span>)</span></p><p >行政村通沥青(水泥)路</p>
+							</div>
+						</a><span style="display: none;"></span></div>
+					<div class="itme-des">
+						<a class="t-item t-item2" id="colorh03">
+							<div class="tubiao">
+								<img src="images/icon_3.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;" class="firstp">电力入户率<span style="font-size: 18px;">(总分10 得分<span id="defen03"></span>)</span></p><p >电力入户率达到100%</p>
+							</div>
+						</a><span style="display: none;"></span></div>
+					<div class="itme-des">
+						<a class="t-item t-item2" id="colorh04">
+							<div class="tubiao">
+								<img src="images/icon_10.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;" class="firstp">有集体经济或合作组织<span style="font-size: 18px;">(总分10 得分<span id="defen04"></span>)</span></p><p >有集体经济或合作组织、互助资金组织</p>
+							</div>
+						</a><span style="display: none;"></span></div>
+					<div class="itme-des" style="height: 13%;">
+						<a class="t-item t-item2" style="height: 100%;" id="colorh05">
+							<div class="tubiao">
+								<img src="images/icon_5.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;" class="firstp">人均可支配收入<span style="font-size: 18px;">(总分20 得分<span id="defen05"></span>)</span></p><p style="font-size: 12px;">退出村中脱贫户家庭年人均纯收入占全县农村居民年人均纯收入比重高于上年水平</p>
+							</div>
+						</a><span style="display: none;"></span></div>
+					<div class="itme-des">
+						<a class="t-item t-item2" id="colorh06">
+							<div class="tubiao">
+								<img src="images/icon_6.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;" class="firstp">有安全饮水<span style="font-size: 18px;">(总分10 得分<span id="defen06"></span>)</span></p><p >有安全饮水</p>
+							</div>
+						</a><span style="display: none;"></span></div>
+					<div class="itme-des">
+						<a class="t-item t-item2" id="colorh07">
+							<div class="tubiao">
+								<img src="images/icon_9.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;" class="firstp">有标准化村卫生室<span style="font-size: 18px;">(总分10 得分<span id="defen07"></span>)</span></p><p >有标准化村卫生室</p>
+							</div>
+						</a><span style="display: none;"></span></div>
+					<div class="reason" id="reason1" style="width:96%;height:14%;"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-4s content" style="overflow:hidden;bottom:4%;">
+			<h3 class="c-title">全市贫困村七项退出指标达标情况统计</h3>
+			<div class="echarts">
+				<div id="echarts-6"></div>
+			</div>
+		</div>
+
+
+		<div class="content-3-1 content" style="overflow:hidden;">
+
+			<div id="content-3-1-mid" style="float: left;width: 33%;">
+				<div id="mid-top" style="overflow-x: scroll;overflow-y: hidden;">
+					<h3 class="c-title" style="position: fixed;width: 29%;"><span id="quxian"></span>贫困户达标情况及数量分布统计<span class="content-3-1-close" style="float:right;color: white;padding-right: 15px;">X</span></h3>
+					<div class="echarts" style="width: 700px;margin-top: 30px;">
+						<div id="echarts-3-1"></div>
+					</div>
+				</div>
+				<div id="mid-bottom" style="overflow-x: scroll;overflow-y: hidden;">
+					<h3 class="c-title" style="position: fixed;"><span id="zhen"></span>贫困户达标情况及数量分布统计</h3>
+					<div class="echarts" style="width: 700px;margin-top: 30px;">
+						<div id="echarts-3-2"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="content-3-1-right" style="overflow: hidden;">
+				<h3 style="text-indent: 10px;" id="cun3-1" class="c-title"></h3>
+				<div id="scroll-y" style="overflow-y: scroll;height:95%;">
+				<table width="98%" class="table" id="hutable">
+			        <thead>
+			            <tr>
+			                <th>  户主  </th>
+			                <th>  性别  </th>
+			                <th>  年龄  </th>
+			                <th>  家庭人口  </th>
+			                <th>  达标情况</th>
+			            </tr>
+			        </thead>
+
+			    </table>
+			    </div>
+			</div>
+
+			<div id="content-3-1-left">
+				<div class="t-list" style="overflow: hidden;height:100%;">
+					<h3 class="c-title" style="text-indent: 0px;"><span id="huming"></span>五项退出指标达标情况 得分(<span id="hu-score"></span>)分</h3>
+					<div class="itme-des active" style="height: 11%;">
+						<a class="t-item t-item2" id="colorh1">
+							<div class="tubiao">
+								<img src="images/icon_5.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;">人均纯收入(总分20 得分<span id="hudefen1"></span>)</p><p style="font-size: 16px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">家庭年人均纯收入超过3070元</p>
+
+							</div>
+						</a><span style="display: block;"></span>
+					</div>
+					<div class="itme-des" style="height: 11%;">
+						<a class="t-item t-item2" id="colorh2">
+							<div class="tubiao">
+								<img src="images/icon_7.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;">有安全住房(总分20 得分<span id="hudefen2"></span>)</p><p style="font-size: 16px;">有安全住房</p>
+
+							</div>
+						</a><span style="display: none;"></span>
+					</div>
+					<div class="itme-des" style="height: 11%;">
+						<a class="t-item t-item2" id="colorh3">
+							<div class="tubiao" >
+								<img src="images/icon_8.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">无义务教育阶段辍学学生(总分20 得分<span id="hudefen3"></span>)</p><p style="font-size: 16px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">无义务教育阶段辍学学生</p>
+							</div>
+						</a><span style="display: none;"></span>
+					</div>
+					<div class="itme-des" style="height: 11%;">
+						<a class="t-item t-item2" id="colorh4">
+							<div class="tubiao">
+								<img src="images/icon_4.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">新农合或大病保险(总分20 得分<span id="hudefen4"></span>)</p><p style="font-size: 16px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">家庭成员全部参加新型农村合作医疗和大病保险</p>
+
+							</div>
+						</a><span style="display: none;"></span>
+					</div>
+					<div class="itme-des" style="height: 11%;">
+						<a class="t-item t-item2" id="colorh5">
+							<div class="tubiao">
+								<img src="images/icon_6.png"/>
+							</div>
+							<div class="zhibiao">
+								<p style="font-size: 20px;">有安全饮水(总分20 得分<span id="hudefen5"></span>)</p><p style="font-size: 16px;">有安全饮水</p>
+							</div>
+						</a><span style="display: none;"></span>
+					</div>
+					<div class="reason" id="hureason" style="height:28%;width:96%;"> </div>
+				</div>
+			</div>
+		</div>
+		<div class="map-content">
+			<div id="imgBox" style="width: 614px;height: 542px;position:relative;margin:0 auto;" class="imgbox">
+				<img src="images/mapaa.png" alt="" usemap="#Map" name="Map" style="width:614px;height:542px;position:absolute;top:50%;left:50%;transform: translate(-50%,-50%)">
+			</div>
+			<!--<map name="Map">
+				<area href="#" shape="poly" id="" coords="173,263,190,260,198,262,206,267,208,268,211,270,222,266,227,263,231,264,236,268,240,272,245,275,248,275,251,277,255,282,260,280,267,276,274,273,281,278,285,284,296,279,301,277,307,277,316,277,321,281,326,276,331,275,338,279,345,272,349,268,351,275,354,283,353,286,345,286,339,287,341,291,342,295,335,303,334,317,334,323,331,330,331,339,332,347,330,356,328,361,324,368,324,375,324,378,322,384,318,391,316,398,314,407,315,414,319,421,319,431,314,439,313,447,310,453,306,459,301,467,297,477,292,489,290,495,288,498,283,500,276,506,267,514,259,512,250,518,241,524,238,534,234,536,229,535,225,538,222,538,219,539,216,543,202,544,194,539,186,544,179,538,173,538,162,547,155,542,147,538,144,535,139,531,137,531,132,531,126,527,122,525,114,530,106,531,102,525,98,529,96,535,89,539,83,547,80,549,70,550,67,545,60,543,50,539,37,539,31,534,21,532,15,520,5,510,14,495,14,491,16,484,27,464,27,454,33,440,34,429,36,419,50,408,56,407,66,395,72,389,77,387,82,387,87,391,92,393,98,394,106,383,114,380,117,381,118,384,119,387,124,388,128,390,130,390,129,381,130,376,130,371,130,364,130,359,140,352,143,346,147,341,155,335,157,324,156,319,154,312,158,303,166,292,170,286,170,270,172,263">
+				<area href="#" shape="poly" id="" coords="355,266,365,266,369,265,374,264,378,264,382,261,386,257,387,250,392,250,394,250,394,254,396,260,397,263,397,265,394,270,394,275,395,277,395,279,392,284,394,286,396,289,397,291,398,293,400,293,404,300,406,298,411,298,416,298,418,299,422,303,425,303,425,308,426,310,427,315,427,319,430,321,432,324,437,327,439,326,442,326,442,329,444,333,444,336,441,336,437,339,436,342,438,348,436,350,438,358,440,362,442,365,442,370,442,374,442,377,442,385,445,391,447,400,445,401,446,405,446,409,446,413,446,421,445,424,442,430,440,433,435,437,431,433,432,437,437,440,438,441,438,443,438,445,438,447,435,449,433,453,430,457,426,461,425,467,421,473,418,478,410,478,402,477,398,481,394,482,389,486,387,489,384,497,382,505,379,514,376,519,374,520,370,520,366,517,360,510,359,506,353,504,350,504,344,501,336,497,330,497,325,501,317,510,311,513,309,517,306,520,301,517,297,513,296,511,293,509,290,501,289,496,290,488,293,481,296,473,299,469,303,463,309,458,314,452,314,446,316,438,319,433,320,428,320,425,316,421,316,418,317,411,318,405,316,399,317,389,320,384,323,380,323,375,322,371,323,367,326,363,329,357,330,353,331,347,330,337,330,333,331,327,335,318,338,310,338,305,342,298,342,295,339,289,342,287,346,289,350,289,352,289,354,288,354,285,350,281,349,275,352,268,356,265">
+				<area href="#" shape="poly" id="" coords="416,288,414,292,414,294,417,296,420,297,423,299,425,301,425,307,426,310,426,313,426,318,430,320,432,323,435,324,440,323,443,328,443,332,443,334,438,337,436,339,437,344,437,349,437,352,437,358,441,362,442,368,443,374,443,380,443,386,445,392,446,396,446,402,446,408,447,411,447,415,447,421,443,432,438,436,432,432,430,436,434,442,438,442,437,444,438,448,433,452,428,456,425,468,421,472,418,476,420,481,424,480,431,477,434,474,438,474,439,480,440,486,443,492,448,494,454,492,461,489,468,488,473,487,478,485,483,484,489,481,490,479,497,476,498,472,502,468,504,462,508,459,515,460,518,459,524,456,530,456,533,452,539,448,544,444,549,439,552,433,555,430,559,432,562,433,566,436,571,440,575,440,578,445,580,452,583,457,589,458,590,454,593,456,601,456,604,458,610,458,615,458,623,458,628,455,628,451,626,445,625,441,619,437,618,436,617,428,617,425,617,421,618,416,618,411,618,407,613,401,610,400,608,395,606,391,604,388,603,383,602,380,602,375,600,368,598,366,598,364,598,362,596,356,586,344,585,341,584,340,586,336,586,332,592,338,598,338,600,337,605,336,608,336,612,329,612,326,606,321,602,318,599,316,597,313,598,308,598,304,596,303,595,300,594,296,589,296,586,294,580,292,576,294,572,292,568,288,565,286,564,294,562,296,560,299,557,296,554,292,553,290,546,294,542,294,538,293,531,297,525,294,521,292,516,293,512,293,508,293,506,292,502,295,500,296,495,296,491,298,489,292,485,292,478,292,475,290,472,286,464,292,458,295,454,296,448,298,445,302,442,298,439,297,434,296,427,293,426,292,421,289">
+				<area href="#" shape="poly" id="" coords="609,242,614,235,619,229,626,225,630,221,633,225,634,231,637,234,638,237,644,239,647,238,652,238,656,239,659,240,665,245,663,236,663,230,664,224,668,223,672,215,678,218,680,223,682,226,684,229,688,228,692,225,695,225,698,229,699,231,704,232,706,236,711,242,714,246,719,248,722,250,729,251,735,249,740,248,747,251,755,256,763,259,770,256,775,260,782,259,786,259,793,261,795,261,798,263,802,267,803,271,807,275,811,275,814,281,810,287,814,287,819,289,825,293,828,297,832,298,837,301,840,307,839,308,830,310,824,310,814,322,813,324,814,331,811,338,806,338,798,334,798,330,790,336,785,336,782,338,778,343,776,348,758,351,747,360,751,367,749,370,746,372,746,383,743,391,748,395,752,401,756,406,762,407,765,413,770,415,772,423,771,425,770,430,769,436,767,443,762,443,751,455,747,463,742,467,737,470,724,471,721,467,716,475,707,475,703,471,692,469,690,464,685,468,678,465,677,459,670,462,666,463,661,464,654,463,650,461,646,457,640,455,630,453,628,449,625,443,624,439,618,435,618,427,616,422,618,416,618,409,617,403,610,398,607,395,606,390,604,387,602,382,602,376,600,371,598,359,598,360,590,346,585,339,584,335,586,331,591,335,595,336,600,338,602,334,607,334,610,330,613,327,606,322,604,320,598,314,596,311,598,304,595,299,593,295,596,289,598,287,593,287,591,283,598,279,598,278,594,273,590,267,589,264,586,259,586,254,598,243,604,239,610,241">
+				<area href="#" shape="poly" id="" coords="378,177,382,180,387,183,391,184,397,181,404,181,413,179,414,175,409,169,409,167,409,161,409,159,406,156,406,151,412,147,410,141,413,136,414,131,415,126,416,121,418,117,421,117,427,119,431,121,434,126,437,125,441,130,445,133,449,134,453,137,453,131,455,125,460,118,463,115,473,115,477,115,486,115,489,112,493,113,497,113,503,112,507,108,509,111,512,113,514,115,517,117,519,121,518,125,518,133,518,137,518,143,518,149,518,157,517,159,519,161,519,164,518,165,513,164,509,164,513,169,515,171,515,174,511,178,504,181,498,185,489,188,478,193,469,198,463,201,464,205,469,208,473,209,473,213,472,214,473,217,476,221,475,225,474,228,475,233,477,236,479,237,477,240,477,243,477,248,477,253,478,256,476,256,472,256,470,260,468,260,464,260,463,260,461,264,463,269,464,269,464,273,465,277,468,275,468,281,468,283,469,285,469,288,462,294,455,298,450,300,446,302,445,305,443,302,440,300,438,298,433,297,429,297,425,293,420,290,416,289,412,296,407,299,402,298,402,296,400,297,396,292,395,289,395,286,390,284,395,278,393,277,393,273,394,267,395,265,395,258,394,253,390,250,396,248,403,243,407,237,409,231,413,227,417,223,425,222,433,216,441,211,442,209,439,205,429,209,417,212,411,212,401,217,397,217,385,221,381,222,373,226,365,226,360,222,360,215,359,209,360,201,360,195,364,186,369,180,375,176">
+				<area href="#" shape="poly" id="" coords="508,107,515,103,518,103,522,102,524,99,527,99,531,97,535,95,542,95,546,95,555,95,557,95,559,100,563,102,567,101,571,103,573,107,575,112,576,115,579,118,583,123,583,127,583,133,583,138,583,139,585,143,584,147,585,151,587,155,587,160,587,163,588,167,583,165,575,172,570,169,566,171,563,170,557,170,553,163,551,155,548,153,548,158,548,162,544,163,539,165,537,167,529,167,527,166,521,167,517,169,513,169,511,166,515,164,515,161,515,156,517,151,517,143,517,135,518,127,518,123,515,116,509,111,507,108">
+				<area href="#" shape="poly" id="" coords="537,170,541,167,544,165,548,164,550,157,553,162,555,167,559,172,563,173,567,175,571,172,575,176,580,174,584,170,588,168,585,178,581,184,580,190,577,195,575,204,573,210,571,216,565,219,561,223,558,218,557,214,553,211,544,209,538,207,533,206,533,195,533,189,534,183,533,179,533,174,534,170">
+				<area href="#" shape="poly" id="" coords="531,205,538,208,543,208,550,210,554,212,558,220,567,217,572,216,576,217,576,221,576,226,578,229,581,230,586,231,593,233,597,233,603,233,608,229,613,226,617,225,621,225,623,225,615,231,611,236,607,237,606,241,605,244,599,241,591,246,587,250,582,257,582,263,584,268,587,272,591,273,594,276,596,277,591,281,589,285,590,288,594,288,596,289,591,292,591,296,586,297,581,295,577,293,573,297,566,293,565,291,560,286,561,293,559,295,557,301,551,298,551,293,549,290,547,286,546,281,547,273,548,269,547,262,546,259,542,257,541,257,538,253,537,249,537,244,538,241,531,240,529,239,530,237,531,233,535,233,538,228,541,225,541,224,538,221,533,217,531,212,531,209,531,206">
+				<area href="#" shape="poly" id="" coords="569,103,569,98,568,93,570,86,567,82,569,78,572,75,578,73,581,73,583,75,587,78,587,79,591,83,592,85,594,91,596,93,599,99,603,99,608,99,616,99,622,98,632,97,635,96,639,93,645,92,649,90,651,87,650,84,648,80,650,76,657,75,661,74,664,71,668,71,671,68,675,75,677,80,677,84,677,90,680,95,682,99,682,103,683,109,684,116,685,120,678,120,675,123,668,127,664,128,665,131,667,135,671,137,672,139,672,143,668,144,667,149,670,152,674,155,675,156,677,160,678,163,679,168,681,173,687,179,689,183,693,187,695,189,695,195,695,201,695,210,695,219,695,224,691,225,687,227,683,230,679,227,678,225,677,220,675,217,671,216,669,215,667,219,665,223,661,225,661,233,661,238,662,243,662,246,659,242,657,242,654,242,649,239,642,239,637,239,635,237,634,235,631,228,632,224,631,220,624,223,622,223,619,223,613,223,607,226,606,230,601,230,599,231,594,229,587,230,579,227,577,223,577,218,579,215,576,213,573,211,571,211,574,202,574,195,575,190,578,184,580,178,583,171,586,167,587,163,587,158,587,155,587,152,585,148,584,142,582,139,581,135,581,130,583,128,579,122,575,114,571,106">
+			</map>-->
+			<map name="Map">
+				<area shape="poly" id="zhouzhi" coords="123,240,134,238,143,239,151,243,154,246,163,242,168,239,174,246,182,251,189,254,194,250,204,254,208,257,214,254,222,253,229,253,237,250,243,250,250,245,252,251,257,253,255,260,250,258,247,261,247,262,243,273,241,280,241,290,241,297,240,305,238,314,238,322,237,331,235,337,234,340,232,346,230,350,230,359,228,368,228,374,230,382,230,390,227,398,224,408,222,416,218,423,214,434,210,444,207,453,199,457,195,462,192,466,186,463,182,469,178,470,174,478,171,485,166,485,162,488,157,485,156,491,145,494,140,488,135,493,131,487,128,485,122,487,119,495,109,490,102,486,98,480,93,481,87,474,83,482,78,481,74,473,72,474,72,482,69,486,63,490,62,497,58,500,51,502,47,496,46,494,42,493,35,489,26,489,20,483,12,484,10,473,3,463,6,455,7,446,9,438,16,426,18,418,18,412,20,404,23,396,24,386,24,382,31,374,38,370,42,369,45,362,50,355,58,350,62,354,69,359,73,354,78,350,81,347,82,350,85,354,90,354,93,350,94,344,91,338,91,330,95,325,97,324,101,317,102,311,110,306,110,296,113,290,110,286,113,276,118,269,119,260,121,249,122,240" href="#">
+				<area shape="poly" id="huyi" coords="254,244,258,240,264,239,271,238,276,234,278,228,282,225,284,227,284,230,286,234,287,238,285,244,285,248,286,250,283,254,282,256,286,260,286,262,289,268,292,270,297,268,302,269,303,274,304,278,307,283,307,286,308,290,314,294,317,294,320,301,317,306,314,308,317,313,314,315,314,322,319,327,320,337,319,348,322,352,322,356,322,359,322,365,323,371,322,378,322,387,318,394,315,394,316,402,314,405,310,412,307,422,301,432,292,433,285,434,282,439,278,449,276,457,274,463,272,470,266,468,262,463,258,459,254,456,248,454,240,450,235,457,226,463,218,469,214,466,210,462,208,458,206,455,206,450,210,442,210,432,214,421,218,415,225,405,228,396,230,388,229,377,227,366,228,362,229,355,232,346,233,339,234,334,238,327,239,318,238,314,238,306,239,298,239,294,240,286,243,278,244,273,244,269,244,262,246,258,251,258,253,261,255,256,252,251,252,246" href="#">
+				<area shape="poly" id="changan" coords="322,371,321,363,322,360,322,356,321,352,320,346,320,338,320,331,320,329,316,322,315,318,315,310,315,307,315,303,320,303,320,297,319,294,316,294,310,289,309,283,306,279,306,274,305,271,302,267,299,263,299,259,303,260,308,263,310,267,314,267,317,268,321,273,324,271,327,270,334,266,338,262,339,258,345,263,350,263,354,267,355,270,358,270,361,269,364,266,369,266,372,266,374,263,378,266,384,267,391,265,398,260,401,268,404,270,406,266,407,264,408,262,408,260,410,264,416,267,418,266,423,266,427,266,432,273,431,277,430,282,432,286,434,290,438,292,442,294,442,298,439,302,438,302,435,303,430,304,426,302,424,301,422,305,424,309,426,314,429,318,430,322,430,326,432,332,432,335,434,342,436,349,437,353,440,362,443,364,446,370,447,380,447,385,447,390,447,393,450,394,451,400,453,404,454,409,454,414,446,415,438,414,434,412,430,413,424,414,420,414,419,406,419,402,416,398,409,395,404,392,402,391,399,397,394,399,394,403,387,410,381,411,377,413,369,416,368,423,365,426,363,429,359,432,354,434,349,441,343,441,340,441,335,442,331,447,328,450,322,447,318,442,315,435,315,432,310,435,306,437,302,433,303,426,306,418,307,412,312,409,314,405,316,401,317,397,318,391,321,382,322,373" href="#">
+				<area shape="poly" id="lantian" coords="443,294,438,290,434,288,432,284,433,275,430,266,432,263,433,261,430,258,429,254,433,252,431,249,426,244,423,235,422,230,429,222,434,218,438,217,440,219,445,213,446,209,454,204,456,202,458,206,459,214,462,218,466,218,470,218,473,218,478,223,480,222,480,216,482,210,483,205,486,198,490,197,492,204,496,210,499,206,502,204,505,213,508,214,512,217,514,222,519,226,526,229,531,229,533,227,538,227,544,230,547,234,551,237,556,235,562,235,568,236,572,237,577,239,582,240,584,246,587,249,590,253,590,258,593,262,597,265,599,270,602,270,610,278,611,282,606,285,598,287,594,285,594,293,590,298,591,305,586,311,578,307,575,305,569,305,565,308,563,313,562,317,548,319,542,326,542,328,545,332,543,337,540,341,542,347,539,354,542,359,547,364,552,371,558,378,560,386,557,394,558,398,556,402,551,406,546,409,544,418,541,422,534,426,525,428,520,428,516,434,506,431,502,428,497,426,490,426,488,422,482,422,478,425,472,424,470,422,466,414,458,414,457,415,456,415,454,408,452,404,452,398,446,395,446,390,446,385,447,378,448,370,446,366,443,364,441,361,438,352,437,344,433,333,430,327,432,326,426,318,423,311,421,306,422,303,422,301,426,303,430,306,435,304,439,303,442,298,444,296" href="#">
+				<area shape="poly" id="xixian" coords="269,159,274,160,278,163,282,167,289,165,296,164,299,162,300,160,298,155,298,152,296,144,294,139,295,134,298,130,298,126,302,122,302,118,300,114,302,109,306,106,309,110,311,110,314,112,316,114,319,116,322,120,329,123,329,122,328,117,329,111,331,108,336,106,344,105,350,106,356,105,363,102,369,100,373,106,374,110,374,115,374,120,377,123,376,129,376,136,375,142,375,146,375,150,372,148,372,154,372,159,369,162,367,166,360,170,352,171,348,174,336,180,336,182,336,183,339,187,341,188,342,193,342,195,343,197,343,203,343,207,344,211,346,215,344,221,343,226,343,232,340,234,338,234,334,237,334,238,335,245,335,248,336,249,338,250,339,253,339,256,338,262,333,264,330,267,326,270,322,273,319,269,317,266,312,266,310,265,307,262,304,260,302,260,300,263,294,268,290,266,286,262,286,260,284,259,286,256,286,253,284,249,285,242,287,239,285,234,284,230,286,226,290,224,293,218,294,211,297,205,303,201,307,196,313,192,318,189,318,187,314,186,307,190,299,191,294,195,290,196,284,199,282,202,276,204,271,206,262,206,261,202,259,197,259,191,261,183,262,178,262,170,266,162" href="#">
+				<area shape="poly" id="gaoling" coords="370,98,374,96,377,94,380,91,385,89,390,87,394,87,398,89,402,90,406,91,406,94,410,91,414,94,414,98,416,103,418,107,421,113,425,121,423,128,424,132,425,136,426,143,427,148,427,154,424,150,419,157,414,155,412,154,408,152,404,151,402,146,400,142,400,146,396,147,391,151,387,151,382,152,375,154,372,158,371,150,376,151,374,146,377,138,374,118,374,106,370,102,370,98" href="#">
+				<area shape="poly" id="guoji" coords="389,153,394,150,397,147,398,142,402,154,408,155,411,157,414,155,416,158,421,155,422,151,427,153,423,162,421,165,418,170,418,177,417,186,414,194,406,199,402,195,401,192,392,187,386,185,387,174,386,166,385,160,387,155" href="#">
+				<area shape="poly" id="baqiao" coords="384,183,389,186,394,186,401,190,403,195,405,199,414,194,417,195,417,198,419,205,421,208,429,210,431,212,437,210,441,206,445,202,452,202,449,206,445,210,441,215,438,221,434,218,431,222,424,234,424,238,425,243,429,248,433,250,432,253,429,255,427,258,432,258,431,260,428,262,428,266,427,267,421,266,419,266,415,267,412,265,411,262,407,259,408,263,408,266,405,266,403,270,399,265,397,258,398,252,398,245,399,239,397,234,396,230,391,231,391,228,390,222,390,218,384,215,386,213,386,210,390,207,393,204,393,202,389,198,388,195,386,187" href="#">
+				<area shape="poly" id="lintong" coords="414,95,413,86,413,80,412,75,415,70,418,68,421,67,423,71,429,77,429,78,431,84,432,88,435,90,442,92,450,90,462,89,467,84,472,81,472,77,472,71,472,68,479,68,481,68,486,65,490,64,490,72,493,77,493,82,493,91,494,98,497,102,497,106,497,110,493,116,488,119,484,121,486,126,489,130,485,134,486,139,490,143,492,147,493,151,495,157,497,160,498,163,500,170,503,174,506,180,505,189,506,196,506,204,500,207,496,209,493,204,493,201,492,197,487,196,484,198,481,202,479,211,480,218,479,221,475,218,471,216,465,215,462,214,459,210,459,206,458,201,452,200,448,199,444,202,443,206,438,208,434,210,430,208,425,210,420,206,419,204,421,199,419,194,415,194,415,188,416,183,418,175,421,167,422,162,425,154,427,149,428,145,426,141,424,134,424,126,422,118,420,108,417,103,416,98" href="#">
+			</map>
+			<!--<iframe id="mapService" src="dist/index.html" frameborder="0" style="width: 800px;height:500px;"></iframe>-->
+			<!--<iframe id="mapService" src="dist/index.html" frameborder="0" style="width: 840px;height:500px;-webkit-transform-style:preserve-3d;transform-style: preserve-3d;-webkit-transform: rotateX(60deg) scale(1,1);transform: rotateX(55deg) rotateZ(0deg) translate(0,10%) scale(1.04,1.7);"></iframe>-->
+
+			<!--箭头-->
+			<!--top-->
+			<!--<div class="arrow1" style="position:absolute;top:25%;left:8%;width:16%;height:27%;">
+				<img src="images/arrow1.png" alt="" style="width:100%;height:100%;transform: rotate(10deg)">
+				<div class="box" style="width:214px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;top:-15%;left:-40%;"><strong>市委办公厅等市级机关帮扶12个村</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;top:18%;left:20%;width:20%;height:38%;">
+				<img src="images/arrow1.png" alt="" style="width:100%;height:100%;transform: rotate(35deg)">
+				<div class="box" style="width:160px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 14px;color:#000;border-radius: 4px;font-size:14px;position:absolute;top:-15%;left:10%;"><strong>市工商联协调民营企业及异地商会帮扶1个村</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;top:36%;left:25%;width:12%;height:15%;">
+				<img src="images/arrow1.png" alt="" style="width:100%;height:100%;transform: rotate(30deg)">
+				<div class="box" style="width:160px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;top:-40%;left:-25%;"><strong>省级帮扶力量帮扶2个村</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;top:30%;left:32%;width:14%;height:25%;">
+				<img src="images/arrow1.png" alt="" style="width:100%;height:100%;transform: rotate(14deg)">
+				<div class="box" style="width:164px;height:32px;background: linear-gradient(#FDFEF8,#AFD025);text-align: center;line-height: 14px;color:#000;border-radius: 4px;font-size:14px;position:absolute;top:-20%;left:-30%;"><strong>西安市商业银行等2个企事业单位帮扶2各村已脱贫</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;top:24%;left:37%;width:20%;height:27%;">
+				<img src="images/arrow1.png" alt="" style="width:100%;height:100%;transform:  rotate(50deg)">
+				<div class="box" style="width:120px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;top:-28%;left:50%;"><strong>本区县帮扶11个村</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;top:15%;left:57%;width:8%;height:15%;">
+				<img src="images/arrow1.png" alt="" style="width:100%;height:100%;transform: rotate(46deg)">
+				<div class="box" style="width:220px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;top:-30%;left:-69%;"><strong>西咸新区：1个贫困村，管委会帮扶</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;top:10%;left:70%;width:16%;height:27%;">
+				<img src="images/arrow1.png" alt="" style="width:100%;height:100%;transform: rotate(50deg)">
+				<div class="box" style="width:160px;height:32px;background: linear-gradient(#FDFEF8,#AFD025);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;top:-20%;left:20%;"><strong>本区县帮扶8个村已脱贫</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;top:32%;left:86%;width:8%;height:15%;">
+				<img src="images/arrow1.png" alt="" style="width:100%;height:100%;transform: rotate(46deg)">
+				<div class="box" style="width:150px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;top:-30%;left:-50%;"><strong>本区县帮扶13个村</strong></div>
+			</div>
+			&lt;!&ndash;bottom&ndash;&gt;
+			<div class="arrow1" style="position:absolute;bottom:10%;left:15%;width:20%;height:27%;">
+				<img src="images/arrow2.png" alt="" style="width:100%;height:100%;">
+				<div class="box" style="width:120px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;bottom:-10%;left:-60%;"><strong>本区县帮扶32个村</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;bottom:17%;left:30%;width:16%;height:27%;">
+				<img src="images/arrow2.png" alt="" style="width:100%;height:100%;">
+				<div class="box" style="width:180px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;bottom:-10%;left:-60%;"><strong>高新区、未央区帮扶三个村</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;bottom:10%;left:32%;width:16%;height:27%;">
+				<img src="images/arrow2.png" alt="" style="width:100%;height:100%;">
+				<div class="box" style="width:180px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;bottom:-10%;left:-45%;"><strong>市级部门帮扶2个村</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;bottom:25%;left:40%;width:16%;height:18%;">
+				<img src="images/arrow2.png" alt="" style="width:100%;height:100%;transform: translateX(70%)">
+				<div class="box" style="width:160px;height:32px;background: linear-gradient(#FDFEF8,#AFD025);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;bottom:-20%;left:30%;"><strong>本区县33个贫困村已脱贫</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;bottom:26%;left:60%;width:10%;height:16%;">
+				<img src="images/arrow2.png" alt="" style="width:100%;height:100%;">
+			</div>
+			<div class="arrow1" style="position:absolute;bottom:15%;left:60%;width:20%;height:28%;">
+				<img src="images/arrow2.png" alt="" style="width:100%;height:100%;">
+				<div class="box" style="width:260px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 14px;color:#000;border-radius: 4px;font-size:14px;position:absolute;bottom:-15%;left:-60%;"><strong>高新区、未央区、碑林区、新城区、国际港务区、经开区、航空基地等帮扶26个村</strong></div>
+			</div>
+			<div class="arrow1" style="position:absolute;bottom:20%;left:78%;width:16%;height:27%;">
+				<img src="images/arrow3.png" alt="" style="width:80%;height:95%;transform: translateX(10%) rotateY(-40deg)">
+				<div class="box" style="width:230px;height:32px;background: linear-gradient(#FDFEF8,#F4CE7D);text-align: center;line-height: 32px;color:#000;border-radius: 4px;font-size:14px;position:absolute;bottom:-10%;left:-45%;"><strong>市政府办公厅等市级部门帮扶5个村</strong></div>
+			</div>-->
+		</div>
+
+		<div class="content-3s content" style="overflow:hidden;right: 2%;height: 40%;">
+			<h3 class="c-title">全市贫困户达标情况及数量分布统计</h3>
+			<div class="echarts">
+				<div id="echarts-5"></div>
+			</div>
+		</div>
+
+		<div class="content-4-1 content" style="overflow:hidden;">
+			<div id="content4-1-shi">
+				<h3 class="c-title">全市各区县贫困村七项退出指标达标情况统计<span class="content-4shi-close" style="float:right;color: white;padding-right: 10px;">X</span></h3>
+				<div class="content4-1-shi">
+					<span style="">蓝田县</span>
+					<div class="echarts">
+						<div id="echarts-shi1"></div>
+					</div>
+				</div>
+			</div>
+			<div id="content4-1-zhen">
+				<h3 class="c-title"><span id='qxm'></span>
+					<span class="content-4zhen-close" style="float:right;color: white;padding-right: 10px;">X</span>
+					<a class="content-4zhen-return" ></a>
+				</h3>
+
+			</div>
+			<div id="content-4-1-left">
+			    <div class="t-list">
+			    	<h3 class="c-title" style="text-indent: 0px">
+			    		<span id='cm'></span>七项退出指标达标情况 得分(<span id="cun-score1"></span>)分
+			    	</h3>
+			        <div class="itme-des active">
+			        	<a class="t-item " style="margin-left:absolute;left: 8px;" id="color01">
+			        		<div class="tubiao">
+				        		<img src="images/icon_1.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">贫困发生率(总分30 得分<span id="defen1"></span>)</p><p >贫困发生率低于3%</p>
+				        	</div>
+			        	</a><span style="display: none ;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color02">
+			        		<div class="tubiao">
+				        		<img src="images/icon_2.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">行政村通沥青(水泥)路(总分10 得分<span id="defen2"></span>)</p><p >行政村通沥青(水泥)路</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color03">
+			        		<div class="tubiao">
+				        		<img src="images/icon_3.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">电力入户率(总分10 得分<span id="defen3"></span>)</p><p >电力入户率达到100%</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color04">
+			        		<div class="tubiao">
+				        		<img src="images/icon_10.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">有集体经济或合作组织(总分10 得分<span id="defen4"></span>)</p><p >有集体经济或合作组织、互助资金组织</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color05">
+			        		<div class="tubiao">
+				        		<img src="images/icon_5.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">人均可支配收入(总分20 得分<span id="defen5"></span>)</p><p style="font-size: 12px;">退出村中脱贫户家庭年人均纯收入占全县农村居民年人均纯收入比重高于上年水平</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color06">
+			        		<div class="tubiao">
+				        		<img src="images/icon_6.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">有安全饮水(总分10 得分<span id="defen6"></span>)</p><p >有安全饮水</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color07">
+			        		<div class="tubiao">
+				        		<img src="images/icon_9.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">有标准化村卫生室(总分10 得分<span id="defen7"></span>)</p><p >有标准化村卫生室</p>
+				        	</div>
+			        	</a><span style="display: none;"></span></div>
+			        <div class="reason" id="ger1"> </div>
+			    </div>
+			</div>
+			<div id="content-4-1-right">
+				<h3 class="c-title"><span id="zjm"></span>贫困村七项退出指标达标情况统计表
+					<span class="content-4-1close" style="float: right;padding-right: 10px;">X</span>
+					<a class="content-4cun-return" ></a>
+				</h3>
+					<div id="scroll-y" style="overflow-y: scroll;height:94%;">
+					<table width="98%" class="table" >
+			        <thead>
+			            <tr style="background: linear-gradient(to right,#0f4979,#000203);">
+			                <th>  村名  </th>
+			                <th>  贫困村标志  </th>
+			            </tr>
+
+			        </thead>
+
+			   </table>
+			  </div>
+			</div>
+		</div>
+
+		<div class="content-4-2 content">
+			<div id="content-4-2-mid" style="float: left;overflow: hidden;">
+				<div id="mid-top">
+					<h3 class="c-title"><span id="xianqixiang"></span>达标情况及数量分布统计<span class="content-4-2-close" style="float:right;color: white;padding-right: 0px;">X</span></h3>
+					<div class="echarts">
+						<div id="echarts-4-21"></div>
+					</div>
+				</div>
+				<div id="mid-bottom">
+					<h3 class="c-title"><span id="zhenqixiang"></span>达标情况及数量分布统计</h3>
+					<div class="echarts">
+						<div id="echarts-4-22"></div>
+					</div>
+				</div>
+			</div>
+			<div class="content-4-2-right">
+			<div id="content-4-2-right">
+				<div id="scroll-y" style="overflow-y: scroll;height:100%;">
+					<h3 class="c-title"><span id="zhenming2"></span>达标情况</h3>
+					<table width="98%" class="table" id="qxtable">
+				        <thead>
+				            <tr>
+				                <th> 镇街  </th>
+				                <th> 村名  </th>
+				                <th> 达标情况</th>
+				            </tr>
+				        </thead>
+
+				    </table>
+			  </div>
+			</div>
+			<div id="content-4-2-left" style="overflow: hidden;">
+			   <h3 class="c-title"></h3>
+			   <div class="t-list" style="overflow: hidden;background: #e2e58b;color: black;">
+
+			    </div>
+			</div>
+			</div>
+		</div>
+
+
+		<div class="content-5 content" style="overflow:hidden;">
+			<h3 class="c-title">全市贫困户五项退出指标达标情况统计</h3>
+			<div class="echarts">
+				<div id="echarts-7"></div>
+			</div>
+		</div>
+		<div class="content-5-1 content">
+			<div id="content5-1-shi">
+				<h3 class="c-title">全市各区县贫困户五项退出指标达标情况统计<span class="content-5shi-close" id="content-5shi-close" style="float:right;color: white;padding-right: 10px;">X</span></h3>
+
+			</div>
+			<div id="content5-1-zhen">
+				<h3 class="c-title"><span id="xianmingwx"></span>各镇街贫困户五项退出指标达标情况统计
+					<span class="content-5zhen-close" id="content-5zhen-close" style="float:right;color: white;padding-right: 10px;">X</span>
+					<a class="content-5zhen-return" id="content-5zhen-return"></a>
+				</h3>
+
+			</div>
+			<div id="content5-1-cun">
+				<h3 class="c-title"><span id="zhenmingwx"></span>各村贫困户五项退出指标达标情况统计
+					<span class="content-5cun-close" id="content-5cun-close" style="float:right;color: white;padding-right: 10px;">X</span>
+					<a class="content-5cun-return" id="content-5cun-return"></a>
+				</h3>
+				<div class="content5-1-cun">
+					<span style="">xx村</span>
+					<div class="echarts">
+						<div id="echarts-cun1"></div>
+					</div>
+				</div>
+
+			</div>
+
+			<div id="content-5-1-left">
+			    <div class="t-list">
+			    	<h3 class="c-title" style="text-indent: 0px;"><span id="huming0"></span>五项退出指标达标情况 得分(<span id="hu-score0"></span>)分</h3>
+			        <div class="itme-des active" >
+			        	<a class="t-item " id="color1">
+			        		<div class="tubiao">
+				        		<img src="images/icon_5.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 19px;">人均纯收入(总分20 得分<span id="hudefen01"></span>)</p><p >家庭年人均纯收入超过3070元</p>
+
+				        	</div>
+			        	</a><span style="display: block;"></span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color2">
+			        		<div class="tubiao">
+				        		<img src="images/icon_7.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 19px;">有安全住房(总分20 得分<span id="hudefen02"></span>)</p><p >有安全住房</p>
+
+				        	</div>
+			        	</a><span style="display: none;"></span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color3">
+			        	<div class="tubiao">
+				        		<img src="images/icon_8.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 19px;">无义务教育阶段辍学学生(总分20 得分<span id="hudefen03"></span>)</p><p >无义务教育阶段辍学学生</p>
+				        	</div>
+			        	</a><span style="display: none;"></span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color4">
+			        		<div class="tubiao">
+				        		<img src="images/icon_4.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 19px;">新农合或大病保险(总分20 得分<span id="hudefen04"></span>)</p><p >家庭成员全部参加新型农村合作医疗和大病保险</p>
+
+				        	</div>
+			        	</a><span style="display: none;"></span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color5">
+			        		<div class="tubiao">
+				        		<img src="images/icon_6.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 19px;">有安全饮水(总分20 得分<span id="hudefen05"></span>)</p><p >有安全饮水</p>
+				        	</div>
+			        	</a><span style="display: none;"></span>
+			        </div>
+			        <div class="reason" id="huwxreason"> </div>
+			    </div>
+			</div>
+			<div id="content-5-1-right">
+				<h3 class="c-title"><span id="cunname"></span>贫困户五项退出指标达标情况统计表
+					<span class="content-5-1close" style="float: right;padding-right: 15px;">X</span>
+					<a class="content-5hu-return" id="content-5hu-return"></a>
+				</h3>
+					<div id="scroll-y" style="overflow-y: scroll;height:95%;">
+					<table width="98%" class="table" >
+			        <thead>
+			            <tr style="background: linear-gradient(to right,#0f4979,#000203);">
+			                <th>    </th>
+			                <th>    </th>
+			            </tr>
+
+			        </thead>
+
+
+			  </table>
+			</div>
+		</div>
+		</div>
+		<div class="content-5-2 content">
+			<div id="content-5-2-mid" style="float: left;overflow: hidden;width: 36%;">
+				<div id="mid-top">
+					<h3 class="c-title" >全市<span id="xianwuxiang"></span>达标情况及数量分布统计<span class="content-5-2close" style="float:right;color: white;padding-right: 0px;">X</span></h3>
+					<div class="echarts">
+						<div id="echarts-5-21"></div>
+					</div>
+				</div>
+				<div id="mid-bottom" style="overflow-x: scroll;">
+					<h3 class="c-title" style="position: fixed;"><span id="zhenwuxiang"></span>达标情况及数量分布统计</h3>
+					<div class="echarts" style="width:700px;margin-top: 30px; ">
+						<div id="echarts-5-22" ></div>
+					</div>
+				</div>
+			</div>
+			<div id="content-5-2-right0" style="overflow-x: scroll;">
+				<h3 class="c-title" style="position: fixed;"><span id="cunwuxiang"></span>达标情况及数量分布统计</h3>
+				<div class="echarts" style="width: 800px;margin-top: 30px;">
+					<div id="echarts-5-23" ></div>
+				</div>
+			</div>
+			<div id="content-5-2-right">
+				<div id="scroll-y" style="overflow-y: scroll;height:100%;">
+				<h3 class="c-title" ><span id="huwuxiang0"></span>达标情况及数量分布统计</h3>
+				<table width="98%" class="table" id="wxtable">
+			        <thead>
+			            <tr>
+			                <th> 户主  </th>
+			                <th> 性别  </th>
+			                <th> 年龄  </th>
+			                <th> 家庭人数  </th>
+			                <th> 达标情况</th>
+			            </tr>
+			        </thead>
+
+			    </table>
+			    </div>
+			</div>
+			<div id="content-5-2-left" style="overflow: hidden;">
+			   <p class="c-title" >指标达标情况</p>
+			   <div class="t-list" id="huwuxiang" style="overflow: hidden;height:100%;background: #e2e58b;color: black;">
+
+			    </div>
+			</div>
+		</div>
+	</div>
+
+<div class="tank-1" style="width:50%;height:80%;">
+		<h3 class='title'>周至县七项退出指标达标情况 得分(<span id="cun-scorez"></span>)分</h3>
+		<span class="close"></span>
+		<div class="t-list" id="t-list-seven" style="overflow:hidden;">
+			<div class="itme-des active">
+				<a class="t-item t-item3" id="color711">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_1.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>贫困发生率(总分30 得分<span id="defenz01"></span>)</p><p style="font-size: 15px;">贫困发生率低于3%</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a class="t-item t-item3" id="color712">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_2.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>通沥青(水泥)路(总分10 得分<span id="defenz02"></span>)</p><p style="font-size: 15px;">通沥青(水泥)路的行政村比例达到97%</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a class="t-item t-item3" id="color713">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_3.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>电力入户率(总分10 得分<span id="defenz03"></span>)</p><p style="font-size: 15px;">电力入户率达到100%</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a  class="t-item t-item3" id="color714">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_4.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>新农合及大病保险(总分10 得分<span id="defenz04"></span>)</p><p style="font-size: 15px;">贫困人口参加新型农村合作医疗和大病保险达到100%</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a class="t-item t-item3" id="color715">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_5.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>人均可支配收入(总分20 得分<span id="defenz05"></span>)</p><p style="font-size: 15px;">农村居民人均可支配收入达到当年全省农村居民人均可支配收入70%以上</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a class="t-item t-item3" id="color716">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_6.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>自来水普及率(总分10 得分<span id="defenz06"></span>)</p><p style="font-size: 15px;">农村自来水普及率不低于90%</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a class="t-item t-item3" id="color717">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_7.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>有安全住房(总分10 得分<span id="defenz07"></span>)</p><p style="font-size: 15px;">有安全住房农户达到97%</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="reason" style="width: 95%;height: 14%;box-sizing: border-box;" id="xianger"> </div>
+		</div>
+	</div>
+
+<div class="tank-3" style="width:50%;height:600px;">
+		<h3 class='title'><span id="vill"></span>七项退出指标达标情况 得分(<span id="cun-scorez2"></span>)分</h3>
+		<span class="zhouzhi_return"></span><span class="close"></span>
+		<div class="t-list" id="t-list-seven3" style="overflow:hidden;">
+			<div class="itme-des active">
+				<a class="t-item t-item3" id="color711s">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_1.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>贫困发生率(总分30 得分<span id="defenz01s"></span>)</p><p style="font-size: 15px;">贫困发生率低于3%</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a class="t-item t-item3" id="color712s">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_2.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>行政村通沥青(水泥)路(总分10 得分<span id="defenz02s"></span>)</p><p style="font-size: 15px;">行政村通沥青(水泥)路</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a class="t-item t-item3" id="color713s">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_3.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>电力入户率(总分10 得分<span id="defenz03s"></span>)</p><p style="font-size: 15px;">电力入户率达到100%</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a  class="t-item t-item3" id="color714s">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_4.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>有集体经济或合作组织(总分10 得分<span id="defenz04s"></span>)</p><p style="font-size: 15px;">有集体经济或合作组织、互助资金组织</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des" >
+				<a class="t-item t-item3"  id="color715s">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_5.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>人均可支配收入(总分20 得分<span id="defenz05s"></span>)</p><p style="font-size: 15px;">退出村中脱贫户家庭年人均纯收入占全县农村居民年人均纯收入比重高于上年水平</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a class="t-item t-item3" id="color716s">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_6.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>有安全饮水(总分10 得分<span id="defenz06s"></span>)</p><p style="font-size: 15px;">有安全饮水</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="itme-des">
+				<a class="t-item t-item3" id="color717s">
+					<div class="tubiao tubiao2">
+						<img src="images/icon_7.png"/>
+					</div>
+					<div class="zhibiao zhibiao2">
+						<p>有标准化村卫生室(总分10 得分<span id="defenz07s"></span>)</p><p style="font-size: 15px;">有标准化村卫生室</p>
+					</div>
+				</a><span style="display: none;"></span>
+			</div>
+			<div class="reason" style="width: 96%;height: 14%;padding: 1%;box-sizing: border-box;font-size:20px;text-align:left;text-indent:30px;" id="xianger2"> </div>
+		</div>
+	</div>
+
+<div id="zhezhao"></div>
+
+<div class="tank-2">
+	<h3 class='title' style="background: #040406d1">贫困村列表</h3>
+	<span class="close"></span>
+	<div class="t-list" id="t-list-seven2">
+		<div class="Top_Record" style="width:100%">
+			<div class="topRec_List" style="width:100%;">
+				<dl style="width:100%;display: flex;justify-content: space-between;line-height: 50px;font-size: 20px;background:#50505287; ">
+					<dd style="width:60%;color:#fff;">贫困村名字</dd>
+					<dd style="width:40%;color:#fff;">贫困状态</dd>
+				</dl>
+				<div class="maquee maquee2 maquee3" style="overflow-y: scroll;height:500px;">
+					<ul style="height:346px;" id="nameList">
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
+<script>
+
+//$(window).resize(function() {
+//	//alert(window.innerHeight)
+//	if(window.innerHeight >= 700) {
+//		$('#echarts-3').css({'position':'absolute','top':'40%'})
+//	}
+//});
+
+//window.addEventListener('click',function(e){
+//	var flag = 0;
+//		$("body").on("click", function(){
+//		if(flag==0){
+//			$('#zhezhao').show();
+//			flag=1;
+//		alert(flag);
+//	     }
+//		})
+//		$('body').on('click','.tank-1 .close', function(){
+//		alert('nonono')
+//		$('#zhezhao').hide()
+//		flag=1;
+//   });
+// document.onclick=function(ev){
+//                  var oEvent=ev||event;
+//                  alert(oEvent.screenX+'，'+oEvent.screenY);//   IE浏览器兼容
+//
+//     };
+
+$('.c-red').click(function(){
+	$('#zhezhao').show();
+})
+$('.tank-1 .close').click(function(){
+	$('#zhezhao').hide();
+})
+</script>
+<script>
+          /**************** 地图调用 ************************/
+        var gis = null;
+        function giscallback(type, param){
+            switch (type) {
+                case 'mapinit':
+                    // 地图初始化完成
+                    break;
+                case 'county_select':
+                    // 区域点击事件
+                    if(param=='周至县'){
+                    	var url =host+'rgy-5.html?name='+param ;
+                    	window.location.href = url;
+                    }else if(param=='鄠邑区'||param=='蓝田县'||param=='临潼区'||param=='西咸新区'){
+                    	var url = host+'rgy-3.html?name='+param;
+                    	window.location.href = url;
+                    }else if(param=='国际港务区'||param=='灞桥区'||param=='高陵区'||param=='长安区'){
+                    	var url = host+'rgy-4.html?name='+param;
+                    	window.location.href = url;
+                    }
+
+                    break;
+                case 'village_select':
+                    // 村点击事件
+                    var url = host + 'poor-village.html?county='+ param.county + '&name=' + param.village + '&villageCode=' + param.villagecode;
+              		window.location.href = url;
+                    break;
+                case 'city_show':
+                    break;
+                default:
+                    console.log(type +':' + param)
+                    break;
+            }
+        }
+
+        function gisready(){
+            gis = document.getElementById("mapService").contentWindow
+            gis.gisapp.init(giscallback);
+        }
+	/*区县点击事件*/
+	$("#zhouzhi").click(function(){
+		window.location.href="rgy-5.html?name="+"周至县";
+	})
+	$("#huyi").click(function(){
+	  window.location.href="rgy-3.html?name="+"鄠邑区"+"&map="+"huyi";
+	})
+	$("#lantian").click(function(){
+	  window.location.href="rgy-3.html?name="+"蓝田县"+"&map="+"lantian";
+	})
+	$("#xixian").click(function(){
+	  window.location.href="rgy-3.html?name="+"西咸新区"+"&map="+"xixian"
+	})
+	$("#lintong").click(function(){
+	  window.location.href="rgy-3.html?name="+"临潼区"+"&map="+"lintong";
+	})
+	$("#gaoling").click(function(){
+	  window.location.href="rgy-4.html?name="+"高陵区"+"&map="+"gaoling";
+	})
+	$("#guoji").click(function(){
+	  window.location.href="rgy-4.html?name="+"国际港务区"+"&map="+"guoji";
+	})
+	$("#baqiao").click(function(){
+	  window.location.href="rgy-4.html?name="+"灞桥区"+"&map="+"baqiao";
+	})
+	$("#changan").click(function(){
+	  window.location.href="rgy-4.html?name="+"长安区"+"&map="+"changan";
+	})
+
+/*地图上142个贫困村的渲染*/
+  $(document).ready(function(){
+	  $.ajax({
+		  url:url+"/map/house/detail",
+		  data:{},
+		  type:"post",
+		  dataType:"json",
+		  success:function(data){
+			  let datas=data.data;
+			  getVillage(datas);
+		  }
+	  })
+	  var chat=[];
+	  function getVillage(data){
+		  for(let i=0;i<data.length;i++){
+			  let address=data[i].address.split("-");
+			  let obj={"county":address[1],"name":address[3],"villageCode":data[i].disctId,"isReach":data[i].isReach,"x":0,"y":0};
+			  chat.push(obj);
+		  }
+		  chat[0].x=86;chat[0].y=50;//西安市-蓝田县-九间房镇-桐花沟村
+		  chat[1].x=85;chat[1].y=51;//西安市-蓝田县-九间房镇-公王村委会
+		  chat[2].x=89;chat[2].y=53;//西安市-蓝田县-九间房镇-何家川村委会
+		  chat[3].x=88;chat[3].y=54;//西安市-蓝田县-九间房镇-张家坪村
+		  chat[4].x=86;chat[4].y=51;//西安市-蓝田县-九间房镇-九间房村
+		  chat[5].x=87;chat[5].y=52;//西安市-蓝田县-九间房镇-峪口村
+		  chat[6].x=35;chat[6].y=52;//西安市-周至县-终南镇-长杨村委会
+		  chat[7].x=57;chat[7].y=24;//西安市-泾河新城-高庄镇-新庄村委会
+		  chat[8].x=79;chat[8].y=33;//西安市-临潼区-小金街道-安庙村委会
+		  chat[9].x=78.5;chat[9].y=34;//西安市-临潼区-小金街道-小金村委会
+		  chat[10].x=77;chat[10].y=32;//西安市-临潼区-小金街道-欠湾村委会
+		  chat[11].x=80;chat[11].y=32;//西安市-临潼区-小金街道-炮岭村委会
+		  chat[12].x=77;chat[12].y=33;//西安市-临潼区-小金街道-毛湾村委会
+		  chat[13].x=30;chat[13].y=60;//西安市-周至县-楼观镇-就峪村委会
+		  chat[14].x=76;chat[14].y=70;//西安市-蓝田县-小寨镇-岱峪村
+		  chat[15].x=74;chat[15].y=68;//西安市-蓝田县-小寨镇-蔡岩村
+		  chat[16].x=73.5;chat[16].y=69;//西安市-蓝田县-小寨镇-湖滩村
+		  chat[17].x=75;chat[17].y=70;//西安市-蓝田县-小寨镇-南寨村
+		  chat[18].x=35;chat[18].y=50;//西安市-周至县-集贤镇-马滩村委会
+		  chat[19].x=34;chat[19].y=54;//西安市-周至县-集贤镇-六合社区居委会
+		  chat[20].x=40;chat[20].y=60;//西安市-鄠邑区-蒋村镇-甘峪口村委会
+		  chat[21].x=39;chat[21].y=60;//西安市-鄠邑区-蒋村镇-白龙沟村村委会
+		  chat[22].x=49;chat[22].y=62;//西安市-鄠邑区-蒋村镇-郝家寨村村委会
+		  chat[23].x=39;chat[23].y=56;//西安市-鄠邑区-蒋村镇-柳泉口村村委会
+		  chat[24].x=70.5;chat[24].y=61;//西安市-蓝田县-汤峪镇-东山村委会
+		  chat[25].x=27;chat[25].y=52;//西安市-周至县-马召镇-群三兴村委会
+		  chat[26].x=26;chat[26].y=53;//西安市-周至县-马召镇-辛口村委会
+		  chat[27].x=28;chat[27].y=52.5;//西安市-周至县-马召镇-上马村委会
+		  chat[28].x=27.5;chat[28].y=53;//西安市-周至县-马召镇-四群村委会
+		  chat[29].x=28.5;chat[29].y=53;//西安市-周至县-马召镇-郭寨村委会
+		  chat[30].x=28;chat[30].y=56;//西安市-周至县-马召镇-涌泉寺村委会
+		  chat[31].x=75;chat[31].y=35.5;//西安市-临潼区-仁宗街道-茨林村委会
+		  chat[32].x=74;chat[32].y=36;//西安市-临潼区-仁宗街道-芋坡村委会
+		  chat[33].x=74;chat[33].y=34;//西安市-临潼区-仁宗街道-庄王村委会
+		  chat[34].x=72;chat[34].y=33;//西安市-临潼区-仁宗街道-仁宗村委会
+		  chat[35].x=74.5;chat[35].y=32;//西安市-临潼区-仁宗街道-玉川村委会
+		  chat[36].x=71;chat[36].y=34;//西安市-临潼区-仁宗街道-房岩村委会
+		  chat[37].x=70.5;chat[37].y=35;//西安市-临潼区-仁宗街道-壕栗村委会
+		  chat[38].x=3;chat[38].y=83;//西安市-周至县-厚畛子镇-老县城村委会
+		  chat[39].x=17;chat[39].y=71;//西安市-周至县-厚畛子镇-八一村委会
+		  chat[40].x=8;chat[40].y=86;//西安市-周至县-厚畛子镇-花耳坪村委会
+		  chat[41].x=8;chat[41].y=70;//西安市-周至县-厚畛子镇-厚畛子村委会
+		  chat[42].x=22;chat[42].y=50;//西安市-周至县-翠峰镇-东红村委会
+		  chat[43].x=23;chat[43].y=54;//西安市-周至县-翠峰镇-陈家村委会
+		  chat[44].x=22;chat[44].y=52;//西安市-周至县-翠峰镇-清河村委会
+		  chat[45].x=21;chat[45].y=53;//西安市-周至县-翠峰镇-下宝玉村委会
+		  chat[46].x=49;chat[46].y=61;//西安市-鄠邑区-草堂镇-紫阁峪村村委会
+		  chat[47].x=78;chat[47].y=49;//西安市-蓝田县-三里镇-磨李村
+		  chat[48].x=77;chat[48].y=48;//西安市-蓝田县-三里镇-北小寨村
+		  chat[49].x=76;chat[49].y=50.5;//西安市-蓝田县-三里镇-樊家村委会
+		  chat[50].x=30;chat[50].y=47;//西安市-周至县-富仁镇-渭友村委会
+		  chat[51].x=22;chat[51].y=47;//西安市-周至县-哑柏镇-景联社区居委会
+		  chat[52].x=21;chat[52].y=46;//西安市-周至县-哑柏镇-五联村委会
+		  chat[53].x=41;chat[53].y=48;//西安市-鄠邑区-甘河镇-侯王村村委会
+		  chat[54].x=18;chat[54].y=80;//西安市-周至县-板房子镇-高潮村委会
+		  chat[55].x=23;chat[55].y=80.5;//西安市-周至县-板房子镇-新红村委会
+		  chat[56].x=15.5;chat[56].y=84;//西安市-周至县-板房子镇-长坪村委会
+		  chat[57].x=19;chat[57].y=84.5;//西安市-周至县-板房子镇-东石门村委会
+		  chat[58].x=20;chat[58].y=80;//西安市-周至县-板房子镇-清水河村委会
+		  chat[59].x=71;chat[59].y=46.5;//西安市-蓝田县-孟村镇-石官寨村
+		  chat[60].x=70;chat[60].y=45;//西安市-蓝田县-孟村镇-姚村
+		  chat[61].x=20;chat[61].y=50;//西安市-周至县-竹峪镇-张龙村委会
+		  chat[62].x=19;chat[62].y=50;//西安市-周至县-竹峪镇-中军岭村委会
+		  chat[63].x=18.5;chat[63].y=51;//西安市-周至县-竹峪镇-丹阳村委会
+		  chat[64].x=19.5;chat[64].y=52;//西安市-周至县-竹峪镇-东大墙村委会
+		  chat[65].x=20;chat[65].y=53;//西安市-周至县-竹峪镇-东寨村委会
+		  chat[66].x=21;chat[66].y=49;//西安市-周至县-竹峪镇-鸭沟村委会
+		  chat[67].x=20;chat[67].y=50.5;//西安市-周至县-竹峪镇-民主村委会
+		  chat[68].x=21;chat[68].y=51;//西安市-周至县-竹峪镇-五星村委会
+		  chat[69].x=21.5;chat[69].y=50;//西安市-周至县-竹峪镇-岭梅村委会
+		  chat[70].x=23;chat[70].y=51;//西安市-周至县-竹峪镇-西沟村委会
+		  chat[71].x=19;chat[71].y=46;//西安市-周至县-竹峪镇-兰梅塬村委会
+		  chat[72].x=20;chat[72].y=47;//西安市-周至县-竹峪镇-塔庙村委会
+		  chat[73].x=28;chat[73].y=76;//西安市-周至县-王家河镇-东涧沟村委会
+		  chat[74].x=25;chat[74].y=75;//西安市-周至县-王家河镇-十亩地村委会
+		  chat[75].x=25.5;chat[75].y=77;//西安市-周至县-王家河镇-白杨林村委会
+		  chat[76].x=29;chat[76].y=73;//西安市-周至县-王家河镇-双庙子村委会
+		  chat[77].x=30;chat[77].y=76;//西安市-周至县-王家河镇-玉皇庙村委会
+		  chat[78].x=27;chat[78].y=79;//西安市-周至县-王家河镇-老庄子村委会
+		  chat[79].x=88;chat[79].y=48;//西安市-蓝田县-玉山镇-峒峪村
+		  chat[80].x=87;chat[80].y=47;//西安市-蓝田县-玉山镇-杨寨村委会
+		  chat[81].x=85;chat[81].y=46;//西安市-蓝田县-玉山镇-上陈村委会
+		  chat[82].x=86;chat[82].y=45;//西安市-蓝田县-玉山镇-刘寨村
+		  chat[83].x=86;chat[83].y=70;//西安市-蓝田县-葛牌镇-金坪村
+		  chat[84].x=83;chat[84].y=66;//西安市-蓝田县-葛牌镇-白家村
+		  chat[85].x=85;chat[85].y=66;//西安市-蓝田县-葛牌镇-石船沟村
+		  chat[86].x=81;chat[86].y=65;//西安市-蓝田县-葛牌镇-阳坡村
+		  chat[87].x=84;chat[87].y=69.5;//西安市-蓝田县-葛牌镇-葛牌村
+		  chat[88].x=85.5;chat[88].y=74;//西安市-蓝田县-葛牌镇-瓦屋庄村
+		  chat[89].x=87;chat[89].y=73.5;//西安市-蓝田县-葛牌镇-东沟村
+		  chat[90].x=46.5;chat[90].y=51;//西安市-鄠邑区-玉蝉镇-联西村村委会
+		  chat[91].x=80;chat[91].y=60;//西安市-蓝田县-辋川镇-西河村
+		  chat[92].x=78;chat[92].y=62;//西安市-蓝田县-辋川镇-锡水洞村
+		  chat[93].x=80;chat[93].y=72;//西安市-蓝田县-辋川镇-七安子村
+		  chat[94].x=76;chat[94].y=64;//西安市-蓝田县-辋川镇-董家岩村
+		  chat[95].x=78;chat[95].y=69;//西安市-蓝田县-辋川镇-红门寺村
+		  chat[96].x=80;chat[96].y=69;//西安市-蓝田县-辋川镇-核桃沟村
+		  chat[97].x=81;chat[97].y=72;//西安市-蓝田县-辋川镇-甘家坪村
+		  chat[98].x=73;chat[98].y=42;//西安市-蓝田县-洩湖镇-后李坪村委会
+		  chat[99].x=75;chat[99].y=40;//西安市-蓝田县-洩湖镇-马王村委会
+		  chat[100].x=76.5;chat[100].y=41;//西安市-蓝田县-洩湖镇-唐付村
+		  chat[101].x=77;chat[101].y=45;//西安市-蓝田县-洩湖镇-骞湾村
+		  chat[102].x=37;chat[102].y=51;//西安市-周至县-九峰镇-余家村委会
+		  chat[103].x=35.5;chat[103].y=50;//西安市-周至县-九峰镇-何家寨村委会
+		  chat[104].x=35;chat[104].y=51;//西安市-周至县-九峰镇-耿西村委会
+		  chat[105].x=35;chat[105].y=49;//西安市-周至县-九峰镇-魏家庄村委会
+		  chat[106].x=24;chat[106].y=53;//西安市-周至县-骆峪镇-向阳村委会
+		  chat[107].x=25;chat[107].y=54;//西安市-周至县-骆峪镇-复兴村委会
+		  chat[108].x=23;chat[108].y=55;//西安市-周至县-骆峪镇-神灵村委会
+		  chat[109].x=26.5;chat[109].y=52;//西安市-周至县-骆峪镇-黄家湾社区居委会
+		  chat[110].x=22;chat[110].y=53.5;//西安市-周至县-骆峪镇-尚兴村委会
+		  chat[111].x=23;chat[111].y=54;//西安市-周至县-骆峪镇-骆峪村委会
+		  chat[112].x=23.5;chat[112].y=55;//西安市-周至县-骆峪镇-红旗村委会
+		  chat[113].x=45;chat[113].y=58;//西安市-鄠邑区-石井镇-沙窝村委会
+		  chat[114].x=43;chat[114].y=57;//西安市-鄠邑区-石井镇-西河村委会
+		  chat[115].x=48;chat[115].y=55;//西安市-鄠邑区-石井镇-八里坪村委会
+		  chat[116].x=47;chat[116].y=56;//西安市-鄠邑区-石井镇-蔡家坡村村委会
+		  chat[117].x=78;chat[117].y=50;//西安市-蓝田县-普化镇-贺凹村
+		  chat[118].x=77.5;chat[118].y=49;//西安市-蓝田县-普化镇-民李村委会
+		  chat[119].x=77;chat[119].y=50;//西安市-蓝田县-普化镇-邵家寨村委会
+		  chat[120].x=80;chat[120].y=51;//西安市-蓝田县-普化镇-穆家坡村
+		  chat[121].x=77;chat[121].y=42;//西安市-蓝田县-三官庙镇-北苍湾村
+		  chat[122].x=76;chat[122].y=41;//西安市-蓝田县-三官庙镇-南湾岭村
+		  chat[123].x=78.5;chat[123].y=38;//西安市-蓝田县-三官庙镇-龙门村委会
+		  chat[124].x=78;chat[124].y=43;//西安市-蓝田县-三官庙镇-过风岭村委会
+		  chat[125].x=79;chat[125].y=43.5;//西安市-蓝田县-三官庙镇-新房村委会
+		  chat[126].x=25;chat[126].y=50;//西安市-周至县-广济镇-陈公坊村委会
+		  chat[127].x=26;chat[127].y=49;//西安市-周至县-广济镇-黄兴村委会
+		  chat[128].x=23.5;chat[128].y=52;//西安市-周至县-广济镇-双兴村委会
+		  chat[129].x=83;chat[129].y=61.5;//西安市-蓝田县-蓝桥镇-野竹坪村委会
+		  chat[130].x=21;chat[130].y=68;//西安市-周至县-陈河镇-黑虎村委会
+		  chat[131].x=19;chat[131].y=66;//西安市-周至县-陈河镇-孙六村委会
+		  chat[132].x=20;chat[132].y=67;//西安市-周至县-陈河镇-窑岭村委会
+		  chat[133].x=21.5;chat[133].y=68;//西安市-周至县-陈河镇-金井村委会
+		  chat[134].x=24;chat[134].y=69;//西安市-周至县-陈河镇-共兴村委会
+		  chat[135].x=78;chat[135].y=34;//西安市-临潼区-穆寨街道-业池村委会
+		  chat[136].x=79;chat[136].y=35;//西安市-临潼区-穆寨街道-王湾村委会
+		  chat[137].x=76;chat[137].y=36;//西安市-临潼区-穆寨街道-东岳村委会
+		  chat[138].x=78;chat[138].y=32;//西安市-临潼区-穆寨街道-穆柯寨村委会
+		  chat[139].x=78;chat[139].y=34.5;//西安市-临潼区-穆寨街道-西岳村委会
+		  chat[140].x=76;chat[140].y=37;//西安市-临潼区-穆寨街道-门岩村委会
+		  chat[141].x=75;chat[141].y=36;//西安市-临潼区-穆寨街道-三庙村委会
+
+		  for(let i=0;i<chat.length;i++){
+			  let $imgBox=$("#imgBox");
+			  /*否:未脱贫;是:已脱贫*/
+			  if(chat[i].isReach=="否"){
+				  let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage.png' alt='' style='width:20px;height:14px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px","zIndex":10});
+				  $imgBox.append($village);
+			  }else if(chat[i].isReach=="是"){
+				  let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage2.png' alt='' style='width:12px;height:12px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px"});
+				  $imgBox.append($village);
+			  }
+		  }
+		  /*村悬浮事件*/
+		  let $tips=$("<div style='width:40px;height:38px;background: #fff;color:#000;font-size:12px;padding:2px 3px;z-index: 10;'></div>");
+		  $("#imgBox .village").hover(function(){
+			  let index=$(this).index();
+			  $("#imgBox .village").eq(index-1).css("transform","scale(1.2,1.2)");
+			  $tips.text(chat[index-1].name);
+			  $tips.css({"display":"block","position":"absolute","bottom":'-40px',"right":"-50px"});
+			  $(this).append($tips).css({"zIndex":999});
+			  /*村点击事件*/
+			  $("#imgBox .village").click(function(){
+				  let county=$(this).attr("county");
+				  let village=$(this).attr("name");
+				  let villagecode=$(this).attr("id");
+				  var url = host + 'poor-village.html?county='+ county + '&name=' + village + '&villageCode=' + villagecode;
+				  window.location.href = url;
+			  })
+		  },function(){
+			  $tips.css("display","none");
+			  $(this).css({"transform":"scale(1,1)","zIndex":10});
+		  })
+	  }
+  })
+
+
+
+
+</script>
+<script src="js/echarts.js"></script>
+<script src="js/style.js"></script>
+<script>
+	$(document).ready(function(){
+        CUNsearchEvent(url+'/visual/poorVill/query',$('.submit'),$('.searchBox'),$('#ZZsearchInfo'));//搜索调用
+        function CUNsearchEvent(url,obj1,obj2,obj3,countryName,villageName,villageCode){//村级户搜索户列表填充
+            obj1.click(function(e){
+                var text=$('.keywords').val();
+                console.log(url);
+                obj3.html("");
+                obj2.show();
+                $(document).one("click", function(){
+                    obj2.hide();
+                });
+                e.stopPropagation();
+                console.log(text);
+                $.ajax({
+                    url:url+'?aar009_c='+text,
+                    type:"get",
+                    dataType:"json",
+                    data:{},
+                    success:function (result) {
+                        console.log(result)
+                        var data=result.data;// "data":[{"AAC001":3116426500,"AAR009":"沙窝村委会","AAC029":"陈亚琴"}]
+                        console.log(data.length)
+                        for (var i=0;i<data.length;i++) {
+                            obj3.append('<tr><td>'+data[i].AAR009_X+'</td><td>'+data[i].AAR009_Z+'</td><td>'+data[i].AAR009_C+'</td><td style="color: #efe43b;cursor: pointer;" onclick=CUNLookDetails("'+data[i].AAR009_X+'","'+data[i].AAR009_C+'","'+data[i].AAA011_C+'");>查看</td></tr>');
+                        }
+                        //console.log('onclick=LookDetails("'+name+'","'+data[0].村名+'","'+data[0].村编号+'")')
+                    }
+                })
+            })
+
+            obj2.on("click", function(e){
+                e.stopPropagation();
+            });
+        }
+        function CUNLookDetails(countryName,villageName,villageCode,personCode,personName){//村级户搜索跳转
+            //console.log(countryName);console.log(villageName);
+            $('.keywords').val('');
+            var url = host + 'poor-village.html?county='+ countryName + '&name=' + villageName+ '&villageCode=' + villageCode;
+            //var url = host + '/households.html?county='+ countryName + '&name=' + villageName+ '&code=' + villageCode;
+            window.location.href = url;
+            //console.log(url);
+            // PersonChange(url+'/family/name?aad001='+villageCode,personCode);
+            // console.log(personCode);
+            //alert(1)
+        }
+	})
+
+</script>

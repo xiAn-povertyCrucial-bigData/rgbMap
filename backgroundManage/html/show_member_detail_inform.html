@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>帮扶责任人详情</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+   <!-- <script src="../js/showDetailsPoor.js"></script>-->
+    <script src="../js/show_member_detail_inform.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{width: 25%;height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;padding-left: 5px}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px;height:20px;}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-right: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-04 table tr th {width:5%;vertical-align: middle;word-wrap:break-word;word-break:break-all;text-align: center}
+        .form-04 table tr td {width:5%;vertical-align: middle;text-align: center;}
+        .form-04 table tr td a{
+            display: block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+            margin-bottom: 4px;
+        }
+        .form-04 tr td a:first-child{
+            background: #FEAE1B;
+        }
+        .form-04 tr td a:nth-child(2){
+            background: #229ffd;
+        }
+        .form-04 tr td a:last-child{
+            background: #ff7680;
+        }
+        .form-05 table tr td {width:25%;padding-right:14px;}
+        .form-05 table tr td#title,.form-05 table tr td#title2,.form-05 table tr td#title3{
+            text-align: left;
+        }
+        .form-05 table tr td:nth-child(2n+1){
+            text-align: right;
+        }
+        .form-05 table tr td:nth-child(2n){
+            text-align: left;
+        }
+        .form-05 table tr th{width:20%;}
+        .form-05 table tr td{width:20%;}
+        .form-05 table tr td img{width:100%;height:200px;}
+        .form-05 .btns{width:200px;margin: 20px auto;display: flex;justify-content: space-between;}
+        .form-05 .btns a{color: #fff;background: #428bca;width: 60px;text-align: center;margin-right: 10px;text-indent: 0;height:28px;line-height: 28px;border-radius: 4px;}
+        .form-05 .btns a:last-child{
+            background: #f0ad4e;
+        }
+        .form-08 table tr th{width:10%}
+        .form-08 table tr td{width:10%;text-align: center;}
+        .on{
+            color: #fff!important;
+		    background: #00aaee!important;
+        }
+        .form-02 .tips{
+        	margin-bottom: 10px;
+        }
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>帮扶责任人</strong>
+      <a href="javascript:history.go(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+    <div class="form-01">
+
+      <table id="basicInfo">
+          
+      </table>
+    </div>
+</div>
+<script>
+    /*初始化分页*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+
+    })
+    /*详细情况点击事件*/
+    $(".tips").click(function(){
+        $(this).addClass('on').siblings().removeClass('on');
+        let index=$(this).index();
+        console.log(index)
+        $(".form-03").eq(index).show().siblings(".form-03").hide();
+    })
+</script>
+</body>
+</html>

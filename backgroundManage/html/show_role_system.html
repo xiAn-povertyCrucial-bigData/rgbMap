@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>角色管理</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{width: 10%;height: 40px;border: 1px solid #d2d2d2;line-height: 66px;font-size: 14px;text-align: center}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-01 tr td a{display: inline-block;border-radius: 3px;background: #fff; /*border: 1px solid #00aaee;*/border:none;color: #fff;width: 48px;height: 22px;text-align: center;line-height: 22px;}
+        .form-01 tr td a:first-child{background: #229ffd;}
+        .form-01 tr td a:last-child{background: #ff7680;}
+        .form-01 tr td img{width:50px;height:50px;}
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>角色权限</strong>
+      <a href="add_user_system.html" class="button border-main icon-plus-square-o">添加内容</a>
+  </div>
+
+    <div class="form-01">
+      <table id="formSubmit2" class="form-x">
+          <!--<tr>
+              <th>序号</th>
+              <th>角色名称</th>
+              <th>备注</th>
+              <th>操作</th>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>西安市扶贫办</td>
+              <td>5</td>
+              <td>
+                  <a href="add_role_system.html" style="background: #1797f6">修改</a>
+              </td>
+          </tr>-->
+      </table>
+</div>
+    <div class="pages">
+        <div class="paging">
+            <div id="Pagination"></div>
+            <div class="searchPage">
+                <span class="page-sum"></span>
+                <!--<span class="page-go">到<input type="text" id="currentPage">页</span>
+                <a class="page-btn" style="cursor:pointer;">确定</a>-->
+                <span id="allTotal"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        let url=config.url;
+        let token=$.cookie("token");
+        /*页面主体内容渲染*/
+        let formList=$("#formSubmit2");
+        let datas={"pageNum":1,"pageSize":12};
+        $.ajax({
+            url: url+"/role/manager/query",
+            data:datas,
+            beforeSend:function(request){
+                request.setRequestHeader("Authorization",token);
+                request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+            },
+            dataType:"json",
+            method:"post",
+            success:function(data){
+                if(data.code === 2000){
+                    showList(formList,data.data.list);
+                    for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                        if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                            $("#formSubmit2 tr td").eq(i).text("");
+                        }
+                    }
+                    $(".page-sum").text("共"+data.data.pages+"页");
+                    $("#allTotal").text("总条数："+data.data.total);
+                    showPage($(".searchPage"),data.data.total);
+                }else if(data.code===4000){
+                    alert(data.message);
+                }
+            }
+        })
+        /*分页功能*/
+        function page_init(index) {
+            let pageSize=12;
+            let data={"pageNum":index+1,"pageSize":pageSize};
+            /*主体内容渲染*/
+            let formList=$("#formSubmit2");
+            $.ajax({
+                url: url+"/role/manager/query",
+                data:data,
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                dataType:"json",
+                method:"post",
+                async:false,
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        showList(formList,data.data.list);
+                        for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                            if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                                $("#formSubmit2 tr td").eq(i).text("");
+                            }
+                        }
+                        $(".page-sum").text("共"+data.data.pages+"页");
+                        $("#allTotal").text("总户数："+data.data.total);
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                }
+            })
+        }
+        function showPage(obj,data){
+            $("#Pagination").pagination(data,{
+                callback:PageCallback,         //pageCallback() 为翻页调用函数
+                items_per_page:12,                //每页显示条目数
+                num_display_entries: 4,                //连续分页显示分页条目数
+                num_edge_entries: 1,          //两侧显示的首尾分页的条目数
+            });
+        }
+        //ajax分页请求,page_index :页码
+        function PageCallback(page_index){
+            page_init(page_index);      //第一页为0
+        }
+        /*页面内容渲染函数*/
+        function showList(obj,data){
+            obj.empty();
+            let str=`<tr>
+                  <th>序号</th>
+                  <th>角色名称</th>
+                  <th>备注</th>
+                  <th>操作</th>
+            </tr>`;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                    <tr>
+                      <td>${data[i]['ROW_ID']}</td>
+                      <td>${data[i]['ROLE_NAME']}</td>
+                      <td>${data[i]['NOTE']}</td>
+                      <td>
+                          <a hrefs="${data[i]['ID']}" class="update" style="background: #229ffd;cursor:pointer;">修改</a>
+                      </td>
+                    </tr>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        /*点击进入修改页面*/
+        $(document).on("click",".update",function(){
+            var updateId=$(this).attr("hrefs");
+            localStorage.setItem("updateId",updateId);
+            location.href="update_user_system.html";
+        })
+    })
+</script>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        let pageNum=$(".allPage").text();
+        $("#Pagination").pagination(pageNum);
+    })
+</script>
+</body>
+</html>

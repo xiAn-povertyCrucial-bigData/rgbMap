@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="../css/pintuer.css">
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/inputStyle.css">
+<script src="../js/commer.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/pintuer.js"></script>
+<script src="../js/inputJavaScript.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="form-01">
+    <form id="formSubmit" class="form-x">
+      <p class="form-01-p form-001-p">成员信息</p>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>成员姓名：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" data-validate="required:请输入姓名" placeholder="成员姓名" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>成员证件号码：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" data-validate="required:请输入身份证号" placeholder="成员证件号码" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <p class="form-01-p form-001-p">就业情况</p>
+      <div class="form-group">
+        <div class="label">
+          <label>就业形式：</label>
+        </div>
+        <div class="field">
+          <select name="empForm" class="input w50">
+            <option value="">请选择就业形式</option>
+            <option value="">单位就业</option>
+          </select>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>就业地：</label>
+        </div>
+        <div class="field">
+          <select name="province" class="input w50">
+            <option value="">请选择区县</option>
+            <option value="">周至县</option>
+            <option value="">蓝田县</option>
+            <option value="">长安区</option>
+            <option value="">鄠邑区</option>
+          </select>
+          <select name="city" class="input w50">
+            <option value="">请选择镇街</option>
+            <option value="">张镇</option>
+            <option value="">李镇</option>
+          </select>
+          <select name="distrCnty" class="input w50">
+            <option value="">请选择行政村</option>
+            <option value="">上王村</option>
+            <option value="">袁家村</option>
+          </select>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>岗位名称：</label>
+        </div>
+        <div class="field">
+          <select name="postName" class="input w50">
+            <option value="">请选择岗位名称</option>
+            <option value="">砌筑工</option>
+          </select>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>就业时间：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="empTime" data-validate="plusdouble:请填写数字月份" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否签订劳动合同/协议">是否签订劳动合同/协议：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isContract" value="1" type="radio">是
+            </label>
+
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isContract" value="0"  type="radio">否
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否参加社会保险">是否参加社会保险：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isInsurance" value="1" type="radio">是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isInsurance" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>月均工资：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="avgSalary" data-validate="plusdouble:请输入数字" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <p class="form-01-p form-001-p">培训情况</p>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否参加就业培训">是否参加就业培训：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isEmpTrain" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isEmpTrain" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>培训类型：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="trainType" title="请输入培训类型" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>开始时间：</label>
+        </div>
+        <div class="field">
+          <input type="date" class="input w50" value="" name="trainStartTime" data-validate="date:请输入时间" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>结束时间：</label>
+        </div>
+        <div class="field">
+          <input type="date" class="input w50" value="" name="trainEndTime" data-validate="date:请输入时间" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>培训类别：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="trainClassify" title="请输入培训类别" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>取得证书：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="certName" title="请输入证书名称" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>培训补贴：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="trainSubsidy" data-validate="currency:请输入金额" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否就业">是否就业：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isEmp" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isEmp" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <p class="form-01-p form-001-p">创业情况</p>
+      <div class="form-group">
+        <div class="label">
+          <label>创业时间：</label>
+        </div>
+        <div class="field">
+          <input type="date" class="input w50" value="" name="entreprenTime" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否参加创业培训">是否参加培训：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isEntreTrain" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isEntreTrain" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>产业类型：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="idstType" title="请输入产业类型" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="企业/实体地址">企业/实体地址：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="compAddress" title="请输入企业/实体地址" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="企业/实体名称">企业/实体名称：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="compName" title="请输入企业/实体名称" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>产业类别：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="idstClassify" title="请输入产业类别" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否享受小额担保贷款">是否享受小额担保贷款：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isLoan" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isLoan" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="贷款金额(元)">贷款金额：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="loanAmount" data-validate="currency:请输入金额" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="吸纳劳动人口数">吸纳劳动人口数：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="empNum" data-validate="number:请输入数字" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否在工商部门注册登记">是否在工商部门注册登记：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isRegist" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isRegist" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <p class="form-01-p form-001-p">未就业情况</p>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否就业转失业">是否就业转失业：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isEmpToUnemp" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isEmpToUnemp" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="失业时间">失业时间：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="unempTime" data-validate="number:失业了几个月" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否有就业意愿">是否有就业意愿：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isDesire" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isDesire" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="就业意向地">就业意向地：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="empDesirePlace" title="请输入就业意向地" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="期望月薪(元)">期望月薪：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="expectSalary" data-validate="currency:请输入金额" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="就业服务需求">就业服务需求：</label>
+        </div>
+        <div class="field">
+          <textarea type="text" class="input" name="serviceDemand" style="height:80px;"></textarea>
+          <div class="tips"></div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

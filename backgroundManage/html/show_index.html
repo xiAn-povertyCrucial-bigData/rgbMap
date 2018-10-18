@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>首页</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <style >
+        .admin-panel{padding:5% 10%;}
+        h1{line-height: 40px;text-align: left;font-size: 40px;width: 300px;font-weight: 500;
+            height: 200px;
+            position: absolute;
+            left: 12%;
+            font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+            background-image: -webkit-linear-gradient(left,blue,#66ffff 10%,#cc00ff 20%,#CC00CC 30%, #CCCCFF 40%, #00FFFF 50%,#CCCCFF 60%,#CC00CC 70%,#CC00FF 80%,#66FFFF 90%,blue 100%);
+            -webkit-text-fill-color: transparent;/* 将字体设置成透明色 */
+            -webkit-background-clip: text;/* 裁剪背景图，使文字作为裁剪区域向外裁剪 */
+            -webkit-background-size: 200% 100%;
+            -webkit-animation: masked-animation 4s linear infinite;
+        }
+        @keyframes masked-animation {
+            0% {
+                background-position: 0  0;
+            }
+            100% {
+                background-position: -100%  0;
+            }
+        }
+        p{width:100%;height:100%;font-size: 20px;line-height: 40px;margin: auto;font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+    <h1 class="text">欢迎访问<br><p>Welcome to login stytem</p></h1>
+    <img src="../images/map_xian.jpg" alt="" style="width:95%;height:95%;">
+    <div style="text-align: center;font-weight: normal;font-size: 16px;padding-top:20px;"><img src="../images/sunhoo.png" alt="" style="width:88px;"><span style="border-left:1.5px solid #ccc;margin-left:10px;padding-left:10px;">圣泓工业设计创意有限公司</span>&nbsp;&nbsp;&nbsp;研制</div>
+    <!--<p>2017年西安市贫困县共有1个，贫困村有142个，建档立卡户户数有84649户，人数有291647个，在册贫困户户数有20327户，人数有50998人，已脱贫户户数为64322户，人数为240649人，周至县贫困村63个，在册贫困户户数5387户，贫困人数为16280人，蓝田县在册贫困户户数为6083户，贫困人数为15129户，鄠邑区贫困村为48个，在册贫困户2331户，贫困人口数6290人，长安区在册贫困户2868户，在册贫困人数5579人，临潼区在册贫困户1911户，在册贫困人数3687人，西咸新区在册贫困户933户，在册贫困人数2330人，灞桥区在册贫困户403户，在册贫困人数5606人，高陵区在册贫困户333户，在册贫困人数595人，国际港务区在册贫困户78户，在册贫困人数137人。</p>-->
+</div>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+    })
+</script>
+</body>
+</html>

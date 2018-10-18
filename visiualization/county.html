@@ -1,0 +1,949 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>西安市脱贫攻坚指挥系统</title>
+	<link rel="stylesheet" href="css/ryg.css">
+    <link rel="stylesheet" href="css/outoLayout.css">
+	<script src="js/ports.js"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../index/js/jquery.cookie.js"></script>
+    <script src="../index/js/tooltips.js"></script>
+    <!-- <script src="js/common.js"></script> -->
+    <script type="text/javascript">
+        var countryName=null;
+        /********************************************************请求参数截取************************************************************/
+        function getUrlParam(name) {
+            var url=window.location.search;
+            url=decodeURI(url);
+        console.log(url);
+
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = url.substr(1).match(reg); //匹配目标参数
+            if (r != null) return unescape(r[2]); return null; //返回参数值
+        }
+        //接收URL中的参数name
+        countryNames = getUrlParam('name');
+        countryName=GetChinese(countryNames);
+        function GetChinese(strValue) {
+            if(strValue!= null && strValue!= ""){
+                var reg = /[\u4e00-\u9fa5]/g;
+                return strValue.match(reg).join("");
+            }
+            else
+                return "";
+        }
+        //console.log(countryName);
+    </script>
+</head>
+<style>
+	.map .item-1 {background: url(images/img_5.png) 6px center no-repeat;}
+	.map .item-2 {background: url(images/img_6.png) 6px center no-repeat;}
+	.map .item-3 {background: url(images/img_7.png) 6px center no-repeat;}
+	.map .item-4 {background: url(images/img_8.png) 6px center no-repeat;}
+	.map .item{
+		background-size: 40px 24px;
+		text-indent: 50px;
+	}
+	#imgBox img{
+		transform: translate(-50%,-50%) scale(1.3,1.05)
+	}
+	/*媒体查询*/
+	@media screen and (min-width: 1560px ) and (max-width: 1920px){
+		#imgBox img{
+			transform: translate(-50%,-50%) scale(1.6,1.15);
+		}
+	}
+</style>
+<body>
+	<div class="main">
+		<!--遮罩-->
+		<div class="box" style="opacity: 0;top:-100%;"></div>
+        <div class="box1" style="opacity: 0;top:-100%;"></div>
+		<!--弹框-->
+			<!--左上-->
+		<div class="pop-up" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title big-title">概况</h1>
+			<p class="desc wordExp"><span></span></p>
+		</div>
+		<div class="main-title clearfix">
+			<h3>西安市脱贫攻坚指挥系统</h3>
+			<span class="TopTitle"></span>
+		</div>
+		<div class="a-hrefs clearfix">
+			<div class="search">
+				<form class="s-form" action="" method="get">
+					<input class="keywords" type="text" name="keywords" placeholder="村名" />
+					<input class="submit" value=" "/>
+				</form>
+				<div class="searchBox">
+					<table width="100%">
+						<thead>
+							<tr>
+								<th width="10">镇街名</th> <!-- style="width:15%!important;" -->
+								<th width="10">村名</th>
+								<!-- <th width="10">户主姓名</th> -->
+								<th width="5">操作</th>
+							</tr>
+						</thead>
+						<tbody id="ZZsearchInfo">
+							
+						</tbody>
+					</table>
+				</div>
+				
+        <a class="a-item home" href="../index/index.html">首页</a>
+        <a class="a-item return " href="javascript:history.back(-1)">返回</a>
+			</div>
+		</div>
+		<div class="container">
+			<div class="container-left">
+				<div class="content-1 content">
+					<h3 class="c-title">概况</h3>
+					<div class="wrap">
+						<p class="wordExp">
+							<span></span>
+							<a class="details">[更多]</a>
+						</p>
+					</div>
+				</div>
+
+				<div class="content-2 content enlarge1">
+					<h3 class="c-title c-title1 B-title">
+						<span title="点击放大">历年贫困人口规模轨迹 (单位：人)</span>
+						<a>X</a>
+					</h3>
+					<div class="wrap">
+						<div class="echarts" id="echarts-1"></div>
+					</div>
+				</div>
+
+				<div class="content-3 content enlarge2">
+					<h3 class="c-title c-title2 B-title">
+						<span title="点击放大">专项扶贫资金 (单位：万元)</span>
+						<a>X</a>
+					</h3>
+					<div class="wrap">
+						<div class="echarts" id="echarts-2"></div>
+					</div>
+				</div>
+			</div>
+			<div class="container-center">
+                <div class="selectBox">
+                    <div id="right-arrow"><img src="images/rightArrow.png" sleep="right"></div>
+                    <ul id="arrowZhen"></ul>
+                    <ul id="arrowCun"></ul>
+                </div>
+
+				<div class="map">
+					<div class="module-1 clearfix" id="totalInfo">
+						<div class="item-2 item">
+							<p class="words-1">贫困村</p>
+							<p class="words-2"><span class="Totalnum"></span>个</p>
+						</div>
+						<div class="item-3 item">
+							<p class="words-1">建档立卡户</p>
+							<p class="words-2">
+                                <span class="standardOKnum num3"></span>户 |
+                                <span class="num num301"></span>人
+                            </p>
+						</div>
+						<div class="item-4 item">
+							<p class="words-1">在册贫困户</p>
+							<p class="words-2">
+                                <span class="standardNOnum num4"></span>户 |
+                                <span class="num num401"></span>人
+                            </p>
+						</div>
+					</div>
+
+                    <!-- <div class="selectBox">
+                        <select name="" id="township">
+                            <option value="">乡（镇）</option>
+                        </select>
+                        <select name="" id="village">
+                            <option value="">村</option>
+                        </select>
+                        <input type="button" value="查询" id="cunSubmit"></input>
+                    </div> -->
+
+					<!-- <img class="map-img" src="images/map_1.png"> -->
+          <div class="CountryMap mapMap">
+              <!--<iframe id="wholemap" src="dist/index.html" frameborder='0'></iframe>-->
+			  <div id="imgBox" style="width:auto;height:542px;transform:translateY(-5%);position:relative;">
+				  <img src="" alt="" style="width:612px;height:542px;position:absolute;top:50%;left:50%;">
+			  </div>
+          </div>
+				</div>
+			</div>
+
+		<div id="slide" style='overflow-y:auto; '>
+			<div class="container-right" id="slide1"  style="height:268%">
+				<div class="content-6 content r-con enlarge3">
+					<h3 class="c-title c-title3 B-title">
+						<span title="点击放大">贫困户属性分析 (单位：户)</span>
+						<a>X</a>
+					</h3>
+					<div class="wrap">
+						<div class="echarts" id="echarts-3"></div>
+					</div>
+				</div>
+
+				<div class="content-7 content r-con enlarge4">
+					<h3 class="c-title c-title4 B-title">
+						<span title="点击放大">贫困户主要致贫原因 (单位：户)</span>
+						<a>X</a>
+					</h3>
+					<div class="wrap">
+						<div class="echarts" id="echarts-4"></div>
+					</div>
+				</div>
+
+				<!--<div class="content-8 content r-con enlarge5">
+					<h3 class="c-title c-title5 B-title">
+						<span title="点击放大">五个美丽建设情况 (单位：个)</span>
+						<a>X</a>
+					</h3>
+					<div class="wrap">
+						<div class="echarts" id="echarts-5"></div>
+					</div>
+				</div>-->
+
+				<div class="content-6 content r-con enlarge6">
+							<h3 class="c-title c-title6 B-title">
+								<span title="点击放大">贫困户土地资源情况 (单位：亩)</span>
+								<a>X</a>
+							</h3>
+							<div class="wrap">
+								<div class="echarts" id="echarts-30"></div>
+							</div>
+						</div>
+
+						<div class="content-7 content r-con enlarge7">
+							<h3 class="c-title c-title7 B-title">
+								<span title="点击放大">贫困户人口规模情况(单位：户)</span>
+								<a>X</a>
+							</h3>
+							<div class="wrap">
+								<div class="echarts" id="echarts-40"></div>
+							</div>
+						</div>
+
+						<div class="content-8 content r-con enlarge8">
+							<h3 class="c-title c-title8 B-title">
+								<span title="点击放大">贫困户生产生活困难 (单位：户)</span>
+								<a>X</a>
+							</h3>
+							<div class="wrap">
+								<div class="echarts" id="echarts-50"></div>
+							</div>
+						</div>
+
+							<div class="content-9 content r-con enlarge9">
+							<h3 class="c-title c-title9 B-title">
+								<span title="点击放大">贫困人口健康状况 (单位：人)</span>
+								<a>X</a>
+							</h3>
+							<div class="wrap">
+								<div class="echarts" id="echarts-60"></div>
+							</div>
+						</div>
+
+						<div class="content-10 content r-con enlarge10">
+							<h3 class="c-title c-title10 B-title">
+								<span title="点击放大">贫困人口劳动力类型(单位：人)</span>
+								<a>X</a>
+							</h3>
+							<div class="wrap">
+								<div class="echarts" id="echarts-70"></div>
+							</div>
+						</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+      /**************** 地图调用 ************************/
+    var gis = null;
+    function giscallback(type, param){
+    	//console.log(param)
+        switch (type) {
+            case 'mapinit':
+                // 地图初始化完成
+                setTimeout(function(){
+                  gis.gisapp.zoom(countryName);   
+                },1000)
+                break;
+            case 'county_select':
+                // 区域点击事件
+                if(param=='周至县'){
+                    var url = host + '/zhouzhi.html?name=' + param
+                    window.location.href = url;
+                }else{
+                    var url = host + '/county.html?name=' + param
+                    window.location.href = url;
+                }
+                break;
+            case 'village_select':
+                // 村点击事件
+                var url = host + '/village.html?county='+ param.county + '&name=' + param.village+ '&code=' + param.villagecode 
+                window.location.href = url;
+                break;
+            case 'city_show':
+                break;
+            default:
+                //console.log(type +':' + param)
+                break;
+        }
+    }
+
+    function gisready(){
+        gis = document.getElementById("wholemap").contentWindow
+        gis.gisapp.init(giscallback,countryName); 
+    }
+
+
+      function getUrlParam(name) {
+          var url=window.location.search;
+          url=decodeURI(url);
+          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+          var r = url.substr(1).match(reg); //匹配目标参数
+          if (r != null) return unescape(r[2]); return null; //返回参数值
+      }
+      mapImg = getUrlParam('map');
+      /*地图更换事件*/
+      if(mapImg=="lantian"){
+          $("#imgBox>img").attr("src","images/lantian.png");
+          /*地图上贫困村的渲染*/
+          $.ajax({
+              url:url+"/map/house/detail",
+              data:{},
+              type:"post",
+              dataType:"json",
+              success:function(data){
+                  let datas=data.data;
+                  getVillage(datas);
+              }
+          })
+          let chat=[];
+          function getVillage(data){
+              for(let i=0;i<data.length;i++){
+                  let address=data[i].address.split("-");
+                  if(address[1]=="蓝田县"){
+                      let obj={"county":address[1],"name":address[3],"villageCode":data[i].disctId,"isReach":data[i].isReach,"x":0,"y":0};
+                      chat.push(obj);
+                  }
+              }
+              chat[0].x=60;chat[0].y=43;//西安市-蓝田县-九间房镇-桐花沟村
+              chat[1].x=58;chat[1].y=40;//西安市-蓝田县-九间房镇-公王村委会
+              chat[2].x=68;chat[2].y=41;//西安市-蓝田县-九间房镇-何家川村委会
+              chat[3].x=66;chat[3].y=43;//西安市-蓝田县-九间房镇-九间房村
+              chat[4].x=60;chat[4].y=37;//西安市-蓝田县-九间房镇-张家坪村
+              chat[5].x=63;chat[5].y=38;//西安市-蓝田县-九间房镇-峪口村
+              chat[6].x=40;chat[6].y=48;//西安市-蓝田县-小寨镇-蔡岩村
+              chat[7].x=34;chat[7].y=44;//西安市-蓝田县-小寨镇-岱峪村
+              chat[8].x=36;chat[8].y=49;//西安市-蓝田县-小寨镇-湖滩村
+              chat[9].x=40;chat[9].y=53;//西安市-蓝田县-小寨镇-南寨村
+              chat[10].x=23;chat[10].y=48;//西安市-蓝田县-汤峪镇-东山村委会
+              chat[11].x=42;chat[11].y=34;//西安市-蓝田县-三里镇-磨李村
+              chat[12].x=40;chat[12].y=36;//西安市-蓝田县-三里镇-北小寨村
+              chat[13].x=37;chat[13].y=38;//西安市-蓝田县-三里镇-樊家村委会
+              chat[14].x=25;chat[14].y=36;//西安市-蓝田县-孟村镇-石官寨村
+              chat[15].x=22;chat[15].y=32;//西安市-蓝田县-孟村镇-姚村
+              chat[16].x=63;chat[16].y=34;//西安市-蓝田县-玉山镇-峒峪村
+              chat[17].x=62;chat[17].y=32;//西安市-蓝田县-玉山镇-杨寨村委会
+              chat[18].x=56;chat[18].y=35;//西安市-蓝田县-玉山镇-上陈村委会
+              chat[19].x=58;chat[19].y=36;//西安市-蓝田县-玉山镇-刘寨村
+              chat[20].x=58;chat[20].y=60;//西安市-蓝田县-葛牌镇-金坪村
+              chat[21].x=52;chat[21].y=57;//西安市-蓝田县-葛牌镇-白家村
+              chat[22].x=55;chat[22].y=56;//西安市-蓝田县-葛牌镇-石船沟村
+              chat[23].x=50;chat[23].y=56;//西安市-蓝田县-葛牌镇-阳坡村
+              chat[24].x=55;chat[24].y=60;//西安市-蓝田县-葛牌镇-葛牌村
+              chat[25].x=58;chat[25].y=65;//西安市-蓝田县-葛牌镇-瓦屋庄村
+              chat[26].x=56;chat[26].y=67;//西安市-蓝田县-葛牌镇-东沟村
+              chat[27].x=45;chat[27].y=46//西安市-蓝田县-辋川镇-西河村
+              chat[28].x=50;chat[28].y=45;//西安市-蓝田县-辋川镇-锡水洞村
+              chat[29].x=45;chat[29].y=67;//西安市-蓝田县-辋川镇-董家岩村
+              chat[30].x=45;chat[30].y=48;//西安市-蓝田县-辋川镇-七安子村
+              chat[31].x=43;chat[31].y=65;//西安市-蓝田县-辋川镇-红门寺村
+              chat[32].x=47;chat[32].y=64;//西安市-蓝田县-辋川镇-核桃沟村
+              chat[33].x=48;chat[33].y=69;//西安市-蓝田县-辋川镇-甘家坪村
+              chat[34].x=31;chat[34].y=23;//西安市-蓝田县-洩湖镇-后李坪村委会
+              chat[35].x=36;chat[35].y=21.5;//西安市-蓝田县-洩湖镇-马王村委会
+              chat[36].x=39;chat[36].y=23;//西安市-蓝田县-洩湖镇-唐付村
+              chat[37].x=41;chat[37].y=28;//西安市-蓝田县-洩湖镇-骞湾村
+              chat[38].x=52;chat[38].y=35;//西安市-蓝田县-普化镇-贺凹村
+              chat[39].x=50;chat[39].y=37;//西安市-蓝田县-普化镇-民李村委会
+              chat[40].x=48;chat[40].y=39;//西安市-蓝田县-普化镇-邵家寨村委会
+              chat[41].x=47;chat[41].y=40;//西安市-蓝田县-普化镇-穆家坡村
+              chat[42].x=45;chat[42].y=22;//西安市-蓝田县-三官庙镇-北苍湾村
+              chat[43].x=42;chat[43].y=20;//西安市-蓝田县-三官庙镇-南湾岭村
+              chat[44].x=43.5;chat[44].y=16.5;//西安市-蓝田县-三官庙镇-龙门村委会
+              chat[45].x=47;chat[45].y=24;//西安市-蓝田县-三官庙镇-过风岭村委会
+              chat[46].x=45;chat[46].y=25;//西安市-蓝田县-三官庙镇-新房村委会
+              chat[47].x=51;chat[47].y=49;//西安市-蓝田县-蓝桥镇-野竹坪村委会
+              for(let i=0;i<chat.length;i++){
+                  let $imgBox=$("#imgBox");
+                  /*否:未脱贫;是:已脱贫*/
+                  if(chat[i].isReach=="否"){
+                      let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage.png' alt='' style='width:20px;height:14px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px","zIndex":10});
+                      $imgBox.append($village);
+                  }else if(chat[i].isReach=="是"){
+                      let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage2.png' alt='' style='width:12px;height:12px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px"});
+                      $imgBox.append($village);
+                  }
+              }
+              /*村悬浮事件*/
+              let $tips=$("<div style='width:40px;height:38px;background: #fff;color:#000;font-size:10px;line-height:12px;padding:2px 3px;z-index: 10;'></div>");
+              $("#imgBox .village").hover(function(){
+                  let index=$(this).index();
+                  $("#imgBox .village").eq(index-1).css("transform","scale(1.2,1.2)");
+                  $tips.text(chat[index-1].name);
+                  $tips.css({"display":"block","position":"absolute","bottom":'-40px',"right":"-50px"});
+                  $(this).append($tips).css({"zIndex":999});
+                  /*村点击事件*/
+                  $("#imgBox .village").click(function(){
+                      let county=$(this).attr("county");
+                      let village=$(this).attr("name");
+                      let villagecode=$(this).attr("id");
+                      var url = host + '/village.html?county='+ county + '&name=' + village + '&code=' + villagecode;
+                      window.location.href = url;
+                  })
+              },function(){
+                  $tips.css("display","none");
+                  $(this).css({"transform":"scale(1,1)","zIndex":10});
+              })
+          }
+      }else if(mapImg=="huyi"){
+          $("#imgBox>img").attr("src","images/huyi.png");
+          /*地图上贫困村的渲染*/
+          $.ajax({
+              url:url+"/map/house/detail",
+              data:{},
+              type:"post",
+              dataType:"json",
+              success:function(data){
+                  let datas=data.data;
+                  getVillage(datas);
+              }
+          })
+          let chat=[];
+          function getVillage(data){
+              for(let i=0;i<data.length;i++){
+                  let address=data[i].address.split("-");
+                  if(address[1]=="鄠邑区"){
+                      let obj={"county":address[1],"name":address[3],"villageCode":data[i].disctId,"isReach":data[i].isReach,"x":0,"y":0};
+                      chat.push(obj);
+                  }
+              }
+              chat[0].x=39;chat[0].y=49;//西安市-鄠邑区-蒋村镇-甘峪口村委会
+              chat[1].x=37;chat[1].y=47;//西安市-鄠邑区-蒋村镇-白龙沟村村委会
+              chat[2].x=62;chat[2].y=48;//西安市-鄠邑区-蒋村镇-郝家寨村村委会
+              chat[3].x=35;chat[3].y=45;//西安市-鄠邑区-蒋村镇-柳泉口村村委会
+              chat[4].x=64;chat[4].y=50;//西安市-鄠邑区-草堂镇-紫阁峪村村委会
+              chat[5].x=41;chat[5].y=28;//西安市-鄠邑区-甘河镇-侯王村村委会
+              chat[6].x=57;chat[6].y=30;//西安市-鄠邑区-玉蝉镇-联西村村委会
+              chat[7].x=45;chat[7].y=52;//西安市-鄠邑区-石井镇-沙窝村委会//
+              chat[8].x=34;chat[8].y=68;//西安市-鄠邑区-石井镇-西河村委会
+              chat[9].x=45;chat[9].y=68;//西安市-鄠邑区-石井镇-八里坪村委会
+              chat[10].x=55;chat[10].y=50;//西安市-鄠邑区-石井镇-蔡家坡村村委会
+              for(let i=0;i<chat.length;i++){
+                  let $imgBox=$("#imgBox");
+                  /*否:未脱贫;是:已脱贫*/
+                  if(chat[i].isReach=="否"){
+                      let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage.png' alt='' style='width:20px;height:14px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px","zIndex":10});
+                      $imgBox.append($village);
+                  }else if(chat[i].isReach=="是"){
+                      let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage2.png' alt='' style='width:12px;height:12px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px"});
+                      $imgBox.append($village);
+                  }
+              }
+              /*村悬浮事件*/
+              let $tips=$("<div style='width:40px;height:38px;background: #fff;color:#000;font-size:10px;line-height:12px;padding:2px 3px;z-index: 10;'></div>");
+              $("#imgBox .village").hover(function(){
+                  let index=$(this).index();
+                  $("#imgBox .village").eq(index-1).css("transform","scale(1.2,1.2)");
+                  $tips.text(chat[index-1].name);
+                  $tips.css({"display":"block","position":"absolute","bottom":'-40px',"right":"-50px"});
+                  $(this).append($tips).css({"zIndex":999});
+                  /*村点击事件*/
+                  $("#imgBox .village").click(function(){
+                      let county=$(this).attr("county");
+                      let village=$(this).attr("name");
+                      let villagecode=$(this).attr("id");
+                      var url = host + '/village.html?county='+ county + '&name=' + village + '&code=' + villagecode;
+                      window.location.href = url;
+                  })
+              },function(){
+                  $tips.css("display","none");
+                  $(this).css({"transform":"scale(1,1)","zIndex":10});
+              })
+          }
+      }else if(mapImg=="lantian"){
+          $("#imgBox>img").attr("src","images/lantian.png");
+          /*地图上贫困村的渲染*/
+          $.ajax({
+              url:url+"/map/house/detail",
+              data:{},
+              type:"post",
+              dataType:"json",
+              success:function(data){
+                  let datas=data.data;
+                  getVillage(datas);
+              }
+          })
+          let chat=[];
+          function getVillage(data){
+              for(let i=0;i<data.length;i++){
+                  let address=data[i].address.split("-");
+                  if(address[1]=="蓝田县"){
+                      let obj={"county":address[1],"name":address[3],"villageCode":data[i].disctId,"isReach":data[i].isReach,"x":0,"y":0};
+                      chat.push(obj);
+                  }
+              }
+              chat[0].x=60;chat[0].y=43;//西安市-蓝田县-九间房镇-桐花沟村
+              chat[1].x=58;chat[1].y=40;//西安市-蓝田县-九间房镇-公王村委会
+              chat[2].x=68;chat[2].y=41;//西安市-蓝田县-九间房镇-何家川村委会
+              chat[3].x=66;chat[3].y=43;//西安市-蓝田县-九间房镇-九间房村
+              chat[4].x=60;chat[4].y=37;//西安市-蓝田县-九间房镇-张家坪村
+              chat[5].x=63;chat[5].y=38;//西安市-蓝田县-九间房镇-峪口村
+              chat[6].x=40;chat[6].y=48;//西安市-蓝田县-小寨镇-蔡岩村
+              chat[7].x=34;chat[7].y=44;//西安市-蓝田县-小寨镇-岱峪村
+              chat[8].x=36;chat[8].y=49;//西安市-蓝田县-小寨镇-湖滩村
+              chat[9].x=40;chat[9].y=53;//西安市-蓝田县-小寨镇-南寨村
+              chat[10].x=23;chat[10].y=48;//西安市-蓝田县-汤峪镇-东山村委会
+              chat[11].x=42;chat[11].y=34;//西安市-蓝田县-三里镇-磨李村
+              chat[12].x=40;chat[12].y=36;//西安市-蓝田县-三里镇-北小寨村
+              chat[13].x=37;chat[13].y=38;//西安市-蓝田县-三里镇-樊家村委会
+              chat[14].x=25;chat[14].y=36;//西安市-蓝田县-孟村镇-石官寨村
+              chat[15].x=22;chat[15].y=32;//西安市-蓝田县-孟村镇-姚村
+              chat[16].x=63;chat[16].y=34;//西安市-蓝田县-玉山镇-峒峪村
+              chat[17].x=62;chat[17].y=32;//西安市-蓝田县-玉山镇-杨寨村委会
+              chat[18].x=56;chat[18].y=35;//西安市-蓝田县-玉山镇-上陈村委会
+              chat[19].x=58;chat[19].y=36;//西安市-蓝田县-玉山镇-刘寨村
+              chat[20].x=58;chat[20].y=60;//西安市-蓝田县-葛牌镇-金坪村
+              chat[21].x=52;chat[21].y=57;//西安市-蓝田县-葛牌镇-白家村
+              chat[22].x=55;chat[22].y=56;//西安市-蓝田县-葛牌镇-石船沟村
+              chat[23].x=50;chat[23].y=56;//西安市-蓝田县-葛牌镇-阳坡村
+              chat[24].x=55;chat[24].y=60;//西安市-蓝田县-葛牌镇-葛牌村
+              chat[25].x=58;chat[25].y=65;//西安市-蓝田县-葛牌镇-瓦屋庄村
+              chat[26].x=56;chat[26].y=67;//西安市-蓝田县-葛牌镇-东沟村
+              chat[27].x=45;chat[27].y=46//西安市-蓝田县-辋川镇-西河村
+              chat[28].x=50;chat[28].y=45;//西安市-蓝田县-辋川镇-锡水洞村
+              chat[29].x=45;chat[29].y=67;//西安市-蓝田县-辋川镇-董家岩村
+              chat[30].x=45;chat[30].y=48;//西安市-蓝田县-辋川镇-七安子村
+              chat[31].x=43;chat[31].y=65;//西安市-蓝田县-辋川镇-红门寺村
+              chat[32].x=47;chat[32].y=64;//西安市-蓝田县-辋川镇-核桃沟村
+              chat[33].x=48;chat[33].y=69;//西安市-蓝田县-辋川镇-甘家坪村
+              chat[34].x=31;chat[34].y=23;//西安市-蓝田县-洩湖镇-后李坪村委会
+              chat[35].x=36;chat[35].y=21.5;//西安市-蓝田县-洩湖镇-马王村委会
+              chat[36].x=39;chat[36].y=23;//西安市-蓝田县-洩湖镇-唐付村
+              chat[37].x=41;chat[37].y=28;//西安市-蓝田县-洩湖镇-骞湾村
+              chat[38].x=52;chat[38].y=35;//西安市-蓝田县-普化镇-贺凹村
+              chat[39].x=50;chat[39].y=37;//西安市-蓝田县-普化镇-民李村委会
+              chat[40].x=48;chat[40].y=39;//西安市-蓝田县-普化镇-邵家寨村委会
+              chat[41].x=47;chat[41].y=40;//西安市-蓝田县-普化镇-穆家坡村
+              chat[42].x=45;chat[42].y=22;//西安市-蓝田县-三官庙镇-北苍湾村
+              chat[43].x=42;chat[43].y=20;//西安市-蓝田县-三官庙镇-南湾岭村
+              chat[44].x=43.5;chat[44].y=16.5;//西安市-蓝田县-三官庙镇-龙门村委会
+              chat[45].x=47;chat[45].y=24;//西安市-蓝田县-三官庙镇-过风岭村委会
+              chat[46].x=45;chat[46].y=25;//西安市-蓝田县-三官庙镇-新房村委会
+              chat[47].x=51;chat[47].y=49;//西安市-蓝田县-蓝桥镇-野竹坪村委会
+              for(let i=0;i<chat.length;i++){
+                  let $imgBox=$("#imgBox");
+                  /*否:未脱贫;是:已脱贫*/
+                  if(chat[i].isReach=="否"){
+                      let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage.png' alt='' style='width:20px;height:14px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px","zIndex":10});
+                      $imgBox.append($village);
+                  }else if(chat[i].isReach=="是"){
+                      let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage2.png' alt='' style='width:12px;height:12px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px"});
+                      $imgBox.append($village);
+                  }
+              }
+              /*村悬浮事件*/
+              let $tips=$("<div style='width:40px;height:38px;background: #fff;color:#000;font-size:10px;line-height:12px;padding:2px 3px;z-index: 10;'></div>");
+              $("#imgBox .village").hover(function(){
+                  let index=$(this).index();
+                  $("#imgBox .village").eq(index-1).css("transform","scale(1.2,1.2)");
+                  $tips.text(chat[index-1].name);
+                  $tips.css({"display":"block","position":"absolute","bottom":'-40px',"right":"-50px"});
+                  $(this).append($tips).css({"zIndex":999});
+                  /*村点击事件*/
+                  $("#imgBox .village").click(function(){
+                      let county=$(this).attr("county");
+                      let village=$(this).attr("name");
+                      let villagecode=$(this).attr("id");
+                      var url = host + '/village.html?county='+ county + '&name=' + village + '&code=' + villagecode;
+                      window.location.href = url;
+                  })
+              },function(){
+                  $tips.css("display","none");
+                  $(this).css({"transform":"scale(1,1)","zIndex":10});
+              })
+          }
+      }else if(mapImg=="xixian"){
+          $("#imgBox>img").attr("src","images/xixian.png");
+          /*地图上贫困村的渲染*/
+          $.ajax({
+              url:url+"/map/house/detail",
+              data:{},
+              type:"post",
+              dataType:"json",
+              success:function(data){
+                  let datas=data.data;
+                  getVillage(datas);
+              }
+          })
+          let chat=[];
+          function getVillage(data){
+              for(let i=0;i<data.length;i++){
+                  let address=data[i].address.split("-");
+                  if(address[1]=="泾河新城"){
+                      let obj={"county":address[1],"name":address[3],"villageCode":data[i].disctId,"isReach":data[i].isReach,"x":0,"y":0};
+                      chat.push(obj);
+                  }
+              }
+              chat[0].x=68;chat[0].y=32;//西安市-泾河新城-高庄镇-新庄村委会
+              /* chat[0].x=86;chat[0].y=50;//西安市-蓝田县-九间房镇-桐花沟村
+               chat[1].x=85;chat[1].y=51;//西安市-蓝田县-九间房镇-公王村委会
+               chat[2].x=89;chat[2].y=53;//西安市-蓝田县-九间房镇-何家川村委会
+               chat[3].x=88;chat[3].y=54;//西安市-蓝田县-九间房镇-张家坪村
+               chat[4].x=86;chat[4].y=51;//西安市-蓝田县-九间房镇-九间房村
+               chat[5].x=87;chat[5].y=52;//西安市-蓝田县-九间房镇-峪口村
+               chat[6].x=35;chat[6].y=52;//西安市-周至县-终南镇-长杨村委会
+               chat[7].x=57;chat[7].y=24;//西安市-泾河新城-高庄镇-新庄村委会
+               chat[8].x=79;chat[8].y=33;//西安市-临潼区-小金街道-安庙村委会
+               chat[9].x=78.5;chat[9].y=34;//西安市-临潼区-小金街道-小金村委会
+               chat[10].x=77;chat[10].y=32;//西安市-临潼区-小金街道-欠湾村委会
+               chat[11].x=80;chat[11].y=32;//西安市-临潼区-小金街道-炮岭村委会
+               chat[12].x=77;chat[12].y=33;//西安市-临潼区-小金街道-毛湾村委会
+               chat[13].x=30;chat[13].y=60;//西安市-周至县-楼观镇-就峪村委会
+               chat[14].x=76;chat[14].y=70;//西安市-蓝田县-小寨镇-岱峪村
+               chat[15].x=74;chat[15].y=68;//西安市-蓝田县-小寨镇-蔡岩村
+               chat[16].x=73.5;chat[16].y=69;//西安市-蓝田县-小寨镇-湖滩村
+               chat[17].x=75;chat[17].y=70;//西安市-蓝田县-小寨镇-南寨村
+               chat[18].x=35;chat[18].y=50;//西安市-周至县-集贤镇-马滩村委会
+               chat[19].x=34;chat[19].y=54;//西安市-周至县-集贤镇-六合社区居委会
+               chat[20].x=40;chat[20].y=60;//西安市-鄠邑区-蒋村镇-甘峪口村委会
+               chat[21].x=39;chat[21].y=60;//西安市-鄠邑区-蒋村镇-白龙沟村村委会
+               chat[22].x=49;chat[22].y=62;//西安市-鄠邑区-蒋村镇-郝家寨村村委会
+               chat[23].x=39;chat[23].y=56;//西安市-鄠邑区-蒋村镇-柳泉口村村委会
+               chat[24].x=70.5;chat[24].y=61;//西安市-蓝田县-汤峪镇-东山村委会
+               chat[25].x=27;chat[25].y=52;//西安市-周至县-马召镇-群三兴村委会
+               chat[26].x=26;chat[26].y=53;//西安市-周至县-马召镇-辛口村委会
+               chat[27].x=28;chat[27].y=52.5;//西安市-周至县-马召镇-上马村委会
+               chat[28].x=27.5;chat[28].y=53;//西安市-周至县-马召镇-四群村委会
+               chat[29].x=28.5;chat[29].y=53;//西安市-周至县-马召镇-郭寨村委会
+               chat[30].x=28;chat[30].y=56;//西安市-周至县-马召镇-涌泉寺村委会
+               chat[31].x=75;chat[31].y=35.5;//西安市-临潼区-仁宗街道-茨林村委会
+               chat[32].x=74;chat[32].y=36;//西安市-临潼区-仁宗街道-芋坡村委会
+               chat[33].x=74;chat[33].y=34;//西安市-临潼区-仁宗街道-庄王村委会
+               chat[34].x=72;chat[34].y=33;//西安市-临潼区-仁宗街道-仁宗村委会
+               chat[35].x=74.5;chat[35].y=32;//西安市-临潼区-仁宗街道-玉川村委会
+               chat[36].x=71;chat[36].y=34;//西安市-临潼区-仁宗街道-房岩村委会
+               chat[37].x=70.5;chat[37].y=35;//西安市-临潼区-仁宗街道-壕栗村委会
+               chat[38].x=3;chat[38].y=83;//西安市-周至县-厚畛子镇-老县城村委会
+               chat[39].x=17;chat[39].y=71;//西安市-周至县-厚畛子镇-八一村委会
+               chat[40].x=8;chat[40].y=86;//西安市-周至县-厚畛子镇-花耳坪村委会
+               chat[41].x=8;chat[41].y=70;//西安市-周至县-厚畛子镇-厚畛子村委会
+               chat[42].x=22;chat[42].y=50;//西安市-周至县-翠峰镇-东红村委会
+               chat[43].x=23;chat[43].y=54;//西安市-周至县-翠峰镇-陈家村委会
+               chat[44].x=22;chat[44].y=52;//西安市-周至县-翠峰镇-清河村委会
+               chat[45].x=21;chat[45].y=53;//西安市-周至县-翠峰镇-下宝玉村委会
+               chat[46].x=49;chat[46].y=61;//西安市-鄠邑区-草堂镇-紫阁峪村村委会
+               chat[47].x=78;chat[47].y=49;//西安市-蓝田县-三里镇-磨李村
+               chat[48].x=77;chat[48].y=48;//西安市-蓝田县-三里镇-北小寨村
+               chat[49].x=76;chat[49].y=50.5;//西安市-蓝田县-三里镇-樊家村委会
+               chat[50].x=30;chat[50].y=47;//西安市-周至县-富仁镇-渭友村委会
+               chat[51].x=22;chat[51].y=47;//西安市-周至县-哑柏镇-景联社区居委会
+               chat[52].x=21;chat[52].y=46;//西安市-周至县-哑柏镇-五联村委会
+               chat[53].x=41;chat[53].y=48;//西安市-鄠邑区-甘河镇-侯王村村委会
+               chat[54].x=18;chat[54].y=80;//西安市-周至县-板房子镇-高潮村委会
+               chat[55].x=23;chat[55].y=80.5;//西安市-周至县-板房子镇-新红村委会
+               chat[56].x=15.5;chat[56].y=84;//西安市-周至县-板房子镇-长坪村委会
+               chat[57].x=19;chat[57].y=84.5;//西安市-周至县-板房子镇-东石门村委会
+               chat[58].x=20;chat[58].y=80;//西安市-周至县-板房子镇-清水河村委会
+               chat[59].x=71;chat[59].y=46.5;//西安市-蓝田县-孟村镇-石官寨村
+               chat[60].x=70;chat[60].y=45;//西安市-蓝田县-孟村镇-姚村
+               chat[61].x=20;chat[61].y=50;//西安市-周至县-竹峪镇-张龙村委会
+               chat[62].x=19;chat[62].y=50;//西安市-周至县-竹峪镇-中军岭村委会
+               chat[63].x=18.5;chat[63].y=51;//西安市-周至县-竹峪镇-丹阳村委会
+               chat[64].x=19.5;chat[64].y=52;//西安市-周至县-竹峪镇-东大墙村委会
+               chat[65].x=20;chat[65].y=53;//西安市-周至县-竹峪镇-东寨村委会
+               chat[66].x=21;chat[66].y=49;//西安市-周至县-竹峪镇-鸭沟村委会
+               chat[67].x=20;chat[67].y=50.5;//西安市-周至县-竹峪镇-民主村委会
+               chat[68].x=21;chat[68].y=51;//西安市-周至县-竹峪镇-五星村委会
+               chat[69].x=21.5;chat[69].y=50;//西安市-周至县-竹峪镇-岭梅村委会
+               chat[70].x=23;chat[70].y=51;//西安市-周至县-竹峪镇-西沟村委会
+               chat[71].x=19;chat[71].y=46;//西安市-周至县-竹峪镇-兰梅塬村委会
+               chat[72].x=20;chat[72].y=47;//西安市-周至县-竹峪镇-塔庙村委会
+               chat[73].x=28;chat[73].y=76;//西安市-周至县-王家河镇-东涧沟村委会
+               chat[74].x=25;chat[74].y=75;//西安市-周至县-王家河镇-十亩地村委会
+               chat[75].x=25.5;chat[75].y=77;//西安市-周至县-王家河镇-白杨林村委会
+               chat[76].x=29;chat[76].y=73;//西安市-周至县-王家河镇-双庙子村委会
+               chat[77].x=30;chat[77].y=76;//西安市-周至县-王家河镇-玉皇庙村委会
+               chat[78].x=27;chat[78].y=79;//西安市-周至县-王家河镇-老庄子村委会
+               chat[79].x=88;chat[79].y=48;//西安市-蓝田县-玉山镇-峒峪村
+               chat[80].x=87;chat[80].y=47;//西安市-蓝田县-玉山镇-杨寨村委会
+               chat[81].x=85;chat[81].y=46;//西安市-蓝田县-玉山镇-上陈村委会
+               chat[82].x=86;chat[82].y=45;//西安市-蓝田县-玉山镇-刘寨村
+               chat[83].x=86;chat[83].y=70;//西安市-蓝田县-葛牌镇-金坪村
+               chat[84].x=83;chat[84].y=66;//西安市-蓝田县-葛牌镇-白家村
+               chat[85].x=85;chat[85].y=66;//西安市-蓝田县-葛牌镇-石船沟村
+               chat[86].x=81;chat[86].y=65;//西安市-蓝田县-葛牌镇-阳坡村
+               chat[87].x=84;chat[87].y=69.5;//西安市-蓝田县-葛牌镇-葛牌村
+               chat[88].x=85.5;chat[88].y=74;//西安市-蓝田县-葛牌镇-瓦屋庄村
+               chat[89].x=87;chat[89].y=73.5;//西安市-蓝田县-葛牌镇-东沟村
+               chat[90].x=46.5;chat[90].y=51;//西安市-鄠邑区-玉蝉镇-联西村村委会
+               chat[91].x=80;chat[91].y=60;//西安市-蓝田县-辋川镇-西河村
+               chat[92].x=78;chat[92].y=62;//西安市-蓝田县-辋川镇-锡水洞村
+               chat[93].x=80;chat[93].y=72;//西安市-蓝田县-辋川镇-七安子村
+               chat[94].x=76;chat[94].y=64;//西安市-蓝田县-辋川镇-董家岩村
+               chat[95].x=78;chat[95].y=69;//西安市-蓝田县-辋川镇-红门寺村
+               chat[96].x=80;chat[96].y=69;//西安市-蓝田县-辋川镇-核桃沟村
+               chat[97].x=81;chat[97].y=72;//西安市-蓝田县-辋川镇-甘家坪村
+               chat[98].x=73;chat[98].y=42;//西安市-蓝田县-洩湖镇-后李坪村委会
+               chat[99].x=75;chat[99].y=40;//西安市-蓝田县-洩湖镇-马王村委会
+               chat[100].x=76.5;chat[100].y=41;//西安市-蓝田县-洩湖镇-唐付村
+               chat[101].x=77;chat[101].y=45;//西安市-蓝田县-洩湖镇-骞湾村
+               chat[102].x=37;chat[102].y=51;//西安市-周至县-九峰镇-余家村委会
+               chat[103].x=35.5;chat[103].y=50;//西安市-周至县-九峰镇-何家寨村委会
+               chat[104].x=35;chat[104].y=51;//西安市-周至县-九峰镇-耿西村委会
+               chat[105].x=35;chat[105].y=49;//西安市-周至县-九峰镇-魏家庄村委会
+               chat[106].x=24;chat[106].y=53;//西安市-周至县-骆峪镇-向阳村委会
+               chat[107].x=25;chat[107].y=54;//西安市-周至县-骆峪镇-复兴村委会
+               chat[108].x=23;chat[108].y=55;//西安市-周至县-骆峪镇-神灵村委会
+               chat[109].x=26.5;chat[109].y=52;//西安市-周至县-骆峪镇-黄家湾社区居委会
+               chat[110].x=22;chat[110].y=53.5;//西安市-周至县-骆峪镇-尚兴村委会
+               chat[111].x=23;chat[111].y=54;//西安市-周至县-骆峪镇-骆峪村委会
+               chat[112].x=23.5;chat[112].y=55;//西安市-周至县-骆峪镇-红旗村委会
+               chat[113].x=45;chat[113].y=58;//西安市-鄠邑区-石井镇-沙窝村委会
+               chat[114].x=43;chat[114].y=57;//西安市-鄠邑区-石井镇-西河村委会
+               chat[115].x=48;chat[115].y=55;//西安市-鄠邑区-石井镇-八里坪村委会
+               chat[116].x=47;chat[116].y=56;//西安市-鄠邑区-石井镇-蔡家坡村村委会
+               chat[117].x=78;chat[117].y=50;//西安市-蓝田县-普化镇-贺凹村
+               chat[118].x=77.5;chat[118].y=49;//西安市-蓝田县-普化镇-民李村委会
+               chat[119].x=77;chat[119].y=50;//西安市-蓝田县-普化镇-邵家寨村委会
+               chat[120].x=80;chat[120].y=51;//西安市-蓝田县-普化镇-穆家坡村
+               chat[121].x=77;chat[121].y=42;//西安市-蓝田县-三官庙镇-北苍湾村
+               chat[122].x=76;chat[122].y=41;//西安市-蓝田县-三官庙镇-南湾岭村
+               chat[123].x=78.5;chat[123].y=38;//西安市-蓝田县-三官庙镇-龙门村委会
+               chat[124].x=78;chat[124].y=43;//西安市-蓝田县-三官庙镇-过风岭村委会
+               chat[125].x=79;chat[125].y=43.5;//西安市-蓝田县-三官庙镇-新房村委会
+               chat[126].x=25;chat[126].y=50;//西安市-周至县-广济镇-陈公坊村委会
+               chat[127].x=26;chat[127].y=49;//西安市-周至县-广济镇-黄兴村委会
+               chat[128].x=23.5;chat[128].y=52;//西安市-周至县-广济镇-双兴村委会
+               chat[129].x=83;chat[129].y=61.5;//西安市-蓝田县-蓝桥镇-野竹坪村委会
+               chat[130].x=21;chat[130].y=68;//西安市-周至县-陈河镇-黑虎村委会
+               chat[131].x=19;chat[131].y=66;//西安市-周至县-陈河镇-孙六村委会
+               chat[132].x=20;chat[132].y=67;//西安市-周至县-陈河镇-窑岭村委会
+               chat[133].x=21.5;chat[133].y=68;//西安市-周至县-陈河镇-金井村委会
+               chat[134].x=24;chat[134].y=69;//西安市-周至县-陈河镇-共兴村委会
+               chat[135].x=78;chat[135].y=34;//西安市-临潼区-穆寨街道-业池村委会
+               chat[136].x=79;chat[136].y=35;//西安市-临潼区-穆寨街道-王湾村委会
+               chat[137].x=76;chat[137].y=36;//西安市-临潼区-穆寨街道-东岳村委会
+               chat[138].x=78;chat[138].y=32;//西安市-临潼区-穆寨街道-穆柯寨村委会
+               chat[139].x=78;chat[139].y=34.5;//西安市-临潼区-穆寨街道-西岳村委会
+               chat[140].x=76;chat[140].y=37;//西安市-临潼区-穆寨街道-门岩村委会
+               chat[141].x=75;chat[141].y=36;//西安市-临潼区-穆寨街道-三庙村委会*/
+              for(let i=0;i<chat.length;i++){
+                  let $imgBox=$("#imgBox");
+                  /*否:未脱贫;是:已脱贫*/
+                  if(chat[i].isReach=="否"){
+                      let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage.png' alt='' style='width:20px;height:14px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px","zIndex":10});
+                      $imgBox.append($village);
+                  }else if(chat[i].isReach=="是"){
+                      let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage2.png' alt='' style='width:12px;height:12px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px"});
+                      $imgBox.append($village);
+                  }
+              }
+              /*村悬浮事件*/
+              let $tips=$("<div style='width:40px;height:38px;background: #fff;color:#000;font-size:10px;line-height:12px;padding:2px 3px;z-index: 10;'></div>");
+              $("#imgBox .village").hover(function(){
+                  let index=$(this).index();
+                  $("#imgBox .village").eq(index-1).css("transform","scale(1.2,1.2)");
+                  $tips.text(chat[index-1].name);
+                  $tips.css({"display":"block","position":"absolute","bottom":'-40px',"right":"-50px"});
+                  $(this).append($tips).css({"zIndex":999});
+                  /*村点击事件*/
+                  $("#imgBox .village").click(function(){
+                      let county=$(this).attr("county");
+                      let village=$(this).attr("name");
+                      let villagecode=$(this).attr("id");
+                      var url = host + '/village.html?county='+ county + '&name=' + village + '&code=' + villagecode;
+                      window.location.href = url;
+                  })
+              },function(){
+                  $tips.css("display","none");
+                  $(this).css({"transform":"scale(1,1)","zIndex":10});
+              })
+          }
+      }else if(mapImg=="lintong"){
+          $("#imgBox>img").attr("src","images/lintong.png");
+          /*地图上贫困村的渲染*/
+          $.ajax({
+              url:url+"/map/house/detail",
+              data:{},
+              type:"post",
+              dataType:"json",
+              success:function(data){
+                  let datas=data.data;
+                  getVillage(datas);
+              }
+          })
+          let chat=[];
+          function getVillage(data){
+              for(let i=0;i<data.length;i++){
+                  let address=data[i].address.split("-");
+                  if(address[1]=="临潼区"){
+                      let obj={"county":address[1],"name":address[3],"villageCode":data[i].disctId,"isReach":data[i].isReach,"x":0,"y":0};
+                      chat.push(obj);
+                  }
+              }
+              chat[0].x=66;chat[0].y=68;//西安市-临潼区-小金街道-安庙村委会
+              chat[1].x=66;chat[1].y=68;//西安市-临潼区-小金街道-小金村委会
+              chat[2].x=63;chat[2].y=66;//西安市-临潼区-小金街道-欠湾村委会
+              chat[3].x=68;chat[3].y=62;//西安市-临潼区-小金街道-炮岭村委会
+              chat[4].x=69;chat[4].y=66;//西安市-临潼区-小金街道-毛湾村委会
+              chat[5].x=52;chat[5].y=65;//西安市-临潼区-仁宗街道-茨林村委会
+              chat[6].x=48;chat[6].y=67;//西安市-临潼区-仁宗街道-芋坡村委会
+              chat[7].x=54;chat[7].y=63;//西安市-临潼区-仁宗街道-庄王村委会
+              chat[8].x=46;chat[8].y=64;//西安市-临潼区-仁宗街道-仁宗村委会
+              chat[9].x=54;chat[9].y=58;//西安市-临潼区-仁宗街道-玉川村委会
+              chat[10].x=42;chat[10].y=65;//西安市-临潼区-仁宗街道-房岩村委会
+              chat[11].x=42;chat[11].y=68;//西安市-临潼区-仁宗街道-壕栗村委会
+              chat[12].x=60;chat[12].y=60;//西安市-临潼区-穆寨街道-业池村委会
+              chat[13].x=61;chat[13].y=63;//西安市-临潼区-穆寨街道-王湾村委会
+              chat[14].x=56;chat[14].y=66;//西安市-临潼区-穆寨街道-东岳村委会
+              chat[15].x=58;chat[15].y=58;//西安市-临潼区-穆寨街道-穆柯寨村委会
+              chat[16].x=57;chat[16].y=70;//西安市-临潼区-穆寨街道-西岳村委会
+              chat[17].x=55;chat[17].y=74;//西安市-临潼区-穆寨街道-门岩村委会
+              chat[18].x=53;chat[18].y=71;//西安市-临潼区-穆寨街道-三庙村委会
+              for(let i=0;i<chat.length;i++){
+                  let $imgBox=$("#imgBox");
+                  /*否:未脱贫;是:已脱贫*/
+                  if(chat[i].isReach=="否"){
+                      let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage.png' alt='' style='width:20px;height:14px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px","zIndex":10});
+                      $imgBox.append($village);
+                  }else if(chat[i].isReach=="是"){
+                      let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage2.png' alt='' style='width:12px;height:12px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px"});
+                      $imgBox.append($village);
+                  }
+              }
+              /*村悬浮事件*/
+              let $tips=$("<div style='width:40px;height:38px;background: #fff;color:#000;font-size:10px;line-height:12px;padding:2px 3px;z-index: 10;'></div>");
+              $("#imgBox .village").hover(function(){
+                  let index=$(this).index();
+                  $("#imgBox .village").eq(index-1).css("transform","scale(1.2,1.2)");
+                  $tips.text(chat[index-1].name);
+                  $tips.css({"display":"block","position":"absolute","bottom":'-40px',"right":"-50px"});
+                  $(this).append($tips).css({"zIndex":999});
+                  /*村点击事件*/
+                  $("#imgBox .village").click(function(){
+                      let county=$(this).attr("county");
+                      let village=$(this).attr("name");
+                      let villagecode=$(this).attr("id");
+                      var url = host + '/village.html?county='+ county + '&name=' + village + '&code=' + villagecode;
+                      window.location.href = url;
+                  })
+              },function(){
+                  $tips.css("display","none");
+                  $(this).css({"transform":"scale(1,1)","zIndex":10});
+              })
+          }
+      }else if(mapImg=="gaoling"){
+          $("#imgBox>img").attr("src","images/gaoling.png");
+      }else if(mapImg=="guoji"){
+          $("#imgBox>img").attr("src","images/guoji.png");
+      }else if(mapImg=="baqiao"){
+          $("#imgBox>img").attr("src","images/baqiao.png");
+      }else if(mapImg=="changan"){
+          $("#imgBox>img").attr("src","images/changan.png");
+      }
+
+
+	$('.TopTitle').append(countryName);
+    $('.c-title').append('<span style="float:left;margin-right:-23px;">'+countryName+'</span>');
+    $('.big-title a').append(countryName);
+</script>
+<script src="js/echarts.js"></script>
+<script src="js/Every.js"></script>
+<script>
+    
+    $('#right-arrow').click(function(){
+        var imhJudge=$('#right-arrow img').attr("sleep");
+        if (imhJudge=='right') {
+            $('#right-arrow').html('<img src="images/leftArrow.png" sleep="left">');
+            addCun();
+            $('#arrowZhen').show();
+        }
+        else if (imhJudge=='left') {
+            $('#right-arrow').html('<img src="images/rightArrow.png" sleep="right">');
+            $('#arrowZhen').hide();
+            $('#arrowCun').hide();
+            $(".main>.box1").css({"opacity":0,"top":"-100%"});
+        }
+        
+    })
+    
+	$('.c-title1 span').click(function(e){ClickEnlarge($('.enlarge1'),'2%','158%');});
+	$('.c-title2 span').click(function(e){ClickEnlarge($('.enlarge2'),'-32%','158%');});
+	$('.c-title3 span').click(function(e){ClickEnlarge1($('.enlarge3'),'30%','40%');});
+	$('.c-title4 span').click(function(e){ClickEnlarge1($('.enlarge4'),'30%','40%');});
+	$('.c-title5 span').click(function(e){ClickEnlarge1($('.enlarge5'),'32%','40%');});
+	$('.c-title6 span').click(function(e){ClickEnlarge1($('.enlarge6'),'30%','40%');});
+	$('.c-title7 span').click(function(e){ClickEnlarge1($('.enlarge7'),'30%','40%');});
+	$('.c-title8 span').click(function(e){ClickEnlarge1($('.enlarge8'),'32%','40%');});
+	$('.c-title9 span').click(function(e){ClickEnlarge1($('.enlarge9'),'30%','40%');});
+	$('.c-title10 span').click(function(e){ClickEnlarge1($('.enlarge10'),'32%','40%');});
+    //console.log(countryName)
+
+    searchEvent(url+'/county/search',$('.submit'),$('.searchBox'),$('#ZZsearchInfo'),countryName);//搜索调用
+    GKJS(url+'/county/districtValue?aar008='+countryName);//区县概况
+    CountryXXTJ(url+'/county/reach?aar008='+countryName);
+    TPGJ(url+'/county/outPoor?aar008='+countryName);
+    PKHSX(url+'/county/property?aar008='+countryName);
+    ZPYY(url+'/county/poorReason?aar008='+countryName);//http://192.168.1.195:9999/poverty-web-1.0-SNAPSHOT
+    FPZJ(url+'/county/fund?aar008='+countryName);//周至县扶贫资金
+    getLand(countryName);
+    getPopulation(countryName,'echarts-40','/povStat/holdperscale',['一人户','二人户','三人户','四人户','五人户','六人户以上'],'贫困户人口规模统计');
+    getPopulation(countryName,'echarts-50','/povStat/holdlife',['饮水困难户数','无安全饮水户数','未通生活用电户数','未通广播电视户数','住房是危房户数','无卫生厕所户数'],'贫困户生产生活困难');
+    getPopulation(countryName,'echarts-60','/povStat/bodystat',['健康','长期慢性病','大病','残疾'],'贫困人口身体健康');
+    getPopulation(countryName,'echarts-70','/povStat/worktypestat',['普通劳动力','技能劳动力','丧失劳动力','无劳动力'],'贫困人口劳动力类型');
+
+    lunboRight();
+
+</script>
+<script>
+	/*打开弹框*/
+	$(".details").click(function(){
+        $(".main>.box").css({"opacity":"1","top":"0"});
+        $(".pop-up").css({"opacity":"1","top":"50%"});
+	})
+
+	/*关闭弹框*/
+    $(".main>.pop-up>.close").click(function(){
+        $(".pop-up").css({"opacity":0,"top":"-100%"});
+        $(".main>.box").css({"opacity":0,"top":"-100%"});
+    })
+    $(".main>.pop-up2>.close").click(function(){
+        $(".pop-up2").css({"opacity":0,"top":"-100%"});
+        $(".main>.box").css({"opacity":0,"top":"-100%"});
+    })
+	/*echarts点击事件*/
+	// myChart2.on("click",function(params){
+	//     console.log(params)
+ //        if(params.componentType == "series"){
+ //            $("#year").text(params.name);
+ //            $(".main>.box").css({"opacity":"1","top":"0"});
+ //            $(".pop-up2").css({"opacity":"1","top":"50%"});
+ //            // alert("单击了"+params.value+"x轴标签");
+ //        }else{
+ //            // alert("单击了"+params.name+"柱状图");
+ //        }
+	// })
+
+</script>

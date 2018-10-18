@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>自然村数据足迹</title>  
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <style>
+.panel>.form-01>#formSubmit00,.panel>#formSubmit00>tbody{
+    width: 100%;
+    font-size: 14px;
+}
+.form-01 table tr th{
+    height: 40px;
+    line-height: 40px;
+    border:solid 1px #ddd;
+   background: #fcfcfc;
+}
+
+.form-01 #formSubmit00 tr td{
+    height: 34px;
+    line-height: 34px;
+    border:solid 1px #ddd;
+    text-align: center;
+}
+.form-01 #formSubmit00 tr td:nth-child(5){
+	color: #00c120;
+}
+.form-01 #formSubmit00 tr td:nth-child(6){
+	color: #ff6c00;
+}
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>自然村数据足迹</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+  <div class="form-01">
+      <!--<p>高级搜索</p>
+      <div class="search">
+          <label for="">请选择地区</label>
+          <input type="text" value="陕西省" disabled>
+          <input type="text" value="西安市" disabled>
+          <select name="" id="">
+              <option value="">县（区）</option>
+          </select>
+          <input type="button" class="btn_blue" style="float: right;" name="" value="查询" onclick="javascript:sh();">
+      </div>-->
+      <table id="formSubmit00" class="form-x">
+          <tr>
+              <th>序号</th>
+              <th>区县</th>
+              <th>镇街</th>
+              <th>自然村名</th>
+              <th>操作人姓名</th>
+              <th>时间</th>
+              <th>变更项目</th>
+              <th>原有值</th>
+              <th>变更值</th>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>周至县</td>
+              <td>陈河镇</td>
+              <td>堡子村</td>
+              <td>李飞</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>录入人</td>
+              <td>灞桥街道扶贫版</td>
+              <td>灞桥街道扶贫办</td>
+          </tr>
+          <tr>
+              <td>2</td>
+              <td>周至县</td>
+              <td>陈河镇</td>
+              <td>堡子村</td>
+              <td>李飞</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>录入联系方式</td>
+              <td>83145678</td>
+              <td>83610090</td>
+          </tr>
+          <tr>
+              <td>3</td>
+              <td>周至县</td>
+              <td>陈河镇</td>
+              <td>堡子村</td>
+              <td>宋阳德</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>录入联系方式</td>
+              <td>83145678</td>
+              <td>83610090</td>
+          </tr>
+          <tr>
+              <td>4</td>
+              <td>周至县</td>
+              <td>陈河镇</td>
+              <td>堡子村</td>
+              <td>冯满青</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>录入联系方式</td>
+              <td>83145678</td>
+              <td>83610090</td>
+          </tr>
+          <tr>
+              <td>5</td>
+              <td>周至县</td>
+              <td>陈河镇</td>
+              <td>堡子村</td>
+              <td>马汝波</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>录入联系方式</td>
+              <td>83145678</td>
+              <td>83610090</td>
+          </tr>
+          <tr>
+              <td>6</td>
+              <td>周至县</td>
+              <td>陈河镇</td>
+              <td>堡子村</td>
+              <td>姚宇辰</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>录入联系方式</td>
+              <td>83145678</td>
+              <td>83610090</td>
+          </tr>
+          <tr>
+              <td>7</td>
+              <td>周至县</td>
+              <td>陈河镇</td>
+              <td>堡子村</td>
+              <td>张琦</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>录入联系方式</td>
+              <td>83145678</td>
+              <td>83610090</td>
+          </tr>         
+      </table>
+      <div class="pages">
+          <div class="paging">
+              <div id="Pagination"></div>
+              <div class="searchPage">
+                  <span class="page-sum">共<strong class="allPage">15</strong>页</span>
+                  <span class="page-go">到<input type="text">页</span>
+                  <a href=" " class="page-btn">确定</a>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+    })
+</script>
+</body>
+</html>

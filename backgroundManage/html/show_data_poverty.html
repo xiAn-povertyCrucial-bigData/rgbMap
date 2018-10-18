@@ -1,0 +1,1900 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困户信息审核</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/reset.min.css">
+    <link rel="stylesheet" href="../css/xiangqing.css">
+    <!--<script src="../js/commer.js"></script>-->
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/xiangqing.js"></script>
+    <script src="../js/config.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+	<script src="../js/common.js"></script>
+	<script src="../js/formReset.js"></script>
+    <style>
+    	.active{background: #70c1ff!important;color: #fff!important;border-radius: 12px;}
+        .sort .form-group{width:200px;float:left;}
+        .sort .form-group select{border: 1px solid #c9d7e0;background-color: #fff;padding: 3px 0;border-radius: 3px;width: 115px;text-indent: 10px;vertical-align: middle;}
+    	.form-01 dt{
+        	height: 30px;
+		    line-height: 30px;
+		    float: left;
+		    margin-right: 10px;
+		    border-radius: 12px;
+		    text-align: center;
+		    padding: 2px 6px;
+		    cursor: pointer;
+		    position: relative;
+		    color: #555;
+		}
+        .form-01 #formSubmit2 tr td{
+            height:auto;
+        }
+		.xiangqing ul li{
+			width: 120px;
+			height: 45px;
+			background: blueviolet;
+			float:left
+		}
+		.xiangqing table{
+			width: 100%;
+		}
+		.xiangqing tr {
+			width: 100%;
+		}
+		.xiangqing tr td{
+			width: 8%;
+		}
+        .xiangqing tr td span{
+            color:#959595;
+            font-size: 12px;
+        }
+		.table-bg{background: #F7F7F7;height:30px;line-height: 30px;}
+		/*上传文件弹出框样式*/
+		.pop-up{
+			position:fixed;
+			top:50%;
+			left:50%;
+			transform: translate(-50%,-50%);
+			width:500px;
+			height:300px;
+			background: #f5f5f5;
+			border-radius: 4px;
+			z-index: 999;
+			border:1px solid #ccc;
+			display: none;
+		}
+		.pop-up .container{
+			width:100%;
+			height:100%;
+		}
+		.pop-up .container h3{
+			text-align: center;
+			height:60px;
+			line-height: 60px;
+		}
+		.pop-up .inputs{
+			width:100%;
+			height: 100px;
+			background: #fff;
+			position:relative;
+			border:1px dashed #ccc;
+		}
+		.pop-up .inputs #upfile{
+			position:absolute;
+			top:50%;
+			left:50%;
+			transform: translate(-50%,-50%);
+		}
+		.pop-up .container .inputs input{
+			width: 170px;
+		}
+		.pop-up .container .geshi{
+			width:100%;
+			text-align: center;
+			margin-top: 20px;
+			font-size: 12px;
+		}
+		.pop-up .container .geshi button{
+			width:50px;
+			height:24px;
+			border-radius: 4px;
+			background: #f0ad4e;
+			border: 1px solid #FFAC37;
+			color:#fff;
+		}
+		.pop-up .closes{
+			font-size:22px;
+			float: right;
+			margin-right:14px;
+			cursor: pointer;
+		}
+		.btn_orange{color: #fff;
+		    background: #f0ad4e;
+		    border: 1px solid #FFAC37;
+		    width: 50px;
+		    text-align: center;
+		    margin-right: 13px;
+		    text-indent: 0;
+		    padding: 3px 0;
+    		border-radius: 3px;
+    		vertical-align: middle;
+		}	
+		.panel>.form-01>.search div{width: 100%;}
+
+        /*加载动画*/
+        .spinner {
+            margin: 5% auto;
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+        .container1 > div, .container2 > div, .container3 > div {
+            width: 14px;
+            height: 14px;
+            background-color: #858585;
+            border-radius: 100%;
+            position: absolute;
+            -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+            animation: bouncedelay 1.2s infinite ease-in-out;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .spinner .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container2 {
+            -webkit-transform: rotateZ(45deg);
+            transform: rotateZ(45deg);
+        }
+
+        .container3 {
+            -webkit-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+        }
+
+        .circle1 { top: 0; left: 0; }
+        .circle2 { top: 0; right: 0; }
+        .circle3 { right: 0; bottom: 0; }
+        .circle4 { left: 0; bottom: 0; }
+
+        .container2 .circle1 {
+            -webkit-animation-delay: -1.1s;
+            animation-delay: -1.1s;
+        }
+
+        .container3 .circle1 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+
+        .container1 .circle2 {
+            -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s;
+        }
+
+        .container2 .circle2 {
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+        }
+
+        .container3 .circle2 {
+            -webkit-animation-delay: -0.7s;
+            animation-delay: -0.7s;
+        }
+
+        .container1 .circle3 {
+            -webkit-animation-delay: -0.6s;
+            animation-delay: -0.6s;
+        }
+
+        .container2 .circle3 {
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        }
+
+        .container3 .circle3 {
+            -webkit-animation-delay: -0.4s;
+            animation-delay: -0.4s;
+        }
+
+        .container1 .circle4 {
+            -webkit-animation-delay: -0.3s;
+            animation-delay: -0.3s;
+        }
+
+        .container2 .circle4 {
+            -webkit-animation-delay: -0.2s;
+            animation-delay: -0.2s;
+        }
+
+        .container3 .circle4 {
+            -webkit-animation-delay: -0.1s;
+            animation-delay: -0.1s;
+        }
+
+        @-webkit-keyframes bouncedelay {
+            0%, 80%, 100% { -webkit-transform: scale(0.0) }
+            40% { -webkit-transform: scale(1.0) }
+        }
+
+        @keyframes bouncedelay {
+            0%, 80%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 40% {
+                  transform: scale(1.0);
+                  -webkit-transform: scale(1.0);
+              }
+        }
+	</style>
+</head>
+<body>
+<!--上传文件弹出框-->
+<div class="pop-up">
+	<div class="closes"><strong>×</strong></div>
+	<div class="container">
+		<h3>导入Excel</h3>
+		<!--<span>上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传：</span>-->
+		<div class="inputs">
+			<input type="file" id="upfile" name="file" placeholder=""/>
+		</div>
+		<div class="geshi">
+			<button onclick="importExp();">导入</button>
+			<span>格式：.xls/xlsx</span>
+		</div>
+	</div>
+</div>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>贫困户数据管理</strong><!--<a href="addIndustryPovery.html" class="button border-main icon-plus-square-o">添加内容</a>-->
+      <input type="button" class="btn_orange" style="float: right;width:70px;" name="" value="户详情导出" id="export3">
+  	  <input type="button" class="btn_orange" style="float: right;width:70px;" name="" value="户列表导出" id="export">
+
+  </div>
+  <div class="form-01">
+      <p>数据筛选 <span class="pack_up">收起-</span></p>
+      <div class="search searchs" style="display: block;">
+           <div>
+              <label for="">行政区划</label>
+              <input type="text" value="陕西省" disabled>
+              <!--<input type="text" value="西安市" disabled>-->
+               <select name="" id="city">
+                   <option value="jzfpxa">西安市</option>
+                   <option value="jzfpxx">西咸新区</option>
+               </select>
+              <select name="" id="country">
+				  <option value="">县（区）</option>
+              </select>
+              <select name="" id="township">
+                  <option value="">乡（镇）</option>
+
+              </select>
+              <select name="" id="village">
+                  <option value="">村</option>
+
+              </select>
+               <label for="" style="margin-left: 20px;text-align: center;">修改状态</label>
+               <select name="" id="updateStatus">
+                   <option value="1">已修改</option>
+                   <option value="0">未修改</option>
+               </select>
+           </div>
+		   <div>
+              <div class="form-group">
+                  <label for="">提交人姓名</label>
+                  <input type="text" id="aak110">
+              </div>
+              <div class="form-group idNum">
+                  <label for="">户主姓名</label>
+                  <input type="text" id="povertyName">
+              </div>
+               <div class="form-group idNum" style="width:50%;">
+                   <label for="">户主证件号码</label>
+                   <input type="text" id="povertyIdNumber" style="width:180px;">
+               </div>
+            </div>
+          <div>
+              <div class="form-group">
+                  <label for="">提交日期</label>
+                  <input type="date" id="submitTime" style="width:130px;">
+              </div>
+              <div class="form-group idNum">
+                  <label for="">初审日期</label>
+                  <input type="date" id="firstTime" style="width:130px;">
+              </div>
+              <div class="form-group idNum">
+                  <label for="">复审日期</label>
+                  <input type="date" id="townTime" style="width:130px;">
+              </div>
+              <div class="form-group idNum">
+                  <label for="">终审日期</label>
+                  <input type="date" id="disTime" style="width:130px;">
+              </div>
+          </div>
+          <div style="overflow: hidden;">
+              <div class="form-group">
+                  <label for="">审核状态</label>
+                  <select name="" id="aduitStatus">
+                      <option value="">请选择</option>
+                      <option value="1">待初审</option>
+                      <option value="2">待复审</option>
+                      <option value="3">待终审</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="">审核结果</label>
+                  <select name="" id="aduitResult">
+                      <option value="">请选择</option>
+                      <option value="1">初审已通过</option>
+                      <option value="2">初审未通过</option>
+                      <option value="3">复审已通过</option>
+                      <option value="4">复审未通过</option>
+                      <option value="5">终审已通过</option>
+                      <option value="6">终审未通过</option>
+                  </select>
+              </div>
+          </div>
+          <div style="overflow: hidden;">
+              <div class="form-group">
+                  <label for="">修改类别</label>
+                  <select name="" id="updateType">
+                      <option value="">请选择</option>
+                      <option value="1">基本信息</option>
+                      <option value="2">生产生活</option>
+                      <option value="3">收入信息</option>
+                      <option value="4">家庭成员</option>
+                      <option value="5">易地搬迁</option>
+                      <option value="6">危房改造</option>
+                      <option value="7">生态扶贫</option>
+                      <option value="8">金融扶贫</option>
+                      <option value="9">教育扶贫</option>
+                      <option value="10">健康扶贫</option>
+                      <option value="11">兜底保障(残疾)</option>
+                      <option value="12">就业创业</option>
+                      <option value="13">产业扶贫</option>
+                      <option value="14">兜底保障(民政)</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="">修改指标</label>
+                  <select name="" id="typeShip">
+                      <!--<option value="">耕地面积</option>
+                      <option value="">林果面积</option>
+                      <option value="">家庭人口数</option>
+                      <option value="">危房等级</option>
+                      <option value="">有效灌溉面积</option>
+                      <option value="">生产性支出</option>-->
+                  </select>
+              </div>
+          </div>
+          <div style="float: right;">
+              <input type="button" class="btn_orange" style="float: right;" name="" value="查询" id="searchs">
+              <input type="button" class="btn_blue" style="float: right;" name="" value="重置条件" id="reset">
+          </div>
+      </div>
+      <div class="spinner" style="display: none;z-index: 999">
+          <div class="spinner-container container1">
+              <div class="circle1"></div>
+              <div class="circle2"></div>
+              <div class="circle3"></div>
+              <div class="circle4"></div>
+          </div>
+          <div class="spinner-container container2">
+              <div class="circle1"></div>
+              <div class="circle2"></div>
+              <div class="circle3"></div>
+              <div class="circle4"></div>
+          </div>
+          <div class="spinner-container container3">
+              <div class="circle1"></div>
+              <div class="circle2"></div>
+              <div class="circle3"></div>
+              <div class="circle4"></div>
+          </div>
+      </div>
+      <table id="formSubmit2" class="form-x" cellspacing="0" cellpadding="0">
+
+          <!--渲染主体内容数据模块-->
+          <!--<tr>
+              <th>序号</th>
+              <th>所属区县</th>
+              <th>所属镇街</th>
+              <th>所属村</th>
+              <th>户主姓名</th>
+              <th>证件号码</th>
+              <th>操作</th>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>周至县</td>
+              <td>哑柏镇</td>
+              <td>昌西村委会</td>
+              <td>李淑芳</td>
+              <td>142031199605051234</td>
+              <td><a class="xqclick" hrefs="" style="cursor:pointer;">详情</a></td>
+          </tr>
+          <tr>
+              <td>2</td>
+              <td>周至县</td>
+              <td>哑柏镇</td>
+              <td>昌西村委会</td>
+              <td>李淑芳</td>
+              <td>142031199605051234</td>
+              <td><a class="xqclick" hrefs="" style="cursor:pointer;">详情</a></td>
+          </tr>
+          <tr>
+              <td>3</td>
+              <td>周至县</td>
+              <td>哑柏镇</td>
+              <td>昌西村委会</td>
+              <td>李淑芳</td>
+              <td>142031199605051234</td>
+              <td><a class="xqclick" hrefs="" style="cursor:pointer;">详情</a></td>
+          </tr>
+          <tr>
+              <td>4</td>
+              <td>周至县</td>
+              <td>哑柏镇</td>
+              <td>昌西村委会</td>
+              <td>李淑芳</td>
+              <td>142031199605051234</td>
+              <td><a class="xqclick" hrefs="" style="cursor:pointer;">详情</a></td>
+          </tr>
+          <tr>
+              <td>5</td>
+              <td>周至县</td>
+              <td>哑柏镇</td>
+              <td>昌西村委会</td>
+              <td>李淑芳</td>
+              <td>142031199605051234</td>
+              <td><a class="xqclick" hrefs="" style="cursor:pointer;">详情</a></td>
+          </tr>-->
+      </table>
+      <div class="pages">
+          <div class="paging">
+              <div id="Pagination"></div>
+              <div class="searchPage">
+                  <span class="page-sum"></span>
+                  <!--<span class="page-go">到<input type="text" id="currentPage">页</span>
+                  <a class="page-btn" style="cursor:pointer;">确定</a>-->
+				  <span id="allTotal"></span>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+
+<!--详情页-->
+<div style="width: 95%;height: auto;border: 1px solid #d9d9d9;margin: 0 auto; display: none;position: absolute;top: 150px;left: 35px;z-index: 10;background: white;" class="xiangqing">
+	<div class="tab-wrapper" style="margin:0;overflow-x: auto">
+		<p style="background: #1797f6;width:120%;height: 40px;line-height:40px;color: white;text-align: center;font-size:18px;">贫困户数据管理详情<span class="xqclose" style="float: right;padding-right: 10px;cursor:pointer;">X</span></p>
+	  <div class="tab-content" style="min-height:422px;border-top: 1px solid #d9d9d9;min-width:120%;">
+	    <div>
+            <div class="sort">
+                <div class="form-group">
+                    <label for="">修改类别</label>
+                    <select name="" id="updateType2">
+                        <option value="">请选择</option>
+                        <option value="1">基本信息</option>
+                        <option value="2">生产生活</option>
+                        <option value="3">收入信息</option>
+                        <option value="4">家庭成员</option>
+                        <option value="5">易地搬迁</option>
+                        <option value="6">危房改造</option>
+                        <option value="7">生态扶贫</option>
+                        <option value="8">金融扶贫</option>
+                        <option value="9">教育扶贫</option>
+                        <option value="10">健康扶贫</option>
+                        <option value="11">兜底保障(残疾)</option>
+                        <option value="12">就业创业</option>
+                        <option value="13">产业扶贫</option>
+                        <option value="14">兜底保障(民政)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">修改指标</label>
+                    <select name="" id="typeShip2">
+                        <!--<option value="">耕地面积</option>
+                        <option value="">林果面积</option>
+                        <option value="">家庭人口数</option>
+                        <option value="">危房等级</option>
+                        <option value="">有效灌溉面积</option>
+                        <option value="">生产性支出</option>-->
+                    </select>
+                </div>
+                <div>
+                    <input type="button" class="btn_orange" name="" value="查询" id="searchs2">
+                </div>
+            </div>
+	    	<table border="1" cellspacing="0" cellpadding="0" id="formSubmit3">
+				<!--<tr style="font-size: 14px;">
+                    <th class="table-bg">成员姓名</th>
+                    <th class="table-bg">修改类别</th>
+                    <th class="table-bg">修改指标</th>
+                    <th class="table-bg">提交人姓名</th>
+                    <th class="table-bg">提交人联系电话</th>
+                    <th class="table-bg">提交时间</th>
+                    <th class="table-bg">提交人所在单位</th>
+                    <th class="table-bg">第一书记确认审核</th>
+                    <th class="table-bg">镇街扶贫办审核</th>
+                    <th class="table-bg">区县扶贫办审核</th>
+				</tr>-->
+				<!--<tr>
+                    <td>收入信息</td>
+                    <td>耕地面积</td>
+                    <td>刘轩</td>
+                    <td>16619859605</td>
+                    <td>2018-8-31 12:00:00</td>
+                    <td>西安市扶贫办</td>
+					<td>已通过<br><span>2018-8-31 12:00:00</span></td>
+                    <td>未通过<br><span>2018-8-31 12:00:00</span></td>
+                    <td>未通过<br><span>2018-8-31 12:00:00</span></td>
+				</tr>
+                <tr>
+                    <td>收入信息</td>
+                    <td>耕地面积</td>
+                    <td>刘轩</td>
+                    <td>16619859605</td>
+                    <td>2018-8-31 12:00:00</td>
+                    <td>西安市扶贫办</td>
+                    <td>已通过<br><span>2018-8-31 12:00:00</span></td>
+                    <td>未通过<br><span>2018-8-31 12:00:00</span></td>
+                    <td>未通过<br><span>2018-8-31 12:00:00</span></td>
+                </tr>
+                <tr>
+                    <td>收入信息</td>
+                    <td>耕地面积</td>
+                    <td>刘轩</td>
+                    <td>16619859605</td>
+                    <td>2018-8-31 12:00:00</td>
+                    <td>西安市扶贫办</td>
+                    <td>已通过<br><span>2018-8-31 12:00:00</span></td>
+                    <td>未通过<br><span>2018-8-31 12:00:00</span></td>
+                    <td>未通过<br><span>2018-8-31 12:00:00</span></td>
+                </tr>
+                <tr>
+                    <td>收入信息</td>
+                    <td>耕地面积</td>
+                    <td>刘轩</td>
+                    <td>16619859605</td>
+                    <td>2018-8-31 12:00:00</td>
+                    <td>西安市扶贫办</td>
+                    <td>已通过<br><span>2018-8-31 12:00:00</span></td>
+                    <td>未通过<br><span>2018-8-31 12:00:00</span></td>
+                    <td>未通过<br><span>2018-8-31 12:00:00</span></td>
+                </tr>
+                <tr>
+                    <td>收入信息</td>
+                    <td>耕地面积</td>
+                    <td>刘轩</td>
+                    <td>16619859605</td>
+                    <td>2018-8-31 12:00:00</td>
+                    <td>西安市扶贫办</td>
+                    <td>已通过<br><span>2018-8-31 12:00:00</span></td>
+                    <td>未通过<br><span>2018-8-31 12:00:00</span></td>
+                    <td>未通过<br><span>2018-8-31 12:00:00</span></td>
+                </tr>-->
+
+			</table>
+	    </div>
+          <p style="text-align: center;" id="dataItem"></p>
+	  </div>
+	</div>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#updateStatus").change(function(){
+            $("#aak110").val("").attr("disabled",false).css("background","#fff");
+            $("#submitTime").val("").attr("disabled",false).css("background","#fff");
+            $("#firstTime").val("").attr("disabled",false).css("background","#fff");
+            $("#townTime").val("").attr("disabled",false).css("background","#fff");
+            $("#disTime").val("").attr("disabled",false).css("background","#fff");
+            $("#aduitStatus").val("").attr("disabled",false).css("background","#fff");
+            $("#aduitResult").val("").attr("disabled",false).css("background","#fff");
+            $("#updateType").val("").attr("disabled",false).css("background","#fff");
+            $("#typeShip").val("").attr("disabled",false).css("background","#fff");
+            if($("#updateStatus").val()=="0"){
+                $("#aak110").val("").attr("disabled","disabled").css("background","#eeeeee");
+                $("#submitTime").val("").attr("disabled","disabled").css("background","#eeeeee");
+                $("#firstTime").val("").attr("disabled","disabled").css("background","#eeeeee");
+                $("#townTime").val("").attr("disabled","disabled").css("background","#eeeeee");
+                $("#disTime").val("").attr("disabled","disabled").css("background","#eeeeee");
+                $("#aduitStatus").val("").attr("disabled","disabled").css("background","#eeeeee");
+                $("#aduitResult").val("").attr("disabled","disabled").css("background","#eeeeee");
+                $("#updateType").val("").attr("disabled","disabled").css("background","#eeeeee");
+                $("#typeShip").val("").attr("disabled","disabled").css("background","#eeeeee");
+            }
+        })
+        /*重置*/
+        $("#reset").click(function(){
+            $("#county").val("");
+            $("#township").val("");
+            $("#village").val("");
+            $("#aak110").val("");
+            $("#submitTime").val("");
+            $("#firstTime").val("");
+            $("#townTime").val("");
+            $("#disTime").val("");
+            $("#aduitStatus").val("");
+            $("#aduitResult").val("");
+            $("#updateType").val("");
+            $("#typeShip").val("");
+            $("#updateStatus").val("1");
+        })
+    })
+</script>
+<script>
+    /*筛选条件收起展开*/
+    $(".pack_up").click(function(){
+        $(".search").toggle();
+        $(".pack_up").text($(".pack_up").text()=="高级查询+"?"收起-":"高级查询+");
+    })
+    $(".tuopin dl >dt:nth-child(2)").nextAll().click(function(){
+        $(".tuopin dl >dt:nth-child(2)").removeClass("active");
+        $(this).toggleClass("active");
+        //给点击对象添加类
+    });
+    $(".tuopin dl >dt:nth-child(2)").click(function(){
+        $(this).toggleClass("active")
+        $(this).siblings().removeClass('active');
+    })
+    $(".shuxing dl >dt:nth-child(2)").nextAll().click(function(){
+        $(".shuxing dl >dt:nth-child(2)").removeClass("active");
+        $(this).toggleClass("active");
+        //给点击对象添加类
+    });
+    $(".shuxing dl >dt:nth-child(2)").click(function(){
+        $(this).toggleClass("active")
+        $(this).siblings().removeClass('active');
+    })
+    $(".reason dl >dt:nth-child(2)").nextAll().click(function(){
+        $(".reason dl >dt:nth-child(2)").removeClass("active");
+        $(this).toggleClass("active");
+        //给点击对象添加类
+    });
+    $(".reason dl >dt:nth-child(2)").click(function(){
+        $(this).toggleClass("active")
+        $(this).siblings().removeClass('active');
+    })
+    $(".xqclick").click(function(){
+        $(".xiangqing").show(1000)
+    })
+    $(".xqclose").click(function(){
+        $(".xiangqing").hide(1000)
+    })
+</script>
+<script>
+    $(document).ready(function(){
+        var url=config.url;
+        let token=$.cookie("token");
+        /*区划选择渲染*/
+        let updateType=$("#updateType");
+        let updateType2=$("#updateType2");
+        let typeShip=$("#typeShip");
+        let typeShip2=$("#typeShip2");
+        let county=$("#country");
+        let township=$("#township");
+        let cunship=$("#village");
+        let years=$("#year");
+        /*页面初始化调用*/
+        let obj=JSON.parse($.cookie('loginMessage'));
+        let aar008=obj.aar008;
+        tianqu();
+        updateType.change(function(){
+            tiantype();
+        })
+        updateType2.change(function(){
+            tiantype2();
+        })
+        county.change(function(){
+            tianzhen();
+            tiancun();
+        })
+        township.change(function(){
+            tiancun();
+        })
+        /*页面初始化接口*/
+        function tianqu(){
+            $.ajax({
+                url: url+"/background/helpmeasures/industry/init",
+                data:{"aar008":aar008},
+                async:false,
+                method:"post",
+                type:"json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // showCounty(county,data.data.area);  //行政区划
+                        showYear(years,data.data.year)   //年份
+						let type=data.data.type;
+                        if(type==1){
+                            showCounty(county,data.data.area);
+						}else if(type==2){
+                            showFixed(county,data.data.q);
+                            tianzhen();
+						}else if(type==3){
+                            showFixed(county,data.data.q);
+                            showFixed(township,data.data.x);
+                            tiancun();
+						}else if(type==4){
+                            showFixed(county,data.data.q);
+                            showFixed(township,data.data.x);
+                            showFixed(cunship,data.data.c);
+                        }
+                    }
+                }
+            })
+        }
+        /*镇/街道渲染接口*/
+        function tianzhen(){
+            var countyName=$("#country").val();
+            $.ajax({
+                url: url+"/background/helpmeasures/common/arealist",
+                data:{"aaa113":countyName},
+                async:false,
+                method:"post",
+                type:"json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        showCounty2(township,data.data);
+                    }
+                }
+            })
+        }
+        /*村渲染接口*/
+        function tiancun(){
+            var townName=$("#township").val();
+            // console.log(townName)
+            $.ajax({
+                url: url+"/background/helpmeasures/common/arealist",
+                data:{"aaa113":townName},
+                async:false,
+                method:"post",
+                type:"json",
+                success:function(data){
+                    if(data.code === 2000){
+                        showCounty3(cunship,data.data);
+                    }
+                }
+            })
+        }
+        /*行政区划渲染函数*/
+        function showCounty(obj,data){
+            obj.empty();
+            let str=`<option value="">县（区）</option>`;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                 <option value="${data[i]['AAR008']}">${data[i]['AAR009']}</option>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        function showCounty2(obj,data){
+            obj.empty();
+            let str=`<option value="">乡（镇）</option>`;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                 <option value="${data[i]['AAR008']}">${data[i]['AAR009']}</option>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        function showCounty3(obj,data){
+            obj.empty();
+            let str=`<option value="">村</option>`;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                 <option value="${data[i]['AAR008']}">${data[i]['AAR009']}</option>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        function showFixed(obj,data){
+            obj.empty();
+            let str=`
+                 <option value="${data.AAR008}">${data.AAR009}</option>
+                `;
+            obj.html(str);
+        }
+        /*年份渲染函数*/
+        function showYear(obj,data){
+            obj.empty();
+            let str=``;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                 <option value="${data[i]}">${data[i]}</option>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        /*修改类别函数*/
+        function tiantype(){
+            var type=$("#updateType").val();
+            $.ajax({
+                url: url+"/info/poverty/field",
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                data:{"type":type},
+                async:false,
+                method:"post",
+                type:"json",
+                success:function(data){
+
+                    if(data.code === 2000){
+
+                        showType(typeShip,data.data);
+                    }
+                }
+            })
+        }
+        function tiantype2(){
+            var type2=$("#updateType2").val();
+            $.ajax({
+                url: url+"/info/poverty/field",
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                data:{"type":type2},
+                async:false,
+                method:"post",
+                type:"json",
+                success:function(data){
+                    if(data.code === 2000){
+                        showType(typeShip2,data.data);
+                    }
+                }
+            })
+        }
+        function showType(obj,data){
+            console.log(data)
+            obj.empty();
+            let str=`<option value="">--请选择--</option>`;
+            for(let i in data){
+                str+=`
+                 <option value="${data[i]}">${i}</option>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        ///////////////////////////////////////////////////////////
+        let formList=$("#formSubmit2");
+		let datas={"pageNum":1,"pageSize":12,"year":"201808"};
+        // let datas2=JSON.stringify(datas);
+
+        var totle;
+        $.ajax({
+            url: url+"/info/aduit/poverty",
+            data:datas,
+            beforeSend:function(request){
+                request.setRequestHeader("Authorization",token);
+                request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                ShowLoading();
+            },
+            dataType: 'json',
+            // crossDomain: true,
+            method:"post",
+            // contentType:"application/json",
+            success:function(data){
+                console.log(data.data)
+                if(data.code === 2000){
+                    showList(formList,data.data.list);
+                    for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                        if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                            $("#formSubmit2 tr td").eq(i).text("");
+                        }
+                    }
+                    $(".page-sum").text("共"+data.data.pages+"页");
+                    $("#allTotal").text("总户数："+data.data.total);
+                    totle=data.data.total;
+                    showPage($(".searchPage"),data.data.total);
+                }else if(data.code===4000){
+                    alert(data.message);
+				}
+            },
+            complete:function(){
+                HideLoading();
+            }
+        })
+        function ShowLoading() {
+            $(".spinner").show();
+        }
+        function HideLoading() {
+            $(".spinner").hide();
+        }
+        /*点击进行查询*/
+        $("#searchs").click(function(){
+            /*查询条件*/
+            $("#formSubmit2").empty();
+            let pageSize=12;
+            let year="201808";
+            let jzfp=$("#city").val();
+            let dis=$("#country").val();
+            let town=$("#township").val();
+            let vill=$("#village").val();
+            let aak110=$("#aak110").val();
+            let povertyName=$("#povertyName").val();
+            let povertyIdNumber=$("#povertyIdNumber").val();
+            let submitTime=$("#submitTime").val().replace(/-/g,'');
+            let firstTime=$("#firstTime").val().replace(/-/g,'');
+            let townTime=$("#townTime").val().replace(/-/g,'');
+            let disTime=$("#disTime").val().replace(/-/g,'');
+            let aduitStatus=$("#aduitStatus").val();
+            let aduitResult=$("#aduitResult").val();
+            let modifyType=$("#updateType").val();
+            let modifyField=$("#typeShip").val();
+            let isAduit=$("#updateStatus").val();
+            if(jzfp=="jzfpxa"){
+                var data={"pageNum":1,"pageSize":pageSize,"year":year,"jzfpxa":1,"dis":dis,"town":town,"vill":vill,"aak110":aak110,"povertyName":povertyName,"povertyIdNumber":povertyIdNumber,"submitTime":submitTime,"firstTime":firstTime,"townTime":townTime,"disTime":disTime,"aduitStatus":aduitStatus,"aduitResult":aduitResult,"modifyType":modifyType,"modifyField":modifyField,"isAduit":isAduit};
+            }else if(jzfp=="jzfpxx"){
+                var data={"pageNum":1,"pageSize":pageSize,"year":year,"jzfpxx":1,"dis":dis,"town":town,"vill":vill,"aak110":aak110,"povertyName":povertyName,"povertyIdNumber":povertyIdNumber,"submitTime":submitTime,"firstTime":firstTime,"townTime":townTime,"disTime":disTime,"aduitStatus":aduitStatus,"aduitResult":aduitResult,"modifyType":modifyType,"modifyField":modifyField,"isAduit":isAduit};
+            }
+            function qukong(obj){
+                for(var key in obj){
+                    if(obj[key]==null || obj[key]==''){
+                        console.log(obj[key]);
+                        delete obj[key];
+                    }
+                }
+                return obj;
+            }
+            let datas=qukong(data)
+            /*主体内容渲染*/
+            let formList=$("#formSubmit2");
+            $.ajax({
+                url: url+"/info/advance/search",
+                data:datas,
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                    ShowLoading();
+                },
+                dataType:"json",
+                method:"post",
+                // async:false,
+                // contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        showList(formList,data.data.list);
+                        for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                            if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                                $("#formSubmit2 tr td").eq(i).text("");
+                            }
+                        }
+                        $(".page-sum").text("共"+data.data.pages+"页");
+                        $("#allTotal").text("总户数："+data.data.total);
+                        showPage2($(".searchPage"),data.data.total);
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                },
+                complete:function(){
+                    HideLoading();
+                }
+            })
+        })
+        /*详情查询*/
+        $("#searchs2").click(function(){
+            /*查询条件*/
+            $("#formSubmit3").empty();
+            let modifyType=$("#updateType2").val();
+            let modifyField=$("#typeShip2").val();
+            let data={"aac001":huvalue,"type":modifyType,"field":modifyField,"year":201808};
+            // let datas=JSON.stringify(data);
+            function qukong(obj){
+                for(var key in obj){
+                    if(obj[key]==null || obj[key]==''){
+                        console.log(obj[key]);
+                        delete obj[key];
+                    }
+                }
+                return obj;
+            }
+            let datas=qukong(data)
+            /*主体内容渲染*/
+            let formList=$("#formSubmit3");
+            $.ajax({
+                url: url+"/info/poverty/detail/search",
+                data:datas,
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                    ShowLoading();
+                },
+                dataType:"json",
+                method:"post",
+                // async:false,
+                // contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        $("#dataItem").html("共 "+data.data.length+" 条数据");
+                        showList3(formList,data.data);
+                        for(let i=0;i<$(".tab-content tr td span").length;i++){
+                            if($(".tab-content tr td span").eq(i).text()=="null" || $(".tab-content tr td span").eq(i).text()=="undefined" || $(".tab-content tr td span").eq(i).text()==undefined){
+                                $(".tab-content tr td span").eq(i).text("");
+                            }
+                        }
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                },
+                complete:function(){
+                    HideLoading();
+                }
+            })
+        })
+		/*分页*/
+		let indexs;
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function page_init(index) {
+            let pageSize=12;
+            let year="201808";
+            indexs=index+1;
+            let data={"pageNum":index+1,"pageSize":pageSize,"year":year};
+            // let datas=JSON.stringify(data);
+            /*主体内容渲染*/
+            let formList=$("#formSubmit2");
+            $.ajax({
+                url: url+"/info/aduit/poverty",
+                data:data,
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                dataType:"json",
+                method:"post",
+                async:false,
+                // contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        showList(formList,data.data.list);
+                        for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                            if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                                $("#formSubmit2 tr td").eq(i).text("");
+                            }
+                        }
+                        $(".page-sum").text("共"+data.data.pages+"页");
+                        $("#allTotal").text("总户数："+data.data.total);
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                }
+            })
+        }
+        function page_init2(index) {
+            let pageSize=12;
+            let year="201808";
+            let jzfp=$("#city").val();
+            let dis=$("#country").val();
+            let town=$("#township").val();
+            let vill=$("#village").val();
+            let aak110=$("#aak110").val();
+            let povertyName=$("#povertyName").val();
+            let povertyIdNumber=$("#povertyIdNumber").val();
+            let submitTime=$("#submitTime").val().replace(/-/g,'');
+            let firstTime=$("#firstTime").val().replace(/-/g,'');
+            let townTime=$("#townTime").val().replace(/-/g,'');
+            let disTime=$("#disTime").val().replace(/-/g,'');
+            let aduitStatus=$("#aduitStatus").val();
+            let aduitResult=$("#aduitResult").val();
+            let modifyType=$("#updateType").val();
+            let modifyField=$("#typeShip").val();
+            let isAduit=$("#updateStatus").val();
+            if(jzfp=="jzfpxa"){
+                var data={"pageNum":index+1,"pageSize":pageSize,"year":year,"jzfpxa":1,"isAduit":isAduit,"dis":dis,"town":town,"vill":vill,"aak110":aak110,"povertyName":povertyName,"povertyIdNumber":povertyIdNumber,"submitTime":submitTime,"firstTime":firstTime,"townTime":townTime,"disTime":disTime,"aduitStatus":aduitStatus,"aduitResult":aduitResult,"modifyType":modifyType,"modifyField":modifyField};
+            }else  if(jzfp=="jzfpxx"){
+                var data={"pageNum":index+1,"pageSize":pageSize,"year":year,"jzfpxx":1,"isAduit":isAduit,"dis":dis,"town":town,"vill":vill,"aak110":aak110,"povertyName":povertyName,"povertyIdNumber":povertyIdNumber,"submitTime":submitTime,"firstTime":firstTime,"townTime":townTime,"disTime":disTime,"aduitStatus":aduitStatus,"aduitResult":aduitResult,"modifyType":modifyType,"modifyField":modifyField};
+            }
+            // let datas=JSON.stringify(data);
+            function qukong(obj){
+                for(var key in obj){
+                    if(obj[key]==null || obj[key]==''){
+                        console.log(obj[key]);
+                        delete obj[key];
+                    }
+                }
+                return obj;
+            }
+            let datas=qukong(data)
+            indexs=index+1;
+            // let datas=JSON.stringify(data);
+            /*主体内容渲染*/
+            let formList=$("#formSubmit2");
+            $.ajax({
+                url: url+"/info/advance/search",
+                data:datas,
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                dataType:"json",
+                method:"post",
+                async:false,
+                // contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        showList(formList,data.data.list);
+                        for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                            if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                                $("#formSubmit2 tr td").eq(i).text("");
+                            }
+                        }
+                        $(".page-sum").text("共"+data.data.pages+"页");
+                        $("#allTotal").text("总户数："+data.data.total);
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                }
+            })
+        }
+        function showPage(obj,data){
+            $("#Pagination").pagination(data,{
+                callback:PageCallback,         //pageCallback() 为翻页调用函数
+                items_per_page:12,                //每页显示条目数
+                num_display_entries: 4,                //连续分页显示分页条目数
+                num_edge_entries: 1,          //两侧显示的首尾分页的条目数
+            });
+        }
+        function showPage2(obj,data){
+            $("#Pagination").pagination(data,{
+                callback:PageCallback2,         //pageCallback() 为翻页调用函数
+                items_per_page:12,                //每页显示条目数
+                num_display_entries: 4,                //连续分页显示分页条目数
+                num_edge_entries: 1,          //两侧显示的首尾分页的条目数
+            });
+        }
+        //ajax分页请求,page_index :页码
+        function PageCallback(page_index){
+            page_init(page_index);      //第一页为0
+        }
+        function PageCallback2(page_index){
+            page_init2(page_index);      //第一页为0
+        }
+        /*导出*/
+        $("#export").click(function(){
+            /*查询条件*/
+            let year="201808";
+            let jzfp=$("#city").val();
+            let dis=$("#country").val();
+            let town=$("#township").val();
+            let vill=$("#village").val();
+            let aak110=$("#aak110").val();
+            let povertyName=$("#povertyName").val();
+            let povertyIdNumber=$("#povertyIdNumber").val();
+            let submitTime=$("#submitTime").val().replace(/-/g,'');
+            let firstTime=$("#firstTime").val().replace(/-/g,'');
+            let townTime=$("#townTime").val().replace(/-/g,'');
+            let disTime=$("#disTime").val().replace(/-/g,'');
+            let aduitStatus=$("#aduitStatus").val();
+            let aduitResult=$("#aduitResult").val();
+            let modifyType=$("#updateType").val();
+            let modifyField=$("#typeShip").val();
+            let isAduit=$("#updateStatus").val();
+            if(jzfp=="jzfpxa"){
+                var data={"year":year,"jzfpxa":1,"dis":dis,"town":town,"vill":vill,"aak110":aak110,"povertyName":povertyName,"povertyIdNumber":povertyIdNumber,"submitTime":submitTime,"firstTime":firstTime,"townTime":townTime,"disTime":disTime,"aduitStatus":aduitStatus,"aduitResult":aduitResult,"modifyType":modifyType,"modifyField":modifyField,"isAduit":isAduit};
+            }else if(jzfp=="jzfpxx"){
+                var data={"year":year,"jzfpxx":1,"dis":dis,"town":town,"vill":vill,"aak110":aak110,"povertyName":povertyName,"povertyIdNumber":povertyIdNumber,"submitTime":submitTime,"firstTime":firstTime,"townTime":townTime,"disTime":disTime,"aduitStatus":aduitStatus,"aduitResult":aduitResult,"modifyType":modifyType,"modifyField":modifyField,"isAduit":isAduit};
+            }
+			/*去空*/
+            function qukong(obj){
+                for(var key in obj){
+                    if(obj[key]==null || obj[key]=='' || obj[key]=="null"){
+                        delete obj[key];
+                    }
+                }
+                return obj;
+            }
+            var newmap=qukong(data);
+            /*拼接*/
+            let strs="";
+            function pinjie(obj){
+                for(let key in obj){
+                    strs+=key+"="+obj[key]+"&";
+				}
+				return strs;
+			}
+			let a=pinjie(newmap)
+			let b=a.substring(0,a.length-1);
+			let cc=url+"/info/export/poverty/search?"+b;
+
+			/*ajax校验导出权限*/
+            $.ajax({
+                url: url+"/info/export/poverty/search/exist",
+                data:{},
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                dataType:"json",
+                method:"post",
+                async:false,
+                contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        window.location.href=cc;
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+        $("#export3").click(function(){
+            /*查询条件*/
+            let year="201808";
+            let jzfp=$("#city").val();
+            let dis=$("#country").val();
+            let town=$("#township").val();
+            let vill=$("#village").val();
+            let aak110=$("#aak110").val();
+            let povertyName=$("#povertyName").val();
+            let povertyIdNumber=$("#povertyIdNumber").val();
+            let submitTime=$("#submitTime").val().replace(/-/g,'');
+            let firstTime=$("#firstTime").val().replace(/-/g,'');
+            let townTime=$("#townTime").val().replace(/-/g,'');
+            let disTime=$("#disTime").val().replace(/-/g,'');
+            let aduitStatus=$("#aduitStatus").val();
+            let aduitResult=$("#aduitResult").val();
+            let modifyType=$("#updateType").val();
+            let modifyField=$("#typeShip").val();
+            let isAduit=$("#updateStatus").val();
+            if(jzfp=="jzfpxa"){
+                var data={"year":year,"jzfpxa":1,"dis":dis,"town":town,"vill":vill,"aak110":aak110,"povertyName":povertyName,"povertyIdNumber":povertyIdNumber,"submitTime":submitTime,"firstTime":firstTime,"townTime":townTime,"disTime":disTime,"aduitStatus":aduitStatus,"aduitResult":aduitResult,"modifyType":modifyType,"modifyField":modifyField,"isAduit":isAduit};
+            }else if(jzfp=="jzfpxx"){
+                var data={"year":year,"jzfpxx":1,"dis":dis,"town":town,"vill":vill,"aak110":aak110,"povertyName":povertyName,"povertyIdNumber":povertyIdNumber,"submitTime":submitTime,"firstTime":firstTime,"townTime":townTime,"disTime":disTime,"aduitStatus":aduitStatus,"aduitResult":aduitResult,"modifyType":modifyType,"modifyField":modifyField,"isAduit":isAduit};
+            }
+            /*去空*/
+            function qukong(obj){
+                for(var key in obj){
+                    if(obj[key]==null || obj[key]=='' || obj[key]=="null"){
+                        delete obj[key];
+                    }
+                }
+                return obj;
+            }
+            var newmap=qukong(data);
+            /*拼接*/
+            let strs="";
+            function pinjie(obj){
+                for(let key in obj){
+                    strs+=key+"="+obj[key]+"&";
+                }
+                return strs;
+            }
+            let a=pinjie(newmap)
+            let b=a.substring(0,a.length-1);
+            let cc=url+"/info/export/povertydetail/search?"+b;
+
+            /*ajax校验导出权限*/
+            $.ajax({
+                url: url+"/info/export/povertydetail/search/exist",
+                data:{},
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                dataType:"json",
+                method:"post",
+                async:false,
+                contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        window.location.href=cc;
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+        /*根据输入的指定页数进行跳转*/
+        /*$(".page-btn").click(function(){
+            let pageSize=12;
+            let pageNum=$("#currentPage").val();
+            let year=$("#year").val();
+            let property=[];
+            let status=[];
+            let reason=[];
+            let propertys=$(".shuxing dl dt.active");
+            let statuss=$(".tuopin dl dt.active");
+            let reasons=$(".reason dl dt.active");
+            getValue(propertys,property);
+            getValue(statuss,status);
+            getValue(reasons,reason);
+            /!*获取选中筛选条件值*!/
+            function getValue(obj,arr){
+                // let arr=[];
+                for(let i=0;i<obj.length;i++){
+                    arr.push(obj.eq(i).attr("abc"));
+                }
+                return arr;
+            }
+            /!*非必需*!/
+            let q=$("#country").val();
+            let x=$("#township").val();
+            let c=$("#village").val();
+            let n=$("#povertyName").val();
+            let i=$("#idNumber").val();
+            // console.log(property,status,reason);
+            /!*判断贫困户属性、脱贫状态、致贫原因等筛选条件*!/
+            if(property[0]==undefined){
+                property=null;
+            }
+            if(status[0]==undefined){
+                status=null;
+            }
+            if(reason[0]==undefined){
+                reason=null;
+            }
+            let data={"pageNum":pageNum,"pageSize":pageSize,"year":year,"q":q,"x":x,"c":c,"n":n,"i":i,"property":property,"status":status,"reason":reason};
+            let datas=JSON.stringify(data);
+            /!*主体内容渲染*!/
+            let formList=$("#formSubmit2");
+            $.ajax({
+                url: url+"/background/helpmeasures/industry/query",
+                data:datas,
+                dataType:"json",
+                method:"post",
+                async:false,
+                contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        showList(formList,data.data.list);
+                        $(".allPage").text(data.data.pages);
+                        showPage($(".searchPage"),data.data.total);
+                    }
+                }
+            })
+        })*/
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function showList(obj,data){
+            obj.empty();
+            let str=`<tr>
+                  <th>序号</th>
+                  <th>县(区)</th>
+                  <th>乡(镇)</th>
+                  <th>村</th>
+                  <th>户主姓名</th>
+                  <th>户主证件号码</th>
+                  <th>操作</th>
+            </tr>`;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                    <tr>
+                      <td>${data[i]['ROW_ID']}</td>
+                      <td>${data[i]['dis']}</td>
+                      <td>${data[i]['town']}</td>
+                      <td>${data[i]['vill']}</td>
+                      <td><a href="showDetailsPoor1.html?value=${data[i].AAC001}&time=${201808}" style="background: none;color:#2698FB;">${data[i]['AAC029']}</a></td>
+                      <td>${data[i]['AAC031']}</td>
+                      <td>
+                          <a class="xqclick" hrefs="${data[i]['AAC001']}" style="cursor:pointer;">详情</a>
+                          <a class="exportclick" hrefs="${data[i]['AAC001']}" dis="${data[i]['dis']}" town="${data[i]['town']}" vill="${data[i]['vill']}" hrefs2="${data[i]['AAC029']}" hrefs3="${data[i]['AAC031']}" style="cursor:pointer;">导出</a>
+                      </td>
+                    </tr>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        /*点击导出*/
+        $(document).on("click",".exportclick",function(){
+            var aac001=$(this).attr("hrefs");
+            var dis=$(this).attr("dis");
+            var town=$(this).attr("town");
+            var vill=$(this).attr("vill");
+            var aac029=$(this).attr("hrefs2");
+            var aac031=$(this).attr("hrefs3");
+            let data={"aac001":aac001,"dis":dis,"town":town,"vill":vill,"AAC029":aac029,"AAC031":aac031};
+            /*去空*/
+            function qukong(obj){
+                for(var key in obj){
+                    if(obj[key]==null || obj[key]=='' || obj[key]=="null"){
+                        delete obj[key];
+                    }
+                }
+                return obj;
+            }
+            var newmap=qukong(data);
+            /*拼接*/
+            let strs="";
+            function pinjie(obj){
+                for(let key in obj){
+                    strs+=key+"="+obj[key]+"&";
+                }
+                return strs;
+            }
+            let a=pinjie(newmap)
+            let b=a.substring(0,a.length-1);
+            let cc=url+"/info/export/povertydetailone/search?"+b;
+            /*ajax校验导出权限*/
+            $.ajax({
+                url: url+"/info/export/povertydetailone/search/exist",
+                data:{},
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                dataType:"json",
+                method:"post",
+                async:false,
+                contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        window.location.href=cc;
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+        /*点击详情跳转详情页面*/
+        var huvalue="";
+        $(document).on("click",".xqclick",function(){
+            var value=$(this).attr("hrefs");
+            huvalue=value;
+            localStorage.setItem("updateId",value);
+            $(".xiangqing").show(1000);
+            let formSubmit3=$("#formSubmit3")
+            /*详情页面渲染*/
+            $.ajax({
+                url: url+"/info/poverty/detail",
+                data:{"aac001":value},
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                    ShowLoading();
+                },
+                method:"post",
+                type:"json",
+                success:function(data){
+                    if(data.code === 2000){
+                        let aa=0;
+                        for(let m=0;m<data.data.poverty.length;m++){
+                            aa+=data.data.poverty[m].length*1;
+                        }
+                        let bb=aa+data.data.eight.length;
+                        $("#dataItem").html("共 "+bb+" 条数据");
+                        showList2(formSubmit3,data.data);
+                        for(let i=0;i<$(".tab-content tr td span").length;i++){
+                            if($(".tab-content tr td span").eq(i).text()=="null" || $(".tab-content tr td span").eq(i).text()=="undefined" || $(".tab-content tr td span").eq(i).text()==undefined){
+                                $(".tab-content tr td span").eq(i).text("");
+                            }
+                        }
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                },
+                complete:function(){
+                    HideLoading();
+                }
+            })
+        })
+        function showList2(obj,data){
+            obj.empty();
+            let povertyData=data.poverty;
+            let eightData=data.eight;
+            let str=`
+                    <tr style="font-size: 14px;">
+                        <th class="table-bg">提交人姓名</th>
+                        <th class="table-bg">提交人联系电话</th>
+                        <th class="table-bg">提交人所在单位</th>
+                        <th class="table-bg">成员姓名</th>
+                        <th class="table-bg">修改类别</th>
+                        <th class="table-bg">修改指标</th>
+                        <th class="table-bg">变更前</th>
+                        <th class="table-bg">变更后</th>
+                        <th class="table-bg">提交时间</th>
+                        <th class="table-bg">第一书记确认审核</th>;
+                        <th class="table-bg">镇街扶贫办审核</th>
+                        <th class="table-bg">区县其他部门审核</th>
+				    </tr>
+                 `;
+                for(let i=0;i<povertyData.length;i++){
+                    for(let j=0;j<povertyData[i].length;j++){
+                        if(povertyData[i][j]['FIRST_SECRETARY']==0){
+                            povertyData[i][j]['FIRST_SECRETARY']="待审核";
+                            povertyData[i][j]['TOWN_POVERTY_OFFICE']="待审核";
+                            povertyData[i][j]['COUNTY_POVERTY_OFFICE']="待审核";
+                        }else if(povertyData[i][j]['FIRST_SECRETARY']==1){
+                            povertyData[i][j]['FIRST_SECRETARY']="已通过";
+                            if(povertyData[i][j]['TOWN_POVERTY_OFFICE']==0){
+                                povertyData[i][j]['TOWN_POVERTY_OFFICE']="待审核";
+                                povertyData[i][j]['COUNTY_POVERTY_OFFICE']="待审核";
+                            }else if(povertyData[i][j]['TOWN_POVERTY_OFFICE']==1){
+                                povertyData[i][j]['TOWN_POVERTY_OFFICE']="已通过";
+                                if(povertyData[i][j]['COUNTY_POVERTY_OFFICE']==0){
+                                    povertyData[i][j]['COUNTY_POVERTY_OFFICE']="待审核";
+                                }else if(povertyData[i][j]['COUNTY_POVERTY_OFFICE']==1){
+                                    povertyData[i][j]['COUNTY_POVERTY_OFFICE']="已通过";
+                                }else if(povertyData[i][j]['COUNTY_POVERTY_OFFICE']==4){
+                                    povertyData[i][j]['COUNTY_POVERTY_OFFICE']="未通过";
+                                }
+                            }else if(povertyData[i][j]['TOWN_POVERTY_OFFICE']==4){
+                                povertyData[i][j]['TOWN_POVERTY_OFFICE']="未通过";
+                                povertyData[i][j]['COUNTY_POVERTY_OFFICE']="";
+                            }
+                        }else if(povertyData[i][j]['FIRST_SECRETARY']==4){
+                            povertyData[i][j]['FIRST_SECRETARY']="未通过";
+                            povertyData[i][j]['TOWN_POVERTY_OFFICE']="";
+                            povertyData[i][j]['COUNTY_POVERTY_OFFICE']="";
+                        }
+
+
+                        /*时间处理*/
+                        if(povertyData[i][j]['DATA_REVIEW_TIME']){
+                            povertyData[i][j]['DATA_REVIEW_TIME']=povertyData[i][j]['DATA_REVIEW_TIME'].substring(0,4)+"-"+povertyData[i][j]['DATA_REVIEW_TIME'].substring(4,6)+"-"+povertyData[i][j]['DATA_REVIEW_TIME'].substring(6,8)+" "+povertyData[i][j]['DATA_REVIEW_TIME'].substring(8,10)+":"+povertyData[i][j]['DATA_REVIEW_TIME'].substring(10,12)+":"+povertyData[i][j]['DATA_REVIEW_TIME'].substring(12,14);
+                        }
+                        if(povertyData[i][j]['FIRST_TIME']){
+                            povertyData[i][j]['FIRST_TIME']=povertyData[i][j]['FIRST_TIME'].substring(0,4)+"-"+povertyData[i][j]['FIRST_TIME'].substring(4,6)+"-"+povertyData[i][j]['FIRST_TIME'].substring(6,8)+" "+povertyData[i][j]['FIRST_TIME'].substring(8,10)+":"+povertyData[i][j]['FIRST_TIME'].substring(10,12)+":"+povertyData[i][j]['FIRST_TIME'].substring(12,14);
+                        }
+                        if(povertyData[i][j]['TOWN_TIME']){
+                            povertyData[i][j]['TOWN_TIME']=povertyData[i][j]['TOWN_TIME'].substring(0,4)+"-"+povertyData[i][j]['TOWN_TIME'].substring(4,6)+"-"+povertyData[i][j]['TOWN_TIME'].substring(6,8)+" "+povertyData[i][j]['TOWN_TIME'].substring(8,10)+":"+povertyData[i][j]['TOWN_TIME'].substring(10,12)+":"+povertyData[i][j]['TOWN_TIME'].substring(12,14);
+                        }
+                        if(povertyData[i][j]['DISTRICT_TIME']){
+                            povertyData[i][j]['DISTRICT_TIME']=povertyData[i][j]['DISTRICT_TIME'].substring(0,4)+"-"+povertyData[i][j]['DISTRICT_TIME'].substring(4,6)+"-"+povertyData[i][j]['DISTRICT_TIME'].substring(6,8)+" "+povertyData[i][j]['DISTRICT_TIME'].substring(8,10)+":"+povertyData[i][j]['DISTRICT_TIME'].substring(10,12)+":"+povertyData[i][j]['DISTRICT_TIME'].substring(12,14);
+                        }
+                        str+=`
+                        <tr>
+                          <td>${povertyData[i][j]['AAB002']}</td>
+                          <td>${povertyData[i][j]['AAR012']}</td>
+                          <td>${povertyData[i][j]['AAP001']}</td>
+                          <td>${povertyData[i][j]['AAC001']}</td>
+                          <td>${povertyData[i][j]['MODIFY_TYPE']}</td>
+                          <td>${povertyData[i][j]['COMMENTS']}</td>
+                          <td>${povertyData[i][j]['UPDATE_BEFORE']}</td>
+                          <td>${povertyData[i][j]['UPDATE_AFTER']}</td>
+                          <td>${povertyData[i][j]['DATA_REVIEW_TIME']}</td>
+                          <td>${povertyData[i][j]['FIRST_SECRETARY']}<br><span>${povertyData[i][j]['FIRST_TIME']}</span></td>
+                          <td>${povertyData[i][j]['TOWN_POVERTY_OFFICE']}<br><span>${povertyData[i][j]['TOWN_TIME']}</span></td>
+                          <td>${povertyData[i][j]['COUNTY_POVERTY_OFFICE']}<br><span>${povertyData[i][j]['DISTRICT_TIME']}</span></td>
+                        </tr>
+                    `;
+                    }
+                }
+                for(let s=0;s<eightData.length;s++){
+                    if(eightData[s]['FIRST_SECRETARY']==0){
+                        eightData[s]['FIRST_SECRETARY']="待审核";
+                        eightData[s]['TOWN_POVERTY_OFFICE']="待审核";
+                        eightData[s]['COUNTY_POVERTY_OFFICE']="待审核";
+                    }else if(eightData[s]['FIRST_SECRETARY']==1){
+                        eightData[s]['FIRST_SECRETARY']="已通过";
+                        if(eightData[s]['TOWN_POVERTY_OFFICE']==0){
+                            eightData[s]['TOWN_POVERTY_OFFICE']="待审核";
+                            eightData[s]['COUNTY_POVERTY_OFFICE']="待审核";
+                        }else if(eightData[s]['TOWN_POVERTY_OFFICE']==1){
+                            eightData[s]['TOWN_POVERTY_OFFICE']="已通过";
+                            if(eightData[s]['COUNTY_POVERTY_OFFICE']==0){
+                                eightData[s]['COUNTY_POVERTY_OFFICE']="待审核";
+                            }else if(eightData[s]['COUNTY_POVERTY_OFFICE']==1){
+                                eightData[s]['COUNTY_POVERTY_OFFICE']="已通过";
+                            }else if(eightData[s]['COUNTY_POVERTY_OFFICE']==4){
+                                eightData[s]['COUNTY_POVERTY_OFFICE']="未通过";
+                            }
+                        }else if(eightData[s]['TOWN_POVERTY_OFFICE']==4){
+                            eightData[s]['TOWN_POVERTY_OFFICE']="未通过";
+                            eightData[s]['COUNTY_POVERTY_OFFICE']="";
+                        }
+                    }else if(eightData[s]['FIRST_SECRETARY']==4){
+                        eightData[s]['FIRST_SECRETARY']="未通过";
+                        eightData[s]['TOWN_POVERTY_OFFICE']="";
+                        eightData[s]['COUNTY_POVERTY_OFFICE']="";
+                    }
+                    /*时间处理*/
+                    if(eightData[s]['DATA_REVIEW_TIME']){
+                        eightData[s]['DATA_REVIEW_TIME']=eightData[s]['DATA_REVIEW_TIME'].substring(0,4)+"-"+eightData[s]['DATA_REVIEW_TIME'].substring(4,6)+"-"+eightData[s]['DATA_REVIEW_TIME'].substring(6,8)+" "+eightData[s]['DATA_REVIEW_TIME'].substring(8,10)+":"+eightData[s]['DATA_REVIEW_TIME'].substring(10,12)+":"+eightData[s]['DATA_REVIEW_TIME'].substring(12,14);
+                    }
+                    if(eightData[s]['FIRST_TIME']){
+                        eightData[s]['FIRST_TIME']=eightData[s]['FIRST_TIME'].substring(0,4)+"-"+eightData[s]['FIRST_TIME'].substring(4,6)+"-"+eightData[s]['FIRST_TIME'].substring(6,8)+" "+eightData[s]['FIRST_TIME'].substring(8,10)+":"+eightData[s]['FIRST_TIME'].substring(10,12)+":"+eightData[s]['FIRST_TIME'].substring(12,14);
+                    }
+                    if(eightData[s]['TOWN_TIME']){
+                        eightData[s]['TOWN_TIME']=eightData[s]['TOWN_TIME'].substring(0,4)+"-"+eightData[s]['TOWN_TIME'].substring(4,6)+"-"+eightData[s]['TOWN_TIME'].substring(6,8)+" "+eightData[s]['TOWN_TIME'].substring(8,10)+":"+eightData[s]['TOWN_TIME'].substring(10,12)+":"+eightData[s]['TOWN_TIME'].substring(12,14);
+                    }
+                    if(eightData[s]['DISTRICT_TIME']){
+                        eightData[s]['DISTRICT_TIME']=eightData[s]['DISTRICT_TIME'].substring(0,4)+"-"+eightData[s]['DISTRICT_TIME'].substring(4,6)+"-"+eightData[s]['DISTRICT_TIME'].substring(6,8)+" "+eightData[s]['DISTRICT_TIME'].substring(8,10)+":"+eightData[s]['DISTRICT_TIME'].substring(10,12)+":"+eightData[s]['DISTRICT_TIME'].substring(12,14);
+                    }
+                    str+=`
+                            <tr>
+                              <td>${eightData[s]['AAB002']}</td>
+                              <td>${eightData[s]['AAR012']}</td>
+                              <td>${eightData[s]['AAP001']}</td>
+                              <td>${eightData[s]['AAC001']}</td>
+                              <td>${eightData[s]['MODIFY_TYPE']}</td>
+                              <td>${eightData[s]['REAL_NAME']}</td>
+                              <td>${eightData[s]['UPDATE_BEFORE']}</td>
+                              <td>${eightData[s]['UPDATE_AFTER']}</td>
+                              <td>${eightData[s]['DATA_REVIEW_TIME']}</td>
+                              <td>${eightData[s]['FIRST_SECRETARY']}<br><span>${eightData[s]['FIRST_TIME']}</span></td>
+                              <td>${eightData[s]['TOWN_POVERTY_OFFICE']}<br><span>${eightData[s]['TOWN_TIME']}</span></td>
+                              <td>${eightData[s]['COUNTY_POVERTY_OFFICE']}<br><span>${eightData[s]['DISTRICT_TIME']}</span></td>
+                            </tr>
+                        `;
+                 }
+                obj.html(function(i,value){
+                    return value+str;
+                })
+        }
+        function showList3(obj,data){
+            obj.empty();
+            let str=`
+                    <tr style="font-size: 14px;">
+                        <th class="table-bg">提交人姓名</th>
+                        <th class="table-bg">提交人联系电话</th>
+                        <th class="table-bg">提交人所在单位</th>
+                        <th class="table-bg">成员姓名</th>
+                        <th class="table-bg">修改类别</th>
+                        <th class="table-bg">修改指标</th>
+                        <th class="table-bg">变更前</th>
+                        <th class="table-bg">变更后</th>
+                        <th class="table-bg">提交时间</th>
+                        <th class="table-bg">第一书记确认审核</th>;
+                        <th class="table-bg">镇街扶贫办审核</th>
+                        <th class="table-bg">区县其他部门审核</th>
+				    </tr>
+                 `;
+            for(let i=0;i<data.length;i++){
+                    if(data[i]['FIRST_SECRETARY']==0){
+                        data[i]['FIRST_SECRETARY']="待审核";
+                        data[i]['TOWN_POVERTY_OFFICE']="待审核";
+                        data[i]['COUNTY_POVERTY_OFFICE']="待审核";
+                    }else if(data[i]['FIRST_SECRETARY']==1){
+                        data[i]['FIRST_SECRETARY']="已通过";
+                        if(data[i]['TOWN_POVERTY_OFFICE']==0){
+                            data[i]['TOWN_POVERTY_OFFICE']="待审核";
+                            data[i]['COUNTY_POVERTY_OFFICE']="待审核";
+                        }else if(data[i]['TOWN_POVERTY_OFFICE']==1){
+                            data[i]['TOWN_POVERTY_OFFICE']="已通过";
+                            if(data[i]['COUNTY_POVERTY_OFFICE']==0){
+                                data[i]['COUNTY_POVERTY_OFFICE']="待审核";
+                            }else if(data[i]['COUNTY_POVERTY_OFFICE']==1){
+                                data[i]['COUNTY_POVERTY_OFFICE']="已通过";
+                            }else if(data[i]['COUNTY_POVERTY_OFFICE']==4){
+                                data[i]['COUNTY_POVERTY_OFFICE']="未通过";
+                            }
+                        }else if(data[i]['TOWN_POVERTY_OFFICE']==4){
+                            data[i]['TOWN_POVERTY_OFFICE']="未通过";
+                            data[i]['COUNTY_POVERTY_OFFICE']="";
+                        }
+                    }else if(data[i]['FIRST_SECRETARY']==4){
+                        data[i]['FIRST_SECRETARY']="未通过";
+                        data[i]['TOWN_POVERTY_OFFICE']="";
+                        data[i]['COUNTY_POVERTY_OFFICE']="";
+                    }
+
+
+                    /*时间处理*/
+                    if(data[i]['DATA_REVIEW_TIME']){
+                        data[i]['DATA_REVIEW_TIME']=data[i]['DATA_REVIEW_TIME'].substring(0,4)+"-"+data[i]['DATA_REVIEW_TIME'].substring(4,6)+"-"+data[i]['DATA_REVIEW_TIME'].substring(6,8)+" "+data[i]['DATA_REVIEW_TIME'].substring(8,10)+":"+data[i]['DATA_REVIEW_TIME'].substring(10,12)+":"+data[i]['DATA_REVIEW_TIME'].substring(12,14);
+                    }
+                    if(data[i]['FIRST_TIME']){
+                        data[i]['FIRST_TIME']=data[i]['FIRST_TIME'].substring(0,4)+"-"+data[i]['FIRST_TIME'].substring(4,6)+"-"+data[i]['FIRST_TIME'].substring(6,8)+" "+data[i]['FIRST_TIME'].substring(8,10)+":"+data[i]['FIRST_TIME'].substring(10,12)+":"+data[i]['FIRST_TIME'].substring(12,14);
+                    }
+                    if(data[i]['TOWN_TIME']){
+                        data[i]['TOWN_TIME']=data[i]['TOWN_TIME'].substring(0,4)+"-"+data[i]['TOWN_TIME'].substring(4,6)+"-"+data[i]['TOWN_TIME'].substring(6,8)+" "+data[i]['TOWN_TIME'].substring(8,10)+":"+data[i]['TOWN_TIME'].substring(10,12)+":"+data[i]['TOWN_TIME'].substring(12,14);
+                    }
+                    if(data[i]['DISTRICT_TIME']){
+                        data[i]['DISTRICT_TIME']=data[i]['DISTRICT_TIME'].substring(0,4)+"-"+data[i]['DISTRICT_TIME'].substring(4,6)+"-"+data[i]['DISTRICT_TIME'].substring(6,8)+" "+data[i]['DISTRICT_TIME'].substring(8,10)+":"+data[i]['DISTRICT_TIME'].substring(10,12)+":"+data[i]['DISTRICT_TIME'].substring(12,14);
+                    }
+                    str+=`
+                        <tr>
+                          <td>${data[i]['AAK110']}</td>
+                          <td>${data[i]['AAR012']}</td>
+                          <td>${data[i]['AAP001']}</td>
+                          <td>${data[i]['AAC029']}</td>
+                          <td>${data[i]['MODIFY_TYPE']}</td>
+                          <td>${data[i]['REAL_NAME']}</td>
+                          <td>${data[i]['UPDATE_BEFORE']}</td>
+                          <td>${data[i]['UPDATE_AFTER']}</td>
+                          <td>${data[i]['DATA_REVIEW_TIME']}</td>
+                          <td>${data[i]['FIRST_SECRETARY']}<br><span>${data[i]['FIRST_TIME']}</span></td>
+                          <td>${data[i]['TOWN_POVERTY_OFFICE']}<br><span>${data[i]['TOWN_TIME']}</span></td>
+                          <td>${data[i]['COUNTY_POVERTY_OFFICE']}<br><span>${data[i]['DISTRICT_TIME']}</span></td>
+                        </tr>
+                    `;
+
+            }
+            /*for(let s=0;s<eightData.length;s++){
+                if(eightData[s]['FIRST_SECRETARY']==0){
+                    eightData[s]['FIRST_SECRETARY']="待审核";
+                    eightData[s]['TOWN_POVERTY_OFFICE']="待审核";
+                    eightData[s]['COUNTY_POVERTY_OFFICE']="待审核";
+                }else if(eightData[s]['FIRST_SECRETARY']==1){
+                    eightData[s]['FIRST_SECRETARY']="已通过";
+                    if(eightData[s]['TOWN_POVERTY_OFFICE']==0){
+                        eightData[s]['TOWN_POVERTY_OFFICE']="待审核";
+                        eightData[s]['COUNTY_POVERTY_OFFICE']="待审核";
+                    }else if(eightData[s]['TOWN_POVERTY_OFFICE']==1){
+                        eightData[s]['TOWN_POVERTY_OFFICE']="已通过";
+                        if(eightData[s]['COUNTY_POVERTY_OFFICE']==0){
+                            eightData[s]['COUNTY_POVERTY_OFFICE']="待审核";
+                        }else if(eightData[s]['COUNTY_POVERTY_OFFICE']==1){
+                            eightData[s]['COUNTY_POVERTY_OFFICE']="已通过";
+                        }else if(eightData[s]['COUNTY_POVERTY_OFFICE']==4){
+                            eightData[s]['COUNTY_POVERTY_OFFICE']="未通过";
+                        }
+                    }else if(eightData[s]['TOWN_POVERTY_OFFICE']==4){
+                        eightData[s]['TOWN_POVERTY_OFFICE']="未通过";
+                        eightData[s]['COUNTY_POVERTY_OFFICE']="";
+                    }
+                }else if(eightData[s]['FIRST_SECRETARY']==4){
+                    eightData[s]['FIRST_SECRETARY']="未通过";
+                    eightData[s]['TOWN_POVERTY_OFFICE']="";
+                    eightData[s]['COUNTY_POVERTY_OFFICE']="";
+                }
+                /!*时间处理*!/
+                if(eightData[s]['DATA_REVIEW_TIME']){
+                    eightData[s]['DATA_REVIEW_TIME']=eightData[s]['DATA_REVIEW_TIME'].substring(0,4)+"-"+eightData[s]['DATA_REVIEW_TIME'].substring(4,6)+"-"+eightData[s]['DATA_REVIEW_TIME'].substring(6,8)+" "+eightData[s]['DATA_REVIEW_TIME'].substring(8,10)+":"+eightData[s]['DATA_REVIEW_TIME'].substring(10,12)+":"+eightData[s]['DATA_REVIEW_TIME'].substring(12,14);
+                }
+                if(eightData[s]['FIRST_TIME']){
+                    eightData[s]['FIRST_TIME']=eightData[s]['FIRST_TIME'].substring(0,4)+"-"+eightData[s]['FIRST_TIME'].substring(4,6)+"-"+eightData[s]['FIRST_TIME'].substring(6,8)+" "+eightData[s]['FIRST_TIME'].substring(8,10)+":"+eightData[s]['FIRST_TIME'].substring(10,12)+":"+eightData[s]['FIRST_TIME'].substring(12,14);
+                }
+                if(eightData[s]['TOWN_TIME']){
+                    eightData[s]['TOWN_TIME']=eightData[s]['TOWN_TIME'].substring(0,4)+"-"+eightData[s]['TOWN_TIME'].substring(4,6)+"-"+eightData[s]['TOWN_TIME'].substring(6,8)+" "+eightData[s]['TOWN_TIME'].substring(8,10)+":"+eightData[s]['TOWN_TIME'].substring(10,12)+":"+eightData[s]['TOWN_TIME'].substring(12,14);
+                }
+                if(eightData[s]['DISTRICT_TIME']){
+                    eightData[s]['DISTRICT_TIME']=eightData[s]['DISTRICT_TIME'].substring(0,4)+"-"+eightData[s]['DISTRICT_TIME'].substring(4,6)+"-"+eightData[s]['DISTRICT_TIME'].substring(6,8)+" "+eightData[s]['DISTRICT_TIME'].substring(8,10)+":"+eightData[s]['DISTRICT_TIME'].substring(10,12)+":"+eightData[s]['DISTRICT_TIME'].substring(12,14);
+                }
+                str+=`
+                            <tr>
+                              <td>${eightData[s]['AAB002']}</td>
+                              <td>${eightData[s]['AAR012']}</td>
+                              <td>${eightData[s]['AAP001']}</td>
+                              <td>${eightData[s]['AAC001']}</td>
+                              <td>${eightData[s]['MODIFY_TYPE']}</td>
+                              <td>${eightData[s]['REAL_NAME']}</td>
+                              <td>${eightData[s]['UPDATE_BEFORE']}</td>
+                              <td>${eightData[s]['UPDATE_AFTER']}</td>
+                              <td>${eightData[s]['DATA_REVIEW_TIME']}</td>
+                              <td>${eightData[s]['FIRST_SECRETARY']}<br><span>${eightData[s]['FIRST_TIME']}</span></td>
+                              <td>${eightData[s]['TOWN_POVERTY_OFFICE']}<br><span>${eightData[s]['TOWN_TIME']}</span></td>
+                              <td>${eightData[s]['COUNTY_POVERTY_OFFICE']}<br><span>${eightData[s]['DISTRICT_TIME']}</span></td>
+                            </tr>
+                        `;
+            }*/
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        $(".xqclose").click(function(){
+            $(".xiangqing").hide(1000);
+        })
+        /*点击进入修改页面*/
+        /*$(document).on("click",".update",function(){
+            var updateId=$(this).attr("hrefs");
+            localStorage.setItem("updateId",updateId);
+            localStorage.setItem("year",$("#year").val());
+            location.href="updateIndustryPovery.html";
+        })*/
+    })
+</script>
+<script>
+    /*分页插件初始化*/
+    $(document).ready(function(){
+        let pageNum=$(".allPage").text();
+        $("#Pagination").pagination(pageNum);
+    })
+    /*function page_init(index) {
+        var p_name=$("#p_name").val();
+        if(p_name==""||p_name==null){
+            p_name=null;
+        }
+        var p_year=$("#p_year").val();
+        var p_number=$("#p_number").val();
+        var p_shuxing=$("#p_shuxing").val();
+        var p_status=$("#p_status").val();  //状态
+        var p_biaozhun=$("#p_biaozhun").val(); //标准
+        var p_xiang=$("#p_xiang").val();  //乡
+        var p_cun =$("#p_cun").val();
+        var p_qv=$("#p_qv").val();  //区
+        if(p_cun!="" && p_cun!=null){
+            p_xiang=p_cun;
+        }
+        console.log("data:"+p_year);
+        $.ajax({
+            url:url + "pkh/query",
+            type:"get",
+            data:{"page_index": index+1,"page_size": 12,"aab002":p_name,
+                "aar040":p_year,"aab004":p_number,"aac006":p_shuxing,"aar010":p_status,
+                "aac005":p_biaozhun,"aar008":p_qv,"aar001":p_xiang},
+            dataType:"json",
+            success:function (data) {
+                if (data.code == 2000){
+                    console.log("ok");
+                    showAllPoorInfo( index,formInfos,data);
+                }
+            },
+            error:function () {
+            }
+        })
+    }
+    function showPage(obj,data){
+        $("#Pagination").pagination(data,{
+            callback:PageCallback,         //pageCallback() 为翻页调用函数
+            items_per_page:12,                //每页显示条目数
+            num_display_entries: 4,                //连续分页显示分页条目数
+            num_edge_entries: 1          //两侧显示的首尾分页的条目数
+        });
+    }
+    //ajax分页请求,page_index :页码
+    function PageCallback(page_index,jq){
+        // console.log('das');
+        page_init(page_index);      //第一页为0
+    }*/
+</script>
+<script type="text/javascript">
+	/*导入excel文件*/
+	let token=$.cookie("token");
+	let url=config.url;
+	$("#import").click(function(){
+	    $(".pop-up").css("display","block");
+	})
+    $(".closes").click(function(){
+        $(".pop-up").hide();
+    })
+    function importExp() {
+        var formData = new FormData();
+        var name = $("#upfile").val();
+        formData.append("file",$("#upfile")[0].files[0]);
+        formData.append("file",name);
+        $.ajax({
+            url : url+"/background/helpmeasures/industry/excel/import",
+            type : 'POST',
+            async : false,
+            beforeSend:function(request){
+                request.setRequestHeader("Authorization",token);
+                request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+            },
+            data : formData,
+            // 告诉jQuery不要去处理发送的数据
+            processData : false,
+            // 告诉jQuery不要去设置Content-Type请求头
+            contentType : false,
+            beforeSend:function(){
+
+            },
+            success : function(data) {
+                if(data.code===2000){
+                    alert("导入成功");
+                }else if(data.code===1009){
+                    alert("导入失败");
+                }else if(data.code===4000){
+                    alert(data.message);
+				}
+            }
+        });
+    }
+</script>
+</body>
+</html>

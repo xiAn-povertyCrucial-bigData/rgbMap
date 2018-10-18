@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>自然村</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/showObject.js"></script>
+    <style>
+    	.xixian dt dl{
+        	float: left;
+        	width: 100px;
+        	text-align: center;
+        	margin-left: 15px;
+        }
+		.active{background: #70c1ff!important;color: #fff!important;border-radius: 12px;}
+        .upload{
+			padding: 4px 10px;
+			/*height: 20px;
+			line-height: 20px;*/
+			position: relative;
+			border: 1px solid #0ae;
+			text-decoration: none;
+			color: #666;
+		}
+		.change{
+			position: absolute;
+			overflow: hidden;
+			right: 0;
+			top: 0;
+			opacity: 0;
+			cursor: pointer;
+		}
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>扶贫对象-自然村</strong><a href="addObject.html" class="button border-main icon-plus-square-o">添加内容</a>
+  <!--<span style="float: right;margin-right:24px" class="data_tracking button border-main ">数据追踪</span>-->
+  <span class="button border-main marginR" style="float: right;margin-right: 14px;cursor: pointer;" id="dataImport">导出</span> 
+   <span class="button border-main marginR upload" style="float:right;margin-right:12px;" >
+			 <input type="file" id="doc"   class="change" onchange="uploadFile()">导入信息 
+		</span>
+    </div>
+  <div class="form-01">
+      <p>高级搜索 <span class="pack_up">收起-</span></p>
+      <div class="search searchs" style="display: block;">
+          <p>
+              <label for="">请选择地区</label>
+              <input type="text" value="陕西省" disabled>
+              <input type="text" value="西安市" disabled>
+              <select name="" id="p_qv">
+              </select>
+              <select name="" id="p_xiang">
+              </select>
+              <select name="" id="p_cun">
+              </select>
+              <select id="p_year">
+              	<option value="201808">2018年</option>
+				<option value="201712">2017年</option>
+				<option value="2017">2016年</option>
+				<option value="2016">2015年</option>
+                <option value="2015">2014年</option>
+			</select>
+          </p>
+          <p>
+              <input type="button" class="btn_blue btn_orange1" style="float: right;" name="" value="查询">
+              <!--<input type="button" class="btn_orange" style="float: right;" name="" value="导入">
+              <input type="button" class="btn_orange" style="float: right;" name="" value="导出">-->
+          </p>
+      </div>
+      <table id="formSubmit2" class="form-x">
+      </table>
+      <div class="pages">
+          <div class="paging">
+              <div id="Pagination"></div>
+              <div class="searchPage">
+                  <span class="page-sum">共<strong class="allPage">1</strong>页</span>
+				  <span id="total">总数：1</span>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<script>	
+//var url = "http://192.168.1.135:8080/"
+ function uploadFile() { 
+ 	let token=$.cookie("token");
+	var file = $("#doc").get(0).files[0];
+    var formData = new FormData();
+    formData.append("file" , file);  
+			$.ajax({ 
+				url: url+"zrc/excel/import", 
+				type:"post", 
+				data:formData, 
+				beforeSend:function(request){
+                          request.setRequestHeader("Authorization",token);
+                          request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                      },
+				processData:false, 
+				contentType:false, 
+				success:function(res){ 
+				if(res.code==2000){ 
+				  alert("上传成功！"); 
+				}else{
+					alert("上传失败"); 
+				} 
+				}, 
+				error:function(err){ 
+				  alert("上传失败",err); 
+				} 
+			}) 
+		}
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("1");
+    })
+    /*筛选条件收起展开*/
+    $(".pack_up").click(function(){
+        $(".search").toggle();
+        $(".pack_up").text($(".pack_up").text()=="展开+"?"收起-":"展开+");
+    })
+    $(".xixian dt >dl:nth-child(2)").siblings().click(function(){
+               $(this).parent().children(':nth-child(2)').removeClass("active");
+               $(this).toggleClass("active");
+              //给点击对象添加类
+      });
+     $(".xixian dt >dl:nth-child(2)").click(function(){
+         	$(this).toggleClass("active")
+       		$(this).siblings().removeClass('active');
+       		if ($(".xixian dt ").children().hasClass("active")) {
+       			$(":checkbox").attr("checked",true);
+       		} else{
+       			$(":checkbox").attr("checked",false);
+       		}
+       })
+    $(":checkbox").change(function () {
+    if($(this).is(':checked')){
+        $(this).parent().parent().parent().children(':nth-child(2)').addClass("active");
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>轮播图管理</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{width: 10%;height: 40px;border: 1px solid #d2d2d2;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-01 tr td a{display: inline-block;border-radius: 3px;background: #fff; /*border: 1px solid #00aaee;*/border:none;color: #fff;width: 48px;height: 22px;text-align: center;line-height: 22px;}
+        .form-01 tr td a:first-child{background: #229ffd;}
+        .form-01 tr td a:last-child{background: #ff7680;}
+        .form-01 tr td img{width:100px;height:68px;}
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>轮播图管理</strong>
+      <a href="add_banners.html" class="button border-main icon-plus-square-o">添加内容</a>
+      <div class="search"><input type="text" placeholder="请输入姓名" id="search"><a>搜索</a></div>
+  </div>
+
+    <div class="form-01">
+      <table>
+          <tr>
+              <th>序号</th>
+              <th>轮播图片</th>
+              <th>操作</th>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>2</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>3</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>4</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>5</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>6</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>7</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>8</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>9</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>10</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>11</td>
+              <td><img src="../images/banner.png" alt=""></td>
+              <td>
+                  <a href="add_banners.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+      </table>
+</div>
+    <div class="pages">
+        <div class="paging">
+            <div id="Pagination"></div>
+            <div class="searchPage">
+                <span class="page-sum">共<strong class="allPage">15</strong>页</span>
+                <span class="page-go">到<input type="text">页</span>
+                <a href=" " class="page-btn">确定</a>
+            </div>
+        </div>
+</div>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+
+    })
+</script>
+</body>
+</html>

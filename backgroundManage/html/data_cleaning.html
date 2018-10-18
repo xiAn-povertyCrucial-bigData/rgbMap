@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>数据清洗</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/multiple-select.css" />
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/commer.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/selectClass.js"></script> 
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/wyp.js"></script>
+    <script src="../js/data_clear.js"></script>
+    <style>
+        .panel>.form-01>.search label{width: 70px;color: #555;font-weight: bold;}
+		    .active{background: #70c1ff!important;color: #fff!important;border-radius: 12px;}
+        .panel>.form-01>.search select{width: auto!important;}
+        .select,.select dt{display: flex;color: #555}
+        .select{padding:0;margin: 15px 0;}
+        .select dt dl{margin-left: 10px;padding:2px 6px;cursor: pointer;}
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head">
+    <strong><span class="icon-pencil-square-o"></span>数据清洗</strong>
+  </div>
+  <div class="form-01">
+      <p>高级搜索 <span class="pack_up">收起-</span></p>
+      <div class="search searchs" style="display: block;">
+          <p>
+              <label>监管分类：</label>
+              <select name="" id="p_qv"></select>
+              <label style="margin-left: 30px;">监管规则：</label>
+              <select name="" id="p_xiang" style="max-width:450px;min-width: 115px;"></select>
+          </p>
+          <ul class="select select1"> 
+              <label  class="label1">年份：</label>
+              <dt >
+                  <dl sleep="2017">2016年</dl>
+                  <dl sleep="201712">2017年</dl>
+                  <dl sleep="201808" class="active">2018年</dl>
+              </dt>
+          </ul>
+          <!-- <ul class="select select2"> 
+              <label  class="label1">识别标准：</label>
+              <dt >
+                  <dl sleep="2015" class="active">国家标准</dl>
+                  <dl sleep="2016">省定标准</dl>
+              </dt>
+          </ul> -->
+          <p>
+              <input type="button" class="btn_blue btn_orange1" style="float: right;" name="" value="查询">
+              <!-- <input type="button" class="btn_orange" style="float: right;" name="" value="导入">
+              <input type="button" class="btn_orange" style="float: right;" name="" value="导出"> -->
+          </p>
+      </div>
+      <table id="formSubmit2" class="form-x">
+          <!--<tr>
+              <th>序号</th>
+              <th>自然村编号</th>
+              <th>县</th>
+              <th>乡(镇)</th>
+              <th>村</th>
+              <th>负责人</th>
+			        <th>村办公电话</th>
+              <th>操作</th>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>祁连山</td>
+              <td>低保贫困户</td>
+              <td>因残</td>
+              <td>1人</td>
+              <td>西安市 - 灞桥区 - 灞桥街道 - 灞桥堡村委会</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsObject.html">详情</a>
+                  <a href="reviseObject.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>-->
+      </table>
+      <div class="pages">
+          <div class="paging">
+              <div id="Pagination"></div>
+              <div class="searchPage">
+                  <span class="page-sum">共<strong class="allPage">0</strong>页</span>
+        				  <span id="total">总数：0</span>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+    $(".search .select  dt  dl").on("click",function(){    	
+        $(this).addClass("active").siblings().removeClass("active");
+    })
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("1");
+    })
+    /*筛选条件收起展开*/
+    $(".pack_up").click(function(){
+        $(".search").toggle();
+        $(".pack_up").text($(".pack_up").text()=="展开+"?"收起-":"展开+");
+    })
+    /*var token=$.cookie("token");
+    console.log(token)*/
+</script>
+</body>
+</html>

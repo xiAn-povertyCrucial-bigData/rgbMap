@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>“八个一批”帮扶措施</title>
+        <script src="../js/commer.js"></script>
+        <script src="../js/echarts.js"></script>
+        <link rel="stylesheet" href="../css/pintuer.css">
+        <link rel="stylesheet" href="../css/admin.css">
+        <style>
+            body,html,.container{
+                width:99%;
+                height: 98%;
+                font-family: "arial rounded mt bold";
+                font-size: 12px;
+            }
+            .container{display: flex;align-items: center;height: 100%;}
+            #pieElsePoverty,#barElsePoverty{width: 100%;height: 80%;}
+        </style>
+    </head>
+    <body>
+        <div class="panel admin-panel admin-panel1">
+        <div class="panel-head"><strong><span class="icon-key"></span> “八个一批”帮扶措施</strong></div>
+    
+    <input class="btn button" id="btnPrint" type="button" value="打印预览" onclick='preview(1)' /> 
+    <input class="btn button" id="btnPrint" type="button" value="打印" onclick="javascript:window.print();" /> 
+
+        <div class="container">
+          <div id="pieElsePoverty"></div>
+          <div id="barElsePoverty"></div>
+        </div>
+        </div>
+        <script type="text/javascript">
+          var pieElsePovertyChart=echarts.init(document.getElementById("pieElsePoverty"));
+          var pieElsePovertyOption = {
+              tooltip : {
+                  trigger: 'item',
+                  formatter: "{a} <br/>{b} : {c} ({d}%)"
+              },
+              legend: [
+                  {
+                      x:'center',
+                      top:'0',
+                      data: ['产业','生态补偿','创业就业','危房改造','医疗保险','教育助学'],
+                      textStyle: {
+                          fontSize:16,
+                      }
+                  },
+                  {
+                      x:'center',
+                      top:'4%',
+                      data:['易地搬迁','兜底保障'],
+                      textStyle: {
+                          fontSize:16,
+                      }
+                  }
+              ],
+              series : [
+                  {
+                      name: '“八个一批”帮扶措施',
+                      type: 'pie',
+                      radius : '55%',
+                      center: ['50%', '60%'],
+                      label:{fontSize:16},
+                      data:[
+                          {value:335, name:'产业'},
+                          {value:310, name:'生态补偿'},
+                          {value:234, name:'创业就业'},
+                          {value:135, name:'危房改造'},
+                          {value:234, name:'医疗保险'},
+                          {value:135, name:'教育助学'},
+                          {value:234, name:'易地搬迁'},
+                          {value:135, name:'兜底保障'}
+                      ],
+                      itemStyle: {
+                          emphasis: {
+                              shadowBlur: 10,
+                              shadowOffsetX: 0,
+                              shadowColor: 'rgba(0, 0, 0, 0.5)'
+                          }
+                      }
+                  }
+              ],
+              color: ['#39A2B2','#20B8B4','#6ED1B2','#68E39D','#A6F093','#F9CF86','#FD9FB6','#ee7694']
+          };
+          pieElsePovertyChart.setOption(pieElsePovertyOption);
+
+           /**************************************堆积柱状图**************************************/
+          var barElsePovertyChart=echarts.init(document.getElementById("barElsePoverty"));                
+          var barElsePovertyOption = {
+              tooltip: {
+                  formatter: "{a} <br/>{b}: {c}户" // 这里是鼠标移上去的显示数据
+              },
+              legend: [
+                  {
+                      x:'center',
+                      top:'0',
+                      data: ['产业','生态补偿','创业就业','危房改造','医疗保险','教育助学'],
+                      textStyle: {
+                          fontSize:16,
+                      }
+                  },
+                  {
+                      x:'center',
+                      top:'4%',
+                      data:['易地搬迁','兜底保障'],
+                      textStyle: {
+                          fontSize:16,
+                      }
+                  }
+              ],
+              calculable : true,
+              xAxis : [
+                  {
+                      type : 'category',
+                      axisLabel: {
+                          interval:0,
+                          rotate:40,
+                          textStyle:{
+                              fontSize:16
+                          }
+                      },
+                      data : ['周至县','蓝田县','鄠邑区','长安区','临潼区','西咸新区','灞桥区','高陵区','国际港务区','阎良区'],
+                  }
+              ],
+              yAxis : {
+                  type: 'value',
+                  max: 1800,
+                  name:'(户)',
+                  axisLabel:{
+                      textStyle:{
+                          fontSize:'16'
+                      }
+                  },
+                  splitLine: {
+                      show: true,
+                      lineStyle: {
+                          color: ['#B1C0D2']
+                      }
+                  },
+              },
+              series : [
+                  {
+                      name:'产业',
+                      type:'bar',
+                      barWidth : 40,
+                      stack: '广告',
+                      data:[120, 132, 101, 134, 90, 120, 132, 101, 134,100]
+                  },
+                  {
+                      name:'生态补偿',
+                      type:'bar',
+                      barWidth : 15,
+                      stack: '广告',
+                      data:[220, 182, 191, 234, 290, 120, 132, 101, 134,110]
+                  },
+                  {
+                      name:'创业就业',
+                      type:'bar',
+                      barWidth : 15,
+                      stack: '广告',
+                      data:[120, 132, 101, 134, 90, 120, 132, 101, 134,80]
+                  },
+                  {
+                      name:'危房改造',
+                      type:'bar',
+                      barWidth : 15,
+                      stack: '广告',
+                      data:[220, 182, 191, 234, 290, 120, 132, 101, 134,100]
+                  },
+                  {
+                      name:'医疗保险',
+                      type:'bar',
+                      barWidth : 15,
+                      stack: '广告',
+                      data:[120, 132, 101, 134, 90, 120, 132, 101, 134,90]
+                  },
+                  {
+                      name:'教育助学',
+                      type:'bar',
+                      barWidth : 15,
+                      stack: '广告',
+                      data:[220, 182, 191, 234, 290, 120, 132, 101, 134,102]
+                  },
+                  {
+                      name:'易地搬迁',
+                      type:'bar',
+                      barWidth : 15,
+                      stack: '广告',
+                      data:[120, 132, 101, 134, 90, 120, 132, 101, 134,132]
+                  },
+                  {
+                      name:'兜底保障',
+                      type:'bar',
+                      barWidth : 15,
+                      stack: '广告',
+                      data:[220, 182, 191, 234, 290, 120, 132, 101, 134,123]
+                  }
+              ],
+              color: ['#39A2B2','#20B8B4','#6ED1B2','#68E39D','#A6F093','#F9CF86','#FD9FB6','#ee7694']
+          };
+          barElsePovertyChart.setOption(barElsePovertyOption);
+
+           function preview(oper) { 
+            // $('input:eq(0)').hide();
+            // $('input:eq(1)').hide();
+            if (oper < 10) { 
+                bdhtml=window.document.body.innerHTML;//获取当前页的html代码 
+                sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域 
+                eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域 
+                prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html 
+                 
+                prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html 
+                window.document.body.innerHTML=prnhtml; 
+                window.print(); 
+                window.document.body.innerHTML=bdhtml; 
+            } else { 
+                window.print(); 
+            } 
+        } 
+        </script>
+    </body>
+</html>

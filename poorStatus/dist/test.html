@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>测试页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    body{
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: blue;
+        /* background-color: cornflowerblue; */
+        /* background-image: url('./theme/backgrund.png') */
+    }
+    #mymap{
+        /* width: 1200px;
+        height: 600px; */
+        width: 99vw;
+        height: 99vh;
+    }
+
+    .test-btn-area{
+        position: absolute;
+        top: 50px;
+        left: 50px;
+    }
+
+       .notice {
+        position: absolute;
+        top: 200px;
+        left: 100px;
+        min-width: 100px;
+        line-height: 50px;
+        padding: 5px;
+        background-color: #ffffff;
+        color: red;
+        font-weight: 600;
+    }
+</style>
+<body>
+        <div class="notice"> 请注意 </div>
+
+    <iframe src="index.html" id="mymap" frameborder="0"></iframe>
+
+    <div class="test-btn-area">
+         <button size="default" type="default" onclick="cityshow()" > 点我回到原位</button>
+         <button size="default" type="default" onclick="changanshow()" > 长安区</button>
+         <button size="default" type="default" onclick="xinzhuangshou()" > 西咸新区-新庄村</button>
+    </div>
+    <script src="./libs/jquery-3.3.1.min.js"></script>
+    <script>
+            function setCoverData(text) {
+        $('.notice').text(text+ ' ！' )
+    }
+        function cityshow(){
+            gis.gisapp.zoom()
+
+        }
+        function changanshow(){
+            gis.gisapp.zoom('未央区')
+        }
+        function xinzhuangshou() {
+            gis.gisapp.zoom('西咸新区','新庄村')
+        }
+        var gis = null;
+        function callback(type, param){
+            console.log(type + ':' + JSON.stringify(param))
+            switch (type) {
+                case 'mapinit':
+                    // 地图初始化完成
+                    // gis.gisapp.zoom('未央区')
+                    setCoverData('地图初始化完成')
+                    break;
+                case 'county_select':
+                    // 区域点击事件
+                    setCoverData('区点击: ' +  param)
+                    break;
+                case 'village_select':
+                    // 村点击事件
+                    setCoverData('村点击: ' +  param.village)
+                    break;
+                case 'city_show':
+                    // 地图回滚到初始化界面
+                    setCoverData('归零')
+                    break;
+                case 'village_hover': 
+                    setCoverData('村 悬浮:' +  param.village)
+                    break;
+                case 'village_outhover':
+                    setCoverData('村 取消悬浮: ' +  param.village)
+                    break;
+                case 'county_outhover':
+                    setCoverData('区 取消悬浮: ' +  param)
+                    break;
+                case 'county_hover':
+                    setCoverData('区 悬浮: ' +  param)
+                    break;
+                case 'error':
+                    // 地图发生错误
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function gisready(){
+            gis = document.getElementById("mymap").contentWindow
+            gis.gisapp.init(callback,'') 
+        }
+       
+     
+    </script>
+</body>
+</html></h5>

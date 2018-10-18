@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="../css/pintuer.css">
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/inputStyle.css">
+<script src="../js/commer.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/pintuer.js"></script>
+<script src="../js/inputJavaScript.js"></script>
+</head>
+<body>
+  <div class="panel admin-panel">
+  <div class="form-01">
+    <form id="formSubmit" class="form-x">
+      <p class="form-01-p form-001-p">成员信息</p>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>成员姓名：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" data-validate="required:请输入姓名" placeholder="成员姓名" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>成员证件号码：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" data-validate="required:请输入身份证号" placeholder="成员证件号码" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <p class="form-01-p form-001-p">村级道路</p>
+      <div class="form-group">
+        <div class="label26">
+          <label title="义务教育阶段是否辍学">村（组）路是否畅通：</label>
+        </div>
+        <div class="field51">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isDropOut" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isDropOut" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+        <p>
+          <div class="label26">
+            <label>未通里程：</label>
+          </div>
+          <input type="text" class="input w50" value="" name="compType" />
+        </p>
+      </div>
+
+      <div class="form-group">
+        <div class="label26">
+          <label title="义务教育阶段是否辍学">贫困村通村公路是否“油返砂”：</label>
+        </div>
+        <div class="field51">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isDropOut" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isDropOut" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+        <p>
+          <div class="label26">
+            <label>“油返砂”里程（KM）：</label>
+          </div>
+          <input type="text" class="input w50" value="" name="compType" title="请输入企业属性" />
+        </p>
+      </div>
+
+      <p class="form-01-p form-001-p">人饮和灌溉设施</p>
+      <div class="form-group">
+        <div class="label26">
+          <label title="义务教育阶段是否辍学">是否有集中供水点：</label>
+        </div>
+        <div class="field51">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isDropOut" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isDropOut" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="label26">
+          <label title="义务教育阶段是否辍学">是否通自来水：</label>
+        </div>
+        <div class="field51">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isDropOut" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isDropOut" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <div class="label26">
+            <label>建设内容：</label>
+          </div>
+          <input type="text" class="input w50" value="" name="compType" style="margin-right: 19%;" />
+          <div class="label26">
+            <label>建设数量：</label>
+          </div>
+          <input type="text" class="input w50" value="" name="compType" title="请输入企业属性" />
+      </div>
+
+      <p class="form-01-p form-001-p">用电情况</p>
+      <div class="form-group">
+        <div class="label26">
+          <label title="义务教育阶段是否辍学">是否有自然村是否有生产用电输变电线路和设施</label>
+        </div>
+        <div class="field51">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isDropOut" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isDropOut" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="label26">
+          <label title="义务教育阶段是否辍学">是否有贫困户生活和生产用电输变电线路和设施</label>
+        </div>
+        <div class="field51">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isDropOut" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isDropOut" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <div class="label26">
+            <label>建设内容：</label>
+          </div>
+          <input type="text" class="input w50" value="" name="compType" style="margin-right: 19%;" />
+          <div class="label26">
+            <label>建设数量：</label>
+          </div>
+          <input type="text" class="input w50" value="" name="compType" title="请输入企业属性" />
+      </div>
+
+    </form>
+  </div>
+</div>
+</body>
+</html>

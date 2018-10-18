@@ -1,0 +1,82 @@
+.map{
+		bottom: 1%;
+		height: 76%;
+	}
+	.icon {
+	   width: 1.5em; height: 1.5em;
+	   vertical-align: -1em;
+	   fill: currentColor;
+	   overflow: hidden;
+	}
+	.active-tp{
+		background-color: black;
+	}
+	.c-red:hover{
+		cursor: pointer;
+	}
+	table tr:hover{
+		cursor: pointer;
+	}
+	#tablecun tr td,#qxtable tr td{
+		width: 50%;
+	}
+	.content-5-1{
+	width: 80%;height: 80%;position: absolute;border: none;opacity: 0;top: -130%;left: 10%;z-index: 999;
+	}
+	#content-5-1-left{
+		width:51%;height: 100%;background: #2f2d2dab;; float: right;border: 1px solid #0B3F62;
+		border-radius: 3px;display: none;position: relative;top: 0%;left: 0%;
+	}
+	/*五项*/
+	#content-5-1-right{
+		float: left;width:48%;height: 100%;background: #2f2d2dab;;
+		border: 1px solid #0B3F62;border-radius: 3px;display:none ;position: relative;top: 0%;
+	}
+	#content5-1-shi{
+		width: 100%;height: 100%;background: #2f2d2dab;;position: absolute;left: 0%;
+		opacity: 0;top: -130%;overflow-y: scroll;
+	}
+	.content5-1-shi{
+		width:31%;height: 44%;background: #5e5e5fc4;float: left;margin:7px 10px;
+	}
+	#content5-1-zhen{
+		width: 100%;height: 100%;background: #2f2d2dab;;z-index: 999;overflow-y: scroll;
+		overflow-y: scroll;position: absolute;left: 0%;opacity: 0;top: -130%;
+	}
+	.content5-1-zhen{
+		width:31%;height: 44%;background: #5e5e5fc4;float: left;margin: 7px 10px;
+		
+	}
+	#content5-1-cun{
+		width: 100%;height: 100%;background: #2f2d2dab;;z-index: 999;overflow-y: scroll;
+		overflow-y: scroll;position: absolute;left: 0%;opacity: 0;top: -130%;
+	}
+	.content5-1-cun{
+		width:31%;height: 44%;background: #5e5e5fc4;float: left;margin: 7px 10px;
+		
+	}
+	.content5-1-shi span,.content5-1-zhen span{
+		width: 100px;height: 30px;background: #2f2d2dab;color: white;display: inline-block;
+		text-align: center;border-radius: 3px;margin: 10px 0 0 10px;line-height: 30px;
+	}
+	.content-4-1 {
+	    width: 80%;	 z-index: 999;  
+	}
+	#content-4-1-right {
+    	width: 48%;
+	}
+	#content-4-1-left {
+    	width: 51%;
+	}
+.searchBox{width: 238px;height: 335px;/*background: #0d598d;*/position: absolute;top: 30px;right:80px;
+	z-index:100;border-radius: 5px;padding: 5px;display: none;overflow: auto;background: -webkit-linear-gradient(left,#121217,#232124);}
+.searchBox thead,.searchBox tbody{text-align: center;}
+.zhouzhi_return{
+	display: inline-block;
+	width: 35px;
+	height: 30px;
+    background: url(../images/return.png) no-repeat;
+    position: absolute;
+    top: 5px;
+    right: 35px;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>SuperMap iClient for JavaScript:TiledDynamicRESTLayer</title>
+    <!--引用需要的脚本-->
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #map {
+            width: 100vw;
+            height: 100vh;
+            border: none !important;
+        }
+       .cover{
+           background: rgba(0, 0, 0, 0.4);
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100vw;
+           height: 100vh;
+           z-index: 9999;
+           color: #ffffff;
+           font-size: 1.5em;
+       }
+
+       .villagehover{
+           transform: scale(1.5)
+       }
+       #popwin{
+           transform: translate(6px,6px) !important;
+       }
+
+       
+    </style>
+</head>
+
+<body onload="">
+    <!--地图显示的div-->
+    <div class="cover"> <div>加载中...</div> </div>
+    <div id="map" style="">
+    </div>
+    <script src="./libs/SuperMap.Include.js"></script>
+    <script src="./libs/jquery-3.3.1.min.js"></script>
+    
+    <script >
+        // $(document).ready(function(){
+        //     console.log(new Date())
+        //     // gisapp.callback('mapinit', '2')
+        // })
+        window.onload=function(){
+        //do something
+        gisapp.callback('mapinit', '2')
+    }
+    </script>
+    <script src="./js/setableconfig.js"></script>
+    <!-- <script src="./libs/savefile.js"></script> -->
+
+    <!-- <script src="./js/config.js"></script>
+    <script src="./js/poordata.js"></script>
+    <script src="./js/mockCounty.js"></script> -->
+    <script src="./js/colorFeatures.js"></script>
+    <script src="./js/poorMarker.js"></script>
+    <!-- <script src="./js/countryVillage.js"></script> -->
+
+    <script src="./js/gisapp.js"></script>
+
+
+</body>
+
+</html>

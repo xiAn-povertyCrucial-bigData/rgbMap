@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>西安市脱贫成效监测系统</title>
+	<link rel="stylesheet" href="css/ryg.css">
+	<link rel="stylesheet" href="css/adapter.css">
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/commer.js"></script>
+	<script src="../index/js/config.js"></script>
+	<script src="js/supportMeasures.js"></script>
+	<script src="../index/js/jquery.cookie.js"></script>
+	<script src="../index/js/tooltips.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="main">
+		<div class="main-title clearfix">
+			<p>西安市脱贫成效监测系统</p>
+		</div>
+		<div class="btns">
+			<div class="cunhu">
+				<a href="supportMeasures.html" title="八个一批"><img src="images/icon_cun.png" alt="">八个一批</a>
+				<a href="infrastructure_city.html" title="基础设施"><img src="images/icon_hu.png" alt="">基础设施</a>
+			</div>
+			<div class="itemBtn">
+				<a class="btn" href="../poorStatus/City1.html">脱贫状态</a>
+				<a class="btn" href="supportMeasures.html">帮扶措施</a>
+			</div>
+			<div class="home_return">
+				<a class="a-item home" href="../index/index.html">首页</a>
+				<a class="a-item return	" href="javascript:history.back(-1)">返回</a>
+			</div>
+		</div>
+		<div class="excels">
+			<div class="main_top">
+				<div class="map-content content content2" style="height:50%;width:100%;position: relative;">
+					<h3 style="text-align: left;"><span id="helpCity"></span>西安市帮扶措施作战图</h3>
+					<div class="boxs" style="padding:10px 10px;width:100%;height:85%;border:2px solid #034d94;position:relative;" id="boxs">
+						<div class="maps map2" style="width:100%;height:100%;position:relative;">
+							<iframe src="../dist/index.html" frameborder="0" style="width:800px;height:500px;transform: scale(0.7,0.6) translate(-50%,-50%);-webkit-transform-origin:0 0 0;transform-origin:0 0 0;position:absolute;top:50%;left:50%;" id="mapService" ></iframe>
+						</div>
+						<span class="line left-top"></span>
+						<span class="line left-bottom"></span>
+						<span class="line top-left"></span>
+						<span class="line top-right"></span>
+						<span class="line right-top"></span>
+						<span class="line right-bottom"></span>
+						<span class="line bottom-left"></span>
+						<span class="line bottom-right"></span>
+					</div>
+				</div>
+				<div class="content-2">
+					<!--<div class="color_code2">
+						<div class="color_group">
+							<div>受益户数</div>
+							<div></div>
+						</div>
+						<div class="color_group">
+							<div></div>
+							<div></div>
+						</div>
+						<div class="color_group">
+							<div>受益人数</div>
+							<div></div>
+						</div>
+					</div>-->
+					<div id="module-10" class='m-item'></div>
+				</div>
+			</div>
+			<div class="content2">
+				<div class="circle" style="width:100%;height:100%;position:relative;">
+					<h3 style="text-align: center;font-size:1.45em;line-height:50px;color: #89dcf1;font-weight: bold">帮扶措施实施户数情况占比</h3>
+					<div class="color_code">
+						<div class="color_group">
+							<div>未实施</div>
+							<div></div>
+						</div>
+						<div class="color_group">
+							<div>正实施</div>
+							<div></div>
+						</div>
+						<div class="color_group">
+							<div>已实施</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="b-item">
+						<a href="industryPoverty_city.html">
+							<div id="module-1" class='m-item'></div>
+						</a>
+					</div>
+					<div class="b-item">
+						<a href="employBussiness_city.html">
+							<div id="module-2" class='m-item'></div>
+						</a>
+					</div>
+					<div class="b-item">
+						<a href="relocation_city.html">
+							<div id="module-3" class='m-item'></div>
+						</a>
+					</div>
+					<div class="b-item">
+						<a href="healthPoverty_city.html">
+							<div id="module-4" class='m-item'></div>
+						</a>
+					</div>
+					<div class="b-item">
+						<a href="ecological_city.html">
+							<div id="module-5" class='m-item'></div>
+						</a>
+					</div>
+					<div class="b-item">
+						<a href="houseRenovation_city.html">
+							<div id="module-6" class='m-item'></div>
+						</a>
+					</div>
+					<div class="b-item">
+						<a href="outToEnsure_city.html">
+							<div id="module-7" class='m-item'></div>
+						</a>
+					</div>
+					<div class="b-item">
+						<a href="educationPoverty_city.html">
+							<div id="module-8" class='m-item'></div>
+						</a>
+					</div>
+					<div class="b-item">
+						<a href="financialPoverty_city.html">
+							<div id="module-9" class='m-item'></div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<style>
+
+</style>
+
+<script type="text/javascript">
+    var hosts=config.host;
+    var host = hosts+'/supportMeasures/';
+    /**************** 地图调用 ************************/
+    var gis = null;
+    function giscallback(type, param){
+        switch (type) {
+            case 'mapinit':
+                // 地图初始化完成
+                break;
+            case 'county_select':
+                // 区域点击事件
+                var url = host + 'supportMeasures1.html?name=' + param
+                window.location.href = url;
+                break;
+            case 'village_select':
+                // 村点击事件
+                var url = host + 'supportMeasures2.html?county='+ param.county + '&name=' + param.village + '&villageCode=' + param.villagecode
+                window.location.href = url;
+                break;
+            case 'city_show':
+                break;
+            default:
+                console.log(type +':' + param)
+                break;
+        }
+    }
+    function gisready(){
+        gis = document.getElementById("mapService").contentWindow
+        gis.gisapp.init(giscallback)
+    }
+</script>
+<script src="js/echarts.js"></script>
+<script>
+    var pieRadius=['45%', '70%'];
+    var yHeight='30%';
+    /****************************module-1*************************************/
+    var dom1 = document.getElementById("module-1");
+    var myChart1 = echarts.init(dom1);
+    var data = [{
+        value: 0,
+        name: '已完成',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '正在实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '未实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }];
+    option = {
+        title: {
+            text: '产业扶贫',
+            x: 'center',
+            y: 'middle',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize: title_bar,
+                color:"#fff"
+            },
+            subtextStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            }
+        },
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            position:"right",
+            formatter: "{b}: {c}户 ({d}%)"
+        },
+        series: [
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['82%', '90%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:20,
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 25,
+                            borderColor: '#fff',
+                            borderType: 'bold',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(0,0,0,0.85)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['55%', '82%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:'100',
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 30,
+                            borderColor: '#fff',
+                            borderType: 'dashed',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(21,41,185,.75)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+				type: 'pie',
+				selectedMode: 'single',
+				radius: pieRadius,
+				color: ['#1FA463', '#FFCE43', '#DD4F43'],
+				label: {
+					normal: {
+						show:false,
+						position: 'inner',
+						formatter: '{d}%',
+						textStyle: {
+							color: '#00cefc',
+							fontWeight: 'bold',
+							fontSize:title_bar
+						}
+					}
+				},
+				labelLine: {
+					normal: {
+						show: false
+					}
+				},
+				data: data
+        	},
+        ]
+    };
+    if (option && typeof option === "object") {
+        myChart1.setOption(option, true);
+    }
+    /****************************module-2*************************************/
+    var dom2 = document.getElementById("module-2");
+    var myChart2 = echarts.init(dom2);
+    var data = [{
+        value: 0,
+        name: '已完成',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '正在实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '未实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }];
+    option = {
+        title: {
+            text: '就业扶贫',
+            x: 'center',
+            y: 'middle',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            },
+            subtextStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            }
+        },
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            position:"right",
+            formatter: "{b}: {c}户 ({d}%)"
+        },
+        series: [
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['82%', '90%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:20,
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 25,
+                            borderColor: '#fff',
+                            borderType: 'bold',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(0,0,0,0.85)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['55%', '82%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:'100',
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 30,
+                            borderColor: '#fff',
+                            borderType: 'dashed',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(21,41,185,.75)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+            type: 'pie',
+            selectedMode: 'single',
+            radius: pieRadius,
+            color: ['#1FA463', '#FFCE43', '#DD4F43'],
+            label: {
+                normal: {
+                    show:false,
+                    position: 'inner',
+                    formatter: '{d}%',
+                    textStyle: {
+                        color: '#00cefc',
+                        fontWeight: 'bold',
+                        fontSize:title_bar
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: data
+        }]
+    };
+    if (option && typeof option === "object") {
+        myChart2.setOption(option, true);
+    }
+    /****************************module-3*************************************/
+    var dom3 = document.getElementById("module-3");
+    var myChart3 = echarts.init(dom3);
+    var data = [{
+        value: 0,
+        name: '已完成',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '正在实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '未实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }];
+    option = {
+        title: {
+            text: '易地搬迁',
+            x: 'center',
+            y: 'middle',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            },
+            subtextStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            }
+        },
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            position:"right",
+            formatter: "{b}: {c}户 ({d}%)"
+        },
+        series: [
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['82%', '90%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:20,
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 25,
+                            borderColor: '#fff',
+                            borderType: 'bold',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(0,0,0,0.85)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['55%', '82%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:'100',
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 30,
+                            borderColor: '#fff',
+                            borderType: 'dashed',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(21,41,185,.75)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+            type: 'pie',
+            selectedMode: 'single',
+            radius: pieRadius,
+            color: ['#1FA463', '#FFCE43', '#DD4F43'],
+            label: {
+                normal: {
+                    show:false,
+                    position: 'inner',
+                    formatter: '{d}%',
+                    textStyle: {
+                        color: '#00cefc',
+                        fontWeight: 'bold',
+                        fontSize:title_bar
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: data
+        }]
+    };
+    if (option && typeof option === "object") {
+        myChart3.setOption(option, true);
+    }
+    /****************************module-4*************************************/
+    var dom4 = document.getElementById("module-4");
+    var myChart4 = echarts.init(dom4);
+    var data = [{
+        value: 0,
+        name: '已完成',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '正在实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '未实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }];
+    option = {
+        title: {
+            text: '健康扶贫',
+            x: 'center',
+            y: 'middle',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            },
+            subtextStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            }
+        },
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            position:"right",
+            formatter: "{b}: {c}户 ({d}%)"
+        },
+        series: [
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['82%', '90%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:20,
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 25,
+                            borderColor: '#fff',
+                            borderType: 'bold',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(0,0,0,0.85)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['55%', '82%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:'100',
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 30,
+                            borderColor: '#fff',
+                            borderType: 'dashed',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(21,41,185,.75)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+            type: 'pie',
+            selectedMode: 'single',
+            radius: pieRadius,
+            color: ['#1FA463', '#FFCE43', '#DD4F43'],
+            label: {
+                normal: {
+                    show:false,
+                    position: 'inner',
+                    formatter: '{d}%',
+                    textStyle: {
+                        color: '#00cefc',
+                        fontWeight: 'bold',
+                        fontSize:title_bar
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: data
+        }]
+    };
+    if (option && typeof option === "object") {
+        myChart4.setOption(option, true);
+    }
+    /****************************module-5*************************************/
+    var dom5 = document.getElementById("module-5");
+    var myChart5 = echarts.init(dom5);
+    var data = [{
+        value: 0,
+        name: '已完成',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '正在实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '未实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }];
+    option = {
+        title: {
+            text: '生态扶贫',
+            x: 'center',
+            y: 'middle',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            },
+            subtextStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            }
+        },
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            position:"right",
+            formatter: "{b}: {c}户 ({d}%)"
+        },
+        series: [
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['82%', '90%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:20,
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 25,
+                            borderColor: '#fff',
+                            borderType: 'bold',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(0,0,0,0.85)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['55%', '82%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:'100',
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 30,
+                            borderColor: '#fff',
+                            borderType: 'dashed',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(21,41,185,.75)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+            type: 'pie',
+            selectedMode: 'single',
+            radius: pieRadius,
+            color: ['#1FA463', '#FFCE43', '#DD4F43'],
+            label: {
+                normal: {
+                    show:false,
+                    position: 'inner',
+                    formatter: '{d}%',
+                    textStyle: {
+                        color: '#00cefc',
+                        fontWeight: 'bold',
+                        fontSize:title_bar
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: data
+        }]
+    };
+    if (option && typeof option === "object") {
+        myChart5.setOption(option, true);
+    }
+    /****************************module-6*************************************/
+    var dom6 = document.getElementById("module-6");
+    var myChart6 = echarts.init(dom6);
+    var data = [{
+        value: 0,
+        name: '已完成',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '正在实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '未实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }];
+    option = {
+        title: {
+            text: '危房改造',
+            x: 'center',
+            y: 'middle',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            },
+            subtextStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            }
+        },
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            position:"right",
+            formatter: "{b}: {c}户 ({d}%)"
+        },
+        series: [
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['82%', '90%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:20,
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 25,
+                            borderColor: '#fff',
+                            borderType: 'bold',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(0,0,0,0.85)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['55%', '82%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:'100',
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 30,
+                            borderColor: '#fff',
+                            borderType: 'dashed',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(21,41,185,.75)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+            type: 'pie',
+            selectedMode: 'single',
+            radius: pieRadius,
+            color: ['#1FA463', '#FFCE43', '#DD4F43'],
+            label: {
+                normal: {
+                    show:false,
+                    position: 'inner',
+                    formatter: '{d}%',
+                    textStyle: {
+                        color: '#00cefc',
+                        fontWeight: 'bold',
+                        fontSize:title_bar
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: data
+        }]
+    };
+    if (option && typeof option === "object") {
+        myChart6.setOption(option, true);
+    }
+    /****************************module-7*************************************/
+    var dom7 = document.getElementById("module-7");
+    var myChart7 = echarts.init(dom7);
+    var data = [{
+        value: 0,
+        name: '已达标',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '未达标',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }];
+    option = {
+        title: {
+            text: '兜底保障',
+            x: 'center',
+            y: 'middle',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            },
+            subtextStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            }
+        },
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            position:"right",
+            formatter: "{b}: {c}户 ({d}%)"
+        },
+        series: [
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['82%', '90%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:20,
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 25,
+                            borderColor: '#fff',
+                            borderType: 'bold',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(0,0,0,0.85)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['55%', '82%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:'100',
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 30,
+                            borderColor: '#fff',
+                            borderType: 'dashed',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(21,41,185,.75)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+            type: 'pie',
+            selectedMode: 'single',
+            radius: pieRadius,
+            color: ['#1FA463','#DD4F43'],
+            label: {
+                normal: {
+                    show:false,
+                    position: 'inner',
+                    formatter: '{d}%',
+                    textStyle: {
+                        color: '#00cefc',
+                        fontSize:title_bar
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: data
+        }]
+    };
+    if (option && typeof option === "object") {
+        myChart7.setOption(option, true);
+    }
+    /****************************module-8*************************************/
+    var dom8 = document.getElementById("module-8");
+    var myChart8 = echarts.init(dom8);
+    var data = [{
+        value: 0,
+        name: '已完成',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '正在实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '未实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }];
+    option = {
+        title: {
+            text: '教育扶贫',
+            x: 'center',
+            y: 'middle',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            },
+            subtextStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            }
+        },
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            position:"right",
+            formatter: "{b}: {c}户 ({d}%)"
+        },
+        series: [
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['82%', '90%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:20,
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 25,
+                            borderColor: '#fff',
+                            borderType: 'bold',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(0,0,0,0.85)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['55%', '82%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:'100',
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 30,
+                            borderColor: '#fff',
+                            borderType: 'dashed',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(21,41,185,.75)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+            type: 'pie',
+            selectedMode: 'single',
+            radius: pieRadius,
+            color: ['#1FA463', '#FFCE43', '#DD4F43'],
+            label: {
+                normal: {
+                    show:false,
+                    position: 'inner',
+                    formatter: '{d}%',
+                    textStyle: {
+                        color: '#00cefc',
+                        fontWeight: 'bold',
+                        fontSize:title_bar
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: data
+        }]
+    };
+    if (option && typeof option === "object") {
+        myChart8.setOption(option, true);
+    }
+    /****************************module-9*************************************/
+    var dom9 = document.getElementById("module-9");
+    var myChart9 = echarts.init(dom9);
+    var data = [{
+        value: 0,
+        name: '已完成',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '正在实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }, {
+        value: 0,
+        name: '未实施',
+        itemStyle: {
+            normal: {
+                borderWidth: 3,
+                borderColor:"#fff",
+            }
+        }
+    }];
+    option = {
+        title: {
+            text: '金融扶贫',
+            x: 'center',
+            y: 'middle',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            },
+            subtextStyle: {
+                fontWeight: 'normal',
+                fontSize:title_bar,
+                color:"#fff"
+            }
+        },
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            position:"right",
+            formatter: "{b}: {c}户 ({d}%)"
+        },
+        series: [
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['82%', '90%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:20,
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 25,
+                            borderColor: '#fff',
+                            borderType: 'bold',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(0,0,0,0.85)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+                type: 'pie',
+                name: '',
+                center: ['50%', '50%'],
+                radius: ['55%', '82%'],
+                silent: true,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value:'100',
+                    itemStyle: {
+                        normal: {
+                            color: '#0A62C1',
+                            shadowBlur: 30,
+                            borderColor: '#fff',
+                            borderType: 'dashed',
+                            borderWidth: 2,
+                            shadowColor: 'rgba(21,41,185,.75)',
+                            labelLine:{
+                                show:false
+                            }
+                        }
+                    }
+                }]
+            },
+            {
+            type: 'pie',
+            selectedMode: 'single',
+            radius: pieRadius,
+            color: ['#1FA463', '#FFCE43', '#DD4F43'],
+            label: {
+                normal: {
+                    show:false,
+                    position: 'inner',
+                    formatter: '{d}%',
+                    textStyle: {
+                        color: '#00cefc',
+                        fontWeight: 'bold',
+                        fontSize:title_bar
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: data
+        }]
+    };
+    if (option && typeof option === "object") {
+        myChart9.setOption(option, true);
+    }
+    /****************************module-10*************************************/
+    /*var dom10 = document.getElementById("module-10");
+    var myChart10 = echarts.init(dom10);
+    option = {
+        color: ['#4ddead', '#3c7eb5'],
+        title: {
+            text: '帮扶措施受益户数/人数情况',
+            left:10,
+            top:15,
+            textStyle: {
+                color: '#fff',
+                fontSize: 20,
+            },
+        },
+     tooltip: {
+         trigger: 'axis'
+     },
+     xAxis: [
+         {
+             type: 'category',
+             data: [],
+             axisPointer: {
+                 type: 'shadow'
+             },
+             axisLine:{
+                 lineStyle:{
+                     color:'#fff'
+                 }
+             },
+             axisLabel: {
+                 interval:0,
+                 rotate:0,
+                    fontSize:10
+             }
+         }
+     ],
+    grid: {
+        top: "30%",
+        left: '5%',
+        right: '5%',
+        bottom: '0%',
+        containLabel: true
+    },
+     yAxis: [
+         {
+             type: 'value',
+             name: '受益户数',
+             axisLabel: {
+                 formatter: '{value} 万',
+             },
+             axisLine:{
+                 lineStyle:{
+                     color:'#fff'
+                 }
+             },
+             boundaryGap: false,
+             splitLine:{
+               show:false
+             },
+         },
+         {
+             type: 'value',
+             name: '受益人数',
+             axisLabel: {
+                 formatter: '{value} 万'
+             },
+             axisLine:{
+                 lineStyle:{
+                     color:'#fff'
+                 }
+             },
+             boundaryGap: false,
+             splitLine:{
+               show:false
+             },
+         },
+
+     ],
+     series: [
+         {
+             name:'受益户数',
+             type:'bar',
+             barWidth : 20,//柱图宽度
+              label: {
+                 normal: {
+                     show: true,
+                     position: 'top'
+                 }
+             },
+             data:[]
+         },
+         {
+             name:'受益人数',
+             type:'bar',
+             barWidth :20,//柱图宽度
+             yAxisIndex: 1,
+              label: {
+                 normal: {
+                     show: true,
+                     position: 'top'
+                 }
+             },
+             data:[]
+         }
+     ]
+    };
+    if (option && typeof option === "object") {
+     myChart10.setOption(option, true);
+    }*/
+</script>
+<script src="js/common.js"></script>
+<script>
+    /*脱贫状态和帮扶措施切换*/
+    $(document).ready(function(){
+        $(".btns>a").click(function(){
+            $(".btns>a").css("background","url('images/btn1.png') no-repeat center/cover");
+            $(this).css("background","url('images/btn1.png') center/cover");
+        })
+    })
+</script>

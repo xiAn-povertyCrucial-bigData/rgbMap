@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>土地信息</title> 
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <style>
+    	.form-01-add button{width: 100px;height: 34px;line-height:34px;font-size: 18px;background: #2698FB;color: white;display: block;text-align: center;margin:3% auto;border-radius: 6px}
+      	#xingzheng{
+      		float: left;
+		    width: 12.5%;
+		    height: 31px;
+		    line-height: 40px;
+		    display: inline-block;
+		    font-size: 16px;
+		    padding-left: 10px;
+      	}
+      	.form-x .form-group .label {
+		    width: 25%;		   
+		    line-height: 20px;		   
+		}
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+	
+	<div class="form-group" style="margin-bottom: 30px;">               
+        <div class="field1" style="margin-top: 15px;">               
+            <label id="xingzheng">行政区划：</label>	             
+            <select name="county" class="input w50">
+                <option value="">陕西省</option>
+            </select>
+            <select name="town" class="input w50">
+                <option value="">西安市</option>
+            </select>
+            <select name="village" class="input w50" id="country">
+                <option value="">县(区)</option>
+                <option value="610124000000">周至县</option>
+                <option value="610122000000">蓝田县</option>
+                <option value="610104000000">莲湖区</option>
+                <option value="610125000000">鄠邑区</option>
+                <option value="610116000000">长安区</option>
+                <option value="610103000000">碑林区</option>
+                <option value="610115000000">临潼区</option>                        
+                <option value="610112000000">未央区</option>
+                <option value="610102000000">新城区</option>
+                <option value="610111000000">灞桥区</option>
+                <option value="610113000000">雁塔区</option>
+                <option value="610126000000">高陵区</option>
+                <option value="610192000000">国际港务区</option>
+                <option value="610191000000">沣渭新区</option>
+                <option value="610114000000">阎良区</option>
+            </select>
+        </div>       
+    </div>
+	
+  <div>
+    <form id="formSubmit" class="form-x">
+      <!--<p class="form-01-p form-001-p">人口信息</p>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>总户数（户）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" data-validate="required:请输入姓名" placeholder="" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>乡村户数（户）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>低保户数（户）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>五保户数（户）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>贫困户数（户）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>总人口（人）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>乡村人口（人）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>少数民族人口（人）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>低保人口（人）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>五保人口（人）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>贫困人口（人）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>参加新型农村社会养老保险或城乡居民社会养老保险人数(人)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>妇女人口（人）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>参加大病保险人数（人）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>-->
+
+     	
+      <div style="width:100%;border-bottom: 1px solid #b1bfd1;margin-bottom: 2%;" >
+      		<p class="form-01-p form-001-p" style="width: 20%;border-bottom: none !important;margin-bottom: 5px;">土地信息</p>
+      </div>     
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>行政区域土地面积（平方公里）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>国有林场数：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>国有贫困林场数：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>基本农田面积（公顷）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <!--<div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>基本农田面积（公顷）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>有效灌溉面积（公顷）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>林地面积（公顷）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>退耕还林面积（公顷）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>林果面积（公顷）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>牧草地面积（公顷）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>-->
+      <!--<div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>水域面积（公顷）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>荒漠化面积（公顷）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>-->
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>荒漠化面积（公顷）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>森林覆盖率（%）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+    </form>
+    </div>
+		<div class="form-01-add">
+	    <button id="add">提交</button>
+  </div>
+  </div>
+</div>
+</body>
+
+<script type="text/javascript">
+	
+	var k = [];
+ 	var i = 0;
+	var country=$('#country')
+ $("#add").click(function(){
+ 	      
+    	$("input").each(function(){
+		  i++;
+		  k.push($(this).val())
+		  
+		})
+    	console.log(k)
+	
+    $.ajax({
+        url:url+"addfpdx/addLandInfo/query",       
+        data:{'aae001':country.val(),'aae023':k[0],'aae004':k[1],'aae005':k[2],'aae025':k[3],'aae032':k[4],
+        'aae034':k[5]},
+        type:"get", 
+        dataType:"json",
+        success: function(data){
+            if (data.code == 2000){
+            alert ("添加成功");
+            }else{
+            alert("添加失败");
+            }
+        }
+    
+    })
+    
+})
+	
+</script>
+
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困县</title>  
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>贫困县</strong><a href="html/addPoveryContries.html">添加内容</a></div>
+  <div class="form-01">
+    <form id="formSubmit" class="form-x">
+        <input name="identification" type="hidden" value="industrySupport">
+        <!--*************************************基本信息*********************************************-->
+        <p class="form-01-p">基本信息</p>
+        <div class="basic">
+            <!--**************************第一行*****************************************-->
+            <div class="form-group">
+                <div class="label">
+                    <label>行政区划：</label>
+                </div>
+                <div class="field1">
+                    <select name="county" class="input w50">
+                        <option value="">陕西省</option>
+                    </select>
+                    <select name="town" class="input w50">
+                        <option value="">西安市</option>
+                    </select>
+                    <select name="village" class="input w50">
+                        <option value="">县(区)</option>
+                        <option value="">周至县</option>
+                        <option value="">蓝田县</option>
+                        <option value="">鄠邑区</option>
+                        <option value="">长安区</option>
+                        <option value="">临潼区</option>
+                        <option value="">西咸新区</option>
+                        <option value="">灞桥区</option>
+                        <option value="">高陵区</option>
+                        <option value="">国际港务区</option>
+                        <option value="">阎良区</option>
+                    </select>
+                </div>
+                <div class="tips"></div>
+            </div>
+            <!--**************************第二行*****************************************-->
+            <div class="form-group" style="display: flex;">
+                <div class="left">
+                    <div class="label">
+                        <label>县属性：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="name"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="label">
+                        <label>拟摘帽年度：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="name"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+            </div>
+            <!--**************************第三行*****************************************-->
+            <div class="form-group" style="display: flex;">
+                <div class="left">
+                    <div class="label">
+                        <label>乡/镇数（个）：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="name"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="label">
+                        <label>行政村数（个）：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="name"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+            </div>
+            <!--**************************第四行*****************************************-->
+            <div class="form-group" style="display: flex;">
+                <div class="left">
+                    <div class="label">
+                        <label>贫困村数（个）：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="name"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="label">
+                        <label>自然村数（个）：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="cordId"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="text-align: right;border-bottom: 1px solid #00aaee;margin-bottom: 8px;">
+                <button class="button bg-main icon-check-square-o" id="save" type="button">保存</button>
+            </div>
+
+            <!--*************************************帮扶措施录入*********************************************-->
+            <!-- <p class="form-01-p" style="border-bottom: 0;">添加帮扶措施</p> -->
+            <div class="form-group" style="display: flex;">
+                <ul class="helpMeasureContent">
+                    <li class="helpMeasureTag" onclick="helpMeasure(001)">人口及土地信息</li>
+                    <li onclick="helpMeasure(002)">财政信息</li>
+                    <li onclick="helpMeasure(003)">水路电情况</li>
+                    <li onclick="helpMeasure(004)">乡村旅游及特色产业</li>
+                    <li onclick="helpMeasure(005)">危房改造及易地搬迁</li>
+                    <li onclick="helpMeasure(006)">教育</li>
+                    <li onclick="helpMeasure(007)">雨露计划及扶贫小额信贷</li>
+                    <li onclick="helpMeasure(008)">卫生和计划生育</li>
+                    <li onclick="helpMeasure(009)">文化建设及贫困村信息化</li>
+                    <!-- <li style="border-right: 0;" onclick="helpMeasure(100)">基础设施</li> -->
+                </ul>
+            </div>
+
+            <label>
+                <div class="form-group helpContent box" style="height: 1076px;display: block;" id="help1">
+                    <iframe src="industrySupport.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 439px;" id="help2">
+                    <iframe src="finance.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 1185px;" id="help3">
+                    <iframe src="waterElectricRode.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 890px;" id="help4">
+                    <iframe src="relocation.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 697px;" id="help5">
+                    <iframe src="houseReconstruction.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 378px;" id="help6">
+                    <iframe src="medicalAssistance.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 1023px;" id="help7">
+                    <iframe src="educationSupport.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 684px;" id="help8">
+                    <iframe src="outToEnsure.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 623px;" id="help9">
+                    <iframe src="FinancialSupport.html" scrolling="no"></iframe>
+                </div>
+            </label>
+
+
+            <div class="form-group" style="text-align: center;">
+                <button class="button bg-main icon-check-square-o" type="submit">提交</button>
+            </div>
+    </form>
+</div>
+</div>
+<script type="text/javascript">
+  //ExcelUtils.exportexcel("#formSubmit")
+</script>
+</body>
+</html>

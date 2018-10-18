@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困县</title>  
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>贫困县</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+  <div class="form-01">
+      <!--<p>高级搜索</p>
+      <div class="search">
+          <label for="">请选择地区</label>
+          <input type="text" value="陕西省" disabled>
+          <input type="text" value="西安市" disabled>
+          <select name="" id="">
+              <option value="">县（区）</option>
+          </select>
+          <input type="button" class="btn_blue" style="float: right;" name="" value="查询" onclick="javascript:sh();">
+      </div>-->
+      <table id="formSubmit" class="form-x">
+          <tr>
+              <th>序号</th>
+              <th>姓名</th>
+              <th>时间</th>
+              <th>内容</th>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>李飞</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是李飞修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>2</td>
+              <td>贺聪</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是贺聪修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>3</td>
+              <td>宋阳德</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是宋阳德修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>4</td>
+              <td>冯满青</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是冯满青修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>5</td>
+              <td>马汝波</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是马汝波修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>6</td>
+              <td>姚宇辰</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是姚宇辰修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>7</td>
+              <td>张琦</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是张琦修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>8</td>
+              <td>谭一思</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是谭一思修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>9</td>
+              <td>郭侃成</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是郭侃成修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>10</td>
+              <td>苏应东</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是郭侃成修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>11</td>
+              <td>苏琪</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是苏琪修改的贫困县信息</td>
+          </tr>
+          <tr>
+              <td>12</td>
+              <td>张菲</td>
+              <td>2018-1-1 18:00:00</td>
+              <td>这是张菲修改的贫困县信息</td>
+          </tr>
+      </table>
+      <div class="pages">
+          <div class="paging">
+              <div id="Pagination"></div>
+              <div class="searchPage">
+                  <span class="page-sum">共<strong class="allPage">15</strong>页</span>
+                  <span class="page-go">到<input type="text">页</span>
+                  <a href=" " class="page-btn">确定</a>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+    })
+</script>
+</body>
+</html>

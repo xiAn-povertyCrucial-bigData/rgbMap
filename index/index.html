@@ -1,0 +1,579 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="css/public.css">
+	<script src="js/config.js"></script>
+	<script src="js/tooltips.js"></script>
+	<script src="../supportMeasures/js/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/common.js"></script>
+</head>
+<body>
+	<!-- <div class="forgetBox">
+        <h3>修改密码</h3>   
+    </div> -->
+	<div class="title">
+		<img src="images/title.png">
+		<div class="items">
+			<div class="operate">
+				<a>用户名: <span id="user_name" style="color:red"></span></a>
+               <!--  |<a id="forget" style="cursor:pointer;">修改密码</a> -->
+				|<a id="loginOut" style="cursor:pointer;">退出</a>
+			</div>
+		</div>
+	</div>
+	<div class="wrap">
+		<canvas id="canvas" style="width: 100%;height: 100%;"></canvas>
+		<div class="box" >
+			<a class="title-1" style="cursor: pointer;">
+				<span class="bgImg"></span>
+				<span class="bgWord"></span>
+			</a>
+			<a class="title-3" style="cursor: pointer;">
+				<span class="bgImg"></span>
+				<span class="bgWord3"></span>
+			</a>
+			<a href="../backgroundManage/login.html" class="title-2">
+				<span class="bgImg"></span>
+				<span class="bgWord2"></span>
+			</a>
+
+		</div>
+	</div>
+	<a class="support">技术支持:<img src="images/ts.png"></a>
+</body>
+</html>
+<script>
+    /*注销*/
+    let url=config.url;
+    let host=config.host;
+    let token=$.cookie("token");
+    $("#loginOut").click(function(){
+        $.ajax({
+            url:url+"/user/logout",
+            data:{"token":token},
+            method:"post",
+            dataType:"json",
+            success:function(data){
+                if(data.code===2000){
+                    $.cookie("loginMessage",null);
+                    $.cookie("token",null,{ expires: -1,path: '/'});
+                    location.href="login.html";
+                }
+            }
+        })
+    })
+    /*读取本地用户名*/
+    let loginMessaage=JSON.parse($.cookie('loginMessage'));
+    let uname=loginMessaage.userCode
+    let ucode=loginMessaage.aar008;
+    $("#user_name").text(uname);
+    console.log(uname,ucode)
+    /*分权限显示与隐藏*/
+    if(uname=="领导"){
+        $(".title-2").hide();
+        $(".wrap .box").css("padding","0 20%");
+	}else if(uname.endsWith("产业扶贫")||uname.endsWith("就业创业")||uname.endsWith("易地搬迁")||uname.endsWith("危房改造")||uname.endsWith("生态扶贫")||uname.endsWith("健康扶贫")||uname.endsWith("兜底保障")||uname.endsWith("教育扶贫")||uname.endsWith("金融扶贫")||uname.endsWith("基础设施")){
+        $(".title-3").hide();
+        $(".wrap .box").css("padding","0 20%");
+	}
+    /*分权限进入*/
+	/*脱贫成效监测系统*/
+	$(".title-1").on("click",function(){
+        if(uname=="超级管理员" && ucode=="610100000000"){
+            /*西安市扶贫办(超级管理员进入)*/
+            location.href='../poorStatus/City1.html';
+        }if(uname=="领导" && ucode=="610100000000"){
+            /*西安市领导*/
+            location.href='../poorStatus/City1.html';
+            /*西安市市级八办两组进入(帮扶措施)*/
+        }else if(uname=="产业扶贫"){
+            let urls = host + '/supportMeasures/industryPoverty_city.html';
+            location.href=urls;
+		}else if(uname=="就业创业"){
+            let urls = host + '/supportMeasures/employBussiness_city.html';
+            location.href=urls;
+        }else if(uname=="易地搬迁"){
+            let urls = host + '/supportMeasures/relocation_city.html';
+            location.href=urls;
+        }else if(uname=="危房改造"){
+            let urls = host + '/supportMeasures/houseRenovation_city.html';
+            location.href=urls;
+        }else if(uname=="生态扶贫"){
+            let urls = host + '/supportMeasures/ecological_city.html';
+            location.href=urls;
+        }else if(uname=="健康扶贫"){
+            let urls = host + '/supportMeasures/healthPoverty_city.html';
+            location.href=urls;
+        }else if(uname=="兜底保障"){
+            let urls = host + '/supportMeasures/outToEnsure_city.html';
+            location.href=urls;
+        }else if(uname=="教育扶贫"){
+            let urls = host + '/supportMeasures/educationPoverty_city.html';
+            location.href=urls;
+        }else if(uname=="基础设施"){
+            let urls = host + '/supportMeasures/infrastructure_city.html';
+            location.href=urls;
+        }else if(uname=="金融扶贫"){
+            let urls = host + '/supportMeasures/financialPoverty_city.html';
+            location.href=urls;
+            /*西安市各区县八办两组进入(帮扶措施)*/
+        }else if(uname.substr(3)=="产业扶贫" && ucode.substr(6)=="000000"){
+            let param=uname.substr(0,3);
+            let maps="";
+            if(param=="周至县"){
+                maps="zhouzhi";
+			}else if(param=="鄠邑区"){
+                maps="huyi";
+			}else if(param=="蓝田县"){
+                maps="lantian";
+            }else if(param=="临潼区"){
+                maps="lintong";
+            }else if(param=="高陵区"){
+                maps="gaoling";
+            }else if(param=="灞桥区"){
+                maps="baqiao";
+            }else if(param=="长安区"){
+                maps="changan";
+            }
+            let urls = host + '/supportMeasures/industryPoverty_county.html?name=' + param +"&map="+maps;
+            location.href=urls;
+        }else if(uname.substr(3)=="就业创业" && ucode.substr(6)=="000000"){
+            let param=uname.substr(0,3);
+            let maps="";
+            if(param=="周至县"){
+                maps="zhouzhi";
+            }else if(param=="鄠邑区"){
+                maps="huyi";
+            }else if(param=="蓝田县"){
+                maps="lantian";
+            }else if(param=="临潼区"){
+                maps="lintong";
+            }else if(param=="高陵区"){
+                maps="gaoling";
+            }else if(param=="灞桥区"){
+                maps="baqiao";
+            }else if(param=="长安区"){
+                maps="changan";
+            }
+            let urls = host + '/supportMeasures/employBussiness_county.html?name=' + param +"&map="+maps;
+            location.href=urls;
+        }else if(uname.substr(3)=="易地搬迁" && ucode.substr(6)=="000000"){
+            let param=uname.substr(0,3);
+            let maps="";
+            if(param=="周至县"){
+                maps="zhouzhi";
+            }else if(param=="鄠邑区"){
+                maps="huyi";
+            }else if(param=="蓝田县"){
+                maps="lantian";
+            }else if(param=="临潼区"){
+                maps="lintong";
+            }else if(param=="高陵区"){
+                maps="gaoling";
+            }else if(param=="灞桥区"){
+                maps="baqiao";
+            }else if(param=="长安区"){
+                maps="changan";
+            }
+            let urls = host + '/supportMeasures/relocation_county.html?name=' + param +"&map="+maps;
+            location.href=urls;
+        }else if(uname.substr(3)=="危房改造" && ucode.substr(6)=="000000"){
+            let param=uname.substr(0,3);
+            let maps="";
+            if(param=="周至县"){
+                maps="zhouzhi";
+            }else if(param=="鄠邑区"){
+                maps="huyi";
+            }else if(param=="蓝田县"){
+                maps="lantian";
+            }else if(param=="临潼区"){
+                maps="lintong";
+            }else if(param=="高陵区"){
+                maps="gaoling";
+            }else if(param=="灞桥区"){
+                maps="baqiao";
+            }else if(param=="长安区"){
+                maps="changan";
+            }
+            let urls = host + '/supportMeasures/houseRenovation_county.html?name=' + param +"&map="+maps;
+            location.href=urls;
+        }else if(uname.substr(3)=="生态扶贫" && ucode.substr(6)=="000000"){
+            let param=uname.substr(0,3);
+            let maps="";
+            if(param=="周至县"){
+                maps="zhouzhi";
+            }else if(param=="鄠邑区"){
+                maps="huyi";
+            }else if(param=="蓝田县"){
+                maps="lantian";
+            }else if(param=="临潼区"){
+                maps="lintong";
+            }else if(param=="高陵区"){
+                maps="gaoling";
+            }else if(param=="灞桥区"){
+                maps="baqiao";
+            }else if(param=="长安区"){
+                maps="changan";
+            }
+            let urls = host + '/supportMeasures/ecological_county.html?name=' + param +"&map="+maps;
+            location.href=urls;
+        }else if(uname.substr(3)=="健康扶贫" && ucode.substr(6)=="000000"){
+            let param=uname.substr(0,3);
+            let maps="";
+            if(param=="周至县"){
+                maps="zhouzhi";
+            }else if(param=="鄠邑区"){
+                maps="huyi";
+            }else if(param=="蓝田县"){
+                maps="lantian";
+            }else if(param=="临潼区"){
+                maps="lintong";
+            }else if(param=="高陵区"){
+                maps="gaoling";
+            }else if(param=="灞桥区"){
+                maps="baqiao";
+            }else if(param=="长安区"){
+                maps="changan";
+            }
+            let urls = host + '/supportMeasures/healthPoverty_county.html?name=' + param +"&map="+maps;
+            location.href=urls;
+        }else if(uname.substr(3)=="兜底保障" && ucode.substr(6)=="000000"){
+            let param=uname.substr(0,3);
+            let maps="";
+            if(param=="周至县"){
+                maps="zhouzhi";
+            }else if(param=="鄠邑区"){
+                maps="huyi";
+            }else if(param=="蓝田县"){
+                maps="lantian";
+            }else if(param=="临潼区"){
+                maps="lintong";
+            }else if(param=="高陵区"){
+                maps="gaoling";
+            }else if(param=="灞桥区"){
+                maps="baqiao";
+            }else if(param=="长安区"){
+                maps="changan";
+            }
+            let urls = host + '/supportMeasures/outToEnsure_county.html?name=' + param +"&map="+maps;
+            location.href=urls;
+        }else if(uname.substr(3)=="教育扶贫" && ucode.substr(6)=="000000"){
+            let param=uname.substr(0,3);
+            let maps="";
+            if(param=="周至县"){
+                maps="zhouzhi";
+            }else if(param=="鄠邑区"){
+                maps="huyi";
+            }else if(param=="蓝田县"){
+                maps="lantian";
+            }else if(param=="临潼区"){
+                maps="lintong";
+            }else if(param=="高陵区"){
+                maps="gaoling";
+            }else if(param=="灞桥区"){
+                maps="baqiao";
+            }else if(param=="长安区"){
+                maps="changan";
+            }
+            let urls = host + '/supportMeasures/educationPoverty_county.html?name=' + param +"&map="+maps;
+            location.href=urls;
+        }else if(uname.substr(3)=="金融扶贫" && ucode.substr(6)=="000000"){
+            let param=uname.substr(0,3);
+            let maps="";
+            if(param=="周至县"){
+                maps="zhouzhi";
+            }else if(param=="鄠邑区"){
+                maps="huyi";
+            }else if(param=="蓝田县"){
+                maps="lantian";
+            }else if(param=="临潼区"){
+                maps="lintong";
+            }else if(param=="高陵区"){
+                maps="gaoling";
+            }else if(param=="灞桥区"){
+                maps="baqiao";
+            }else if(param=="长安区"){
+                maps="changan";
+            }
+            let urls = host + '/supportMeasures/financialPoverty_county.html?name=' + param +"&map="+maps;
+            location.href=urls;
+        }else if(uname.substr(3)=="基础设施" && ucode.substr(6)=="000000"){
+            let param=uname.substr(0,3);
+            let maps="";
+            if(param=="周至县"){
+                maps="zhouzhi";
+            }else if(param=="鄠邑区"){
+                maps="huyi";
+            }else if(param=="蓝田县"){
+                maps="lantian";
+            }else if(param=="临潼区"){
+                maps="lintong";
+            }else if(param=="高陵区"){
+                maps="gaoling";
+            }else if(param=="灞桥区"){
+                maps="baqiao";
+            }else if(param=="长安区"){
+                maps="changan";
+            }
+            let urls = host + '/supportMeasures/infrastructure_county.html?name=' + param +"&map="+maps;
+            location.href=urls;
+        }else if(uname=="西咸新区产业扶贫" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + '/supportMeasures/industryPoverty_county.html?name=' + param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="西咸新区就业创业" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + '/supportMeasures/employBussiness_county.html?name=' + param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="西咸新区易地搬迁" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + '/supportMeasures/relocation_county.html?name=' + param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="西咸新区危房改造" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + '/supportMeasures/houseRenovation_county.html?name=' + param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="西咸新区生态扶贫" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + '/supportMeasures/ecological_county.html?name=' + param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="西咸新区健康扶贫" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + '/supportMeasures/healthPoverty_county.html?name=' + param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="西咸新区兜底保障" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + '/supportMeasures/outToEnsure_county.html?name=' + param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="西咸新区教育扶贫" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + '/supportMeasures/educationPoverty_county.html?name=' + param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="西咸新区金融扶贫" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + '/supportMeasures/financialPoverty_county.html?name=' + param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="西咸新区基础设施" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + '/supportMeasures/infrastructure_county.html?name=' + param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="国际港务区产业扶贫" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + '/supportMeasures/industryPoverty_county.html?name=' + param + "&map="+"guoji";
+            location.href=urls;
+        }else if(uname=="国际港务区就业创业" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + '/supportMeasures/employBussiness_county.html?name=' + param + "&map="+"guoji";
+            location.href=urls;
+        }else if(uname=="国际港务区易地搬迁" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + '/supportMeasures/relocation_county.html?name=' + param + "&map="+"guoji";
+            location.href=urls;
+        }else if(uname=="国际港务区危房改造" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + '/supportMeasures/houseRenovation_county.html?name=' + param + "&map="+"guoji";
+            location.href=urls;
+        }else if(uname=="国际港务区生态扶贫" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + '/supportMeasures/ecological_county.html?name=' + param + "&map="+"guoji";
+            location.href=urls;
+        }else if(uname=="国际港务区健康扶贫" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + '/supportMeasures/healthPoverty_county.html?name=' + param + "&map="+"guoji";
+            location.href=urls;
+        }else if(uname=="国际港务区兜底保障" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + '/supportMeasures/outToEnsure_county.html?name=' + param + "&map="+"guoji";
+            location.href=urls;
+        }else if(uname=="国际港务区教育扶贫" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + '/supportMeasures/educationPoverty_county.html?name=' + param + "&map="+"guoji";
+            location.href=urls;
+        }else if(uname=="国际港务区基础设施" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + '/supportMeasures/infrastructure_county.html?name=' + param + "&map="+"guoji";
+            location.href=urls;
+        }else if(uname=="国际港务区金融扶贫" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + '/supportMeasures/financialPoverty_county.html?name=' + param + "&map="+"guoji";
+            location.href=urls;
+            /*西安市各区县扶贫办进入(脱贫状态和帮扶措施)*/
+        }
+        else if(uname=="周至县" && ucode=="610124000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/poorStatus/rgy-5.html?name="+ param;
+            location.href=urls;
+        }else if(uname=="蓝田县" && ucode=="610122000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/poorStatus/rgy-3.html?name="+ param + "&map="+"lantian";
+            location.href=urls;
+        }else if(uname=="鄠邑区" && ucode=="610125000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/poorStatus/rgy-3.html?name="+ param + "&map="+"huyi";
+            location.href=urls;
+        }else if(uname=="临潼区" && ucode=="610115000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/poorStatus/rgy-3.html?name="+ param + "&map="+"lintong";
+            location.href=urls;
+        }else if(uname=="西咸新区" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + "/poorStatus/rgy-3.html?name="+ param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="高陵区" && ucode=="610126000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/poorStatus/rgy-4.html?name="+ param + "&map="+"gaoling";
+            location.href=urls;
+        }else if(uname=="灞桥区" && ucode=="610111000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/poorStatus/rgy-4.html?name="+ param + "&map="+"baqiao";
+            location.href=urls;
+        }else if(uname=="长安区" && ucode=="610116000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/poorStatus/rgy-4.html?name="+ param + "&map="+"changan";
+            location.href=urls;
+        }else if(uname=="国际港务区" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + "/poorStatus/rgy-4.html?name="+ param + "&map="+"guoji";
+            location.href=urls;
+        }
+	})
+
+	/*脱贫攻坚指挥系统*/
+	$(".title-3").click(function(){
+        if(uname=="超级管理员" && ucode=="610100000000"){
+            /*西安市扶贫办(超级管理员进入)*/
+            location.href='../visiualization/wholeCity.html';
+            /*西安市各区县扶贫办进入(脱贫攻坚指挥系统)*/
+        }else if(uname=="周至县" && ucode=="610124000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/visiualization/zhouzhi.html?name="+ param + "&map="+"zhouzhi";
+            location.href=urls;
+        }else if(uname=="蓝田县" && ucode=="610122000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/visiualization/county.html?name="+ param + "&map="+"lantian";
+            location.href=urls;
+        }else if(uname=="鄠邑区" && ucode=="610125000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/visiualization/county.html?name="+ param + "&map="+"huyi";
+            location.href=urls;
+        }else if(uname=="临潼区" && ucode=="610115000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/visiualization/county.html?name="+ param + "&map="+"lintong";
+            location.href=urls;
+        }else if(uname=="西咸新区" && ucode=="619900000000"){
+            let param=uname.substr(0,4);
+            let urls = host + "/visiualization/county.html?name="+ param + "&map="+"xixian";
+            location.href=urls;
+        }else if(uname=="高陵区" && ucode=="610126000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/visiualization/county.html?name="+ param + "&map="+"gaoling";
+            location.href=urls;
+        }else if(uname=="灞桥区" && ucode=="610111000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/visiualization/county.html?name="+ param + "&map="+"baqiao";
+            location.href=urls;
+        }else if(uname=="长安区" && ucode=="610116000000"){
+            let param=uname.substr(0,3);
+            let urls = host + "/visiualization/county.html?name="+ param + "&map="+"changan";
+            location.href=urls;
+        }else if(uname=="国际港务区" && ucode=="610192000000"){
+            let param=uname.substr(0,5);
+            let urls = host + "/visiualization/county.html?name="+ param + "&map="+"guoji";
+            location.href=urls;
+        }
+	})
+
+</script>
+<script>
+    var Canvas={};
+    Canvas.animate={
+        //初始化
+        init:function(){
+            var canvas=document.getElementById('canvas');
+            this.cxt=canvas.getContext("2d");
+            canvas.width=window.innerWidth;
+            canvas.height=window.innerHeight;
+            this.cw=canvas.width;
+            this.ch=canvas.height;
+            this.num=150;
+            this.data=[];
+            for(var i=0;i<this.num;i++){
+                this.data[i]={
+                    x:Math.random()*this.cw,
+                    y:Math.random()*this.ch,
+                    cX:Math.random()*0.6-0.3,
+                    cY:Math.random()*0.6-0.3
+                }
+                this.drawCircle(this.data[i].x,this.data[i].y);
+            }
+        },
+        //绘制线条
+        drawLine:function(x1,y1,x2,y2){
+            var cxt=this.cxt;
+            var color=cxt.createLinearGradient(x1, y1, x2, y2);
+            color.addColorStop(0, '#fff');
+            color.addColorStop(1, '#001123');
+            cxt.save();
+            cxt.strokeStyle=color;
+            cxt.lineWidth=0.5;
+            cxt.beginPath();
+            cxt.moveTo(x1, y1);
+            cxt.lineTo(x2, y2);
+            cxt.closePath();
+            cxt.stroke();
+            cxt.restore();
+        },
+        //绘制粉色小点
+        drawCircle:function(x,y){
+            var cxt=this.cxt;
+            cxt.save();
+            cxt.fillStyle='pink';
+            cxt.shadowOffsetX = 0; // 阴影Y轴偏移
+            cxt.shadowOffsetY = 0; // 阴影X轴偏移
+            cxt.shadowBlur = 5; // 模糊尺寸
+            cxt.shadowColor = 'rgba(255, 255, 255, 0.6)'; // 颜色
+            cxt.beginPath();
+            cxt.arc(x,y,2,0,Math.PI*2,false);
+            cxt.closePath();
+            cxt.fill();
+            cxt.restore();
+        },
+        //粉点运动及连线
+        moveCircle:function(){
+            this.cxt.clearRect(0, 0, this.cw, this.ch);
+            for(var i=0;i<this.num;i++){
+                this.data[i].x+=this.data[i].cX;
+                this.data[i].y+=this.data[i].cY;
+                //边界值判断
+                if(this.data[i].x>this.cw||this.data[i].x<0){
+                    this.data[i].cX=-this.data[i].cX;
+                }
+                if(this.data[i].y>this.ch||this.data[i].y<0){
+                    this.data[i].cY=-this.data[i].cY;
+                }
+                this.drawCircle(this.data[i].x,this.data[i].y);
+                //勾股定理判断是否连线
+                for(var j=i+1;j<this.num;j++){
+                    if((this.data[i].x-this.data[j].x)*(this.data[i].x-this.data[j].x)+(this.data[i].y-this.data[j].y)*(this.data[i].y-this.data[j].y)<=50*50){
+                        this.drawLine(this.data[i].x,this.data[i].y,this.data[j].x,this.data[j].y);
+                    }
+                }
+            }
+        },
+        //鼠标移动及连线
+        mouseMove:function(event){
+            var e=event||window.event;
+            let ox=e.pageX;
+            let oy=e.pageY;
+            console.log(ox)
+        }
+    }
+    Canvas.animate.init();
+    setInterval(function(){
+        Canvas.animate.moveCircle();
+    },10);
+
+</script>

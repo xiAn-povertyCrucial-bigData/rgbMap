@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="../css/pintuer.css">
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/inputStyle.css">
+<script src="../js/commer.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/pintuer.js"></script>
+<script src="../js/inputJavaScript.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="form-01">
+    <form id="formSubmit" class="form-x">
+      <p class="form-01-p form-001-p">成员信息</p>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>成员姓名：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" data-validate="required:请输入姓名" placeholder="成员姓名" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>成员证件号码：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" data-validate="required:请输入身份证号" placeholder="成员证件号码" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <p class="form-01-p form-001-p">退耕还林情况</p>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否退耕还林">是否退耕还林：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isToForest" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isToForest" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="退耕还林面积(㎡)">退耕还林面积：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="toForestArea" data-validate="plusdouble:请输入面积" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="退耕还林补偿金(元)">退耕还林补偿金：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="toForestCompen" data-validate="plusdouble:请输入金额" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <p class="form-01-p form-001-p">公益林补偿情况</p>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否有生态林公益林补偿">是否有生态林公益林补偿：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isPubForest" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isPubForest" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="生态林公益林面积(㎡)">生态林公益林面积：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="pubForsetArea" data-validate="plusdouble:请输入面积" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label title="生态林公益林补偿金(元)">生态林公益林补偿金：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="pubForestCompen" data-validate="currency:请输入金额" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <p class="form-01-p form-001-p">护林员情况</p>
+      <div class="form-group">
+        <div class="label">
+          <label title="是否是护林员">是否是护林员：</label>
+        </div>
+        <div class="field">
+          <div class="button-group radio">
+            <label class="button active">
+              <span class="icon icon-check"></span>
+              <input name="isRanger" value="1" type="radio" >是
+            </label>
+            <label class="button active"><span class="icon icon-times"></span>
+              <input name="isRanger" value="0"  type="radio" >否
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>月工资：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="monSalary" data-validate="plusdouble:请输入金额" />
+          <div class="tips"></div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

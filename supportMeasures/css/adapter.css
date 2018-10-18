@@ -1,0 +1,27 @@
+@media screen and (min-width: 1366px ) and (max-width: 1500px) {
+    #boxs{
+        height:82.5%!important;
+    }
+    #mapService{
+        transform: scale(0.7,0.6) translate(-23%,-44%)!important;
+    }
+    #mapService.maps{
+        transform: scale(0.8,0.8) translate(-11%,-20%)!important;
+    }
+
+
+
+}
+#imgBox img{
+    transform: translate(-50%,-50%) scale(1.2,1.2);
+}
+/*媒体查询*/
+
+@media screen and (min-width: 1560px ) {
+    #imgBox img{
+        transform: translate(-50%,-50%) scale(1.4,1.4);
+    }
+
+
+
+}

@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>西安市脱贫成效监测系统</title>
+    <link rel="stylesheet" href="js/swiper/swiper.min.css">
+	<link rel="stylesheet" href="css/ryg1.css">
+	<link rel="stylesheet" href="css/rgy-5.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style2.css" />
+	<script src="js/jquery-3.3.1.min.js"></script>
+    <script src="../index/js/jquery.cookie.js"></script>
+    <script src="js/commer.js"></script>
+    <script src="../index/js/tooltips.js"></script>
+    <script src="js/common.js"></script>
+    <style>
+    	.p-listss8 {
+            width: 55%;
+            left: 45%;
+            top: 0%;
+            height: 96%;
+		}
+		.p-listss9 {
+            width: 44%;
+            height: 99.5%;
+            left: 0.5%;
+            top: -100%;
+		}
+		.p-listss1 {
+		    left: -34%;
+		}
+		.titles {
+            margin-top: -100%;
+		}
+		.p-listss12 {
+            top: -77%;
+		}
+		.p-listss2 {
+		    top: 0%;
+		    height: 49.5%;
+		}
+		.titles1 {
+		    margin-top: -6%;
+		}
+		.p-listss3 {
+		    top: 87%;
+		    left: 0%;
+		    height: 70%;
+		}
+		#p-list11 {
+		    left: 0%;
+            width:55%;
+            background: #2f2d2dab;
+		}
+		#p-list10{
+            top: 50%;
+            width: 44%;
+            left:55.5%;
+            background: #E2E58B;
+            color: black;
+		}
+		#echarts-101 {
+		    top: -95%;
+		}
+		#p-lists1{
+			top: 50%;
+    		left:65.5%;
+		}
+		#p-lists3 {
+		    height: 46%;
+		    background: #2f2d2dab;
+		}
+		#p-list12{
+			top: 0%;
+		}
+		.contentsss3{
+			width: 1000px;
+		    height: 570px;
+		    position: absolute;
+		    /*left: -47%;
+		    top: -15%;*/
+		    left: 50%;
+		    top: 50%;
+		    margin-top: -370px;
+		    margin-left: -570px;
+		    /*transform:translate(-285px,-500px);*/
+		    display:none;
+		    background: #2f2d2dab;
+		    z-index: 9999;
+		}
+		 .contentsss4{
+			width: 1000px;
+		    height: 554px;
+		    position: absolute;
+		    /*left: -50%;
+		    top: -19%;*/
+		    left: 50%;
+		    top: 50%;
+		    margin-top: -370px;
+		    margin-left: -570px;
+		    display:none;
+		    background: #2f2d2dab;
+		}
+		 .contentsss1{
+			width: 1000px;
+		    height: 555px;
+		    position: absolute;
+             /*left: -45%;
+             top: -19%;*/
+		    left: 50%;
+		    top: 50%;
+		    margin-top: -370px;
+		    margin-left: -570px;
+		    display:none;
+		    background: #2f2d2dab;
+		}
+		 .contentsss2{
+		 	width: 880px;
+		    height: 620px;
+		    position: absolute;
+		    left: 50%;
+		    top: 50%;
+		    margin-top: -400px;
+		    margin-left: -510px;
+		    /*left: -50%;
+		    top: -19%;*/
+		    display:none;
+		    background: #2f2d2dab;
+		}
+		.reason2{
+            position:fixed;
+            z-index: 999;
+            width:500px;
+            height:350px;
+            background: #232020eb;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            box-shadow: 0 0 20px 2000px rgba(0,0,0,0.8);
+            padding:0 2%;
+        }
+        .p-item11 {
+            display: inline-block;
+            width: 95%;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            font-size: 16px;
+            height: 10%;
+            margin-top: 1%;
+            margin-bottom: 0.5%;
+            text-align: left;
+        }
+    </style>
+    <script>
+    	var codeinging=null;
+        var countryName=null;
+        /********************************************************请求参数截取************************************************************/
+        function getUrlParam(name) {
+            var url=window.location.search;
+            url=decodeURI(url);
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = url.substr(1).match(reg); //匹配目标参数
+            if (r != null) return unescape(r[2]); return null; //返回参数值
+        }
+        //接收URL中的参数name
+        countryName = getUrlParam('name');
+			$.ajax({
+		        url:url+ 'init/disct/name',
+		        data:{'name':countryName},
+		        method: "get",
+		        dataType: "json",
+		        success: function(data){
+		            codeinging=data.data;
+		            console.log(codeinging);
+		            aa(codeinging)
+		        }
+		  	});
+			function aa(code){
+		        console.log(codeinging);
+			}
+
+
+    </script>
+	<script type="text/javascript">
+
+          /**************** 地图调用 ************************/
+        var gis = null;
+        function giscallback(type, param){
+            switch (type) {
+                case 'mapinit':
+                    // 地图初始化完成
+                    setTimeout(function(){
+                       gis.gisapp.zoom(countryName);
+                    },2500)
+                    break;
+                case 'county_select':
+                    // 区域点击事件
+					if(param=='周至县'){
+                    	var url =host+'rgy-5.html?name='+param ;
+                    	window.location.href = url;
+                    }else if(param=='鄠邑区'||param=='蓝田县'||param=='临潼区'||param=='西咸新区'){
+                    	var url = host+'rgy-3.html?name='+param;
+                    	window.location.href = url;
+                    }else if(param=='国际港务区'||param=='灞桥区'||param=='高陵区'||param=='长安区'){
+                    	var url = host+'rgy-4.html?name='+param;
+                    	window.location.href = url;
+                    }
+                    break;
+                case 'village_select':
+                    // 村点击事件
+                var url = host + 'poor-village.html?county='+ param.county + '&name=' + param.village + '&villageCode=' + param.villagecode;
+              	window.location.href = url;
+
+                    break;
+                case 'city_show':
+                    break;
+                default:
+                    console.log(type +':' + param)
+                    break;
+            }
+       }
+        function gisready(){
+            gis = document.getElementById("mapService").contentWindow
+            gis.gisapp.init(giscallback);
+        }
+        $(document).ready(function(){
+            /*地图上贫困村的渲染*/
+            $.ajax({
+                url:url+"/map/house/detail",
+                data:{},
+                type:"post",
+                dataType:"json",
+                success:function(data){
+                    let datas=data.data;
+                    getVillage(datas);
+                }
+            })
+            let chat=[];
+            function getVillage(data){
+                for(let i=0;i<data.length;i++){
+                    let address=data[i].address.split("-");
+                    if(address[1]=="周至县"){
+                        let obj={"county":address[1],"name":address[3],"villageCode":data[i].disctId,"isReach":data[i].isReach,"x":0,"y":0};
+                        chat.push(obj);
+                    }
+                }
+                chat[0].x=86;chat[0].y=12;//西安市-周至县-终南镇-长杨村委会
+                chat[1].x=65;chat[1].y=30;//西安市-周至县-楼观镇-就峪村委会
+                chat[2].x=83;chat[2].y=14;//西安市-周至县-集贤镇-马滩村委会
+                chat[3].x=82;chat[3].y=16;//西安市-周至县-集贤镇-六合社区居委会
+                chat[4].x=58;chat[4].y=15;//西安市-周至县-马召镇-群三兴村委会
+                chat[5].x=54;chat[5].y=18;//西安市-周至县-马召镇-辛口村委会
+                chat[6].x=63;chat[6].y=15;//西安市-周至县-马召镇-上马村委会
+                chat[7].x=59;chat[7].y=14.5;//西安市-周至县-马召镇-四群村委会x
+                chat[8].x=61;chat[8].y=15;//西安市-周至县-马召镇-郭寨村委会
+                chat[9].x=59.5;chat[9].y=17;//西安市-周至县-马召镇-涌泉寺村委会
+                chat[10].x=8;chat[10].y=46;//西安市-周至县-厚畛子镇-老县城村委会
+                chat[11].x=38;chat[11].y=36;//西安市-周至县-厚畛子镇-八一村委会
+                chat[12].x=15;chat[12].y=48;//西安市-周至县-厚畛子镇-花耳坪村委会
+                chat[13].x=12;chat[13].y=40;//西安市-周至县-厚畛子镇-厚畛子村委会
+                chat[14].x=45;chat[14].y=11;//西安市-周至县-翠峰镇-东红村委会
+                chat[15].x=48;chat[15].y=11.5;//西安市-周至县-翠峰镇-陈家村委会
+                chat[16].x=53;chat[16].y=8.5;//西安市-周至县-翠峰镇-清河村委会
+                chat[17].x=50;chat[17].y=10;//西安市-周至县-翠峰镇-下宝玉村委会
+                chat[18].x=65;chat[18].y=12;//西安市-周至县-富仁镇-渭友村委会
+                chat[19].x=47;chat[19].y=9;//西安市-周至县-哑柏镇-景联社区居委会
+                chat[20].x=44;chat[20].y=10.5;//西安市-周至县-哑柏镇-五联村委会
+                chat[21].x=38.5;chat[21].y=42;//西安市-周至县-板房子镇-高潮村委会
+                chat[22].x=47;chat[22].y=42;//西安市-周至县-板房子镇-新红村委会
+                chat[23].x=37;chat[23].y=47;//西安市-周至县-板房子镇-长坪村委会
+                chat[24].x=42;chat[24].y=47;//西安市-周至县-板房子镇-东石门村委会
+                chat[25].x=43;chat[25].y=42;//西安市-周至县-板房子镇-清水河村委会
+                chat[26].x=46;chat[26].y=12;//西安市-周至县-竹峪镇-张龙村委会
+                chat[27].x=45;chat[27].y=10.5;//西安市-周至县-竹峪镇-中军岭村委会
+                chat[28].x=47;chat[28].y=13;//西安市-周至县-竹峪镇-丹阳村委会
+                chat[29].x=46;chat[29].y=10;//西安市-周至县-竹峪镇-东大墙村委会
+                chat[30].x=50;chat[30].y=12;//西安市-周至县-竹峪镇-东寨村委会
+                chat[31].x=47;chat[31].y=11;//西安市-周至县-竹峪镇-鸭沟村委会
+                chat[32].x=41.5;chat[32].y=12.5;//西安市-周至县-竹峪镇-民主村委会
+                chat[33].x=42;chat[33].y=10.5;//西安市-周至县-竹峪镇-五星村委会
+                chat[34].x=46;chat[34].y=12.5;//西安市-周至县-竹峪镇-岭梅村委会
+                chat[35].x=44;chat[35].y=11.5;//西安市-周至县-竹峪镇-西沟村委会
+                chat[36].x=42.5;chat[36].y=12;//西安市-周至县-竹峪镇-兰梅塬村委会
+                chat[37].x=40;chat[37].y=11;//西安市-周至县-竹峪镇-塔庙村委会
+                chat[38].x=58;chat[38].y=48;//西安市-周至县-王家河镇-东涧沟村委会
+                chat[39].x=52;chat[39].y=46;//西安市-周至县-王家河镇-十亩地村委会
+                chat[40].x=54;chat[40].y=47;//西安市-周至县-王家河镇-白杨林村委会
+                chat[41].x=59.5;chat[41].y=46;//西安市-周至县-王家河镇-双庙子村委会
+                chat[42].x=64;chat[42].y=47.5;//西安市-周至县-王家河镇-玉皇庙村委会
+                chat[43].x=56;chat[43].y=50;//西安市-周至县-王家河镇-老庄子村委会
+                chat[44].x=85;chat[44].y=18;//西安市-周至县-九峰镇-余家村委会
+                chat[45].x=83;chat[45].y=16.5;//西安市-周至县-九峰镇-何家寨村委会
+                chat[46].x=82;chat[46].y=19;//西安市-周至县-九峰镇-耿西村委会
+                chat[47].x=82.5;chat[47].y=17;//西安市-周至县-九峰镇-魏家庄村委会
+                chat[48].x=49;chat[48].y=13.5;//西安市-周至县-骆峪镇-向阳村委会
+                chat[49].x=51;chat[49].y=14;//西安市-周至县-骆峪镇-复兴村委会
+                chat[50].x=49.5;chat[50].y=12;//西安市-周至县-骆峪镇-神灵村委会
+                chat[51].x=50;chat[51].y=12.5;//西安市-周至县-骆峪镇-黄家湾社区居委会
+                chat[52].x=52;chat[52].y=14;//西安市-周至县-骆峪镇-尚兴村委会
+                chat[53].x=52.5;chat[53].y=13;//西安市-周至县-骆峪镇-骆峪村委会
+                chat[54].x=53.5;chat[54].y=13.5;//西安市-周至县-骆峪镇-红旗村委会
+                chat[55].x=55;chat[55].y=11;//西安市-周至县-广济镇-陈公坊村委会
+                chat[56].x=56;chat[56].y=10;//西安市-周至县-广济镇-黄兴村委会
+                chat[57].x=53.5;chat[57].y=12;//西安市-周至县-广济镇-双兴村委会
+                chat[58].x=52;chat[58].y=35;//西安市-周至县-陈河镇-黑虎村委会
+                chat[59].x=48;chat[59].y=38;//西安市-周至县-陈河镇-孙六村委会
+                chat[60].x=52;chat[60].y=33;//西安市-周至县-陈河镇-窑岭村委会
+                chat[61].x=51;chat[61].y=36;//西安市-周至县-陈河镇-金井村委会
+                chat[62].x=56;chat[62].y=35;//西安市-周至县-陈河镇-共兴村委会
+                for(let i=0;i<chat.length;i++){
+                    let $imgBox=$("#imgBox");
+                    /*否:未脱贫;是:已脱贫*/
+                    if(chat[i].isReach=="否"){
+                        let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage.png' alt='' style='width:20px;height:14px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px","zIndex":10});
+                        $imgBox.append($village);
+                    }else if(chat[i].isReach=="是"){
+                        let $village=$("<div class='village' id='"+chat[i].villageCode+"' name='"+chat[i].name+"' county='"+chat[i].county+"'><img src='images/poorvillage2.png' alt='' style='width:12px;height:12px;cursor:pointer;'></div>").css({"position":"absolute","left":chat[i].x+"%","top":chat[i].y+"%","width":"16px","height":"14px"});
+                        $imgBox.append($village);
+                    }
+                }
+                /*村悬浮事件*/
+                let $tips=$("<div style='width:40px;height:38px;background: #fff;color:#000;font-size:12px;padding:2px 3px;z-index: 10;'></div>");
+                $("#imgBox .village").hover(function(){
+                    let index=$(this).index();
+                    $("#imgBox .village").eq(index-1).css("transform","scale(1.2,1.2)");
+                    $tips.text(chat[index-1].name);
+                    $tips.css({"display":"block","position":"absolute","bottom":'-40px',"right":"-50px"});
+                    $(this).append($tips).css({"zIndex":999});
+                    /*村点击事件*/
+                    $("#imgBox .village").click(function(){
+                        let county=$(this).attr("county");
+                        let village=$(this).attr("name");
+                        let villagecode=$(this).attr("id");
+                        var url = host + 'poor-village.html?county='+ county + '&name=' + village + '&villageCode=' + villagecode;
+                        window.location.href = url;
+                    })
+                },function(){
+                    $tips.css("display","none");
+                    $(this).css({"transform":"scale(1,1)","zIndex":10});
+                })
+            }
+        })
+
+	</script>
+
+    <script src="js/rgy-5-1.js"></script>
+    <script src="js/rgy-5-2.js"></script>
+    <script src="js/rgy-5-3.js"></script>
+    <script src="js/rgy-5-4.js"></script>
+    <script src="js/rgy-5-5.js"></script>
+    <script src="js/rgy-5-6.js"></script>
+    <script src="js/rgy-5-7.js"></script>
+</head>
+
+<body>
+	<div class="main">
+
+		<div class="main-title clearfix">
+			<p>西安市脱贫成效监测系统</p>
+			<h3 id="title"><span id="poor-county"></span>脱贫状态</h3>
+		</div>
+		<div class="a-hrefs clearfix">
+			<a class="a-item home" href="City1.html">首页</a>
+			<a class="a-item return	" href="javascript:history.back(-1)">返回</a>
+		</div>
+		<div class="content-1 content" style="overflow:hidden;">
+			<h3 class="c-title" id="c-title1-1">贫困村状态概况</h3>
+                <div id="echarts-c" style="width: 100%;height: 120px;top: 0%;"></div>
+		</div>
+        <div class="content-1 content" style="overflow:hidden;right:1%;">
+            <h3 class="c-title" id="c-title1-2">贫困户状态概况</h3>
+            <div id="echarts-h" style="width: 100%;height: 160px;position: absolute;top: 0%;"></div>
+        </div>
+
+		<div class="content-2 content" style="overflow:hidden;">
+			<h3 class="c-title">贫困村达标情况及数量分布统计</h3>
+			<div class="echarts">
+                <div id="echarts-2"></div>
+            </div>
+		</div>
+
+        <div class="right-2s content" id="right-2" style="overflow: hidden;bottom:2%;height: 29%;">
+            <h3 class="c-title" id="c-title2" style="cursor: pointer">贫困村七项退出指标达标情况统计</h3>
+            <div class="echarts">
+                <div id="echarts-5"></div>
+            </div>
+        </div>
+
+        <!--<div class="btns clearfix">
+            <a class="btn" href="" class="bg1">脱贫状态</a>
+			<a class="btn" href="" class="bg2">帮扶措施</a>
+        </div>-->
+
+		<div class="map content" style="border:none;background: none;" id="contentx">
+            <!--人均可支配收入-->
+            <div class="contentsss1">
+                <div class="p-listss1" id="p-list10">
+                    <div style="visibility: hidden"><a href="#"><img src="images/close.png" class="p-item1-imga"/></a></div>
+                    <div class="titles1" id="reasoncun"></div>
+                    <div class="p-item21">
+                        <div class="p-item1-es" id="p-item1-es">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="p-listss2" id="p-list11">
+                    <div class="titlesss1" style="margin-top: -50%;">
+                        <span id="xianqixiang"></span>达标情况及数量分布统计
+                        <img src="images/close.png" class="p-item1-imgs" id="imgs1" style="cursor: pointer"/>
+                    </div>
+                    <script type="text/javascript">
+                        document.getElementById("imgs1").onclick = function(){
+                        	$('.contentsss1').hide()
+                        	$('#zhezhao').hide();
+                            document.getElementById("p-list11").style.display = "none";
+                            document.getElementById("p-list12").style.display = "none";
+                            document.getElementById("p-list10").style.display = "none";
+                        }
+                    </script>
+                    <div class="echarts">
+                        <div id="echarts-101" style="width: 530px; height: 220px"></div>
+                    </div>
+                    <div class="p-listss3" id="p-list12" style="clear:both;overflow-y: scroll;height: 275px;display: block;">
+	                        <h3 style="background: -webkit-linear-gradient(left,#121217,#232124);padding-left: 4%;border-radius: 3px;font-size: 1.45em;text-align: left;width: 96%;">
+	                        	<span id="zhenming"></span>达标情况
+	                        </h3>
+	                        <table class="tables tabless" id="tablesq" style="top: 0;">
+	                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--人均纯收入-->
+            <div class="contentsss2">
+                <div class="p-listss4" id="p-lists1">
+                   		<h3 ><span id='hh'></span>达标情况</h3>
+                        <div class="p-item1-es" style="margin-top: 0;color: black;height: 100%;">
+
+                        </div>
+
+                </div>
+                <div class="p-listss5" id="p-lists2" style="position: relative;left: 0%;height: 85%;width:65%;">
+                    <div class="titles3" style="margin-top: -53.5%;">
+                        <span id="hwxm"></span>达标情况及数量分布统计
+                        <span id="imgs2" class="p-item1-imgs" style="padding-bottom: 20px;margin-top: 0;">X</span>
+                        <!--<img src="images/close.png" class="p-item1-imgs" id="imgs2" style="cursor: pointer;visibility:;"/>-->
+                    </div>
+                    <script type="text/javascript">
+                        document.getElementById("imgs2").onclick = function(){
+                        	$('.contentsss2').hide()
+                        	$('#zhezhao').hide();
+                            document.getElementById("p-lists1").style.display = "none";
+                            document.getElementById("p-lists2").style.display = "none";
+                            document.getElementById("p-lists4").style.display = "none";
+                        }
+                    </script>
+                    <div class="echarts" style="width:500px;margin-left:25px;height: 60%;">
+                        <div class="spans2" style="visibility: hidden">
+                        </div>
+                        <div id="echarts-12" class="echarts-1" style="width: 520px; height: 260px;margin-left:-40px; "></div>
+                    </div>
+                    <div class="p-listss6" id="p-lists3">
+                        <div class="echarts">
+                            <div class="spans3" style="top: -35%">
+                            	<h3 style="background: -webkit-linear-gradient(left,#121217,#232124);padding-left: 4%;border-radius: 3px;font-size: 1.45em;text-align: left;width: 96%;">
+		                        	<span id="zhenqixiang"></span>达标情况及数量分布统计
+		                    	</h3>
+                            </div>
+                            <div id="echarts-13" class="echarts-1" style="width: 520px; height: 260px"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-listss7" id="p-lists4" >
+                    <div class="titless">
+                    	<span id="rjtit"></span>
+                        <!--<img src="images/close.png" class="p-item1-imgs" id="imgbs3" style="cursor: pointer"/>-->
+                    </div>
+                    <script type="text/javascript">
+//                      document.getElementById("imgbs3").onclick = function(){
+//                      	$('#zhezhao').hide();
+//                          document.getElementById("p-lists1").style.display = "none";
+//                          document.getElementById("p-lists2").style.display = "none";
+//                          document.getElementById("p-lists4").style.display = "none";
+//                      }
+                    </script>
+                    <table class="tables9" id="tablesa1">
+                        <tr id="tht">
+                            <th>户主</th>
+                            <th id="sexs">性别</th>
+                            <th>年龄</th>
+                            <th>家庭人数</th>
+                            <th>达标情况</th>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <!--贫困村数量统计-->
+            <div class="contentsss3">
+                <div class="p-listss8" id="p-list8">
+                	<h3 class="c-title" style="text-indent: 0px;"><span id="cunming01"></span>七项退出指标达标情况 得分(<span id="cun-score01"></span>)分</h3>
+                    <!--<div style="visibility: hidden;"><a href="#"><img src="images/close.png" class="p-item1-imga"/></a></div>-->
+                    <div class="p-item1 " id="color71">
+                        <img src="images/icon_1.png" class="p-item1-img"/>
+                        <div class="p-item1-e">
+                            贫困发生率<span style="font-size: 18px;">(总分30 得分<span id="defen01"></span>)</span><br/>
+                            <span class="p-item1-1">贫困发生率低于3%</span>
+                        </div>
+                    </div>
+                    <div class="p-item1 " id="color72">
+                        <img src="images/icon_2.png" class="p-item1-img"/>
+                        <div class="p-item1-e">
+                            行政村通沥青（水泥）路<span style="font-size: 18px;">(总分10 得分<span id="defen02"></span>)</span><br/>
+                            <span class="p-item1-1" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">指通至建制村的某个公共活动、服务场所</span>
+                        </div>
+                    </div>
+                    <div class="p-item1 " id="color73">
+                        <img src="images/icon_3.png" class="p-item1-img"/>
+                        <div class="p-item1-e">
+                            电力入户率达到<span style="font-size: 18px;">(总分10 得分<span id="defen03"></span>)</span><br/>
+                            <span class="p-item1-1" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">全村全部农户接通并正常使用生活用电</span>
+                        </div>
+                    </div>
+                    <div class="p-item1 " id="color74">
+                        <img src="images/icon_9.png" class="p-item1-img" style="width: 30px;height: 30px;top:12px;"/>
+                        <div class="p-item1-e">
+                            有标准化村卫生室<span style="font-size: 18px;">(总分10 得分<span id="defen07"></span>)</span><br/>
+                            <span class="p-item1-1" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">有诊断室、治疗室、公共治疗室、药房，且“四室分离”</span>
+                        </div>
+                    </div>
+                    <div class="p-item1  p-item1-c" id="color75">
+                        <img src="images/icon_5.png" class="p-item1-img p-item1-img-d"/>
+                        <div class="p-item1-e">
+                            人均可支配收入<span style="font-size: 18px;">(总分20 得分<span id="defen05"></span>)</span><br/>
+                            <span class="p-item1-1" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">农村居民人均可支配收入达到当年全省农村居民人均可支配收入70%以上</span>
+                        </div>
+                    </div>
+                    <div class="p-item1 " id="color76">
+                        <img src="images/icon_6.png" class="p-item1-img"/>
+                        <div class="p-item1-e">
+                            有安全饮水<span style="font-size: 18px;">(总分10 得分<span id="defen06"></span>)</span><br/>
+                            <span class="p-item1-1">行政村内有安全饮水</span>
+                        </div>
+                    </div>
+                    <div class="p-item1 " id="color77">
+                        <img src="images/icon_10.png" class="p-item1-img" style="width: 30px;height: 30px;top: 12px;"/>
+                        <div class="p-item1-e">
+                            有集体经济或组织<span style="font-size: 18px;">(总分10 得分<span id="defen04"></span>)</span><br/>
+                            <span class="p-item1-1" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">有集体经济或合作组织、互助资金组织</span>
+                        </div>
+                    </div>
+                    <div class="p-item11 ger" id="ger3" style="width:95%;height: 11%;">
+                        <div class="p-item1-e p-item1-d">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="p-listss9" id="p-list9" style="background: #2f2d2dab;">
+                    <div class="titless" style="width: 97%;">
+                        <span id="xianjie"></span>街道贫困村达标情况统计
+                        <img src="images/close.png" class="p-item1-imgs" id="imgbs" style="cursor: pointer"/>
+                    </div>
+                    <script type="text/javascript">
+                        document.getElementById("imgbs").onclick = function(){
+                        	$('.contentsss3').hide()
+                        	$('#zhezhao').hide();
+                            document.getElementById("p-list8").style.display = "none";
+                            document.getElementById("p-list9").style.display = "none";
+                        }
+                    </script>
+                    <table class="tables" id="tables1">
+                        <tr>
+                            <th class="thsa1">村名</th>
+                            <th class="thsa2">达标情况</th>
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+            <!--贫困户数量统计-->
+            <div class="contentsss4">
+                <div class="p-listss10" id="p-lists5">
+				<h3 class="c-title" style="text-indent: 0px;"><span id="huming"></span>五项退出指标达标情况 得分(<span id="hu-score"></span>)分</h3>
+                	<!--<div style="visibility: hidden"><a href="#"><img src="images/close.png" class="p-item1-imga"/></a></div>-->
+             <div class="p-item2 " id='colorh1'>
+                    <img src="images/icon_5.png" class="p-item1-img"/>
+                    <div class="p-item1-v">
+                        人均纯收入(总分20 得分<span id="hudefen1"></span>)<br/>
+                        <span class="p-item1-1">家庭人均纯收入超过扶贫标准（2010年不变价25000元）</span>
+                    </div>
+            </div>
+             <div class="p-item2" id='colorh2'>
+                <img src="images/icon_7.png" class="p-item1-img" style="top: 20px;"/>
+                <div class="p-item1-v" style="margin-top: 3%;">
+                    有安全住房(总分20 得分<span id="hudefen2"></span>)<br/>
+                    <span class="p-item1-1">指家庭现有的住房能保证居住</span>
+                </div>
+            </div>
+            <div class="p-item2 " id='colorh3'>
+                <img src="images/icon_8.png" class="p-item1-img" style="width: 30px;height: 30px"/>
+                <div class="p-item1-v">
+                    无义务教育阶段辍学学生(总分20 得分<span id="hudefen3"></span>)<br/>
+                    <span class="p-item1-1">贫困户子女义务教育阶段无因家庭贫困原因不能入学或辍学</span>
+                </div>
+            </div>
+            <div class="p-item2 " id='colorh4'>
+                <img src="images/icon_4.png" class="p-item1-img"/>
+                <div class="p-item1-v">
+                    新农合及大病保险(总分20 得分<span id="hudefen4"></span>)<br/>
+                    <span class="p-item1-1">家庭成员全部参加新型农村合作医疗和大病保险</span>
+                </div>
+            </div>
+
+            <div class="p-item2 " id='colorh5'>
+                <img src="images/icon_6.png" class="p-item1-img" style="top: 20px;"/>
+                <div class="p-item1-v" style="margin-top: 3%;">
+                    有安全饮水(总分20 得分<span id="hudefen5"></span>)<br/>
+                    <span class="p-item1-1">水质符合国家《生活饮水用水标准》</span>
+                </div>
+            </div>
+            <div class="p-item2 ger" id="ger" style="height: 14%;">
+                <div class="p-item1-e p-item1-d">
+
+                </div>
+            </div>
+
+                </div>
+                <div class="p-listss11" id="p-lists6" style="width: 54%;height: 55%;">
+                    <div class="titles" >
+                        	<span id="zhenjie"></span>达标情况及数量分布统计
+                        <img src="images/close.png" class="p-item1-imgs" id="imgstr" style="cursor: pointer"/>
+                        <!-- <img src="images/close.png" style="cursor: pointer;width: 16px; height: 16px"/>-->
+                    </div>
+                    <script type="text/javascript">
+                        document.getElementById("imgstr").onclick = function(){
+                        	$('.contentsss4').hide()
+                        	$('#zhezhao').hide();
+                            document.getElementById("p-lists5").style.display = "none";
+                            document.getElementById("p-lists6").style.display = "none";
+                            document.getElementById("p-lists7").style.display = "none";
+                        }
+                    </script>
+                    <div class="echarts">
+                        <div id="echarts-10"></div>
+                    </div>
+                    <div class="p-listss12" id="p-lists7">
+                    	<h3 style="background: -webkit-linear-gradient(left,#121217,#232124);padding-left: 4%;border-radius: 3px;font-size: 1.45em;text-align: left;width: 96%;">
+	                        	<span id="cunname"></span>达标情况
+	                    </h3>
+                        <table class="tables" id="tables3">
+		                </table>
+                    </div>
+                </div>
+            </div>
+            <!--贫困户五项退出标准-->
+            <div class="contentsss5">
+                <div class="p-listss13" id="p-lists8">
+                    <div style="visibility: hidden"><a href="#"><img src="images/close.png" class="p-item1-imga"/></a></div>
+                    <div class="p-item2 green">
+                        <img src="images/icon_8.png" class="p-item1-img" style="width: 30px;height: 30px"/>
+                        <div class="p-item1-v">
+                            无义务教育阶段辍学学生<br/>
+                            <span class="p-item1-1">贫困户子女义务教育阶段无因家庭贫困原因不能入学或辍学</span>
+                        </div>
+                    </div>
+                    <div class="p-item2 red">
+                        <img src="images/icon_4.png" class="p-item1-img"/>
+                        <div class="p-item1-v">
+                            新农合及大病保险<br/>
+                            <span class="p-item1-1">家庭成员全部参加新型农村合作医疗和大病保险</span>
+                        </div>
+                    </div>
+                    <div class="p-item2 green">
+                        <img src="images/icon_5.png" class="p-item1-img"/>
+                        <div class="p-item1-v">
+                            人均纯收入<br/>
+                            <span class="p-item1-1">家庭人均纯收入超过扶贫标准（2010年不变价25000元）</span>
+                        </div>
+                    </div>
+                    <div class="p-item2 red">
+                        <img src="images/icon_6.png" class="p-item1-img"/>
+                        <div class="p-item1-v">
+                            有安全饮水<br/>
+                            <span class="p-item1-1">水质符合国家《生活饮水用水标准》</span>
+                        </div>
+                    </div>
+                    <div class="p-item2 green">
+                        <img src="images/icon_7.png" class="p-item1-img"/>
+                        <div class="p-item1-v">
+                            有安全住房<br/>
+                            <span class="p-item1-1">指家庭现有的住房能保证居住</span>
+                        </div>
+                    </div>
+                    <div class="p-item2 ger">
+                        <div class="p-item1-e p-item1-d">
+                            原因
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-listss14" id="p-lists9">
+                    <div class="titless5">
+                        村
+                        <img src="images/close.png" class="p-item1-imgs" id="imgbs4" style="cursor: pointer"/>
+                    </div>
+                    <script type="text/javascript">
+                        document.getElementById("imgbs4").onclick = function(){
+                        	$('.contentsss5').hide()
+                            document.getElementById("p-lists8").style.display = "none";
+                            document.getElementById("p-lists9").style.display = "none";
+                        }
+                    </script>
+                    <table class="tables9" id="tablesa2">
+                        <tr>
+                            <th>户主</th>
+                            <th>性别</th>
+                            <th>年龄</th>
+                            <th>家庭人数</th>
+                            <th>达标情况</th>
+                        </tr>
+                    </table>
+                </div>
+
+		<div id="content4-1-shi" style="display: none;overflow-x:hidden;overflow-y:;"></div>
+		<div id="content4-1-zhen"></div>
+		<div style="width: 1000px;position: absolute;top:50%;left:50%;background: #5e5e5fc4;margin-left: -560px;margin-top: -375px;">
+		<div id="content-5-1-left" style="display: none">
+			 <div class="t-list">
+			    <div class="" id="content-5-1-left-name" style="width:100%;height:40px;font-size: 18px;">
+                       <span> 五项退出指标详情 </span>
+                        <img src="images/close.png" class="p-item1-imgs" id="imgs211" style="cursor: pointer;visibility: "/>
+                    </div>
+                    <script type="text/javascript">
+                        document.getElementById("imgs211").onclick = function(){
+                            document.getElementById("content-5-1-left").style.display = "none";
+                        }
+                    </script>
+                <div class="p-item2 ">
+                    <img src="images/icon_5.png" class="p-item1-img"/>
+                    <div class="p-item1-v">
+                        人均纯收入(总分20 得分<span id="hudefen01"></span>)<br/>
+                        <span class="p-item1-1">家庭人均纯收入超过扶贫标准（2010年不变价25000元）</span>
+                    </div>
+                </div>
+                <div class="p-item2 ">
+                    <img src="images/icon_7.png" class="p-item1-img"/>
+                    <div class="p-item1-v" style="margin-top: 2%;">
+                        有安全住房(总分20 得分<span id="hudefen02"></span>)<br/>
+                        <span class="p-item1-1">指家庭现有的住房能保证居住</span>
+                    </div>
+                </div>
+                <div class="p-item2 ">
+                    <img src="images/icon_8.png" class="p-item1-img" style="width: 30px;height: 30px"/>
+                    <div class="p-item1-v">
+                        无义务教育阶段辍学学生(总分20 得分<span id="hudefen03"></span>)<br/>
+                        <span class="p-item1-1">贫困户子女义务教育阶段无因家庭贫困原因不能入学或辍学</span>
+                    </div>
+                </div>
+                <div class="p-item2 ">
+                    <img src="images/icon_4.png" class="p-item1-img"/>
+                    <div class="p-item1-v" style="margin-top: 2%;">
+                        新农合及大病保险(总分20 得分<span id="hudefen04"></span>)<br/>
+                        <span class="p-item1-1">家庭成员全部参加新型农村合作医疗和大病保险</span>
+                    </div>
+                </div>
+                <div class="p-item2 ">
+                    <img src="images/icon_6.png" class="p-item1-img"/>
+                    <div class="p-item1-v" style="margin-top: 2%;">
+                        有安全饮水(总分20 得分<span id="hudefen05"></span>)<br/>
+                        <span class="p-item1-1">水质符合国家《生活饮水用水标准》</span>
+                    </div>
+                </div>
+
+                <div class="p-item2 ger" id="ger1" style="height: 14%;">
+                    <div class="p-item1-e p-item1-d">
+
+                    </div>
+                </div>
+            </div>
+			</div>
+			<div id="content-5-1-right">
+				<h3 class="c-title"><span id="cunnames1"></span>贫困户五项退出指标达标情况
+
+					<span class="content-5-1close" style="float: right;padding-right: 15px;">X</span>
+					<a class="content-5cun-return" ></a>
+				</h3>
+					<div id="scroll-y" style="overflow-y: scroll;height:505px;">
+						<table width="98%" class="table" >
+
+				 		 </table>
+					</div>
+			</div>
+</div>
+        <div class="p-listss16" id="p-lists11">
+            <div class="titless2">
+                街道各村贫困户五项退出指标达标情况统计
+                <img src="images/close.png" class="p-item1-imgs" id="imgs13" style="cursor: pointer"/>
+            </div>
+            <script type="text/javascript">
+                document.getElementById("imgs13").onclick = function(){
+                    document.getElementById("p-lists11").style.display = "none";
+                }
+            </script>
+
+
+                </div>
+            </div>
+            <!--贫困村七项退出标准-->
+            <div class="contentsss6">
+
+            <div class="content-6-1 content">
+				<div id="content6-1-zhen">
+					<h3 class="c-title">周至县各镇街贫困村七项退出指标达标情况统计
+						<span class="content-6zhen-close" style="float:right;color: white;padding-right: 10px;">X</span>
+
+					</h3>
+
+				</div>
+				<div id="content-6-1-left">
+				    <div class="t-list">
+				    <h3 class="c-title" style="text-align: center;"><span id="cunming"></span>七项退出指标达标情况 得分(<span id="cun-score"></span>)分</h3>
+				        <div class="itme-des active">
+				        	<a class="t-item " style="left: 30px;" id="color01">
+				        		<div class="tubiao">
+					        		<img src="images/icon_1.png"/>
+					        	</div>
+					        	<div class="zhibiao">
+					        		<p style="font-size: 20px;">贫困发生率(总分30 得分<span id="defen1"></span>)</p><p >贫困发生率低于3%</p>
+					        	</div>
+				        	</a><span style="display: none ;"></span></div>
+				        <div class="itme-des">
+				        	<a class="t-item " id="color02">
+				        		<div class="tubiao">
+					        		<img src="images/icon_2.png"/>
+					        	</div>
+					        	<div class="zhibiao">
+					        		<p style="font-size: 20px;">行政村通沥青(水泥)路(总分10 得分<span id="defen2"></span>)</p><p >行政村通沥青(水泥)路</p>
+					        	</div>
+				        	</a><span style="display: none;"></span></div>
+				        <div class="itme-des">
+				        	<a class="t-item " id="color03">
+				        		<div class="tubiao">
+					        		<img src="images/icon_3.png"/>
+					        	</div>
+					        	<div class="zhibiao">
+					        		<p style="font-size: 20px;">电力入户率(总分10 得分<span id="defen3"></span>)</p><p >电力入户率达到100%</p>
+					        	</div>
+				        	</a><span style="display: none;"></span></div>
+				        <div class="itme-des">
+				        	<a class="t-item " id="color04">
+				        		<div class="tubiao">
+					        		<img src="images/icon_10.png"/>
+					        	</div>
+					        	<div class="zhibiao">
+					        		<p style="font-size: 20px;">有集体经济或合作组织(总分10 得分<span id="defen4"></span>)</p><p >有集体经济或合作组织、互助资金组织</p>
+					        	</div>
+				        	</a><span style="display: none;"></span></div>
+				        <div class="itme-des">
+				        	<a class="t-item " id="color05">
+				        		<div class="tubiao">
+					        		<img src="images/icon_5.png"/>
+					        	</div>
+					        	<div class="zhibiao">
+					        		<p style="font-size: 20px;">人均可支配收入(总分20 得分<span id="defen5"></span>)</p><p style="font-size: 12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">农村居民人均可支配收入达到当年全省农村居民人均可支配收入70%以上</p>
+					        	</div>
+				        	</a><span style="display: none;"></span></div>
+				        <div class="itme-des">
+				        	<a class="t-item " id="color06">
+				        		<div class="tubiao">
+					        		<img src="images/icon_6.png"/>
+					        	</div>
+					        	<div class="zhibiao">
+					        		<p style="font-size: 20px;">有安全饮水(总分10 得分<span id="defen6"></span>)</p><p >有安全饮水</p>
+					        	</div>
+				        	</a><span style="display: none;"></span></div>
+				        <div class="itme-des">
+				        	<a class="t-item " id="color07">
+				        		<div class="tubiao">
+					        		<img src="images/icon_9.png"/>
+					        	</div>
+					        	<div class="zhibiao">
+					        		<p style="font-size: 20px;">有标准化村卫生室(总分10 得分<span id="defen7"></span>)</p><p >有标准化村卫生室</p>
+					        	</div>
+				        	</a><span style="display: none;"></span></div>
+				        <div class="reason itme-des" id="cunreason1"> </div>
+				    </div>
+				</div>
+				<div id="content-6-1-right">
+					<h3 class="c-title"><span id="cunnames"></span>七项退出指标达标情况统计表
+						<span class="content-6-1close" style="float: right;padding-right: 15px;">X</span>
+						<a class="content-6cun-return" ></a>
+					</h3>
+						<div id="scroll-yy" style="overflow-y: scroll;height:93%;">
+						<table width="98%" class="table" id="table111">
+				        <thead>
+				            <tr style="background: linear-gradient(to right,#0f4979,#000203);">
+				                <th>  村名  </th>
+				                <th>  贫困村标志  </th>
+				            </tr>
+
+				        </thead>
+
+				   </table>
+				  </div>
+				</div>
+			</div>
+          </div>
+        </div>
+
+
+        <div class="map-content map-content5" style="overflow: hidden;height:79%;padding-top:0;">
+            <!--<iframe id="mapService" class="mapService5" src="dist/index.html" frameborder="0" style="transform: translateY(-20%)"></iframe>-->
+            <div id="imgBox" style="width:100%;height:63%;padding-top:2%;box-sizing: border-box;">
+            	<img src="images/zhouzhi.png" alt="" style="width:100%;height:100%;transform:scale(1.2);margin-left:4%;margin-top:3%;">
+            </div>
+            <div class="right-1 right content" style="overflow: hidden;position:relative;top:4%;left:0;width:100%;height:33%;">
+                <h3 class="c-title" style="width:140%;">七项退出指标达标情况 得分(<span id="cun-scorez"></span>)分</h3>
+                <div class="colors" id="colors">
+                    <ul class="color-list clearfix">
+
+                        <li class="color-list-item clearfix">
+                            <span class="item-color red"></span>
+                            <span class="item-words">未达标</span>
+                        </li>
+                        <!-- <li class="color-list-item clearfix">
+                             <span class="item-color yellow"></span>
+                             <span class="item-words">兜底保障项</span>
+                         </li>-->
+                        <li class="color-list-item">
+                            <span class="item-color green"></span>
+                            <span class="item-words">已达标</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="right-s1" id="right-s1">
+                        <div class="line" style="display: flex;justify-content: space-between;padding:0 5%;flex-wrap:wrap;">
+                            <p id="color711" class="p-p1" style="margin-left:0;width:20%;margin-top: 5%;">贫困发生率</p>
+                            <p id="color713" class="p-p1" style="margin-left:0;width:20%;margin-top: 5%;">电力入户率</p>
+                            <p id="color716" class="p-p1" style="width:23%;margin-top: 5%;">自来水普及率</p>
+                            <p id="color717" class="p-p1" style="width:20%;margin-top: 5%;">安全住房</p>
+                            <p id="color712" class="p-p1" style="margin-left:0;width:28%;margin-top: 5%;">通沥青(水泥)路</p>
+                            <p id="color714" class="p-p1" style="margin-left:0;width:30%;margin-top: 5%;">新农合及大病保险</p>
+                            <p id="color715" class="p-p1" style="margin-left:0;width:28%;margin-top: 5%;">人均可支配收入</p>
+                        </div>
+                        <!--点击弹出原因框-->
+                        <div class="reason2" style="display: none;">
+                            <div id="close2" style="position: absolute;top:15px;right:15px;width:20px;height:20px;"><img src="images/close.png" alt="" style="width:100%;height:100%;cursor: pointer;"></div>
+                            <h3 style="text-align: center;line-height: 44px;font-size: 22px;">原因</h3>
+                            <div id="reason2" style="width:100%;height:80%;text-indent:30px;font-size: 18px;padding-top:14px;">
+
+                            </div>
+                        </div>
+                        <!--<img src="images/below.png" id="tux"/>-->
+                    </div>
+                    <!-- <script type="text/javascript">
+                         document.getElementById("tux").onclick = function(){
+                             document.getElementById("right-s2").style.display = "block";
+                             document.getElementById("colors").style.display = "none";
+                             document.getElementById("right-s1").style.display = "none";
+                             document.getElementById("right-2").style.display = "none";
+                             document.getElementById("right-3").style.display = "none";
+                         }
+                     </script>-->
+                    <!--<div class="right-s2" style="display: none;" id="right-s2">
+                        <div class="p-item1 red" id="color711">
+                            <img src="images/icon_1.png" class="p-item1-img"/>
+                            <div class="p-item1-e">
+                                贫困发生率 (总分30 得分<span id="defenz01"></span>)<br/>
+                                <span class="p-item1-1">贫困发生率低于3%</span>
+                            </div>
+                        </div>
+                        <div class="p-item1 green" id="color712">
+                            <img src="images/icon_2.png" class="p-item1-img"/>
+                            <div class="p-item1-e">
+                                通沥青（水泥）路 (总分10 得分<span id="defenz02"></span>)<br/>
+                                <span class="p-item1-1">通沥青（水泥）路行政村比例达到90%</span>
+                            </div>
+                        </div>
+                        <div class="p-item1 green" id="color713">
+                            <img src="images/icon_3.png" class="p-item1-img"/>
+                            <div class="p-item1-e">
+                                电力入户率 (总分10 得分<span id="defenz03"></span>)<br/>
+                                <span class="p-item1-1">电力入户率达到100%</span>
+                            </div>
+                        </div>
+                        <div class="p-item1 green" id="color714">
+                            <img src="images/icon_9.png" class="p-item1-img" style="width: 30px;height: 30px"/>
+                            <div class="p-item1-e">
+                                新农合及大病保险 (总分10 得分<span id="defenz04"></span>)<br/>
+                                <span class="p-item1-1">97%以上的贫困人口参加农村合作医疗和大病保险</span>
+                            </div>
+                        </div>
+                        <div class="p-item1 green p-item1-c" id="color715">
+                            <img src="images/icon_5.png" class="p-item1-img p-item1-img-d"/>
+                            <div class="p-item1-e">
+                                人均可支配收入 (总分20 得分<span id="defenz05"></span>)<br/>
+                                <span class="p-item1-1">农村居民人均可支配收入达到当年全省农村居民人均可支配收入的70%以上</span>
+                            </div>
+                        </div>
+                        <div class="p-item1 green" id="color716">
+                            <img src="images/icon_6.png" class="p-item1-img"/>
+                            <div class="p-item1-e">
+                                自来水普及率 (总分10 得分<span id="defenz06"></span>) <br/>
+                                <span class="p-item1-1">农村自来水普及率低于90%</span>
+                            </div>
+                        </div>
+                        <div class="p-item1 red" id="color717">
+                            <img src="images/icon_10.png" class="p-item1-img"style="width: 30px;height: 30px"/>
+                            <div class="p-item1-e">
+                                安全住房 (总分10 得分<span id="defenz07"></span>)<br/>
+                                <span class="p-item1-1">有安全住房农户达到97%</span>
+                            </div>
+                        </div>
+                        <div class="p-item1 ger" id="ger2">
+                            <div class="p-item1-e" style="height: 50px;line-height: 50px">
+                                原因
+                            </div>
+                        </div>
+                        <img src="images/up.png" id="tus"/>
+                    </div>-->
+                    <!--<script type="text/javascript">
+                        document.getElementById("tus").onclick = function(){
+                            document.getElementById("right-s2").style.display = "none";
+                            document.getElementById("colors").style.display = "block";
+                            document.getElementById("right-s1").style.display = "block";
+                            document.getElementById("right-2").style.display = "block";
+                            document.getElementById("right-3").style.display = "block";
+                        }
+                    </script>-->
+                </div>
+                <div class="echarts">
+                    <div id="echarts-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-3s content right" style="overflow:hidden;top:41%;">
+            <h3 class="c-title">贫困户达标情况及数量分布统计</h3>
+            <div class="echarts"  >
+                <div id="echarts-3"></div>
+            </div>
+        </div>
+
+        <div class="right-3 right content" id="right-3" style="overflow:hidden;">
+            <h3 class="c-title" id="c-title1" style="cursor: pointer">贫困户五项退出指标达标情况统计</h3>
+            <script type="text/javascript">
+                document.getElementById("c-title1").onclick = function(){
+                    document.getElementById("content4-1-shi").style.display = "block";
+                    document.getElementById("p-lists11").style.display = "none";
+                    document.getElementById("p-lists8").style.visibility = "none";
+                    document.getElementById("p-lists9").style.display = "none";
+                    document.getElementById("p-list9").style.display = "none";
+                    document.getElementById("p-list8").style.display = "none";
+                    document.getElementById("p-lists1").style.display = "none";
+                    document.getElementById("p-lists2").style.display = "none";
+                    document.getElementById("p-lists3").style.display = "none";
+                    document.getElementById("p-lists4").style.display = "none";
+                    document.getElementById("p-lists5").style.display = "none";
+                    document.getElementById("p-lists6").style.display = "none";
+                    document.getElementById("p-lists7").style.display = "none";
+                    document.getElementById("p-list10").style.display = "none";
+                    document.getElementById("p-list11").style.display = "none";
+                    document.getElementById("p-list12").style.display = "none";
+                }
+            </script>
+            <div class="echarts">
+                <div id="echarts-6"></div>
+            </div>
+        </div>
+	</div>
+
+    <div class='tank' style="display:none">
+        <div class="t-title">安全住房未达标原因</div>
+        <span class='t-close'></span>
+        <div class="t-content">有安全住房325户，未有安全住房76户，低于标准。</div>
+    </div>
+
+<div id="zhezhao"></div>
+<div class="tank-2">
+        <h3 class='title'>贫困村列表</h3>
+        <span class="close"></span>
+        <div class="t-list" id="t-list-seven2" style="background: none;overflow-y: scroll;height:92.5%;">
+            <div class="Top_Record" style="width:100%">
+                <div class="topRec_List" style="width:100%;">
+                    <dl style="width:100%;display: flex;justify-content: space-between;line-height: 50px;font-size: 20px;">
+                        <dd style="width:50%;background: #DD4F43;color:#fff;border:1px solid #fff;">贫困村名字</dd>
+                        <dd style="width:50%;background: #FFCE43;color:#fff;border:1px solid #fff;">贫困状态</dd>
+                        <!--<dd style="width:33.333333%;background: #1FA463;color:#fff;border:1px solid #fff;">已达标</dd>-->
+                    </dl>
+                    <div class="maquee maquee2 maquee3" style="height:346px;">
+                        <ul style="height:346px;" id="nameList">
+                            <!--<li style="display: flex;justify-content: space-between;line-height: 42px;font-size: 16px;">
+                                <div style="width:50%;">东石门村</div>
+                                <div style="width:50%;">已达标</div>
+                            </li>
+                            <li style="display: flex;justify-content: space-between;line-height: 42px;font-size: 16px;">
+                                <div style="width:50%;">东石门村</div>
+                                <div style="width:50%;">已达标</div>
+                            </li>
+                            <li style="display: flex;justify-content: space-between;line-height: 42px;font-size: 16px;">
+                                <div style="width:50%;">东石门村</div>
+                                <div style="width:50%;">已达标</div>
+                            </li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+    /*权限控制*/
+    /*读取本地用户名*/
+    let loginMessaage=JSON.parse($.cookie('loginMessage'));
+    let uname=loginMessaage.userCode
+    let ucode=loginMessaage.aar008;
+    if(uname!="超级管理员"&&uname!="领导"){
+        $(".home").attr("href","../index/index.html");
+    }
+    if(uname=="周至县" && ucode=="610124000000"){
+        let param=uname.substr(0,3);
+        let urls = hosts + "/poorStatus/rgy-5.html?name="+ param;
+        let urls2 = hosts + '/supportMeasures/supportMeasures1.html?name=' + param;
+        $("#title").empty().append('<a href="'+urls+'" style="color:#62DFFF;margin-right:3%;">脱贫状态</a><a href="'+urls2+'" style="color:#62DFFF;">帮扶措施</a>')
+    }
+</script>
+<script type="text/javascript" src="js/swiper/swiper.min.js"></script>
+<script src="js/echarts.js"></script>
+<script type="text/javascript">
+    var table4= document.getElementById("tablesq");//获取第一个表格
+    var array4 = table4.getElementsByTagName("tr");//所有tr
+    for(var i = 1; i < array4.length; i++) {
+        array4[i].onclick = function(){
+            document.getElementById("p-list10").style.visibility = "visible";
+        }
+
+    }
+    var table3= document.getElementById("tablesa1");//获取第一个表格
+    var array3 = table3.getElementsByTagName("tr");//所有tr
+    for(var i = 1; i < array3.length; i++) {
+        array3[i].onclick = function(){
+            document.getElementById("p-lists1").style.visibility = "visible";
+    	}
+    }
+    var table = document.getElementById("tablesa2");//获取第一个表格
+    var array = table.getElementsByTagName("tr");//所有tr
+    for(var i = 1; i < array.length; i++) {
+        array[i].onclick = function(){
+            document.getElementById("p-lists8").style.visibility = "visible";
+        }
+    }
+
+    var table2 = document.getElementById("tables3");//获取第一个表格
+    var array2 = table2.getElementsByTagName("tr");//所有tr
+    for(var j = 1; j < array2.length; j++) {
+        array2[j].onclick = function(){
+            document.getElementById("p-lists5").style.visibility = "visible";
+        }
+    }
+/****************************echarts-2*************************************/
+var dom2= document.getElementById("echarts-2");
+var myChart2 = echarts.init(dom2);
+var app = {};
+option = null;
+
+option = {
+    color: ['#DD4F43', '#1FA463'],
+    title: {
+	        text: '单位:个',
+	        textStyle:{    //图例文字的样式
+		        color:'#fff',
+		        fontWeight: 'normal',
+		        fontSize:graph_unit
+		    }
+
+	    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+
+    legend: {
+        data: ['未达标', '已达标'],
+        x : 'right',
+        textStyle:{    //图例文字的样式
+	        color:'#fff'
+	    }
+    },
+    grid: {
+        top: "20%",
+        left: '2%',
+        right: '5%',
+        bottom: '18%',
+        containLabel: true
+    },
+    yAxis:  {
+        type: 'value',
+        axisLine:{
+                lineStyle:{
+                    color:'#fff'
+                }
+            },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    xAxis: {
+        triggerEvent:true,
+        type: 'category',
+        data: [],
+        axisLabel:{
+        	interval:0,
+        	rotate:-55,
+        	 textStyle:{
+                fontSize:graph_x
+            }
+        },
+        axisLine:{
+                lineStyle:{
+                    color:'#fff'
+                }
+            },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    series: [
+        {
+            name: '未达标',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                        //柱形图圆角，鼠标移上去效果
+                        emphasis: {
+                            barBorderRadius: [0, 0, 0, 0]
+                        },
+
+                        normal: {
+                            //柱形图圆角，初始化效果
+                            barBorderRadius:[0, 0, 0, 0]
+                        }
+                    }
+        },
+        {
+            name: '已达标',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+            data: [],
+            itemStyle: {
+                        //柱形图圆角，鼠标移上去效果
+                        emphasis: {
+                            barBorderRadius: [0, 0, 0, 0]
+                        },
+
+                        normal: {
+                            //柱形图圆角，初始化效果
+                            barBorderRadius:[0, 0, 0, 0]
+                        }
+                    }
+        },
+
+    ]
+};
+if (option && typeof option === "object") {
+    myChart2.setOption(option, true);
+}
+
+myChart2.on('click',function (params) {
+            if(params.componentType =="xAxis") {
+                document.getElementById("p-list9").style.display = "block";
+                document.getElementById("p-list8").style.display = "block";
+                document.getElementById("p-list8").style.visibility = "hidden";
+                document.getElementById("p-lists1").style.display = "none";
+                document.getElementById("p-lists2").style.display = "none";
+                document.getElementById("p-lists3").style.display = "none";
+                document.getElementById("p-lists4").style.display = "none";
+                document.getElementById("p-lists5").style.display = "none";
+                document.getElementById("p-lists6").style.display = "none";
+                document.getElementById("p-lists7").style.display = "none";
+                document.getElementById("p-lists8").style.display  = "none";
+                document.getElementById("p-lists9").style.display = "none";
+                document.getElementById("content4-1-shi").style.display = "none";
+                document.getElementById("p-lists11").style.display = "none";
+                document.getElementById("p-list10").style.display = "none";
+                document.getElementById("p-list11").style.display = "none";
+                document.getElementById("p-list12").style.display = "none";
+//
+            }
+        });
+var dom3= document.getElementById("echarts-3");
+var myChart3 = echarts.init(dom3);
+var app = {};
+option = null;
+
+option = {
+    color: ['#DD4F43','#FFCE43','#1FA463'],
+    title: {
+	        text: '单位:户',
+	        textStyle:{    //图例文字的样式
+		        color:'#fff',
+		        fontWeight: 'normal',
+		        fontSize:graph_unit
+		    }
+
+	    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+
+    legend: {
+        data: ['未达标户','兜底保障户', '已达标户'],
+        x : 'right',
+        textStyle:{    //图例文字的样式
+            color:'#fff'
+        }
+    },
+     grid: {
+        top: "20%",
+        left: '2%',
+        right: '5%',
+        bottom: '5%',
+        containLabel: true
+    },
+    yAxis:  {
+        type: 'value',
+        axisLine:{
+                lineStyle:{
+                    color:'#fff'
+                }
+            },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    xAxis: {
+        triggerEvent:true,
+        type: 'category',
+        data: [],
+        axisLabel:{
+            interval:0,
+            rotate:-70,
+             textStyle:{
+                fontSize:graph_x
+            }
+        },
+        axisLine:{
+                lineStyle:{
+                    color:'#fff'
+                }
+            },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    series: [
+        {
+            name: '未达标户',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                        //柱形图圆角，鼠标移上去效果
+                        emphasis: {
+                            barBorderRadius: [0, 0, 0, 0]
+                        },
+
+                        normal: {
+                            //柱形图圆角，初始化效果
+                            barBorderRadius:[0, 0, 0, 0]
+                        }
+                    }
+        },
+        {
+            name: '兜底保障户',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                        //柱形图圆角，鼠标移上去效果
+                        emphasis: {
+                            barBorderRadius:[0, 0, 0, 0]
+                        },
+
+                        normal: {
+                            //柱形图圆角，初始化效果
+                            barBorderRadius:[0, 0, 0, 0]
+                        }
+                    }
+        },
+        {
+            name: '已达标户',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+            data: [],
+            itemStyle: {
+                        //柱形图圆角，鼠标移上去效果
+                        emphasis: {
+                            barBorderRadius:[0, 0, 0, 0]
+                        },
+
+                        normal: {
+                            //柱形图圆角，初始化效果
+                            barBorderRadius:[0, 0, 0, 0]
+                        }
+                    }
+        },
+
+    ]
+};
+if (option && typeof option === "object") {
+    myChart3.setOption(option, true);
+}
+myChart3.on('click',function (params) {
+
+            if (params.componentType == "xAxis") {
+            	$('#zhezhao').show();
+                document.getElementById("p-lists5").style.display = "block";
+                document.getElementById("p-lists5").style.visibility = "hidden";
+                document.getElementById("p-lists6").style.display = "block";
+                document.getElementById("p-lists7").style.display = "block";
+                document.getElementById("p-lists7").style.visibility = "hidden";
+                document.getElementById("p-list9").style.display = "none";
+                document.getElementById("p-list8").style.display = "none";
+
+                document.getElementById("p-lists1").style.display = "none";
+                document.getElementById("p-lists2").style.display = "none";
+                document.getElementById("p-lists3").style.display = "none";
+                document.getElementById("p-lists4").style.display = "none";
+                document.getElementById("p-lists8").style.display  = "none";
+                document.getElementById("p-lists9").style.display = "none";
+                document.getElementById("content4-1-shi").style.display = "none";
+                document.getElementById("p-lists11").style.display = "none";
+                document.getElementById("p-list10").style.display = "none";
+                document.getElementById("p-list11").style.display = "none";
+                document.getElementById("p-list12").style.display = "none";
+
+            }
+        });
+
+/****************************echarts-5*************************************/
+var dom5 = document.getElementById("echarts-5");
+var myChart5 = echarts.init(dom5);
+var app = {};
+option = null;
+
+option = {
+    color: ['#DD4F43','#1FA463'],
+    title: {
+	        text: '单位:个',
+	        textStyle:{    //图例文字的样式
+		        color:'#fff',
+		        fontWeight: 'normal',
+		        fontSize:graph_unit
+		    }
+
+	    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['未达标','已达标'],
+        x : 'right',
+        textStyle:{    //图例文字的样式
+            color:'#fff'
+        }
+    },
+    grid: {
+        top: "20%",
+        left: '2%',
+        right: '5%',
+        bottom: '10%',
+        containLabel: true
+    },
+    yAxis:  {
+        type: 'value',
+        axisLine:{
+                lineStyle:{
+                    color:'#fff'
+                }
+            },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    xAxis: {
+        triggerEvent:true,
+        type: 'category',
+        data: ['人均可支配收入','贫困发生率','通沥青(水泥)路','安全饮水','电力入户率','标准卫生室','集体经济'],
+        axisLabel:{
+            interval:0,
+            rotate:-50,
+             textStyle:{
+                fontSize:graph_x
+            }
+        },
+        axisLine:{
+                lineStyle:{
+                    color:'#fff'
+                }
+            },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    series: [
+        {
+            name: '未达标',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                        //柱形图圆角，鼠标移上去效果
+                        emphasis: {
+                            barBorderRadius: [0, 0, 0, 0]
+                        },
+
+                        normal: {
+                            //柱形图圆角，初始化效果
+                            barBorderRadius: [0, 0, 0, 0]
+                        }
+                    }
+        },
+        {
+            name: '已达标',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                        //柱形图圆角，鼠标移上去效果
+                        emphasis: {
+                            barBorderRadius: [0, 0, 0, 0]
+                        },
+
+                        normal: {
+                            //柱形图圆角，初始化效果
+                            barBorderRadius: [0, 0, 0, 0]
+                        }
+                    }
+        },
+
+    ]
+};
+if (option && typeof option === "object") {
+    myChart5.setOption(option, true);
+}
+myChart5.on('click',function (params) {
+
+            if(params.componentType =="xAxis"){
+                document.getElementById("p-list11").style.display = "block";
+                document.getElementById("p-list12").style.display = "block";
+                document.getElementById("p-list10").style.display = "block";
+                document.getElementById("p-list10").style.visibility = "hidden";
+                document.getElementById("p-list12").style.visibility = "hidden";
+                document.getElementById("p-lists5").style.display = "none";
+                document.getElementById("p-lists6").style.display = "none";
+                document.getElementById("p-lists7").style.display = "none";
+                document.getElementById("p-list9").style.display = "none";
+                document.getElementById("p-list8").style.display = "none";
+                document.getElementById("p-lists1").style.display = "none";
+                document.getElementById("p-lists2").style.display = "none";
+                document.getElementById("p-lists3").style.display = "none";
+                document.getElementById("p-lists4").style.display = "none";
+                document.getElementById("p-lists8").style.display  = "none";
+                document.getElementById("p-lists9").style.display = "none";
+                document.getElementById("content4-1-shi").style.display = "none";
+                document.getElementById("p-lists11").style.display = "none";
+            }
+});
+
+/****************************echarts-6*************************************/
+var dom6= document.getElementById("echarts-6");
+var myChart6 = echarts.init(dom6);
+var app = {};
+option = null;
+
+option = {
+    color: ['#DD4F43','#1FA463'],
+    title: {
+	        text: '单位:户',
+	        textStyle:{    //图例文字的样式
+		        color:'#fff',
+		        fontWeight: 'normal',
+		        fontSize:graph_unit
+		    }
+
+	    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+
+    legend: {
+        data: ['未达标', '已达标'],
+        x : 'right',
+        textStyle:{    //图例文字的样式
+	        color:'#fff'
+	    }
+    },
+    grid: {
+        top: "20%",
+        left: '2%',
+        right: '5%',
+        bottom: '11%',
+        containLabel: true
+    },
+    yAxis:  {
+        type: 'value',
+        axisLine:{
+                lineStyle:{
+                    color:'#fff'
+                }
+            },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    xAxis: {
+        triggerEvent:true,
+        type: 'category',
+        data: [],
+        axisLabel:{
+        	interval:0,
+        	rotate:-40,
+        	 textStyle:{
+                fontSize:graph_x
+            }
+        },
+        axisLine:{
+                lineStyle:{
+                    color:'#fff'
+                }
+            },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    series: [
+        {
+            name: '未达标',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                        //柱形图圆角，鼠标移上去效果
+                        emphasis: {
+                            barBorderRadius: [0, 0, 0, 0]
+                        },
+
+                        normal: {
+                            //柱形图圆角，初始化效果
+                            barBorderRadius:[0, 0, 0, 0]
+                        }
+                    }
+        },
+        {
+            name: '已达标',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+            data: [],
+            itemStyle: {
+                        //柱形图圆角，鼠标移上去效果
+                        emphasis: {
+                            barBorderRadius: [0, 0, 0, 0]
+                        },
+
+                        normal: {
+                            //柱形图圆角，初始化效果
+                            barBorderRadius:[0, 0, 0, 0]
+                        }
+                    }
+        },
+
+    ]
+};
+if (option && typeof option === "object") {
+    myChart6.setOption(option, true);
+}
+myChart6.on('click',
+        function (params) {
+            console.log(params);
+            if(params.componentType =="xAxis"){
+                document.getElementById("p-lists4").style.display = "block";
+                document.getElementById("p-lists3").style.display = "block";
+                document.getElementById("p-lists2").style.display = "block";
+                document.getElementById("p-lists1").style.display = "block";
+                document.getElementById("p-lists3").style.visibility = "hidden";
+                document.getElementById("p-lists4").style.visibility = "hidden";
+                document.getElementById("p-lists1").style.visibility = "hidden";
+                document.getElementById("p-list11").style.display = "none";
+                document.getElementById("p-list12").style.display = "none";
+                document.getElementById("p-list10").style.display = "none";
+                document.getElementById("p-lists5").style.display = "none";
+                document.getElementById("p-lists6").style.display = "none";
+                document.getElementById("p-lists7").style.display = "none";
+                document.getElementById("p-list9").style.display = "none";
+                document.getElementById("p-list8").style.display = "none";
+                document.getElementById("p-lists8").style.display  = "none";
+                document.getElementById("p-lists9").style.display = "none";
+                document.getElementById("content4-1-shi").style.display = "none";
+                document.getElementById("p-lists11").style.display = "none";
+            }});
+
+/****************************echarts-101*************************************/
+
+var dom101 = document.getElementById("echarts-101");
+var myChart101 = echarts.init(dom101);
+var app = {};
+option = null;
+
+option = {
+    color: ['#DD4F43','#1FA463'],
+    title: {
+	        text: '单位:个',
+	        textStyle:{    //图例文字的样式
+		        color:'#fff',
+		        fontWeight: 'normal',
+		        fontSize:graph_unit
+		    }
+
+	    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['未达标村','已达标村'],
+        x : 'right',
+        textStyle:{    //图例文字的样式
+            color:'#fff'
+        }
+    },
+    grid: {
+        top: "20%",
+        left: '0%',
+        right: '5%',
+        bottom: '20%',
+        containLabel: true
+    },
+    yAxis:  {
+        type: 'value',
+        axisLine:{
+            lineStyle:{
+                color:'#fff'
+            }
+        },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    xAxis: {
+        triggerEvent:true,
+        type: 'category',
+        data: [],
+        axisLabel:{
+            interval:0,
+            rotate:-45,
+            textStyle:{
+                fontSize:graph_x
+            }
+        },
+        axisLine:{
+            lineStyle:{
+                color:'#fff'
+            }
+        },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    series: [
+        {
+            name: '未达标村',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                //柱形图圆角，鼠标移上去效果
+                emphasis: {
+                    barBorderRadius: [0, 0, 0, 0]
+                },
+                normal: {
+                    //柱形图圆角，初始化效果
+                    barBorderRadius:[0, 0, 0, 0]
+                }
+            }
+        },
+        {
+            name: '已达标村',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                //柱形图圆角，鼠标移上去效果
+                emphasis: {
+                    barBorderRadius: [0, 0, 0, 0]
+                },
+
+                normal: {
+                    //柱形图圆角，初始化效果
+                    barBorderRadius:[0, 0, 0, 0]
+                }
+            }
+        },
+
+    ]
+};
+if (option && typeof option === "object") {
+    myChart101.setOption(option, true);
+}
+myChart101.on('click',function (params) {
+            console.log(params);
+            if(params.componentType =="xAxis"){
+                document.getElementById("p-list12").style.visibility = "visible";
+            }
+});
+
+/****************************echarts-12*************************************/
+
+var dom12 = document.getElementById("echarts-12");
+var myChart12 = echarts.init(dom12);
+var app = {};
+option = null;
+
+option = {
+    color: ['#DD4F43','#1FA463'],
+    title: {
+	        text: '单位:户',
+	        textStyle:{    //图例文字的样式
+		        color:'#fff',
+		        fontWeight: 'normal',
+		        fontSize:graph_unit
+		    }
+
+	    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['未达标','已达标'],
+        x : 'right',
+        textStyle:{    //图例文字的样式
+            color:'#fff'
+        }
+    },
+    grid: {
+        top: "15%",
+        left: '2%',
+        right: '5%',
+        bottom: '15%',
+        containLabel: true
+    },
+    yAxis:  {
+        type: 'value',
+        axisLine:{
+            lineStyle:{
+                color:'#fff'
+            }
+        },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    xAxis: {
+        triggerEvent:true,
+        type: 'category',
+        data: [],
+        axisLabel:{
+            interval:0,
+            rotate:-60,
+            textStyle:{
+                fontSize:graph_x
+            }
+        },
+        axisLine:{
+            lineStyle:{
+                color:'#fff'
+            }
+        },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    series: [
+        {
+            name: '未达标',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                //柱形图圆角，鼠标移上去效果
+                emphasis: {
+                    barBorderRadius: [0, 0, 0, 0]
+                },
+                normal: {
+                    //柱形图圆角，初始化效果
+                    barBorderRadius:[0, 0, 0, 0]
+                }
+            }
+        },
+        {
+            name: '已达标',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                //柱形图圆角，鼠标移上去效果
+                emphasis: {
+                    barBorderRadius: [0, 0, 0, 0]
+                },
+
+                normal: {
+                    //柱形图圆角，初始化效果
+                    barBorderRadius:[0, 0, 0, 0]
+                }
+            }
+        },
+
+    ]
+};
+if (option && typeof option === "object") {
+    myChart12.setOption(option, true);
+}
+
+myChart12.on('click',
+        function (params) {
+            console.log(params);
+            if(params.componentType ==
+                    "xAxis"){
+                document.getElementById("p-lists3").style.visibility = "visible";
+            }});
+
+/****************************echarts-13*************************************/
+
+var dom13 = document.getElementById("echarts-13");
+var myChart13 = echarts.init(dom13);
+var app = {};
+option = null;
+
+option = {
+    color: ['#DD4F43','#1FA463'],
+    title: {
+	        text: '单位:户',
+	        textStyle:{    //图例文字的样式
+		        color:'#fff',
+		        fontWeight: 'normal',
+		        fontSize:graph_unit
+		    }
+
+	    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['未达标','已达标'],
+        x : 'right',
+        textStyle:{    //图例文字的样式
+            color:'#fff'
+        }
+    },
+    grid: {
+        top: "15%",
+        left: '2%',
+        right: '5%',
+        bottom: '5%',
+        containLabel: true
+    },
+    yAxis:  {
+        type: 'value',
+        axisLine:{
+            lineStyle:{
+                color:'#fff'
+            }
+        },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    xAxis: {
+        triggerEvent:true,
+        type: 'category',
+        data: [],
+        axisLabel:{
+            interval:0,
+            rotate:-60,
+            textStyle:{
+                fontSize:graph_x
+            }
+        },
+        axisLine:{
+            lineStyle:{
+                color:'#fff'
+            }
+        },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    series: [
+        {
+            name: '未达标',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                //柱形图圆角，鼠标移上去效果
+                emphasis: {
+                    barBorderRadius: [0, 0, 0, 0]
+                },
+                normal: {
+                    //柱形图圆角，初始化效果
+                    barBorderRadius:[0, 0, 0, 0]
+                }
+            }
+        },
+        {
+            name: '已达标',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                //柱形图圆角，鼠标移上去效果
+                emphasis: {
+                    barBorderRadius: [0, 0, 0, 0]
+                },
+
+                normal: {
+                    //柱形图圆角，初始化效果
+                    barBorderRadius:[0, 0, 0, 0]
+                }
+            }
+        },
+
+    ]
+};
+if (option && typeof option === "object") {
+    myChart13.setOption(option, true);
+}
+myChart13.on('click',function (params) {
+            if(params.componentType =="xAxis") {
+                document.getElementById("p-lists4").style.visibility = "visible";
+            }
+        });
+
+/****************************echarts-10*************************************/
+
+var dom10 = document.getElementById("echarts-10");
+var myChart10 = echarts.init(dom10);
+var app = {};
+option = null;
+
+option = {
+    color: ['#DD4F43','#FFCE43','#1FA463'],
+    title: {
+	        text: '单位:户',
+	        textStyle:{    //图例文字的样式
+		        color:'#fff',
+		        fontWeight: 'normal',
+		        fontSize:graph_unit
+		    }
+
+	    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['未达标户','兜底保障户','已达标户'],
+        x : 'right',
+        textStyle:{    //图例文字的样式
+            color:'#fff'
+        }
+    },
+    grid: {
+        top: "15%",
+        left: '0%',
+        right: '5%',
+        bottom: '15%',
+        containLabel: true
+    },
+    yAxis:  {
+        type: 'value',
+        axisLine:{
+            lineStyle:{
+                color:'#fff'
+            }
+        },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    xAxis: {
+        triggerEvent:true,
+        type: 'category',
+        data: [],
+        axisLabel:{
+            interval:0,
+            rotate:-60,
+            textStyle:{
+                fontSize:graph_x
+            }
+        },
+        axisLine:{
+            lineStyle:{
+                color:'#fff'
+            }
+        },
+            splitLine:{
+                show:true ,
+                lineStyle:{
+                    color:color,
+                    width:num,
+                    type:'dashed'
+                }
+            }
+    },
+    series: [
+        {
+            name: '未达标户',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                //柱形图圆角，鼠标移上去效果
+                emphasis: {
+                    barBorderRadius: [0, 0, 0, 0]
+                },
+                normal: {
+                    //柱形图圆角，初始化效果
+                    barBorderRadius:[0, 0, 0, 0]
+                }
+            }
+        },
+
+        {
+            name: '兜底保障户',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                //柱形图圆角，鼠标移上去效果
+                emphasis: {
+                    barBorderRadius: [0, 0, 0, 0]
+                },
+
+                normal: {
+                    //柱形图圆角，初始化效果
+                    barBorderRadius:[0, 0, 0, 0]
+                }
+            }
+        },
+        {
+            name: '已达标户',
+            type: 'bar',
+            stack: '总量',
+            barWidth: 10,
+
+            data: [],
+            itemStyle: {
+                //柱形图圆角，鼠标移上去效果
+                emphasis: {
+                    barBorderRadius: [0, 0, 0, 0]
+                },
+
+                normal: {
+                    //柱形图圆角，初始化效果
+                    barBorderRadius:[0, 0, 0, 0]
+                }
+            }
+        },
+    ]
+};
+if (option && typeof option === "object") {
+    myChart10.setOption(option, true);
+}
+myChart10.on('click', function (params){
+    console.log(params);
+    if(params.componentType =="xAxis") {
+        document.getElementById("p-lists7").style.visibility = "visible";
+    }
+});
+
+ $(function(){
+
+	$("body").on("click","#content-4shi-close",function(){
+		$('#zhezhao').hide();
+     	$("#content4-1-shi").hide();
+    })
+     $("body").on("click","#content-4zhen-close",function(){
+     	$('#zhezhao').hide();
+     	$("#content4-1-zhen").hide();
+    })
+
+      $("body").on("click",".content-5-1close",function(){
+      	$('#zhezhao').hide();
+     	$("#content-5-1-right").hide();
+     	$("#content-5-1-left").hide();
+    })
+
+    $("#c-title2").click(function(){
+    	$('#zhezhao').show();
+		$(".content-6-1").css({"opacity":1,'top':'-25%'});
+		$("#content6-1-zhen").css({"opacity":1,'top':'0%'});
+	})
+
+    $(".content-6-1close").click(function(){
+	$('#zhezhao').hide();
+	$(".content-6-1").css({'position':'absolute','opacity':'0','top':'-200%'});
+	$("#content-6-1-left").css('display','none');
+	$("#content-6-1-right").css('display','none');
+	$("#content6-1-zhen").css({'opacity':'0','top':'-200%'});
+})
+
+$("body").on("click",".content-6zhen-close",function(){
+	$('#zhezhao').hide();
+	$(".content-6-1").css({'position':'absolute','opacity':'0','top':'-200%'});
+	$("#content6-1-zhen").css({'opacity':'0','top':'-200%'});
+})
+
+$("body").on("click",".content-6cun-return",function(){
+
+	$("#content6-1-zhen").css({"opacity":1,'top':'-25%'});
+	$("#content-6-1-right").css("display","none");
+	 $("#content-6-1-left").css("display","none");
+})
+
+for(var i=0; i<=$("#content6-1-zhen>.content6-1-zhen>span").length; i++){
+	   $("#content6-1-zhen>.content6-1-zhen>span").eq(i).click(function(){
+	    $("#content-6-1-right").css("display","block");
+		$("#content6-1-zhen").css({'opacity':'0','top':'-200%'});
+	   });
+}
+for(var i=0; i<=$("#content-6-1-right>div table tr").length; i++){
+	   $("#content-6-1-right>div table tr").eq(i).find("td:nth-child(2)").click(function(){
+	   $("#content-6-1-left").css("display","block");
+	   });
+}
+
+ })
+</script>

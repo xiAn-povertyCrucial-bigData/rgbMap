@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>  
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/commer.js"></script>
+    <style type="text/css">
+        #img{
+            /*margin-left:40px;*/
+            width:90%;
+            margin-left:5%;
+            text-align:center;
+            /*text-align: center;*/
+        }
+    
+        #submit .border-main:hover, #submit.border-main:focus, #submit.bg-main:hover, #submit.bg-main:focus {
+            color: #fff;
+            border-color: #0ae;
+            background-color: #0ae;
+        } 
+        .data_tracking {
+            float: right;
+            margin-right: 2%;
+        }
+         #addTitle{
+            background-color:#e5e8ec;
+            padding: 13px 22px;
+            border-radius: 4px 4px 0 0;
+            height: 58px;
+            line-height: 32px;
+            margin-bottom:8px;
+            font-size:16px;
+            font-weight:bold;
+        }   
+        .imgbox,.imgbox1
+        {
+            /*float: left;*/
+            /*margin-right: 20px;
+            margin-top: 20px;*/
+            /*position: relative;
+            width: 182px;*/
+            height: 142px;
+            /*border: 1px solid #ecdfdf;*/
+            overflow: hidden;
+        }
+        .imgbox1{border: 1px solid blue;
+        }
+        .imgnum{
+            left: 0px;
+            top: 0px;
+            margin: 0px;
+            padding: 0px;
+        }
+        .imgnum input,.imgnum1 input {
+            position: absolute;
+            width: 182px;
+            height: 142px;
+            opacity: 0;
+        }
+        .imgnum img,.imgnum1 img {
+            width: 182px;
+            height: 142px;
+        }
+        .close233
+         {
+            color: red;
+            position: absolute;
+            /*left: 170px;*/
+            right:4px;
+            font-size:19px;
+            /*top: 0px;*/
+            display: none;
+        }
+         .imgnum {
+             position: relative;
+         }
+        .imgnum .img1{
+            margin:41px 60px;;
+            width:60px;
+            height:60px;
+        }
+        .img2{
+            width:100%;
+            height:100%;
+        }
+        #submit{
+            border-radius: 7px;
+            background-color: #0ae;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-right: 10%;
+            margin-top:10px;
+            cursor: pointer;
+        }
+          #submit{
+            float:right;
+        }
+        h1{text-align: center}
+        table tbody tr{width: 100%;height: 100%;}
+        table tbody tr th{ text-align:center;height:30px;line-height: 30px;border: 1px solid #d2d2d2;vertical-align: middle;}
+        table tbody tr td{ text-align:center;width:182px;;height: 142px;border: 1px solid #d2d2d2;vertical-align: middle;font-size: 14px;}
+        table caption{font-size: 24px;text-align: left}
+    </style>
+</head>
+
+<body>
+<div id="addTitle">添加四书四照 <a href="javascript:history.go(-1)" class="data_tracking button border-main">返回</a></div>
+<div id="img">
+      <table style="margin:auto">
+   			<tr>
+                <td colspan="2" class="form-04-td" style="height:40px;" id="title2">四书信息</td>
+                <td colspan="2" class="form-04-td" style="height:40px;" id="title2">
+				        <label for="">户主身份证号码</label>
+                        <input style="width:200px" id="number" type="text">
+				</td>
+                <td colspan="1" class="form-04-td" style="height:40px;" id="title2">
+				       <label>年度</label>
+						<select id="year">
+							<option value="201808">2018年</option>
+							<option value="201712">2017年</option>
+							<option value="2017">2016年</option>
+							<option value="2016">2015年</option>
+							<option value="2015">2014年</option>
+						</select></td>
+				</td>
+     
+		   </tr>
+            <tr>
+                <th>家庭情况真实性承诺书</th>
+                <th>自主创业意愿书</th>
+                <th>自愿就业承诺书</th>
+                <th>干部帮扶责任书</th>
+                <th><input type="text"  style="border: none;"/></th>
+            </tr>
+            <tr > 
+                 <td>
+                     <div class="imgbox">
+                        <div class="imgnum"> 
+                            <input type="file" name="file" id="file1" class="filepath"   multiple="multiple" />
+                            <span class="close233">X</span>
+                            <img src="../images/btn.png" class="img1" />
+                            <img src="#" class="img2" />
+                        </div>
+                    </div>
+             </td>
+             <td>
+                <div class="imgbox">
+                    <div class="imgnum">
+                        <input type="file"  id="file2"  name="file"class="filepath" />
+                        <span class="close233">X</span>
+                        <img src="../images/btn.png" class="img1" />
+                        <img src="#" class="img2" />
+                    </div>
+                </div>
+               </td>
+                <td>
+                   <div class="imgbox">
+                    <div class="imgnum">
+                        <input type="file"  id="file3"  name="file" class="filepath" />
+                        <span class="close233">X</span>
+                        <img src="../images/btn.png" class="img1" />
+                        <img src="#" class="img2" />
+                    </div>
+                </div>
+                </td>
+                <td>  
+                    <div class="imgbox">
+                        <div class="imgnum">
+                            <input type="file"  id="file4"   name="file" class="filepath" />
+                            <span class="close233">X</span>
+                            <img src="../images/btn.png" class="img1" />
+                            <img src="#" class="img2" />
+                        </div>
+                    </div>
+                </td>
+                <td><span style="color:#0ae">温馨提示:</span><br /><span style="color:darkgray;font-size:12px;margin-left:5px;margin-right:6px;">1.单击图片可以修改或增加图片</span><br /><span style="color:darkgray;font-size:12px;margin-left:5px;margin-right:6px;">2.单击图片右上角<span style="color:red">X</span>号可以删除图片</span></td>
+            </tr>
+            <tr>
+                <td colspan="5" class="form-04-td" style="height:40px;" id="title3">四照信息</td>
+            </tr>
+                <tr>
+                <th>大门口（工作人员与户主合影）</th>
+                <th>灶台（工作人员与户主合影）</th>
+                <th>厅堂（工作人员与户主合影）</th>
+                <th>卧室（工作人员与户主合影）</th>
+                <th>大门口（家庭合影）</th>
+            </tr>
+            <tr>
+          <td>
+            <div class="imgbox">
+                <div class="imgnum">
+                    <input type="file"  id="file5"  name="file" class="filepath" />
+                    <span class="close233">X</span>
+                    <img src="../images/btn.png" class="img1" />
+                    <img src="#" class="img2" />
+                </div>
+            </div>
+        </td>
+           <td>      
+                <div class="imgbox">
+                    <div class="imgnum">
+                        <input type="file"  id="file6"   name="file" class="filepath" />
+                        <span class="close233">X</span>
+                        <img src="../images/btn.png" class="img1" />
+                        <img src="#" class="img2" />
+                    </div>
+                </div>
+           </td>
+          <td>
+                    <div class="imgbox">
+                        <div class="imgnum">
+                            <input type="file" id="file7"   name="file" class="filepath" />
+                            <span class="close233">X</span>
+                            <img src="../images/btn.png" class="img1" />
+                            <img src="#" class="img2" />
+                        </div>
+                    </div>
+             </td>
+             <td>
+                    <div class="imgbox">
+                        <div class="imgnum">
+                            <input type="file"  id="file8"  name="file" class="filepath" />
+                            <span class="close233">X</span>
+                            <img src="../images/btn.png" class="img1" />
+                            <img src="#" class="img2" />
+                        </div>
+                    </div> 
+                </td>
+                <td>
+                <div class="imgbox">
+                    <div class="imgnum">
+                        <input type="file" id="file9"  name="file" class="filepath" />
+                        <span class="close233">X</span>
+                        <img src="../images/btn.png" class="img1" />
+                        <img src="#" class="img2" />
+                    </div>
+                </div>
+                </td>
+            </tr>        
+        </table>
+</div>
+<button  id="submit" >提交</button> 
+
+</body>
+<script type="text/javascript">
+//判断身份证
+    $("#number").blur(function(){
+        var  str =  $(this).val().replace(/(^\s*)|(\s*$)/g, "");
+        var strs = str.substring(-1,17);
+            if(!isNaN(strs)&&parseFloat(strs)>0&&$(this).val().length>=18&&$(this).val().length<=22){
+            }else{
+                $(this).val("(*请输入有效值)")
+                $(this).css("color","red");
+            }
+        })
+    $("#number").focus(function(){
+            if($(this).val()=="(*请输入有效值)"){
+                $(this).val("");
+                $(this).css("color","#333333")
+            }
+        })
+		
+	    let token=$.cookie("token");
+        //var url=config.url;
+        var theRequest = new Object();
+        var url1=window.location.search; //获取url中"?"符后的字串
+        if(url1.indexOf("?")!=-1) {
+            var str = url1.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+            }
+        }
+        var code = theRequest.value;
+        var year = theRequest.time;	
+        console.log(code)
+        console.log(year)
+        //$("#number").val(code)
+        //$("#year").val(year) 
+        $(".filepath").on("change",function() {  //预览
+            var srcs='';
+            var reads= new FileReader();
+         //   f=$(this)[0].files[0];
+            srcs=URL.createObjectURL($(this)[0].files[0]);  //获取图片地址
+        //    alert(srcs)
+            $(this).nextAll(".img1").hide();   //this指的是input
+            $(this).nextAll(".img2").show();  //fireBUg查看第二次换图片不起做用
+            $(this).nextAll('.close233').show();   //this指的是input
+            $(this).nextAll(".img2").attr("src",srcs);    //this指的是input
+           // $(this).val('');    //必须制空
+            $(".close233").on("click",function() {
+                $(this).hide();     //this指的是span
+                $(this).nextAll(".img2").hide();
+                $(this).nextAll(".img1").show();
+            })
+        })
+
+
+	$("body").on('click','#submit',function(){
+        var formFile = new FormData();	
+		var n=0;
+       // var file = [];
+        var dataArr = []; // 储存所选图片的结果(文件名)  
+            $(".img2").each(function(index,val){
+                if($(this).attr("src")=="#"||$(this).css("display")=="none"){
+                }else{
+                var fileId = 'file'+(index+1);
+                var   file = document.getElementById(fileId).files[0];	 
+                indexs = index + 1;
+                formFile.append(indexs,file);
+                n++;
+                    }
+            })
+           
+            formFile.append('aac031',$("#number").val())
+            formFile.append('aar040',$("#year").val())	
+           if(n > 0){
+                $.ajax({    
+                    url : url+'file/upload/img/file',    
+                    type : 'post', 
+                    data : formFile,
+                    dataType: 'json',    
+                    cache: false,//上传文件无需缓存
+                    processData: false,   //用FormData传fd时需有这两项    
+                    contentType: false, 
+                    beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },   
+                    success : function(data){ 
+                        if(data.code==2000){
+                            alert('上传成功');
+                        }else if(data.code==1005){
+                            alert(data.message)
+                        } else{
+                            alert("上传失败");
+                        }
+                　}
+            
+                    })
+            //     }
+          //  }
+        // })
+    }else{
+        alert("请先选择图片再上传")
+    }   
+
+
+	})
+
+
+
+</script>
+
+</html> 
+ 

@@ -1,0 +1,2026 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>就业扶贫</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/pagination1.css">
+	<link rel="stylesheet" href="../css/xiangqing.css"/>
+	<link rel="stylesheet" href="../css/reset.min.css"/>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/jquery.pagination1.js"></script>
+    <script src="../js/xiangqing.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/formReset.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/formReset.js"></script>
+    <style>
+    	.active{background: #70c1ff!important;color: #fff!important;border-radius: 12px;}
+    	.form-01 dt{
+        	height: 30px;
+		    line-height: 30px;
+		    float: left;
+		    margin-right: 10px;
+		    border-radius: 12px;
+		    text-align: center;
+		    padding: 2px 6px;
+		    cursor: pointer;
+		    position: relative;
+		    color: #555;
+		}
+		.xiangqing ul li{
+			width: 120px;
+			height: 45px;
+			background: blueviolet;
+			float:left
+		}
+		.xiangqing table{
+			width: 100%;
+		}
+		.xiangqing tr {
+			width: 100%;
+		}
+		.xiangqing tr td{
+			width: 16%;
+		}
+		.table-bg{background: #F7F7F7;}
+        /*上传文件弹出框样式*/
+        .pop-up{
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            width:500px;
+            height:300px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            z-index: 999;
+            border:1px solid #ccc;
+            display: none;
+        }
+        .pop-up .container{
+            width:100%;
+            height:100%;
+        }
+        .pop-up .container h3{
+            text-align: center;
+            height:60px;
+            line-height: 60px;
+        }
+        .pop-up .inputs{
+            width:100%;
+            height: 100px;
+            background: #fff;
+            position:relative;
+            border:1px dashed #ccc;
+        }
+        .pop-up .inputs #upfile{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        .pop-up .container .inputs input{
+            width: 170px;
+        }
+        .pop-up .container .geshi{
+            width:100%;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        .pop-up .container .geshi button{
+            width:50px;
+            height:24px;
+            border-radius: 4px;
+            background: #f0ad4e;
+            border: 1px solid #FFAC37;
+            color:#fff;
+        }
+        .pop-up .closes{
+            font-size:22px;
+            float: right;
+            margin-right:14px;
+            cursor: pointer;
+        }
+        .btn_orange{color: #fff;
+		    background: #f0ad4e;
+		    border: 1px solid #FFAC37;
+		    width: 50px;
+		    text-align: center;
+		    margin-right: 13px;
+		    text-indent: 0;
+		    padding: 3px 0;
+    		border-radius: 3px;
+    		vertical-align: middle;
+		}
+		.panel>.form-01>.search div{width: 100%;}
+		/*加载动画*/
+        .spinner {
+            margin: 5% auto;
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+        .container1 > div, .container2 > div, .container3 > div {
+            width: 14px;
+            height: 14px;
+            background-color: #858585;
+            border-radius: 100%;
+            position: absolute;
+            -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+            animation: bouncedelay 1.2s infinite ease-in-out;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        .spinner .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .container2 {
+            -webkit-transform: rotateZ(45deg);
+            transform: rotateZ(45deg);
+        }
+        .container3 {
+            -webkit-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+        }
+        .circle1 { top: 0; left: 0; }
+        .circle2 { top: 0; right: 0; }
+        .circle3 { right: 0; bottom: 0; }
+        .circle4 { left: 0; bottom: 0; }
+        .container2 .circle1 {
+            -webkit-animation-delay: -1.1s;
+            animation-delay: -1.1s;
+        }
+        .container3 .circle1 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+        .container1 .circle2 {
+            -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s;
+        }
+        .container2 .circle2 {
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+        }
+        .container3 .circle2 {
+            -webkit-animation-delay: -0.7s;
+            animation-delay: -0.7s;
+        }
+        .container1 .circle3 {
+            -webkit-animation-delay: -0.6s;
+            animation-delay: -0.6s;
+        }
+        .container2 .circle3 {
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        }
+        .container3 .circle3 {
+            -webkit-animation-delay: -0.4s;
+            animation-delay: -0.4s;
+        }
+        .container1 .circle4 {
+            -webkit-animation-delay: -0.3s;
+            animation-delay: -0.3s;
+        }
+        .container2 .circle4 {
+            -webkit-animation-delay: -0.2s;
+            animation-delay: -0.2s;
+        }
+        .container3 .circle4 {
+            -webkit-animation-delay: -0.1s;
+            animation-delay: -0.1s;
+        }
+        @-webkit-keyframes bouncedelay {
+            0%, 80%, 100% { -webkit-transform: scale(0.0) }
+            40% { -webkit-transform: scale(1.0) }
+        }
+        @keyframes bouncedelay {
+            0%, 80%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 40% {
+                  transform: scale(1.0);
+                  -webkit-transform: scale(1.0);
+              }
+        }
+        .ycxiangqing table{
+			width: 100%;
+		}
+		.ycxiangqing tr {
+			width: 100%;
+			height: 30px;
+		    line-height: 30px;
+		    border: 1px solid #ccc;
+		}
+		.ycxiangqing tr td,.ycxiangqing tr th{
+			border: 1px solid #ccc;
+			text-align: center;
+		}
+        .ycxiangqing tr td span{
+            color:#959595;
+            font-size: 12px;
+        }
+        .ycxiangqing select{
+    	    border: 1px solid #c9d7e0;
+		    background-color: #fff;
+		    padding: 3px 0;
+		    border-radius: 3px;
+		    outline: 0;
+		    color: #555;
+		    font-size: 12px;
+		    width: 115px;
+		    margin-right: 3px;
+		    text-indent: 10px;
+        }
+    	.ycxiangqing label{
+    		display: inline-block;
+    		width: 100px;
+    	}
+		#searchs2,#daochu2{float: right;}
+		.update2{
+			display: inline-block;
+		    border-radius: 3px;
+		    background: #229ffd;
+    		cursor: pointer;
+		    border: none;
+		    color: #fff;
+		    width: 48px;
+		    height: 22px;
+		    text-align: center;
+		    line-height: 22px;
+		}
+		.ycxqclick2{
+			display: inline-block;
+		    border-radius: 3px;
+		    background: #f0ad4e;
+    		cursor: pointer;
+		    border: none;
+		    color: #fff;
+		    width: 48px;
+		    height: 22px;
+		    text-align: center;
+		    line-height: 22px;
+		}
+		.detele2{
+			background: #ff7680;
+			display: inline-block;
+		    border-radius: 3px;
+    		cursor: pointer;
+		    border: none;
+		    color: #fff;
+		    width: 48px;
+		    height: 22px;
+		    text-align: center;
+		    line-height: 22px;
+		}
+		a:hover{color:black}
+    </style>
+</head>
+<body>
+<!--上传文件弹出框-->
+<div class="pop-up">
+    <div class="closes"><strong>×</strong></div>
+    <div class="container">
+        <h3>导入Excel</h3>
+        <!--<span>上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传：</span>-->
+        <div class="inputs">
+   			<input type="file" id="upfile" name="file" placeholder=""/>
+		</div>
+        <div class="geshi">
+            <button onclick="importExp();">导入</button>
+            <span>格式：.xls/xlsx</span>
+        </div>
+    </div>
+</div>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>就业扶贫</strong><a href="addEmployment.html" class="button border-main icon-plus-square-o">添加内容</a>
+  		<input type="button" class="btn_orange" style="float: right;" name="" value="导出" id="export">
+        <input type="button" class="btn_orange" style="float: right;" name="" value="导入" id="import">
+  		<!--<input type="button" class="btn_orange ycxqclick" style="float: right;width: 80px;" value="证件号异常">-->
+  </div>
+  <div class="form-01">
+      <p>数据筛选 <span class="pack_up">收起-</span></p>
+      <div class="search searchs" style="display: block;">
+           <div>
+               <div>
+                   <label for="">行政区划</label>
+                   <input type="text" value="陕西省" disabled>
+                   <select name="" id="p_shi" >
+	            		<option value="">全部</option>
+	              </select>
+                   <select name="" id="country">
+                       <option value="">县（区）</option>
+                   </select>
+                   <select name="" id="township">
+                       <option value="">乡（镇）</option>
+                   </select>
+                   <select name="" id="village">
+                       <option value="">村</option>
+                   </select>
+                   <select name="" id="year">
+						<option value="201806">2018年</option>
+                   </select>
+               </div>
+          </div>
+          <div>
+              <div class="form-group">
+                  <label for="">贫困户姓名</label>
+                  <input type="text" id="povertyName">
+              </div>
+              <div class="form-group idNum">
+                  <label for="">证件号码</label>
+                  <input type="text" id="idNumber">
+              </div>
+              <div class="form-group">
+                	<label for="">是否享受</label>
+                    <select name="" id="flag">
+	                    <option value="">--请选择--</option>
+	                    <option value="0">否</option>
+	                    <option value="1">是</option>
+	                </select>
+              </div>
+          </div>
+            <p style="clear: both;"></p>
+            <div class="shuxing" style="float: left;">
+                <dl>
+                    <dt>贫困户属性</dt>
+                    <dt class="active" style="margin-left: 30px;">全部</dt>
+                    <dt abc="01">一般贫困户</dt>
+                    <dt abc="04">低保贫困户</dt>
+                    <dt abc="06">五保贫困户</dt>
+                    <dt abc="05">一般农户</dt>
+                    <dt abc="02">低保户</dt>
+                    <dt abc="03">五保户</dt>
+                </dl>
+            </div>
+         	<div class="tuopin" style="float: left;">
+                <dl>
+                    <dt >脱贫状态</dt>
+                    <dt class="active" style="margin-left: 42px;">全部</dt>
+                    <dt abc="1">已脱贫（享受政策）</dt>
+                    <dt abc="4">已脱贫（不再享受政策）</dt>
+                    <dt abc="0">未脱贫</dt>
+                    <dt abc="3">返贫</dt>
+                </dl>
+            </div>
+          <div class="reason" style="float: left;">
+              <dl>
+                  <dt >致贫原因</dt>
+                  <dt class="active" style="margin-left: 42px;">全部</dt>
+                  <dt abc="01">因病</dt>
+                  <dt abc="02">因残</dt>
+                  <dt abc="03">因学</dt>
+                  <dt abc="04">因灾</dt>
+                  <dt abc="05">缺土地</dt>
+                  <dt abc="06">缺水</dt>
+                  <dt abc="07">缺技术</dt>
+                  <dt abc="08">缺劳力</dt>
+                  <dt abc="09">缺资金</dt>
+                  <dt abc="10">交通条件落后</dt>
+                  <dt abc="11">自身发展力不足</dt>
+                  <dt abc="12">其他</dt>
+              </dl>
+          </div>
+          <div style="float: right;">
+
+              <input type="button" class="btn_orange" style="float: right;" name="" value="查询" id="searchs">
+              <input type="button" class="btn_blue" style="float: right;" name="" value="重置条件" id="reset">
+          </div>
+      </div>
+      <div class="spinner" style="display: none;z-index: 999">
+	          <div class="spinner-container container1">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	          <div class="spinner-container container2">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	          <div class="spinner-container container3">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	    </div>
+      <table id="formSubmit2" class="form-x">         
+
+      </table>
+      <div class="pages">
+          <div class="paging" style="width:600px;">
+              <div id="Pagination"></div>
+              <div class="searchPage">
+                  <span class="page-sum"></span>
+                  <!--<span class="page-go">到<input type="text" id="currentPage">页</span>
+                  <a class="page-btn" style="cursor:pointer;">确定</a>-->
+                  <span id="allTotal"></span>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+
+<!--详情页-->
+<div style="width: 95%;height: 600px;border: 1px solid blueviolet;margin: 0 auto; display: none;position: absolute;top: 150px;left: 35px;z-index: 9999;background: white;" class="xiangqing">
+	<div class="tab-wrapper">
+		<p style="background: #1797f6;height: 30px;line-height:30px;color: white;margin:10px">就业扶贫详情<span class="xqclose" style="float: right;padding-right: 10px;cursor: pointer;">X</span></p>
+	  <ul class="tab-menu" style="height: 50px;">
+	    <li class="active" style="border-radius: 0;width: 150px;border: 1px solid #CCC6C6;background: white;margin-left: 20px;">就业创业统计表（一）</li>
+	    <li style="width: 150px;border-radius: 0;border: 1px solid #CCC6C6;background: white;">就业创业统计表（二）</li>
+	  </ul>
+	  <div class="tab-content" style="height: 550px;border-top: 1px solid blueviolet;">
+	    <div >
+	    	<table border="1" >
+	    		<p style="height: 30px;line-height:30px;color: #1797f6;margin:10px 0;font-size: 18px;">基本信息</p>
+				<tr >
+					<td class="table-bg">务工者姓名</td>
+					<td id="A"></td>
+					<td class="table-bg">务工者身份证号码</td>
+					<td id="B"></td>
+					<td class="table-bg">是否在校生</td>
+                    <td id="N"></td>
+				</tr> 
+				             
+			</table>
+			<p style="height: 30px;line-height:30px;color: #1797f6;margin:10px 0;font-size: 18px;">就业情况</p>
+			<table>
+				<tr>
+					<td class="table-bg">就业形势</td>
+					<td id="O"></td>
+					<td class="table-bg">就业地域</td>
+					<td id="P"></td>
+					<td class="table-bg">就业地</td>
+					<td id="Q"></td>
+				</tr>
+				<tr>
+                    <td class="table-bg">就业工种</td>
+                    <td id="R"></td>
+					<td class="table-bg">就业开始时间</td>
+					<td id="S"></td>
+					<td class="table-bg">是否签订劳动合同或协议</td>
+					<td id="T"></td>
+				</tr>
+				<tr>
+                    <td class="table-bg">是否参加社会保险</td>
+                    <td id="U"></td>
+					<td class="table-bg">月均工资(元)</td>
+					<td id="V"></td>
+                    <td class="table-bg">岗位类型</td>
+                    <td id="W"></td>
+				</tr>
+                <tr>
+                    <td class="table-bg">公益性岗位安置地</td>
+                    <td id="X"></td>
+                    <td class="table-bg">公益性岗位安置单位名称</td>
+                    <td id="Y"></td>
+                    <td class="table-bg">安置时间</td>
+                    <td id="Z"></td>
+                </tr>
+                <tr>
+                    <td class="table-bg">岗位名称</td>
+                    <td id="AA"></td>
+                </tr>
+			</table>
+	    </div>
+	    <div>
+	    	<table border="1" >
+	    		<p style="height: 30px;line-height:30px;color: #1797f6;margin:10px 0;font-size: 18px;">培训情况</p>
+				<tr>
+					<td class="table-bg">是否参加就业培训</td>
+					<td id="BB"></td>
+					<td class="table-bg">培训类型</td>
+					<td id="CC"></td>
+					<td class="table-bg">培训开始时间</td>
+					<td id="DD"></td>
+				</tr>
+				<tr>
+					<td class="table-bg">培训结束时间</td>
+					<td id="EE"></td>
+					<td class="table-bg">培训类别</td>
+					<td id="FF"></td>
+					<td class="table-bg">取得证书</td>
+					<td id="GG"></td>
+				</tr>
+				<tr>
+					<td class="table-bg">培训补贴（元）</td>
+					<td id="HH"></td>
+				</tr>
+			</table>
+			<p style="height: 30px;line-height:30px;color: #1797f6;margin:10px 0;font-size: 18px;">创业情况</p>
+			<table>
+				<tr>
+					<td class="table-bg">创业时间</td>
+					<td id="JJ"></td>
+					<td class="table-bg">是否参加创业培训</td>
+					<td id="KK"></td>
+					<td class="table-bg">创业类型</td>
+					<td id="LL"></td>
+				</tr>
+				<tr>
+					<td class="table-bg">企业或实体地址</td>
+					<td id="MM"></td>
+					<td class="table-bg">企业或实体名称</td>
+					<td id="NN"></td>
+					<td class="table-bg">产业类别</td>
+					<td id="OO"></td>
+				</tr>
+				<tr>
+					<td class="table-bg">是否享受小额担保贷款</td>
+					<td id="PP"></td>
+					<td class="table-bg">贷款金额（万元）</td>
+					<td id="QQ"></td>
+					<td class="table-bg">吸纳劳动力人数</td>
+					<td id="RR"></td>
+				</tr>
+				<tr>
+					<td class="table-bg">是否在工商部门注册登记</td>
+					<td id="SS"></td>
+				</tr>
+			</table>
+			<p style="height: 30px;line-height:30px;color: #1797f6;margin:10px 0;font-size: 18px;">未就业情况</p>
+			<table>
+				<tr>
+					<td class="table-bg">是否有就业愿望</td>
+					<td id="TT"></td>
+					<td class="table-bg">就业意向地</td>
+					<td id="UU"></td>
+					<td class="table-bg">期望薪资（元）</td>
+					<td id="VV"></td>
+				</tr>
+				<tr>					
+					<td class="table-bg">提供就业政策咨询次数（次）</td>
+					<td id="XX"></td>
+					<td class="table-bg">提供就业信息次数（次）</td>
+					<td id="YY"></td>
+					<td class="table-bg">提供职业指导与介绍次数</td>
+                    <td id="ZZ"></td>
+				</tr>
+                <tr>                    
+                    <td class="table-bg">提供培训次数</td>
+                    <td id="AAA"></td>
+                    <td class="table-bg">提供创业服务次数</td>
+                    <td id="BBB"></td>
+                    <td class="table-bg">是否享受职业介绍补贴</td>
+                    <td id="CCC"></td>
+                </tr>
+                <tr>                   
+                    <td class="table-bg">是否享受社会保险</td>
+                    <td id="DDD"></td>
+                    <td class="table-bg">是否享受岗位补贴</td>
+                    <td id="EEE"></td>
+                    <td class="table-bg">是否享受其他政策扶持</td>
+                    <td id="FFF"></td>
+                </tr>
+			</table>
+	    </div>
+	  </div>
+	</div>
+</div>
+<!--异常导出详情-->
+<div style="width: 95%;height: 790px;border: 1px solid #d9d9d9;margin: 0 auto; display: none;position: absolute;top: 67px;left: 33px;z-index: 10;background: white;" class="ycxiangqing">
+	<div class="tab-wrapper" style="margin:0;">
+      <p style="background: #1797f6;height: 40px;line-height:40px;color: white;text-align: center;font-size:18px;">证件号码异常数据管理<span class="ycxqclose" style="float: right;padding-right: 10px;cursor:pointer;">X</span></p>
+	  <div class="tab-content" style="min-height:422px;border-top: 1px solid #d9d9d9;">
+	    <div>
+            <div class="sort">
+                <div class="form-group">
+                    <!--<label for="">证件号码异常类别</label>
+                    <select name="" id="updateType2">
+                        <option value="">请选择</option>
+                        <option value="01">证件号码格式有误</option>
+                        <option value="02">证件号有误</option>
+                        <option value="03">证件号码重复</option>
+                        <option value="04">人员重复</option>
+                    </select>   -->
+                    <label>姓名</label><input type="text" id="name1" style="border: 1px solid #c9d7e0;padding: 3px 0;border-radius: 3px; width: 115px;text-indent: 10px;vertical-align: middle;"/>
+
+                	<input type="button" class="btn_orange" value="查询" id="searchs2">
+                	<input type="button" class="btn_orange" value="导出" id="daochu2">
+             	</div>
+            </div>
+	    	<table border="1" id="formSubmit3">
+
+			</table>
+
+	  		<div class="pages1">
+	          <div class="paging1" style="width: 600px;margin: 20px auto;">
+	              <div id="Pagination1"></div>
+	              <div class="searchPage1">
+	                  <span class="page-sum1"></span>
+	                  <span id="allTotal1"></span>
+	              </div>
+	          </div>
+	        </div>
+	</div>
+</div>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+    })
+    /*筛选条件收起展开*/
+    $(".pack_up").click(function(){
+        $(".search").toggle();
+        $(".pack_up").text($(".pack_up").text()=="高级查询+"?"收起-":"高级查询+");
+    })
+     $(".tuopin dl >dt:nth-child(2)").nextAll().click(function(){
+               $(".tuopin dl >dt:nth-child(2)").removeClass("active");
+               $(this).toggleClass("active");
+              //给点击对象添加类
+          });
+       $(".tuopin dl >dt:nth-child(2)").click(function(){
+         	$(this).toggleClass("active")
+       		$(this).siblings().removeClass('active');
+       })
+    $(".shuxing dl >dt:nth-child(2)").nextAll().click(function(){
+               $(".shuxing dl >dt:nth-child(2)").removeClass("active");
+               $(this).toggleClass("active");
+              //给点击对象添加类
+          });
+       $(".shuxing dl >dt:nth-child(2)").click(function(){
+         	$(this).toggleClass("active")
+       		$(this).siblings().removeClass('active');
+       })
+        $(".reason dl >dt:nth-child(2)").nextAll().click(function(){
+            $(".reason dl >dt:nth-child(2)").removeClass("active");
+            $(this).toggleClass("active");
+            //给点击对象添加类
+        });
+        $(".reason dl >dt:nth-child(2)").click(function(){
+            $(this).toggleClass("active")
+            $(this).siblings().removeClass('active');
+        })
+       $(".xqclick").click(function(){
+       		$(".xiangqing").show(1000)
+       })
+       $(".xqclose").click(function(){
+       		$(".xiangqing").hide(1000)
+       })
+</script>
+<script>
+    $(document).ready(function(){
+
+        let url=config.url;
+        /*区划选择渲染*/
+        var p_shi =$("#p_shi");
+        let county=$("#country");
+        let township=$("#township");
+        let cunship=$("#village");
+        let years=$("#year");
+        /*页面初始化调用*/
+        let obj=JSON.parse($.cookie('loginMessage'));
+        let aar008=obj.aar008;
+        let token=$.cookie("token");
+    //加载西安市
+    init_Shi();
+    function init_Shi(){
+        var p_shi=$("#p_shi");
+        $.ajax({
+            url: url + "district/city",
+            data:{},
+            beforeSend:function(request){
+                request.setRequestHeader("Authorization",token);
+                request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+            },
+            method: "get",
+            dataType: "json",
+            json: "callback",
+            jsonpCallback: 'jsonpCallback',
+            success: function(data){
+                if (data.code == 2000){
+                    showShiInfo(p_shi,data);
+                    init_County()
+                }
+            }
+        })
+    }
+    function showShiInfo(obj,data){
+        obj.empty();
+        var str = `<option value="">全部</option>`;
+        var string = "";
+        let arr=[];
+        for(let i = 0; i < data.data.length; i++){
+            str += `
+         <option value="${data.data[i].AAR001}">${data.data[i].AAR009}</option>
+     `;
+            let obj={"number":data.data[i].AAR001,"name":data.data[i].AAR009};
+            arr.push(obj);
+        }
+        obj.html(str);
+        let tokenCon=$.cookie("loginMessage");
+        let aa=JSON.parse(tokenCon);
+
+        if(aa.aar008==619900000000){
+        	$("#p_shi").empty().append("<option value='619900000000'>西咸新区</option>").attr("disabled","disabled");
+        }
+    }
+	$("#p_shi").change(function(){
+	    var opt=$("#p_shi");
+	    var city = $("#country");
+	         $.ajax({
+	            url: url + "district/county",
+	            data:{"aar001":opt.val()},
+	            beforeSend:function(request){
+			        request.setRequestHeader("Authorization",token);
+			        request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+		        },
+	            method: "get",
+	            dataType: "json",
+	            json: "callback",
+	            jsonpCallback: 'jsonpCallback',
+	            success: function(data){
+	                if (data.code == 2000){
+	                     init_County();
+	                     showVillageInfo(cunship,data);
+	                     showTownInfo(township,data);
+	                }
+	            }
+	    })
+	});
+	//加载县
+	function init_County(){
+	    var opt=$("#p_shi");
+	    var city = $("#country");
+	            $.ajax({
+	            url: url + "district/county",
+	            data:{"aar001":opt.val()},
+	            beforeSend:function(request){
+	                      request.setRequestHeader("Authorization",token);
+	                      request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+	                },
+	            method: "get",
+	            dataType: "json",
+	            json: "callback",
+	            jsonpCallback: 'jsonpCallback',
+	            success: function(data){
+	                if (data.code == 2000){
+	                    showCountyInfo( city,data);
+	                }
+	            }
+	    })
+	}
+
+	function showCountyInfo(obj,data){
+	     obj.empty();
+	     var str = `<option value="">县（区）</option>`;
+	     var string = "";
+	    let arr=[];
+	     for(let i = 0; i < data.data.length; i++){
+	         str += `
+	         <option value="${data.data[i].AAR001}">${data.data[i].AAR009}</option>
+	     `;
+	         let obj={"number":data.data[i].AAR001,"name":data.data[i].AAR009};
+	         arr.push(obj);
+	     }
+	     obj.html(str);
+	    let tokenCon=$.cookie("loginMessage");
+	    let aa=JSON.parse(tokenCon);
+	    for(let i=0;i<arr.length;i++){
+	        console.log(arr[i].number+"---"+aa.aaa113);
+	        if(arr[i].number==aa.aar008 ||arr[i].number==aa.aaa113){
+	            // $("#county").empty();
+	            $("#country").empty().append("<option value='"+arr[i].number+"'>"+arr[i].name+"</option>").attr("disabled","disabled");
+	            $("#p_shi").attr("disabled","disabled");
+	            var opt=$("#country");
+	            var opt1 = $("#township");
+	            $.ajax({
+	                url: url + "district/town",
+	                data:{"county":opt.val()},
+	                beforeSend:function(request){
+	                    request.setRequestHeader("Authorization",token);
+	                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+	                },
+	                method: "get",
+	                dataType: "json",
+	                json: "callback",
+	                jsonpCallback: 'jsonpCallback',
+	                success: function(data){
+	                    if (data.code == 2000){
+	                        showTownInfo(opt1,data);
+	                        //page.html(data.data.total);
+
+	                    }
+	                }
+
+	            })
+	        }
+	    }
+	}
+
+	$("#country").change(function(){
+	    var opt=$("#country");
+	    var opt1 = $("#township");
+	         $.ajax({
+	            url: url + "district/town",
+	            data:{"county":opt.val()},
+	            beforeSend:function(request){
+	                      request.setRequestHeader("Authorization",token);
+	                      request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+	                },
+	            method: "get",
+	            dataType: "json",
+	            json: "callback",
+	            jsonpCallback: 'jsonpCallback',
+	            success: function(data){
+	                if (data.code == 2000){
+	                    showTownInfo(opt1,data);
+	                    showVillageInfo(cunship,data);
+	                }
+	            }
+
+	    })
+	});
+
+	function showTownInfo(obj,data){
+	    obj.empty();
+	    let arr=[];
+	     var str = `<option value="">乡（镇）</option>`;
+	     for(let i = 0; i < data.data.length; i++){
+	         str += `
+	         <option value="${data.data[i].AAR001}">${data.data[i].AAR009}</option>
+	     `;
+	      obj.html(str);
+	         let obj2={"number":data.data[i].AAR001,"name":data.data[i].AAR009};
+	         arr.push(obj2);
+	     }
+	    let tokenCon=$.cookie("loginMessage");
+	    let aa=JSON.parse(tokenCon);
+	    if(aa.aar008.substring(6)!="000000"){
+	        for(let i=0;i<arr.length;i++){
+	            if(arr[i].number==aa.aar008){
+	                // $("#county").empty();
+	                $("#township").empty().append("<option value='"+aa.aar008+"'>"+aa.userCode+"</option>").attr("disabled","disabled");
+	                var opt=$("#township");
+	                var opt1 = $("#village");
+	                $.ajax({
+	                    url: url + "district/village",
+	                    data:{"town":opt.val()},
+	                    beforeSend:function(request){
+	                        request.setRequestHeader("Authorization",token);
+	                        request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+	                    },
+	                    method: "get",
+	                    dataType: "json",
+	                    json: "callback",
+	                    jsonpCallback: 'jsonpCallback',
+	                    success: function(data){
+	                        if (data.code == 2000){
+	                            var town = $("#township").val();
+	                            var vill = $("#village");
+	                            $.ajax({
+	                                url: url + "district/village",
+	                                data:{"town": town},
+	                                method: "get",
+	                                dataType: "json",
+	                                beforeSend:function(request){
+	                                    request.setRequestHeader("Authorization",token);
+	                                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+	                                },
+	                                success: function(data){
+	                                    if (data.code == 2000){
+	                                        showVillageInfo(vill,data);
+	                                    }
+	                                }
+	                            })
+	                            showVillageInfo(opt1,data);
+	                            //page.html(data.data.total);
+	                        }
+	                    }
+
+	                })
+	            }
+	        }
+	    }
+	}
+
+	$("#township").change(function(){
+	    var town = $("#township").val();
+	    var vill = $("#village");
+	         $.ajax({
+	            url: url + "district/village",
+	            data:{"town": town},
+	            method: "get",
+	            dataType: "json",
+	            beforeSend:function(request){
+	                      request.setRequestHeader("Authorization",token);
+	                      request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+	                },
+	            success: function(data){
+	                if (data.code == 2000){
+	                    showVillageInfo(vill,data);
+	                }
+	            }
+	    })
+	});
+	function showVillageInfo(obj,data){
+	       obj.empty();
+	     var str = `<option value="">村</option>`;
+	     for(let i = 0; i < data.data.length; i++){
+	         str += `
+	         <option value="${data.data[i].AAR001}">${data.data[i].AAR009}</option>
+	     `;
+	      obj.html(str);
+
+	     }
+	}
+//      tianqu();
+//      county.change(function(){
+//          tianzhen();
+//          tiancun();
+//      })
+//      township.change(function(){
+//          tiancun();
+//      })
+//      /*页面初始化接口*/
+//      function tianqu(){
+//          $.ajax({
+//              url: url+"/background/helpmeasures/employment/init",
+//              data:{"aar008":aar008},
+//              async:false,
+//              method:"post",
+//              type:"json",
+//              success:function(data){
+//                  if(data.code === 2000){
+//                      // console.log(data);
+//                      // showCounty(county,data.data.area);  //行政区划
+//                      showYear(years,data.data.year)   //年份
+//                      let type=data.data.type;
+//                      if(type==1){
+//                          showCounty(county,data.data.area);
+//                      }else if(type==2){
+//                          showFixed(county,data.data.q);
+//                          tianzhen();
+//                      }else if(type==3){
+//                          showFixed(county,data.data.q);
+//                          showFixed(township,data.data.x);
+//                          tiancun();
+//                      }else if(type==4){
+//                          showFixed(county,data.data.q);
+//                          showFixed(township,data.data.x);
+//                          showFixed(cunship,data.data.c);
+//                      }
+//                  }
+//              }
+//          })
+//      }
+//      /*镇/街道渲染接口*/
+//      function tianzhen(){
+//          var countyName=$("#country").val();
+//          $.ajax({
+//              url: url+"/background/helpmeasures/common/arealist",
+//              data:{"aaa113":countyName},
+//              async:false,
+//              method:"post",
+//              type:"json",
+//              success:function(data){
+//                  if(data.code === 2000){
+//                      showCounty2(township,data.data);
+//                  }
+//              }
+//          })
+//      }
+//      /*村渲染接口*/
+//      function tiancun(){
+//          var townName=$("#township").val();
+//          // console.log(townName)
+//          $.ajax({
+//              url: url+"/background/helpmeasures/common/arealist",
+//              data:{"aaa113":townName},
+//              async:false,
+//              method:"post",
+//              type:"json",
+//              success:function(data){
+//                  if(data.code === 2000){
+//                      showCounty3(cunship,data.data);
+//                  }
+//              }
+//          })
+//      }
+//      /*行政区划渲染函数*/
+//      function showCounty(obj,data){
+//          obj.empty();
+//          let str=`<option value="">县（区）</option>`;
+//          for(let i=0;i<data.length;i++){
+//              str+=`
+//               <option value="${data[i]['AAR008']}">${data[i]['AAR009']}</option>
+//              `;
+//          }
+//          obj.html(function(i,value){
+//              return value+str;
+//          })
+//      }
+//      function showCounty2(obj,data){
+//          obj.empty();
+//          let str=`<option value="">乡（镇）</option>`;
+//          for(let i=0;i<data.length;i++){
+//              str+=`
+//               <option value="${data[i]['AAR008']}">${data[i]['AAR009']}</option>
+//              `;
+//          }
+//          obj.html(function(i,value){
+//              return value+str;
+//          })
+//      }
+//      function showCounty3(obj,data){
+//          obj.empty();
+//          let str=`<option value="">村</option>`;
+//          for(let i=0;i<data.length;i++){
+//              str+=`
+//               <option value="${data[i]['AAR008']}">${data[i]['AAR009']}</option>
+//              `;
+//          }
+//          obj.html(function(i,value){
+//              return value+str;
+//          })
+//      }
+//      function showFixed(obj,data){
+//          obj.empty();
+//          let str=`
+//               <option value="${data.AAR008}">${data.AAR009}</option>
+//              `;
+//          obj.html(str);
+//      }
+//      /*年份渲染函数*/
+//      function showYear(obj,data){
+//          obj.empty();
+//          let str=``;
+//          for(let i=0;i<data.length;i++){
+//              str+=`
+//               <option value="${data[i]}">2018年</option>
+//              `;
+//          }
+//          obj.html(function(i,value){
+//              return value+str;
+//          })
+//      }
+        ///////////////////////////////////////////////////////////
+        let formList=$("#formSubmit2");
+        if(obj.aar008==610100000000){
+	        var datas={"pageNum":1,"pageSize":12,"year":"201806","q":aar008};
+	    }else if(obj.aar008=="619900000000"){
+	    	var	datas={"pageNum":1,"pageSize":12,"year":"201806","q":aar008,'s':619900000000}
+	    }else if(obj.aar008.substring(6)=="000000"){
+	        var datas={"pageNum":1,"pageSize":12,"year":"201806","q":aar008};
+	    }else if(obj.aar008.substring(9)=="000"){
+	        var datas={"pageNum":1,"pageSize":12,"year":"201806","x":aar008};
+	    }else{
+	    	var datas={"pageNum":1,"pageSize":12,"year":"201806","c":aar008};
+	    }
+		///let datas={"pageNum":1,"pageSize":12,"year":"201806","q":aar008};
+        let datas2=JSON.stringify(datas);
+        //let token=$.cookie("token");
+        var totle;
+        $.ajax({
+            url: url+"/background/helpmeasures/employment/query",
+            data:datas2,
+            beforeSend:function(request){
+                request.setRequestHeader("Authorization",token);
+                request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                ShowLoading()
+            },
+            dataType:"json",
+            method:"post",
+            contentType:"application/json",
+            success:function(data){
+                if(data.code === 2000){
+                    showList(formList,data.data.list);
+                    for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                        if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                            $("#formSubmit2 tr td").eq(i).text("");
+                        }
+                    }
+                    $(".page-sum").text("共"+data.data.pages+"页");
+                    $("#allTotal").text("总户数："+data.data.navigatePages + " 总人数："+data.data.total);
+                    totle=data.data.total;
+                    showPage($(".searchPage"),data.data.total);
+                }else if(data.code===4000){
+                    alert(data.message);
+                }
+            },
+            complete:function(){
+			     HideLoading();
+			}
+        })
+
+        /*点击进行查询*/
+        $("#searchs").click(function(){
+            /*查询条件*/
+            /*必需*/
+            // let pageNum=$(".allPage").text();
+            let pageSize=12;
+            let year=$("#year").val();
+            let property=[];
+            let status=[];
+            let reason=[];
+            let propertys=$(".shuxing dl dt.active");
+            let statuss=$(".tuopin dl dt.active");
+            let reasons=$(".reason dl dt.active");
+            getValue(propertys,property);
+            getValue(statuss,status);
+            getValue(reasons,reason);
+            /*获取选中筛选条件值*/
+            function getValue(obj,arr){
+                // let arr=[];
+                for(let i=0;i<obj.length;i++){
+                    arr.push(obj.eq(i).attr("abc"));
+                }
+                return arr;
+            }
+            /*非必需*/
+            let q=$("#country").val();
+            let x=$("#township").val();
+            let c=$("#village").val();
+            let n=$("#povertyName").val();
+            let i=$("#idNumber").val();
+            /*判断贫困户属性、脱贫状态、致贫原因等筛选条件*/
+            if(property[0]==undefined){
+                property=null;
+            }
+            if(status[0]==undefined){
+                status=null;
+            }
+            if(reason[0]==undefined){
+                reason=null;
+            }
+            let data={"pageNum":1,"pageSize":pageSize,"year":year,'s':$('#p_shi').val(),"q":q,"x":x,"c":c,"n":n,"i":i,"property":property,"status":status,"reason":reason,'flag':$('#flag').val()};
+            let datas=JSON.stringify(data);
+            /*主体内容渲染*/
+            let formList=$("#formSubmit2");
+            // let token=localStorage.getItem("token");
+            $.ajax({
+                url: url+"/background/helpmeasures/employment/query",
+                data:datas,
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                    ShowLoading()
+                },
+                dataType:"json",
+                method:"post",
+                async:false,
+                contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        showList(formList,data.data.list);
+                        for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                            if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                                $("#formSubmit2 tr td").eq(i).text("");
+                            }
+                        }
+                        $(".page-sum").text("共"+data.data.pages+"页");
+                        $("#allTotal").text("总户数："+data.data.navigatePages + " 总人数："+data.data.total);
+                        showPage($(".searchPage"),data.data.total);
+                    }else if(data.code===1005){
+                      let str=`<tr>
+                        <th>序号</th>
+                        <th>户主姓名</th>
+                        <th>贫困户所在地</th>
+                        <th>贫困户属性</th>
+                        <th>主要致贫原因</th>
+                        <th>脱贫状态</th>
+                        <th>成员姓名</th>
+                        <th>务工方向</th>
+                        <th>操作</th>
+                  </tr>
+                  <tr><td colspan='9' style='font-size:24px;color:#767272;'>查无数据</td></tr>
+                      `;
+                        $("#formSubmit2").html(str);
+                        $(".page-sum").empty();
+                        $("#allTotal").empty();
+                    }
+                },
+                complete:function(){
+				     HideLoading();
+				}
+            })
+        })
+        /*分页*/
+        var indexs;
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function page_init(index) {
+            let pageSize=12;
+            // let year=$("#year").val();
+            let year="201806";
+            let property=[];
+            let status=[];
+            let reason=[];
+            let propertys=$(".shuxing dl dt.active");
+            let statuss=$(".tuopin dl dt.active");
+            let reasons=$(".reason dl dt.active");
+            getValue(propertys,property);
+            getValue(statuss,status);
+            getValue(reasons,reason);
+            /*获取选中筛选条件值*/
+            function getValue(obj,arr){
+                // let arr=[];
+                for(let i=0;i<obj.length;i++){
+                    arr.push(obj.eq(i).attr("abc"));
+                }
+                return arr;
+            }
+            /*非必需*/
+            let q=$("#country").val();
+            let x=$("#township").val();
+            let c=$("#village").val();
+            let n=$("#povertyName").val();
+            let i=$("#idNumber").val();
+            // console.log(property,status,reason);
+            /*判断贫困户属性、脱贫状态、致贫原因等筛选条件*/
+            if(property[0]==undefined){
+                property=null;
+            }
+            if(status[0]==undefined){
+                status=null;
+            }
+            if(reason[0]==undefined){
+                reason=null;
+            }
+            indexs=index+1;
+            let data={"pageNum":index+1,"pageSize":pageSize,"year":year,'s':$('#p_shi').val(),"q":q,"x":x,"c":c,"n":n,"i":i,"property":property,"status":status,"reason":reason,'flag':$('#flag').val()};
+            let datas=JSON.stringify(data);
+            /*主体内容渲染*/
+            let formList=$("#formSubmit2");
+            $.ajax({
+                url: url+"/background/helpmeasures/employment/query",
+                data:datas,
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                    ShowLoading()
+                },
+                dataType:"json",
+                method:"post",
+                async:false,
+                contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        showList(formList,data.data.list);
+                        for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                            if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                                $("#formSubmit2 tr td").eq(i).text("");
+                            }
+                        }
+                        $(".page-sum").text("共"+data.data.pages+"页");
+                        $("#allTotal").text("总户数："+data.data.navigatePages + " 总人数："+data.data.total);
+                    }else{
+                        alert(data.message);
+                    }
+                },
+                complete:function(){
+				     HideLoading();
+				}
+            })
+        }
+        function showPage(obj,data){
+            $("#Pagination").pagination(data,{
+                callback:PageCallback,         //pageCallback() 为翻页调用函数
+                items_per_page:12,                //每页显示条目数
+                num_display_entries: 4,                //连续分页显示分页条目数
+                num_edge_entries: 1,          //两侧显示的首尾分页的条目数
+            });
+        }
+        //ajax分页请求,page_index :页码
+        function PageCallback(page_index){
+            page_init(page_index);      //第一页为0
+        }
+        /*导出*/
+        $("#export").click(function(){
+            /*查询条件*/
+            /*必需*/
+            let pageSize=totle;
+            let year=$("#year").val();
+            let property=[];
+            let status=[];
+            let reason=[];
+            let propertys=$(".shuxing dl dt.active");
+            let statuss=$(".tuopin dl dt.active");
+            let reasons=$(".reason dl dt.active");
+            getValue(propertys,property);
+            getValue(statuss,status);
+            getValue(reasons,reason);
+            /*获取选中筛选条件值*/
+            function getValue(obj,arr){
+                // let arr=[];
+                for(let i=0;i<obj.length;i++){
+                    arr.push(obj.eq(i).attr("abc"));
+                }
+                return arr;
+            }
+            /*非必需*/
+            let q=$("#country").val();
+            let x=$("#township").val();
+            let c=$("#village").val();
+            let n=$("#povertyName").val();
+            let i=$("#idNumber").val();
+            // console.log(property,status,reason);
+            /*判断贫困户属性、脱贫状态、致贫原因等筛选条件*/
+            if(property[0]==undefined){
+                property=null;
+            }
+            if(status[0]==undefined){
+                status=null;
+            }
+            if(reason[0]==undefined){
+                reason=null;
+            }
+            if(indexs=="undefined" || indexs==undefined){
+                indexs=1;
+            }
+            let data={"pageNum":indexs,"pageSize":pageSize,"year":year,'s':$('#p_shi').val(),"q":q,"x":x,"c":c,"n":n,"i":i,"property":property,"status":status,"reason":reason,'flag':$('#flag').val()};
+            let datas=JSON.stringify(data);
+            let data_={};
+            /*主体内容渲染*/
+            let formList=$("#formSubmit2");
+            let urls=url+"/background/helpmeasures/employment/excel/export";
+            // console.log(urls,datas)
+            /*去空*/
+            function qukong(obj){
+                for(var key in obj){
+                    if(obj[key]==null || obj[key]=='' || obj[key]=="null"){
+                        delete obj[key];
+                    }
+                }
+                return obj;
+            }
+            var newmap=qukong(data_);
+            /*拼接*/
+            let strs="";
+            function pinjie(obj){
+                for(let key in obj){
+                    strs+=key+"="+obj[key]+"&";
+                }
+                return strs;
+            }
+            let a=pinjie(newmap)
+            let b=a.substring(0,a.length-1);
+            let cc=url+"/background/helpmeasures/employment/excel/export?"+b;
+            /*ajax校验导出权限*/
+            $.ajax({
+                url: url+"/background/helpmeasures/employment/excel/export/check",
+                data:datas,
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                    ShowLoading()
+                },
+                dataType:"json",
+                method:"post",
+                async:false,
+                contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        window.location.href=cc;
+                    }else{
+                        alert(data.message);
+                    }
+                },
+                complete:function(){
+				     HideLoading();
+				}
+            })
+        })
+        /*根据输入的指定页数进行跳转*/
+        /*$(".page-btn").click(function(){
+            let pageSize=12;
+            let pageNum=$("#currentPage").val();
+            let year=$("#year").val();
+            let property=[];
+            let status=[];
+            let reason=[];
+            let propertys=$(".shuxing dl dt.active");
+            let statuss=$(".tuopin dl dt.active");
+            let reasons=$(".reason dl dt.active");
+            getValue(propertys,property);
+            getValue(statuss,status);
+            getValue(reasons,reason);
+            /!*获取选中筛选条件值*!/
+            function getValue(obj,arr){
+                // let arr=[];
+                for(let i=0;i<obj.length;i++){
+                    arr.push(obj.eq(i).attr("abc"));
+                }
+                return arr;
+            }
+            /!*非必需*!/
+            let q=$("#country").val();
+            let x=$("#township").val();
+            let c=$("#village").val();
+            let n=$("#povertyName").val();
+            let i=$("#idNumber").val();
+            // console.log(property,status,reason);
+            /!*判断贫困户属性、脱贫状态、致贫原因等筛选条件*!/
+            if(property[0]==undefined){
+                property=null;
+            }
+            if(status[0]==undefined){
+                status=null;
+            }
+            if(reason[0]==undefined){
+                reason=null;
+            }
+            let data={"pageNum":pageNum,"pageSize":pageSize,"year":year,"q":q,"x":x,"c":c,"n":n,"i":i,"property":property,"status":status,"reason":reason};
+            let datas=JSON.stringify(data);
+            /!*主体内容渲染*!/
+            let formList=$("#formSubmit2");
+            $.ajax({
+                url: url+"/background/helpmeasures/industry/query",
+                data:datas,
+                dataType:"json",
+                method:"post",
+                async:false,
+                contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        showList(formList,data.data.list);
+                        $(".allPage").text(data.data.pages);
+                        showPage($(".searchPage"),data.data.total);
+                    }
+                }
+            })
+        })*/
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function showList(obj,data){
+            obj.empty();
+            let str=`<tr>
+                  <th>序号</th>
+                  <th>户主姓名</th>
+                  <th>贫困户所在地</th>
+                  <th>贫困户属性</th>
+                  <th>主要致贫原因</th>
+                  <th>脱贫状态</th>
+                  <th>成员姓名</th>
+                  <th>务工方向</th>
+                  <th>操作</th>
+            </tr>`;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                    <tr>
+                      <td>${data[i]['ROW_ID']}</td>
+                      <td>${data[i]['A']}</td>
+                      <td>${data[i]['B']}</td>
+                      <td>${data[i]['D']}</td>
+                      <td>${data[i]['C']}</td>
+                      <td>${data[i]['E']}</td>
+                      <td>${data[i]['F']}</td>
+                      <td>${data[i]['G']}</td>
+                      <td>
+                          <a class="xqclick" hrefs="${data[i]['ID']}" style="cursor: pointer;">详情</a>
+                          <a hrefs="${data[i]['ID']}" class="update" style="background: #229ffd;cursor:pointer;">修改</a>
+                      </td>
+                    </tr>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        /*点击详情跳转详情页面*/
+        $(document).on("click",".xqclick",function(){
+            var value=$(this).attr("hrefs");
+            localStorage.setItem("updateId",value);
+            $(".xiangqing").show(1000);
+            /*详情页面渲染*/
+            $.ajax({
+                url: url+"/background/helpmeasures/employment/detail",
+                data:{"id":value},
+                method:"post",
+                type:"json",
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        $("#A").text(data.data.A);
+                        $("#B").text(data.data.B);
+                        
+                        
+                        $("#N").text(data.data.N);
+                        $("#O").text(data.data.O);
+                        $("#P").text(data.data.P);
+                        $("#Q").text(data.data.Q);
+                        $("#R").text(data.data.R);
+                        $("#S").text(data.data.S);
+                        $("#T").text(data.data.T);
+                        $("#U").text(data.data.U);
+                        $("#V").text(data.data.V);
+                        $("#W").text(data.data.W);
+                        $("#X").text(data.data.Y);
+                        $("#Z").text(data.data.Z);
+                        $("#AA").text(data.data.AA);
+                        $("#BB").text(data.data.BB);
+                        $("#CC").text(data.data.CC);
+                        $("#DD").text(data.data.DD);
+                        $("#EE").text(data.data.EE);
+                        $("#FF").text(data.data.FF);
+                        $("#GG").text(data.data.GG);
+                        $("#HH").text(data.data.HH);
+                        
+                        $("#JJ").text(data.data.JJ);
+                        $("#KK").text(data.data.KK);
+                        $("#LL").text(data.data.LL);
+                        $("#MM").text(data.data.MM);
+                        $("#NN").text(data.data.NN);
+                        $("#OO").text(data.data.OO);
+                        $("#PP").text(data.data.PP);
+                        $("#QQ").text(data.data.QQ);
+                        $("#RR").text(data.data.RR);
+                        $("#SS").text(data.data.SS);
+                        $("#TT").text(data.data.TT);
+                        $("#UU").text(data.data.UU);
+                        $("#VV").text(data.data.VV);
+                        
+                        $("#XX").text(data.data.XX);
+                        $("#YY").text(data.data.YY);
+                        $("#ZZ").text(data.data.ZZ);
+                        $("#AAA").text(data.data.AAA);
+                        $("#BBB").text(data.data.BBB);
+                        $("#CCC").text(data.data.CCC);
+                        $("#DDD").text(data.data.DDD);
+                        $("#EEE").text(data.data.EEE);
+                        $("#FFF").text(data.data.FFF);
+                        $("#GGG").text(data.data.GGG);
+                        for(let i=0;i<$(".tab-content tr td").length;i++){
+                            if($(".tab-content tr td").eq(i).text()=="null" || $(".tab-content tr td").eq(i).text()=="undefined" || $(".tab-content tr td").eq(i).text()==undefined){
+                                $(".tab-content tr td").eq(i).text("");
+                            }
+                        }
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+        $(".xqclose").click(function(){
+            $(".xiangqing").hide(1000);
+        })
+        /*点击进入修改页面*/
+        $(document).on("click",".update",function(){
+            var updateId=$(this).attr("hrefs");
+            localStorage.setItem("updateId",updateId);
+            localStorage.setItem("year",$("#year").val());
+            location.href="updateEmployment.html";
+        })
+        function ShowLoading() {
+		    $(".spinner").show();
+		}
+		function HideLoading() {
+		    $(".spinner").hide();
+		}
+    })
+</script>
+<script>
+    /*分页插件初始化*/
+    $(document).ready(function(){
+        let pageNum=$(".allPage").text();
+        $("#Pagination").pagination(pageNum);
+    })
+    /*function page_init(index) {
+        var p_name=$("#p_name").val();
+        if(p_name==""||p_name==null){
+            p_name=null;
+        }
+        var p_year=$("#p_year").val();
+        var p_number=$("#p_number").val();
+        var p_shuxing=$("#p_shuxing").val();
+        var p_status=$("#p_status").val();  //状态
+        var p_biaozhun=$("#p_biaozhun").val(); //标准
+        var p_xiang=$("#p_xiang").val();  //乡
+        var p_cun =$("#p_cun").val();
+        var p_qv=$("#p_qv").val();  //区
+        if(p_cun!="" && p_cun!=null){
+            p_xiang=p_cun;
+        }
+        console.log("data:"+p_year);
+        $.ajax({
+            url:url + "pkh/query",
+            type:"get",
+            data:{"page_index": index+1,"page_size": 12,"aab002":p_name,
+                "aar040":p_year,"aab004":p_number,"aac006":p_shuxing,"aar010":p_status,
+                "aac005":p_biaozhun,"aar008":p_qv,"aar001":p_xiang},
+            dataType:"json",
+            success:function (data) {
+                if (data.code == 2000){
+                    console.log("ok");
+                    showAllPoorInfo( index,formInfos,data);
+                }
+            },
+            error:function () {
+            }
+        })
+    }
+    function showPage(obj,data){
+        $("#Pagination").pagination(data,{
+            callback:PageCallback,         //pageCallback() 为翻页调用函数
+            items_per_page:12,                //每页显示条目数
+            num_display_entries: 4,                //连续分页显示分页条目数
+            num_edge_entries: 1          //两侧显示的首尾分页的条目数
+        });
+    }
+    //ajax分页请求,page_index :页码
+    function PageCallback(page_index,jq){
+        // console.log('das');
+        page_init(page_index);      //第一页为0
+    }*/
+</script>
+<script type="text/javascript">
+	function ShowLoading() {
+	    $(".spinner").show();
+	}
+	function HideLoading() {
+	    $(".spinner").hide();
+	}
+    /*导入excel文件*/
+    // let url=config.url;
+    let token=$.cookie("token");
+    $("#import").click(function(){
+        $(".pop-up").css("display","block");
+    })
+    $(".closes").click(function(){
+        $(".pop-up").hide();
+    })
+    function importExp() {
+        var formData = new FormData();
+        var name = $("#upfile").val();
+        formData.append("file",$("#upfile")[0].files[0]);
+        formData.append("file",name);
+        $.ajax({
+            url : url+"/background/helpmeasures/employment/excel/import",
+            type : 'POST',
+            async : false,
+            data : formData,
+            beforeSend:function(request){
+                request.setRequestHeader("Authorization",token);
+                request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                ShowLoading()
+            },
+            // 告诉jQuery不要去处理发送的数据
+            processData : false,
+            // 告诉jQuery不要去设置Content-Type请求头
+            contentType : false,
+            beforeSend:function(){
+
+            },
+            success : function(data) {
+                if(data.code===2000){
+                    alert("导入成功");
+                }else if(data.code===1009){
+                    alert("导入失败");
+                }
+            },
+            complete:function(){
+			     HideLoading();
+			}
+        });
+    }
+</script>
+<script>
+	/*点击异常跳转详情页面*/
+	var total;
+    $(document).ready(function(){
+        let pageNum=$(".allPage1").text();
+        $("#Pagination1").pagination(pageNum);
+    })
+    function showPage1(obj,data){
+        $("#Pagination1").pagination(data,{
+            callback:PageCallback1,         //pageCallback() 为翻页调用函数
+            items_per_page:15,                //每页显示条目数
+            num_display_entries: 4,                //连续分页显示分页条目数
+            num_edge_entries: 1,          //两侧显示的首尾分页的条目数
+        });
+    }
+    //ajax分页请求,page_index :页码
+    function PageCallback1(page_index){
+        page_init1(page_index);      //第一页为0
+    }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function page_init1(index) {
+            let formSubmit3=$("#formSubmit3")
+            $.ajax({
+                url: url+"background/helpmeasures/relocation/cardID/query",
+                data:{"aar040":201808,'year':201806,'page_index':index+1,'page_size':15,'peopleName':$('#name1').val()},
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                    ShowLoading()
+                },
+                dataType:"json",
+                method:"post",
+//              async:false,
+//              contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        showList2(formSubmit3,data.data.list)
+                        $(".page-sum1").text("共"+data.data.pages+"页");
+                        $("#allTotal1").text("总户数："+data.data.total);
+                        showPage1($(".searchPage1"),data.data.total);
+
+                        for(let i=0;i<$("#formSubmit3 tr td").length;i++){
+                            if($("#formSubmit3 tr td").eq(i).text()=="null" || $("#formSubmit3 tr td").eq(i).text()=="undefined" || $("#formSubmit3 tr td").eq(i).text()==undefined){
+                                $("#formSubmit3 tr td").eq(i).text("");
+                            }
+                        }
+                    }else{
+                        alert(data.message);
+                    }
+                },
+                complete:function(){
+				     HideLoading();
+				}
+            })
+        }
+    	/*证件号码异常页面渲染*/
+        $(document).on("click",".ycxqclick",function(){
+            $(".ycxiangqing").show(1000);
+            let formSubmit3=$("#formSubmit3")
+            $.ajax({
+                url: url+"background/helpmeasures/relocation/cardID/query",
+                data:{"aar040":201808,'year':201806,'page_index':1,'page_size':15},
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                    ShowLoading();
+                },
+                method:"post",
+                type:"json",
+                success:function(data){
+                    if(data.code === 2000){
+						$(".page-sum1").text("共"+data.data.pages+"页");
+                        $("#allTotal1").text("总户数："+data.data.total);
+                        showPage1($(".searchPage1"),data.data.total);
+                        total=data.data.total;
+                        showList2(formSubmit3,data.data.list)
+                        for(let i=0;i<$("#formSubmit3 tr td").length;i++){
+                            if($("#formSubmit3 tr td").eq(i).text()=="null" || $("#formSubmit3 tr td").eq(i).text()=="undefined" || $("#formSubmit3 tr td").eq(i).text()==undefined){
+                                $("#formSubmit3 tr td").eq(i).text("");
+                            }
+                        }
+                    }else{
+                        alert(data.message);
+                    }
+                },
+                complete:function(){
+                    HideLoading();
+                }
+            })
+        })
+        function showList2(obj,data){
+            obj.empty();
+            let eightData=data;
+            let str=`
+                <tr style="font-size: 14px;">
+                    <th class="table-bg">序号</th>
+                    <th class="table-bg">所在县</th>
+                    <th class="table-bg">所在镇</th>
+                    <th class="table-bg">所在村(组)</th>
+                    <th class="table-bg">姓名</th>
+                    <th class="table-bg">证件号码</th>
+                    <th class="table-bg">描述</th>
+                    <th class="table-bg">操作</th>
+                </tr> `;
+            for(var i=0;i<eightData.length;i++){
+                str+=`
+                    <tr>
+                      <td>${eightData[i]['ROW_ID']}</td>
+                      <td>${eightData[i]['A']}</td>
+                      <td>${eightData[i]['B']}</td>
+                      <td>${eightData[i]['C']}</td>
+                      <td>${eightData[i]['D']}</td>
+                      <td>${eightData[i]['E']}</td>
+                      <td>${eightData[i]['F']}</td>
+                      <td>
+                            <a class="ycxqclick2" hrefs="${eightData[i]['ID']}">详情</a>
+                            <a hrefs="${eightData[i]['ID']}" class="update2">修改</a>
+                            <a hrefs="${eightData[i]['ID']}" class="detele2">删除</a>
+                        </td>
+                    </tr>
+                `;
+            }
+
+             $("#formSubmit3").html(function(i,value){
+	            return value+str;
+	        })
+        }
+
+        /*证件异常点击进行查询*/
+        $("#searchs2").click(function(){
+            let formSubmit3=$("#formSubmit3")
+            $.ajax({
+                url: url+"background/helpmeasures/relocation/cardID/query",
+                data:{"aar040":201808,'year':201806,'page_index':1,'page_size':15,'peopleName':$('#name1').val()},
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                    ShowLoading()
+                },
+                dataType:"json",
+                method:"post",
+//              contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        $(".page-sum1").text("共"+data.data.pages+"页");
+                        $("#allTotal1").text("总户数："+data.data.total);
+                        showPage1($(".searchPage1"),data.data.total);
+                        showList2(formSubmit3,data.data.list)
+                        for(let i=0;i<$("#formSubmit3 tr td").length;i++){
+                            if($("#formSubmit3 tr td").eq(i).text()=="null" || $("#formSubmit3 tr td").eq(i).text()=="undefined" || $("#formSubmit3 tr td").eq(i).text()==undefined){
+                                $("#formSubmit3 tr td").eq(i).text("");
+                            }
+                        }
+                    }else if(data.code==1005){
+                        var str=`
+                        	<tr style="font-size: 14px;">
+			                    <th class="table-bg">序号</th>
+			                    <th class="table-bg">所在县</th>
+			                    <th class="table-bg">所在镇</th>
+			                    <th class="table-bg">所在村(组)</th>
+			                    <th class="table-bg">姓名</th>
+			                    <th class="table-bg">证件号码</th>
+			                    <th class="table-bg">描述</th>
+			                    <th class="table-bg">操作</th>
+			                </tr>
+			                <tr><td colspan='8' style="font-size:24px;color:#767272;">查无数据</td></tr>
+                        	`
+                        	formSubmit3.html(str)
+							$(".page-sum1").empty();
+						    $("#allTotal1").empty();
+                    }else if(data.code==4000){
+                    	alert(data.message);
+                    }else if(data.code==1009){
+                    	alert(data.message);
+                    }
+                },
+                complete:function(){
+				     HideLoading();
+				}
+            })
+        })
+
+        $(".ycxqclose").click(function(){
+            $(".ycxiangqing").hide(1000);
+        })
+
+        //修改页面跳转
+        $(document).on("click",".update2",function(){
+            var updateId=$(this).attr("hrefs");
+            localStorage.setItem("updateId",updateId);
+            location.href="updateRelocation.html";
+        })
+        //详情弹出框跳转
+        $(document).on("click",".ycxqclick2",function(){
+            var value=$(this).attr("hrefs");
+            localStorage.setItem("updateId",value);
+            $(".xiangqing").show(1000);
+            /*详情页面渲染*/
+            $.ajax({
+                url: url+"/background/helpmeasures/relocation/detail",
+                data:{"id":value},
+                method:"post",
+                type:"json",
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                success:function(data){
+                    if(data.code === 2000){
+                        $("#A").text(data.data.A);
+                        $("#B").text(data.data.B);
+                        $("#K").text(data.data.K);
+                       
+                        $("#N").text(data.data.N);
+                        $("#O").text(data.data.O);
+                        $("#P").text(data.data.P);
+                        $("#Q").text(data.data.Q);
+                        $("#R").text(data.data.R);
+                        $("#S").text(data.data.S);
+                        $("#T").text(data.data.T);
+                        $("#U").text(data.data.U);
+                        $("#V").text(data.data.V);
+                        $("#W").text(data.data.W);
+                        for(let i=0;i<$(".tab-content tr td").length;i++){
+                            if($(".tab-content tr td").eq(i).text()=="null" || $(".tab-content tr td").eq(i).text()=="undefined" || $(".tab-content tr td").eq(i).text()==undefined){
+                                $(".tab-content tr td").eq(i).text("");
+                            }
+                        }
+                    }else{
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+        //删除证件异常信息
+        $(document).on("click",".detele2",function(){
+            var value=$(this).attr("hrefs");
+            localStorage.setItem("updateId",value);
+            tt=$(this);
+            del();
+            function del(){
+			if( confirm("确认删除吗?")){
+				tt.parent('td').parent('tr').remove();
+			   	$.ajax({
+	                url: url+"/background/helpmeasures/relocation/cardID/delete",
+	                data:{"id":value},
+	                method:"post",
+	                type:"json",
+	                beforeSend:function(request){
+	                    request.setRequestHeader("Authorization",token);
+	                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+	                },
+	                success:function(data){
+	                    if(data.code === 2000){
+	                        alert(data.message);
+	                    }else{
+	                        alert(data.message);
+	                    }
+	                }
+	            })
+		   	}else
+		   		return false;
+			}
+        })
+        /*异常导出*/
+        $("body").on("click","#daochu2",function(){
+			$.ajax({
+		        url: url + "/background/helpmeasures/relocation/excel/export/number",
+		        data:{},
+		        beforeSend:function(request){
+		            request.setRequestHeader("Authorization",token);
+		            request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+		        },
+		        method: "post",
+		        dataType: "json",
+		        success: function(data){
+		        if (data.code == 2000){
+
+					let data = {"aar040":201808,'year':201806,'page_index':1,'page_size':total,'peopleName':$('#name1').val()};
+
+			        /*主体内容渲染*/
+
+				    /*去空*/
+			        function qukong(obj){
+			            for(var key in obj){
+			                if(obj[key]==null || obj[key]=='' || obj[key]=="null"){
+			                    console.log(obj[key]);
+			                    delete obj[key];
+			                }
+			            }
+			            return obj;
+			        }
+			        var newmap=qukong(data);
+			        console.log(newmap);
+			        /*拼接*/
+			        let strs="";
+			        function pinjie(obj){
+			            for(let key in obj){
+			                strs+=key+"="+obj[key]+"&";
+						}
+							return strs;
+					}
+						let a=pinjie(newmap)
+						let b=a.substring(0,a.length-1);
+						console.log(b);
+						let cc=url+"/background/helpmeasures/relocation/excel/exportIdNumber?"+b;
+						console.log(cc);
+					    window.location.href=cc;
+
+		  			}else if(data.code==1005){
+						alert(data.message)
+					}else if(data.code==1009){
+						alert(data.message)
+					}else if(data.code==4000){
+						alert(data.message)
+					}
+		        }
+		    })
+		})
+
+
+        $(".xqclose").click(function(){
+            $(".xiangqing").hide(1000)
+        })
+</script>
+</body>
+</html>

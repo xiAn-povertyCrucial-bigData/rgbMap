@@ -1,0 +1,491 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困户统计</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/bootstrap.css" />
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <!--<link rel="stylesheet" href="../css/table.css"/>-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/echarts.js"></script>
+    <script src="../js/show_household_inform22.js"></script>
+    <style >
+
+            .demo { padding:0; background: #fff; }
+            a:hover, a:focus { outline: none; text-decoration: none; }
+            .tab .nav-tabs { border-bottom: none; position: relative; }
+            .tab .nav-tabs li { margin-right: 60px; z-index: 1; }
+            .tab .nav-tabs li:after { content: ""; width: 100%; border: 1px solid #ccc6c6; position: absolute; top: 50%; right: -60%; z-index: -1; }
+            .tab .nav-tabs li:last-child:after { border: none; }
+            .tab .nav-tabs li a { display: block; padding: 15px 20px; background: #fff; font-size: 15px; font-weight: 600; color: #956cae; text-transform: uppercase; border-radius: 0; margin-right: 0; border: 2px solid #956cae; position: relative; overflow: hidden; z-index: 1; transition: all 0.3s ease 0s; }
+            .tab .nav-tabs li.active a, .tab .nav-tabs li a:hover { color: #fff; border: 2px solid #956cae; }
+            .tab .nav-tabs li a:after { content: ""; display: block; width: 100%; height: 0; position: absolute; top: 0; left: 0; z-index: -1; transition: all 0.3s ease 0s; }
+            .tab .nav-tabs li.active a:after, .tab .nav-tabs li a:hover:after { height: 100%; background: #956cae; }
+            .tab .tab-content { padding: 20px 10px; margin-top: 0; font-size: 14px; color: #999; line-height: 26px; }
+            .tab .tab-content h3 { font-size: 24px; margin-top: 0; }
+
+            @media only screen and (max-width: 767px) {
+            .tab .nav-tabs li { margin: 0 25px 0 0; }
+            }
+
+            @media only screen and (max-width: 479px) {
+            .tab .nav-tabs li { width: 100%; text-align: center; margin: 0 0 10px 0; }
+            .tab .nav-tabs li:after { width: 0; height: 100%; top: auto; bottom: -60%; right: 50%; }
+            }
+
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr th{/*width: 10%;*/height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table tr td{/*width: 10%;*/height: 30px;border: 1px solid #d2d2d2;line-height: 30px;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-05{display: none}
+        .form-04 table tr td {width:11%}
+        .no-pass{color: #ee3333}
+        .form-01 table tr td a{
+            display: inline-block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+        }
+        .form-01 table tr td a:first-child{
+            background: #229ffd;
+        }
+        .form-01 table tr td a:last-child{
+            background: #ff7680;
+        }
+        .marginR{
+            margin-right: 14px;
+        }
+        .black_overlay{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index:1001;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=88);
+        }
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 55%;
+            height: 30%;
+            padding: 20px;
+            border: 5px solid #ccc;
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
+        .drzb>li{
+			list-style: none;
+			width: 100%;
+			float: left;
+		}
+		.jbqk>li,.wgqk>li{
+			width: 24%;
+			float: left;
+			list-style: none;
+			height: 35px;
+			line-height: 35px;
+		}
+		.jbqk>li label,.wgqk>li label{
+			width: 45%;
+			display: inline-block;
+			margin-left: 10px;
+			cursor: default;
+		}
+		.jbqk>li input,.wgqk>li input{
+			width: 46%;
+			border: 1px solid #c9d7e0;
+		    background-color: #fff;
+		    padding: 3px 0;
+		    border-radius: 3px;
+		    vertical-align: middle;
+		    outline: 0;
+		    color: #555;
+		    font-size: 12px;
+		    margin-right: 3px;
+		    text-indent: 10px;
+		    margin-left: 5px;
+		}
+		.jbqk>li select,.wgqk>li select{
+			width: 46%;
+			border: 1px solid #c9d7e0;
+		    background-color: #fff;
+		    padding: 3px 0;
+		    border-radius: 3px;
+		    vertical-align: middle;
+		    outline: 0;
+		    color: #555;
+		    font-size: 12px;
+		    margin-right: 3px;
+		    text-indent: 10px;
+		}
+			#btn_blue1{
+			color: #fff;
+		    background: #428bca;
+		    border: 1px solid #2698FB;
+		    width: 70px;
+		    text-align: center;
+		    margin: 10px;
+		    border-radius: 3px;
+            text-indent: 0;
+		}
+		#btn_orange1{
+			color: #fff;
+		    background: #f0ad4e;
+		    border: 1px solid #FFAC37;
+		    width: 50px;
+		    text-align: center;
+		    margin: 10px;
+		    border-radius: 3px;
+            text-indent:0;
+		}
+		.zbclick,.zbclick1{
+			text-indent: 10px;
+			background: #00aaee;
+			color: white;
+		}
+        .container .select{padding: 0.5%;border-bottom: 1px solid #b1bfd1;}
+        .container .select li{padding: 8px 0;color: #767272;}
+        .container li label{width: 100px;display: inline-block;vertical-align: middle;}
+        .container li dt{display: inline-block;vertical-align: middle;}
+        .container li dt dl{float: left;margin-right: 10px;border-radius: 12px;text-align: center;padding: 2px 6px;cursor: pointer;position: relative;color: #555;}
+        #groups .active{background: #70c1ff!important;color: #fff!important;}
+        .obtn{position: absolute;top: 45%;right: 4%;}
+        .obtn input{background: #e9ebef;border:0;border: 1px solid #D2D2D2;line-height: 14px;padding: 6px 12px;border-radius: 3px;cursor: pointer;}
+        .obtnActive{background: #428bca!important;color: #fff!important;border-radius: 1px solid #2698FB!important;}
+
+        .box{display: flex;align-items: center;height: 50%;width: 100%;padding-top: 2%;}
+        #pieElsePoverty,#barElsePoverty{width: 100%;height: 100%;}
+        .search li{
+           width: 100%;
+        }
+        #groups li{
+				color:#70c1ff;
+				width: 230px;
+				 height: 30px;
+				line-height: 26px;
+				float: left;
+				margin-right: 16px;
+				border: 1px solid #c9d7e0;
+				margin-bottom: 8px;
+				border-radius: 12px;
+				text-align: center;
+				padding: 2px 6px;
+				cursor: pointer;
+				position: relative;
+		}
+        .active1{background: #70c1ff!important;color: #fff!important;}
+		.search .select label{width:100px;display:inline-block;vertical-align:middle;}
+		.search .select dt {display: inline-block;vertical-align:middle;}
+		.search .select dt dl{ vertical-align:middle;margin-bottom:0px;float:left;margin-left: 10px;border-radius: 12px;text-align: center;padding: 2px 6px;cursor: pointer;position: relative;color: #555;}
+
+        .panel>.form-01>.searchs{
+            margin-bottom: -10px;
+        }
+         #pieElsePoverty,#barElsePoverty{width: 500px;height: 100%;}
+        .box{display: flex;align-items: center;height: 300px;width: 1200px;padding-top: 2%;}
+
+</style>
+</head>
+<body>
+<div class="panel admin-panel">
+	  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>贫困户统计</strong><div class="data_tracking">
+	  	<span  id="dataImport" class="button border-main" >数据分析报告</span></div>
+	  </div>
+    <div class="form-01">
+        <p>数据筛选 <span class="pack_up">收起-</span></p>
+         <div id="search" class="search searchs" style="display: block;">
+         <ul class="select">
+				  <label  class="label1"> 年份</label>
+                 <dt >
+                    <dl sleep="2015">2014年</dl>
+                    <dl sleep="2016">2015年</dl>
+                    <dl sleep="2017">2016年</dl>
+                    <dl sleep="201712">2017年</dl>
+					         <dl sleep="201808" class="active1">2018年</dl>
+                </dt>
+			  </ul>
+
+       		<ul class="select">
+				<label  class="label1">识别标准</label>
+       		 	<dt>
+                    <dl  sleep="01" class="active1">国家标准</dl>
+                    <dl sleep="02">省定标准</dl>
+					         <dl sleep="03">市定标准</dl>
+                </dt>
+       		</ul>
+            <ul class="select">
+                 <label  class="label1">脱贫状态</label>
+                 <dt>
+                    <dl  class="active1">全部</dl>
+                    <dl sleep="1"> 已脱贫(享受政策)</dl>
+          					<dl sleep="4"> 已脱贫(不享受政策)</dl>
+          					<dl sleep="0"> 未脱贫</dl>
+          					<dl sleep="3"> 返贫</dl>
+
+                </dt>
+       		</ul>
+         <div>
+            <input type="button" id="btn_orange1" class="btn_orange1" style="float: right;" name="" value="查询">
+            <input type="button" id="btn_blue1" class="btn_blue1" style="float: right;" name="" value="重置条件">
+        </div>
+		</div>
+<div class="demo">
+  <div class="container">
+    <div class="row">
+      <div class="	">
+        <div class="tab" role="tabpanel">
+          <div class="tab-content tabs">
+            <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+     	<div class="box">
+				<div id="pieElsePoverty"></div>
+				<div id="barElsePoverty"></div>
+			</div>
+    <div id="selectCity" style="margin-bottom: 8px;color:#FFAC37;"><span>西安市</span><span id="countyName"></span><span id="townName"></span><span id="villageName"></span></div>
+     <div id="content" style="overflow-x: scroll;clear:both">
+	    <div id="two" style="display:block;">
+	    	<table class="two1" border="" cellspacing="" cellpadding="" style="width: 2000px;">
+	    		<tr >
+					<td  valign="middle">序号</td>
+					<td  valign="middle">地区</td>
+					<td  valign="middle">贫困户数</td>
+					<td >户均家庭年人均纯收入（元）</td>
+					<td >工资性收入户数</td>
+					<td >工资性收入户均（元）</td>
+					<td >财产性收入户数</td>
+					<td >财产性收入户均（元）</td>
+					<td >生产经营性收入户数</td>
+                    <td >生产经营性收入户均（元）</td>
+                    <td>转移性收入户数</td>
+                    <td>转移性收入户均（元）</td>
+                    <td >生产经营性支出户数</td>
+                    <td >生产经营性支出户均（元）</td>
+                    <td >纯收入户数</td>
+                    <td >纯收入户均（元）</td>
+				</tr>
+
+	    	</table>
+	    </div>
+	  </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="Section2">
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="Section3">
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="Section4">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+    <div class="pages">
+        <div class="paging">
+            <div id="Pagination" style="margin-top: -20px;"></div>
+            <div class="searchPage">
+                <span class="page-sum">共<strong class="allPage">15</strong>页</span>
+                <!--<span class="page-go">到<input type="text">页</span>
+                <a href=" " class="page-btn">确定</a>-->
+                <span id="alltotal">总数： 0</span>
+            </div>
+        </div>
+    </div>
+</div>
+  <script type="text/javascript">
+          var pieElsePovertyChart=echarts.init(document.getElementById("pieElsePoverty"));
+          var pieElsePovertyOption = {
+              tooltip : {
+                  trigger: 'item',
+                  formatter: "{a} <br/>{b} : {c} ({d}%)"
+              },
+              legend: [
+                  {
+					  name:'贫困户户均收入分类统计',
+                      x:'center',
+                      top:'0',
+                      data: ['工资性收入户均（元）','财产性收入户均（元）','生产经营性收入户均（元）','转移性收入户均（元）'],
+
+                      textStyle: {
+                          fontSize:16,
+                      }
+                  }
+                //   {
+                //       x:'center',
+                //       top:'16%',
+                //       data:['高陵区','国际港务区','阎良区'],
+                //       textStyle: {
+                //           fontSize:16,
+                //       }
+                //   }
+              ],
+              series : [
+                  {
+                      name: '贫困户户均收入分类统计',
+                      type: 'pie',
+                      radius : '55%',
+                      center: ['50%', '60%'],
+                      label:{fontSize:16},
+                      data:[120, 132, 101, 124],
+                      itemStyle: {
+                          emphasis: {
+                              shadowBlur: 10,
+                              shadowOffsetX: 0,
+                              shadowColor: 'rgba(0, 0, 0, 0.5)'
+                          }
+                      }
+                  }
+              ],
+              color: ['#2a89bd','#e58350','#68E39D','#A6F093','#F9CF86','#FD9FB6','#ee7694']
+          };
+          pieElsePovertyChart.setOption(pieElsePovertyOption);
+
+           /**************************************堆积柱状图**************************************/
+          var barElsePovertyChart=echarts.init(document.getElementById("barElsePoverty"));
+          var barElsePovertyOption = {
+              tooltip: {
+                  formatter: "{a} <br/>{b}: {c}元" // 这里是鼠标移上去的显示数据
+              },
+              legend: [
+                  {
+					  name:'贫困户收入分类统计',
+                      x:'center',
+                      top:'0',
+                      data: ['贫困户收入分类统计'],
+                      textStyle: {
+                          fontSize:16,
+                      }
+                  }
+              ],
+              calculable : true,
+              xAxis : [
+                  {
+                      type : 'category',
+                      axisLabel: {
+                          interval:0,
+                          rotate:-10,
+                          textStyle:{
+                              fontSize:13
+                          }
+                      },
+                     data: ['工资性收入户数','财产性收入户数','生产经营性收入户数','转移性收入户数'],
+                  }
+              ],
+              yAxis : {
+                  type: 'value',
+                  name:'(元)',
+                  axisLabel:{
+                      textStyle:{
+                          fontSize:'14'
+                      }
+                  },
+                  splitLine: {
+                      show: true,
+                      lineStyle: {
+                          color: ['#B1C0D2']
+                      }
+                  },
+              },
+              series : [
+                  {
+                      name:'贫困户收入分类统计',
+                      type:'bar',
+                      barWidth : 30,
+                      data:[120, 132, 101, 124]
+                  }
+              ],
+              color: ['#39A2B2','#20B8B4','#6ED1B2','#68E39D','#A6F093','#F9CF86','#FD9FB6','#ee7694']
+          };
+          barElsePovertyChart.setOption(barElsePovertyOption);
+
+          function preview(oper) {
+            // $('input:eq(0)').hide();
+            // $('input:eq(1)').hide();
+            if (oper < 10) {
+                bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+                sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域
+                eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域
+                prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+
+                prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+                window.document.body.innerHTML=prnhtml;
+                window.print();
+                window.document.body.innerHTML=bdhtml;
+            } else {
+                window.print();
+            }
+        }
+        </script>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+    $("#groups li").on("click",function(){
+		$(this).addClass("active").siblings().removeClass("active");
+	})
+
+    /*筛选条件收起展开*/
+    $(".pack_up").click(function(){
+        $(".search").toggle();
+        $(".pack_up").text($(".pack_up").text()=="查询+"?"收起-":"查询+");
+		$('#con').toggle();
+		$('#con1').toggle();
+    })
+         $("body").on("click",".search .select  dt  dl",function(){
+		$(this).addClass("active1").siblings().removeClass("active1");
+	})
+
+				$(".zbclick").click(function(){
+					var x=document.getElementById("con");
+					$(".zbshow").toggle(500);
+					$(".zbclick ").text($(".zbclick ").text()=="收起-"?"到人指标+":"收起-");
+					x.offsetHeight==250?x.style.height="auto":x.style.height="250px";
+				});
+				$(".zbclick1").click(function(){
+					var x=document.getElementById("con");
+					$(".zbshow1").toggle(500)
+					$(".zbclick1 ").text($(".zbclick1 ").text()=="收起-"?"到户指标+":"收起-");
+					x.offsetHeight==250?x.style.height="auto":x.style.height="250px";
+				});
+			})
+</script>
+</body>
+</html>

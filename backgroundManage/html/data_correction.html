@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>数据清洗</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{/*width: 10%;*/height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-05{display: none}
+        .form-04 table tr td {width:11%}
+        .no-pass{color: #ee3333;cursor: pointer;}
+        .container_not_standard{width:500px;height:350px;background: #fff;position:fixed;top:50%;left:50%;transform: translate(-50%,-50%);padding: 2% 2%;box-shadow: 0px 0px 12px 2px rgba(0,0,0,0.6);border-radius: 4px;}
+        .container_not_standard h1{line-height: 40px;text-align: center;margin-bottom: 14px;}
+        .container_not_standard p{font-size: 14px;line-height: 30px;text-indent: 30px;}
+        .container_not_standard .close{position:absolute;top:0;right:10px;cursor: pointer;}
+        .container_not_standard .close:before{font-size: 34px;}
+        .label1{width: 100px;display: inline-block;vertical-align: middle;}
+         #rule dl{height:30px;line-height:30px;float: left;margin-right: 10px;border-radius: 12px;text-align: center;padding: 2px 6px;cursor: pointer;position: relative;color: #555;}
+        #rule {
+            display: inline-block;
+            vertical-align: middle;
+            /*color: #70c1ff;
+            width: 80px;
+            height: 30px;
+            line-height: 26px;
+            float: left;
+            margin-right: 16px;
+            border: 1px solid #c9d7e0;
+            margin-bottom: 8px;
+            border-radius: 12px;
+            text-align: center;
+            padding: 2px 6px;
+            cursor: pointer;*/
+        }
+        .active {
+            width: 80px;
+            background: #70c1ff!important;
+            color: #fff!important;
+        }
+        #hutuopin>ul>li{
+        	background: #f6fcf6;
+        	border: 1px solid #53cb53;
+        }
+	   #base div	.btn_orange1{
+			color: #fff;
+			background-color: #f0ad4e;
+			border: 1px solid #FFAC37;
+			width: 50px;
+			text-align: center;
+			margin: 10px;
+			border-radius: 3px;
+            text-indent: 0;
+		}
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>户脱贫退出指标分析</strong>
+  </div>
+  
+  <div class="form-01"> 
+      <div class="search searchs" style="display: block;">
+               <div id="tpjg" style="width: 100%;height: 70px;line-height: 45px;background: #cfd9db;">              	
+              	<div id="hutuopin" style="float: left;margin-top: 7px;">
+              		<ul>
+              		<li style="width: 180px;height: 55px; border: 1px solid #dedede;text-align: center;background: #f6fcf6;">
+              				<p style="margin: 0;"><apan style="font-size: 20px;">19649</apan>户/<span  style="font-size: 20px;">49581</span>人</p>
+              				<p style="margin: 0;color: #777777;font-size:18px;">全部</p>
+              			</li>
+              			<li style="width: 190px;height: 55px;border: 1px solid #54cb54;text-align: center;background: #f6fcf6;">
+              				<p style="margin: 0;"><apan style="font-size: 20px;">13097</apan>户/<span  style="font-size: 20px;">31748</span>人</p>
+              				<p style="margin: 0;color: #777777;">  <apan class="dabiao" style="color:#54cb54 ;font-size: 18px;">已脱贫</apan><span></span></p>
+              			</li>
+              		<li style="width: 200px;height: 55px;border: 1px solid #f00;text-align: center;background: #f6fcf6;">
+              				<p style="margin: 0;"><apan style="font-size: 20px;">6552</apan>户/<span style="font-size: 20px;" style="font-size: 20px;">17388</span>人</p>
+              				<p style="margin: 0;color: #777777;"><apan style="color:#f00 ;font-size: 18px;">未脱贫 </apan><span></span></p>
+              			</li>
+              		</ul>
+              	</div>
+              
+              </div>
+              <div>
+                  <label for="">行政区划</label>
+                  <input type="text" value="陕西省" disabled>
+                  <input type="text" value="西安市" disabled>
+                  <select name="" id="country">
+                      <option value="">县（区）</option>
+                      <option value="">新城区</option>
+                      <option value="">碑林区</option>
+                      <option value="">莲湖区</option>
+                      <option value="">灞桥区</option>
+                      <option value="">未央区</option>
+                      <option value="">雁塔区</option>
+                      <option value="">阎良区</option>
+                      <option value="">临潼区</option>
+                      <option value="">长安区</option>
+                      <option value="">蓝田县</option>
+                      <option value="">周至县</option>
+                      <option value="">鄠邑区</option>
+                  </select>
+                  <select name="" id="town">
+                    <option value="">乡（镇）</option>
+                    <option value="">板房子镇</option>
+                    <option value="">陈河镇</option>
+                    <option value="">翠峰镇</option>
+                    <option value="">富仁镇</option>
+                    <option value="">广济镇</option>
+                    <option value="">厚畛子镇</option>
+                    <option value="">集贤镇</option>
+                    <option value="">九峰镇</option>
+                    <option value="">楼观镇</option>
+                    <option value="">落峪镇</option>
+                    <option value="">马召镇</option>
+                    <option value="">王家河镇</option>
+                </select>
+                <select name="" id="village">
+                    <option value="">村</option>
+                    <option value="">郭寨村</option>
+                    <option value="">群三兴村</option>
+                    <option value="">上马村</option>
+                    <option value="">辛口村</option>
+                    <option value="">涌泉寺村</option>
+                    <option value="">白杨林村</option>
+                    <option value="">东涧沟村</option>
+                    <option value="">老庄子村</option>
+                    <option value="">十亩地村</option>
+                    <option value="">景联社区</option>
+                    <option value="">五联村</option>
+                    <option value="">长洋村</option>
+                </select>                
+              </div>
+              <div id="base" style="width: 100%;height: 60px;line-height: 45px;">
+              	<!--<div class="" style="float: left;">
+              		<label>年份</label>
+              		<select>
+                      <option value="">年份</option>
+                      <option value="2014">2014年</option>
+                      <option value="2015">2015年</option>
+                      <option value="2016">2016年</option>
+                      <option value="2017">2017年</option>
+                      <option value="2018">2018年</option>
+                  </select>
+              	</div>-->
+                  
+              <div>                
+                  <label for="">年度</label>                  
+                  <select name="" id="year">
+                  	 <option value="2017">2017</option>
+                      <option value="2016">2016</option>
+                      <option value="2015">2015</option> 
+                      <option value="2014">2014</option>
+                      <option value="2013">2013</option>                     
+                  </select>
+                  <label for="" >规则分类</label>                  
+                  <select name="" id="safehouse">
+                  	 <option value="">--是否达标--</option>
+                      <option value="0">未达标</option>
+                      <option value="1">已达标</option>                     
+                  </select>                  
+                  <label for="" >具体规则</label>                  
+                  <select name="" id="water">
+                  	 <option >--是否达标--</option>
+                      <option value="0">未达标</option>
+                      <option value="1">已达标</option>                     
+                  </select>
+                  </div>
+                 <li>
+                    <label class="label1">识别标准：</label>
+                        <dt id="rule" >
+                        <dl class="active">国家标准</dl>
+                        <dl>省定标准</dl>
+                    </dt>
+            </li>
+              <div style="height: 30px;">
+                 <input type="button" class="btn_orange1" style="float: right;" name="" value="查询">
+             </div> 
+            </div>
+          </div>
+          </div>  
+  
+    <div class="form-01" style="width: auto; overflow-x: scroll;">
+      <table id="formSubmit2" class="form-x" style="border-collapse: collapse;">
+          <tr>
+              <th>序号</th>
+              <th>户主姓名</th>                          
+              <th>贫困户属性</th>
+              <th>主要致贫原因</th>
+              <th>成员人数（人）</th>
+              <th>贫困户所在地</th>              
+              <th>操作</th> 
+            
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>王忙生</td>
+              <td>低保贫困户</th>
+              <td>因残</th>  
+              <td>4</td>
+              <td>西安市-灞桥区-灞桥街道-灞桥堡村委会</td>
+              <td>查看户信息</td>
+            
+          </tr>
+           <tr>
+              <td>1</td>
+              <td>王忙生</td>
+              <td>低保贫困户</th>
+              <td>因残</th>  
+              <td>4</td>
+              <td>西安市-灞桥区-灞桥街道-灞桥堡村委会</td>
+              <td>查看户信息</td>
+            
+          </tr>
+           <tr>
+              <td>1</td>
+              <td>王忙生</td>
+              <td>低保贫困户</th>
+              <td>因残</th>  
+              <td>4</td>
+              <td>西安市-灞桥区-灞桥街道-灞桥堡村委会</td>
+              <td>查看户信息</td>
+            
+          </tr>
+           <tr>
+              <td>1</td>
+              <td>王忙生</td>
+              <td>低保贫困户</th>
+              <td>因残</th>  
+              <td>4</td>
+              <td>西安市-灞桥区-灞桥街道-灞桥堡村委会</td>
+              <td>查看户信息</td>
+            
+          </tr>
+           <tr>
+              <td>1</td>
+              <td>王忙生</td>
+              <td>低保贫困户</th>
+              <td>因残</th>  
+              <td>4</td>
+              <td>西安市-灞桥区-灞桥街道-灞桥堡村委会</td>
+              <td>查看户信息</td>
+            
+          </tr>
+           <tr>
+              <td>1</td>
+              <td>王忙生</td>
+              <td>低保贫困户</th>
+              <td>因残</th>  
+              <td>4</td>
+              <td>西安市-灞桥区-灞桥街道-灞桥堡村委会</td>
+              <td>查看户信息</td>
+            
+          </tr>
+           <tr>
+              <td>1</td>
+              <td>王忙生</td>
+              <td>低保贫困户</th>
+              <td>因残</th>  
+              <td>4</td>
+              <td>西安市-灞桥区-灞桥街道-灞桥堡村委会</td>
+              <td>查看户信息</td>
+            
+          </tr>
+           <tr>
+              <td>1</td>
+              <td>王忙生</td>
+              <td>低保贫困户</th>
+              <td>因残</th>  
+              <td>4</td>
+              <td>西安市-灞桥区-灞桥街道-灞桥堡村委会</td>
+              <td>查看户信息</td>
+            
+          </tr>
+          
+        
+      </table>
+</div>
+ <div class="pages">
+          <div class="paging">
+              <div id="Pagination"></div>
+              <div class="searchPage">
+                  <span class="page-sum">共<strong class="allPage">15</strong>页</span>
+                  <!--<span class="page-go">到<input type="text">页</span>
+                  <a href=" " class="page-btn">确定</a>-->
+				  <span id="total">总户数：0</span>
+              </div>
+          </div>
+      </div>
+</div>
+<div class="container_not_standard" style="display:none;">
+    <h1>未达标原因</h1>
+    <p>1.这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因</p>
+    <p>2.这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因</p>
+    <div class="close"><strong></strong></div>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+        $("li dt >dl:nth-child(1)").siblings().click(function(){
+               $(this).siblings().removeClass("active");
+               $(this).toggleClass("active");
+              //给点击对象添加类
+          });
+        $("li dt >dl:nth-child(1)").click(function(){
+             	$(this).toggleClass("active")
+           		$(this).siblings().removeClass('active');
+           })
+    
+
+    })
+    $(".no-pass").click(function(){
+        $(".container_not_standard").show();
+    })
+    $(".close").click(function(){
+        $(".container_not_standard").hide();
+    })
+</script>
+</body>
+</html>

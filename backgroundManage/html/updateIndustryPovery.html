@@ -1,0 +1,774 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>产业扶贫</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/tooltips.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/messages_zh.min.js"></script>
+    <script src="../js/additional-methods.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>产业扶贫</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+  <div class="form-01">
+    <form id="formSubmit" class="form-x">
+      <input name="identification" type="hidden" value="industrySupport">
+      <!--*************************************基本信息*********************************************-->
+      <p class="form-01-p">基本信息</p>
+      <div class="basic">
+        <!--**************************第一行*****************************************-->
+        <div class="form-group">
+          <div class="label">
+            <label>行政区划：</label>
+          </div>
+          <div class="field">
+            <select name="county" class="input w50">
+              <option value="">陕西省</option>
+            </select>
+            <select name="town" class="input w50">
+              <option value="">西安市</option>
+            </select>
+            <select name="village" class="input w50" id="country" disabled="disabled">
+             
+            </select>
+            <select name="village" class="input w50" id="township" disabled="disabled">
+             
+            </select>
+            <select name="village" class="input w50" id="village" disabled="disabled">
+              
+            </select>
+          </div>
+          <div class="tips"></div>
+        </div>
+        <div id="" class="form-x">
+          <p class="form-01-p form-001-p">基本信息</p>
+          <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label">
+                <label>户主姓名：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="name" id="formD"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label">
+                <label>身份证号：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="idNumber" id="formE"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+          </div>
+          <p class="form-01-p form-001-p">苗木花卉</p>
+          <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label">
+                <label>数量（亩）：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="number1" id="formF"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label">
+                <label>收益（元）：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="earnings1" id="formFf"/>
+                </div>
+                <div class="tips"></div>
+              </div>
+            </div>
+          </div>
+          <p class="form-01-p form-001-p">乡村旅游</p>
+          <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label label2">
+                <label>是否参加乡村旅游：</label>
+              </div>
+              <div class="field1 label">
+                <div class="arrangeMent">
+                  <li><input type="radio" name="formG" value="是"><label for="">是</label></li><li><input type="radio" name="formG" value="否"><label for="">否</label></li></div>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label">
+                <label>收益（元）：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="earnings2" id="formGg"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+          </div>
+        <p class="form-01-p form-001-p">电子商务</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否参与电子商务：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="guimo" id="formH"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>电子商务收益（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings3" id="formHh"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <p class="form-01-p form-001-p">设施瓜菜</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>数量（亩）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number2" id="formI"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>收益（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings4" id="formIi"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <p class="form-01-p form-001-p">猕猴桃</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>数量（亩）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number3" id="formJ"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>收益（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings5" id="formJj"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <p class="form-01-p form-001-p">奶山羊</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>数量（亩）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number4" id="formK"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>收益（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings6" id="formKk"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <p class="form-01-p form-001-p">中蜂</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>数量（亩）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number5" id="formL"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>收益（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings7" id="formLl"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <p class="form-01-p form-001-p">核桃</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>数量（亩）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number6" id="formM"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>收益（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings8" id="formMm"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <p class="form-01-p form-001-p">葡萄</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>数量（亩）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number7" id="formN"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>收益（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings9" id="formNn"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <p class="form-01-p form-001-p">石榴</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>数量（亩）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number8" id="formO"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>收益（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings10" id="formOo"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <p class="form-01-p form-001-p">其他</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>其他项目名称：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number9" id="formP"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>收益（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings11" id="formPp"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <!--<p class="form-01-p form-001-p">其他</p>-->
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>是否享受技术培训：</label>
+            </div>
+            <div class="field1 label">
+              <div class="arrangeMent" style="width: 100px;">
+                <li><input type="radio" name="formQ" value="是"><label for="">是</label></li><li><input type="radio" name="formQ" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>是否自主发展：</label>
+            </div>
+            <div class="field1 label">
+              <div class="arrangeMent" style="width: 100px;">
+                <li><input type="radio" name="formR" value="是"><label for="">是</label></li><li><input type="radio" name="formR" value="否"><label for="">否</label></li></div>
+              </div>
+              <div class="tips"></div>
+          </div>
+          <div class="left">
+            <div class="label label2">
+              <label>是否主体带动：</label>
+            </div>
+            <div class="field1 label">
+              <div class="arrangeMent" style="width: 100px;">
+                <li><input type="radio" name="formS" value="是"><label for="">是</label></li><li><input type="radio" name="formS" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>主体类别：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="" id="formT"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>主体名称：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="" id="formU"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>参与方式的入股资金（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number10" id="formV"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>参与方式的入股资金收益（元/年）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings12" id="formVv"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>土地流转面积（亩）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number11" id="formW"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>土地流转面积收益（元/年）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings13" id="formWw"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>务工收益（元/月）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings14" id="formX"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>产业扶贫总收益（元/年）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="earnings16" id="formZ"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="form-group" style="text-align: center;">
+        <input class="submit bg-main icon-check-square-o button" type="submit" value="修改">
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+<script>
+  $(document).ready(function(){
+      let url=config.url;
+      /*页面内容初始化*/
+      var id=localStorage.getItem("updateId");  //获取对应每条数据的id
+      var year="201806";
+      let token=$.cookie("token");
+      $.ajax({
+          url: url+"/background/helpmeasures/industry/detail",
+          data:{"id":id},
+          beforeSend:function(request){
+              request.setRequestHeader("Authorization",token);
+              request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+          },
+          method:"post",
+          type:"json",
+          success:function(data){
+              if(data.code === 2000){
+                  $("#country").append('<option value='+data.data.CNTY+'>'+data.data.CNTY+'</option>');
+                  $("#township").append('<option value='+data.data.TOWN+'>'+data.data.TOWN+'</option>');
+                  $("#village").append('<option value='+data.data.VILL+'>'+data.data.VILL+'</option>');
+                  $("#formD").val(data.data.D);
+                  $("#formE").val(data.data.E);
+                  $("#formF").val(data.data.F);
+                  $("#formFf").val(data.data.G);
+                  $("#formGg").val(data.data.I);
+                  $("#formH").val(data.data.J);
+                  $("#formHh").val(data.data.K);
+                  $("#formI").val(data.data.L);
+                  $("#formIi").val(data.data.M);
+                  $("#formJ").val(data.data.N);
+                  $("#formJj").val(data.data.O);
+                  $("#formK").val(data.data.P);
+                  $("#formKk").val(data.data.Q);
+                  $("#formL").val(data.data.R);
+                  $("#formLl").val(data.data.S);
+                  $("#formM").val(data.data.T);
+                  $("#formMm").val(data.data.U);
+                  $("#formN").val(data.data.V);
+                  $("#formNn").val(data.data.W);
+                  $("#formO").val(data.data.X);
+                  $("#formOo").val(data.data.Y);
+                  $("#formP").val(data.data.Z);
+                  $("#formPp").val(data.data.AA);
+                  $("#formT").val(data.data.EE);
+                  $("#formU").val(data.data.FF);
+                  $("#formV").val(data.data.GG);
+                  $("#formVv").val(data.data.HH);
+                  $("#formW").val(data.data.II);
+                  $("#formWw").val(data.data.JJ);
+                  $("#formX").val(data.data.KK);
+                  //$("#formY").val(data.data.LL);
+                  $("#formZ").val(data.data.MM);
+                  //$("#note").val(data.data.NN);
+                  var box1 = document.getElementsByName("formG");
+                  for(let i=0;i<box1.length;i++){
+                      if(box1[i].value == data.data.H){
+                          box1[i].checked = true;
+                          break
+                      }else{
+                          box1.value="否"
+                      }
+                  }
+                  var box2 = document.getElementsByName("formQ");
+                  for(let i=0;i<box2.length;i++){
+                      if(box2[i].value == data.data.BB){
+                          box2[i].checked = true;
+                          break
+                      }else{
+                          box2.value="否"
+                      }
+                  }
+                  var box3 = document.getElementsByName("formR");
+                  for(let i=0;i<box3.length;i++){
+                      if(box3[i].value == data.data.CC){
+                          box3[i].checked = true;
+                          break
+                      }else{
+                          box3.value="否"
+                      }
+                  }
+                  var box4 = document.getElementsByName("formS");
+                  for(let i=0;i<box4.length;i++){
+                      if(box4[i].value == data.data.DD){
+                          box4[i].checked = true;
+                          break
+                      }else{
+                          box4.value="否"
+                      }
+                  }
+              }else if(data.code===4000){
+                  alert(data.message);
+              }
+          }
+      })
+      /*点击提交修改后的内容*/
+      $(".submit").click(function(){
+          let formA=$("#country option:selected").text();
+          let formB=$("#township option:selected").text();
+          let formC=$("#village option:selected").text();
+          let formD=$("#formD").val().replace(/\s+/g,"");
+          let formE=$("#formE").val().replace(/\s+/g,"");
+          let formF=$("#formF").val().replace(/\s+/g,"");
+          let formFf=$("#formFf").val().replace(/\s+/g,"");
+          let formG=getRadioButtonCheckedValue("formG");
+          let formGg=$("#formGg").val().replace(/\s+/g,"");
+          let formH=$("#formH").val().replace(/\s+/g,"");
+          let formHh=$("#formHh").val().replace(/\s+/g,"");
+          let formI=$("#formI").val().replace(/\s+/g,"");
+          let formIi=$("#formIi").val().replace(/\s+/g,"");
+          let formJ=$("#formJ").val().replace(/\s+/g,"");
+          let formJj=$("#formJj").val().replace(/\s+/g,"");
+          let formK=$("#formK").val().replace(/\s+/g,"");
+          let formKk=$("#formKk").val().replace(/\s+/g,"");
+          let formL=$("#formL").val().replace(/\s+/g,"");
+          let formLl=$("#formLl").val().replace(/\s+/g,"");
+          let formM=$("#formM").val().replace(/\s+/g,"");
+          let formMm=$("#formMm").val().replace(/\s+/g,"");
+          let formN=$("#formN").val().replace(/\s+/g,"");
+          let formNn=$("#formNn").val().replace(/\s+/g,"");
+          let formO=$("#formO").val().replace(/\s+/g,"");
+          let formOo=$("#formOo").val().replace(/\s+/g,"");
+          let formP=$("#formP").val().replace(/\s+/g,"");
+          let formPp=$("#formPp").val().replace(/\s+/g,"");
+          let formQ=getRadioButtonCheckedValue("formQ");
+          let formR=getRadioButtonCheckedValue("formR");
+          let formS=getRadioButtonCheckedValue("formS");
+          let formT=$("#formT").val().trim();
+          let formU=$("#formU").val().trim();
+          let formV=$("#formV").val().replace(/\s+/g,"");
+          let formVv=$("#formVv").val().replace(/\s+/g,"");
+          let formW=$("#formW").val().replace(/\s+/g,"");
+          let formWw=$("#formWw").val().replace(/\s+/g,"");
+          let formX=$("#formX").val().replace(/\s+/g,"");
+          //let formY=$("#formY").val().replace(/\s+/g,"");
+          let formZ=$("#formZ").val().replace(/\s+/g,"");
+          //let note=$("#note").val();
+          /*获取input类型为radio的选中值*/
+          function getRadioButtonCheckedValue(tagNameAttr){
+              var radio_tag = document.getElementsByName(tagNameAttr);
+              for(var i=0;i<radio_tag.length;i++){
+                  if(radio_tag[i].checked){
+                      var checkvalue = radio_tag[i].value;
+                      return checkvalue;
+                  }
+              }
+          }
+          /*验证表单*/
+          $.validator.setDefaults({
+              submitHandler: function() {
+                  alert("确认修改");
+              }
+          });
+          /*户主姓名自定义校验*/
+          jQuery.validator.addMethod("isName", function(value, element) {
+              return this.optional(element) || /^[\u4E00-\u9FA5]{1,6}$/.test(value);
+          }, "请输入正确的户主姓名");
+          /*身份证号自定义校验*/
+          jQuery.validator.addMethod("isIdCardNo", function(value, element) {
+              //var idCard = /^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/;
+              return this.optional(element) || isIdCardNo(value);
+          }, "请输入正确的身份证号码");
+          //身份证验证
+          function isIdCardNo(num){
+              //if (isNaN(num)) {alert("输入的不是数字！"); return false;}
+              var len = num.length, re;
+              if (len == 15)
+                  re = new RegExp(/^(\d{6})()?(\d{2})(\d{2})(\d{2})(\d{2})(\w)$/);
+              else if (len == 18)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/);
+              else if (len == 20)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)(\d{2})$/);
+              else if (len == 22)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\d{3})(\w)(\d{1})$/);
+              else {
+                  //alert("输入的数字位数不对。");
+                  return false;
+              }
+              var a = num.match(re);
+              if (a != null)
+              {
+                  if (len==15)
+                  {
+                      var D = new Date("19"+a[3]+"/"+a[4]+"/"+a[5]);
+                      var B = D.getYear()==a[3]&&(D.getMonth()+1)==a[4]&&D.getDate()==a[5];
+                  }
+                  else
+                  {
+                      var D = new Date(a[3]+"/"+a[4]+"/"+a[5]);
+                      var B = D.getFullYear()==a[3]&&(D.getMonth()+1)==a[4]&&D.getDate()==a[5];
+                  }
+                  if (!B) {
+                      //alert("输入的身份证号 "+ a[0] +" 里出生日期不对。");
+                      return false;
+                  }
+              }
+              if(!re.test(num)){
+                  //alert("身份证最后一位只能是数字和字母。");
+                  return false;
+              }
+              return true;
+          }
+          /*数量自定义校验*/
+          jQuery.validator.addMethod("isDigits", function(value, element) {
+              return this.optional(element) || /^\d+$/.test(value);
+          }, "只能输入整数");
+          /*收益自定义校验*/
+          jQuery.validator.addMethod("isIntGteZero", function(value, element) {
+              value=parseInt(value);
+              return this.optional(element) || value>=0;
+          }, "请输入正确的收益");
+
+          $("#formSubmit").validate({
+              rules:{
+                  name:{
+                      required:true,
+                      minlength:2,
+                      isName:true
+                  },
+                  idNumber:{
+                      required:true,
+                      minlength:18,
+                      isIdCardNo:true
+                  },
+                  number1:{
+                      isDigits:true
+                  },
+                  number2:{
+                      isDigits:true
+                  },
+                  number3:{
+                      isDigits:true
+                  },
+                  number4:{
+                      isDigits:true
+                  },
+                  number5:{
+                      isDigits:true
+                  },
+                  number6:{
+                      isDigits:true
+                  },
+                  number7:{
+                      isDigits:true
+                  },
+                  number8:{
+                      isDigits:true
+                  },
+                  number10:{
+                      isDigits:true
+                  },
+                  number11:{
+                      isDigits:true
+                  },
+                  /*收益*/
+                  earnings1:{
+                      isIntGteZero:true
+                  },
+                  earnings2:{
+                      isIntGteZero:true
+                  },
+                  earnings3:{
+                      isIntGteZero:true
+                  },
+                  earnings4:{
+                      isIntGteZero:true
+                  },
+                  earnings5:{
+                      isIntGteZero:true
+                  },
+                  earnings6:{
+                      isIntGteZero:true
+                  },
+                  earnings7:{
+                      isIntGteZero:true
+                  },
+                  earnings8:{
+                      isIntGteZero:true
+                  },
+                  earnings9:{
+                      isIntGteZero:true
+                  },
+                  earnings10:{
+                      isIntGteZero:true
+                  },
+                  earnings12:{
+                      isIntGteZero:true
+                  },
+                  earnings13:{
+                      isIntGteZero:true
+                  },
+                  earnings14:{
+                      isIntGteZero:true
+                  },
+                  earnings15:{
+                      isIntGteZero:true
+                  },
+                  earnings16:{
+                      isIntGteZero:true
+                  },
+              },
+              submitHandler:function(){
+                  /*ajax校验数据是否重复,主要判断身份证号*/
+                 
+									$.ajax({
+				                      url: url+"/background/helpmeasures/industry/update",
+				                      data:{"id":id,"formA":formA,"formB":formB,"formC":formC,"formD":formD,"formE":formE,"formF":formF,"formFf":formFf,"formG":formG,"formGg":formGg,"formH":formH,"formHh":formHh,"formI":formI,"formIi":formIi,"formJ":formJ,"formJj":formJj,"formK":formK,"formKk":formKk,"formL":formL,"formLl":formLl,"formM":formM,"formMm":formMm,"formN":formN,"formNn":formNn,"formO":formO,"formOo":formOo,"formP":formP,"formPp":formPp,"formQ":formQ,"formR":formR,"formS":formS,"formT":formT,"formU":formU,"formV":formV,"formVv":formVv,"formW":formW,"formWw":formWw,"formX":formX,"formZ":formZ},
+				                      method:"post",
+				                      beforeSend:function(request){
+				                          request.setRequestHeader("Authorization",token);
+				                          request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+				                      },
+				                      type:"json",
+				                      success:function(data){
+				                          if(data.code === 2000){
+				                              show_msg('修改成功','show_industry_povery.html');
+				                          }else {
+				                              alert(data.message);
+				                          }
+				                      }
+				                  })                             
+                  
+              },
+              messages:{
+                  name:{
+                      required:"请输入户主姓名",
+                      minlength:"请输入最少两位字符",
+                  },
+                  idNumber:{
+                      required:"请输入身份证号码",
+                      minlength:"请输入18/20/22位字符",
+                  },
+              }
+          });
+      })
+  })
+</script>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困村详情</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/showDetailsFunding.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{width: 1.2%;height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;padding-left: 5px}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px;height: 20px;}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-right: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-04 table tr td {text-align: center;}
+        .on{
+        	color: #fff!important;
+		    background: #00aaee!important;
+        }
+        .form-02 .tips{
+        	margin-bottom: 10px;
+        }
+        #team tr td{width: auto;}
+        table tr td{
+            text-align: center;
+        }
+        table tr td input{
+            text-align: center;
+        }
+        .active{background: #70c1ff!important;color: #fff!important;border-radius: 12px;}
+        div dl dt{
+        	height: 30px;
+		    line-height: 30px;
+		    float: left;
+		    margin-right: 10px;
+		    margin-bottom: 5px;
+		    border-radius: 12px;
+		    text-align: center;
+		    padding: 0px 6px;
+		    cursor: pointer;
+		    position: relative;
+		    color: #555;
+		    font-size: 18px;
+		}
+		#year{width:50%;margin: 0 auto;}
+		#year dl{width: 80%;margin: 0 auto;}
+		/*加载动画*/
+        .spinner {
+            margin: 5% auto;
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+        .container1 > div, .container2 > div, .container3 > div {
+            width: 14px;
+            height: 14px;
+            background-color: #858585;
+            border-radius: 100%;
+            position: absolute;
+            -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+            animation: bouncedelay 1.2s infinite ease-in-out;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        .spinner .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .container2 {
+            -webkit-transform: rotateZ(45deg);
+            transform: rotateZ(45deg);
+        }
+        .container3 {
+            -webkit-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+        }
+        .circle1 { top: 0; left: 0; }
+        .circle2 { top: 0; right: 0; }
+        .circle3 { right: 0; bottom: 0; }
+        .circle4 { left: 0; bottom: 0; }
+        .container2 .circle1 {
+            -webkit-animation-delay: -1.1s;
+            animation-delay: -1.1s;
+        }
+        .container3 .circle1 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+        .container1 .circle2 {
+            -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s;
+        }
+        .container2 .circle2 {
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+        }
+        .container3 .circle2 {
+            -webkit-animation-delay: -0.7s;
+            animation-delay: -0.7s;
+        }
+        .container1 .circle3 {
+            -webkit-animation-delay: -0.6s;
+            animation-delay: -0.6s;
+        }
+        .container2 .circle3 {
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        }
+        .container3 .circle3 {
+            -webkit-animation-delay: -0.4s;
+            animation-delay: -0.4s;
+        }
+        .container1 .circle4 {
+            -webkit-animation-delay: -0.3s;
+            animation-delay: -0.3s;
+        }
+        .container2 .circle4 {
+            -webkit-animation-delay: -0.2s;
+            animation-delay: -0.2s;
+        }
+        .container3 .circle4 {
+            -webkit-animation-delay: -0.1s;
+            animation-delay: -0.1s;
+        }
+        @-webkit-keyframes bouncedelay {
+            0%, 80%, 100% { -webkit-transform: scale(0.0) }
+            40% { -webkit-transform: scale(1.0) }
+        }
+        @keyframes bouncedelay {
+            0%, 80%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 40% {
+                  transform: scale(1.0);
+                  -webkit-transform: scale(1.0);
+              }
+        }
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>贫困村</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+    <div class="form-01">
+      <div id="year">
+      	<dl>
+            <dt sleep="201808">2018年</dt>
+            <dt sleep="201712">2017年</dt>
+            <dt sleep="2017">2016年</dt>
+            <dt sleep="2016">2015年</dt>
+            <dt sleep="2015">2014年</dt>
+        </dl>
+      </div>
+      <div class="spinner" style="display: none;z-index: 999">
+          <div class="spinner-container container1">
+              <div class="circle1"></div>
+              <div class="circle2"></div>
+              <div class="circle3"></div>
+              <div class="circle4"></div>
+          </div>
+          <div class="spinner-container container2">
+              <div class="circle1"></div>
+              <div class="circle2"></div>
+              <div class="circle3"></div>
+              <div class="circle4"></div>
+          </div>
+          <div class="spinner-container container3">
+              <div class="circle1"></div>
+              <div class="circle2"></div>
+              <div class="circle3"></div>
+              <div class="circle4"></div>
+          </div>
+	  </div>
+      <table id="baseInfo">
+		<caption>基础信息</caption>
+		<tr>
+                <td style='background: #F7F7F7;'>行政区划</td>
+                <td colspan="9"></td>
+            </tr>
+            <tr>
+                <td style='background: #F7F7F7;'>村负责人</td>
+                <td colspan="3"></td>
+                <td colspan="2" style='background: #F7F7F7;'>村办公电话</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td style='background: #F7F7F7;'>职务</td>
+                <td colspan="3"></td>
+                <td colspan="2" style='background: #F7F7F7;'>村官人数</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td style='background: #F7F7F7;'>中共党员人数</td>
+                <td colspan="3"></td>
+                <td colspan="2" style='background: #F7F7F7;'>牲畜存栏数（头）</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td style='background: #F7F7F7;'>经度</td>
+                <td colspan="3"></td>
+                <td colspan="2" style='background: #F7F7F7;'>纬度</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td style='background: #F7F7F7;'>发展方向</td>
+                <td colspan="3"></td>
+                <td colspan="2" style='background: #F7F7F7;'>地形地貌</td>
+                <td colspan="3"></td>    
+            </tr>
+            <tr>
+                <td style='background: #F7F7F7;'>村属性</td>
+                <td colspan="3"></td>
+                <td colspan="2" style='background: #F7F7F7;'>计划脱贫退出年份（年）</td>
+                <td colspan="3"></td>
+            </tr>
+      </table>
+     <div class="form-02">
+          <span class="tips on">人口信息</span>
+          <span class="tips">十项重点工作</span>
+          <span class="tips">收入信息</span>
+          <span class="tips">土地信息</span>
+          <span class="tips">雨露计划</span>
+          <span class="tips">扶贫小额信贷</span>
+          <span class="tips">易地扶贫搬迁</span>
+          <span class="tips">帮扶单位</span>
+          <span class="tips">驻村工作队</span>
+          <!--<span class="tips">人居环境</span>-->
+      </div>
+
+    </div>
+    <div class="form-04 form-01" style="display: block">
+        <table id="population">
+			    <tr>
+                    <td style='background: #F7F7F7;'>总户数（户）</td>
+                    <td> </td>
+                    <td style='background: #F7F7F7;'>总人口数（人）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>低保户数（户）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>低保人口数（人）</td>
+                    <td></td>                   
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>低保贫困户数（户）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>低保贫困人口数（人）</td>
+                    <td></td>                   
+                </tr>
+                <tr>                    
+                    <td style='background: #F7F7F7;'>五保户数（户）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>五保人口数（人）</td>
+                    <td></td>
+                </tr>
+                <tr>                    
+                    <td style='background: #F7F7F7;'>五保贫困户数（户）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>五保贫困人口数（人）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                	<td style='background: #F7F7F7;'>贫困户数（户）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>贫困人口数（人）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                	<td style='background: #F7F7F7;'>一般贫困户数（户）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>一般贫困人口数（人）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>自然村（村民小组）数（个）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>党员人数（人）</td>
+                    <td></td>
+                </tr>           
+                <tr>
+                    <td style='background: #F7F7F7;'>少数民族人口数（人）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>妇女人口数（个）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>残疾人人口数（人）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>劳动力人数（人）</td>
+                    <td></td>
+                </tr>
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="work10">
+			<tr>
+                    <td rowspan="3" class="form-04-td" style='text-align: center;'>村级道路通畅</td>
+                    <td colspan="2" style='background: #F7F7F7;'>到乡镇是否通沥青（水泥）路</td>
+                    <td></td>
+                    <td colspan="2" style='background: #F7F7F7;'>是否通客运班车（水泥）路</td>
+                    <td></td>               
+                </tr>           
+                <tr>
+                    <td colspan="2" style='background: #F7F7F7;'>自然村到行政村未通沥青(水泥)路村数（个）</td>
+                    <td></td>
+                    <td colspan="2" style='background: #F7F7F7;'>自然村到行政村未通沥青(水泥)路里程（公里）</td>
+                    <td></td>
+                </tr>
+                <tr><td colspan="2" style='background: #F7F7F7;'>行政村到乡镇未通沥青(水泥)路里程（公里）</td>
+                    <td ></td></tr>
+                <tr>
+                    <td style='text-align: center;'>饮水情况</td>
+                    <td colspan="2" style='background: #F7F7F7;'>未实现饮水安全户数（户)</td>
+                    <td></td>
+                    <td colspan="2" style='background: #F7F7F7;'>饮水困难户数（户）</td>
+                    <td></td>               
+                </tr>                        
+                <tr>
+                    <td rowspan="2" style='text-align: center;'>农村电力保障</td>
+                    <td colspan="2" style='background: #F7F7F7;'>已通生产用电自然村(20户以上)数</td>
+                    <td></td>
+                    <td colspan="2" style='background: #F7F7F7;'>未通生活用电的自然村数（个）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style='background: #F7F7F7;'>未通生产用电的自然村数（人）</td>
+                    <td></td>
+                    <td colspan="2" style='background: #F7F7F7;'>未通生活用电的户数（户）</td>
+                    <td></td>
+                </tr>                
+                <tr>
+                    <td style='text-align: center;'>危房改造</td>
+                    <td colspan="2" style='background: #F7F7F7;'>危房户数（户）</td>
+                    <td></td>
+                    <td colspan="2" style='background: #F7F7F7;'>危房户涉及到的贫困人数（人）</td>
+                    <td></td>            
+                </tr>      
+                <tr>
+                    <td rowspan="2" style='text-align: center;'>特色产业增收</td>
+                    <td colspan="2" style='background: #F7F7F7;'> 农民专业合作社个数</td>
+                    <td></td>
+                    <td colspan="2" style='background: #F7F7F7;'>加入特色产业专业合作社的贫困户数（户）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style='background: #F7F7F7;'>互助资金协会数量（个）</td>
+                    <td></td>
+                    <td colspan="2" style='background: #F7F7F7;'>互助资金规模量（万元）</td>
+                    <td></td>
+                </tr>                
+                <tr>
+                    <td rowspan="2" style='text-align: center;'>乡村旅游</td>
+                    <td colspan="2" style='background: #F7F7F7;'>开展乡村旅游的户数</td>
+                    <td></td>
+                    <td colspan="2" style='background: #F7F7F7;'>乡村旅游从业人员数</td>
+                    <td></td>                
+                </tr>
+                <tr>
+                    <td colspan="2" style='background: #F7F7F7;'>经营农家乐的户数</td>
+                    <td></td>
+                    <td colspan="2" style='background: #F7F7F7;'>经营农家乐户年均收入</td>
+                    <td></td>
+                </tr>                
+                <tr>
+                    <td rowspan="2" style='text-align: center;'>卫生和计划生育</td>
+                    <td style='background: #F7F7F7;'>卫生室个数(个)</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>公共卫生厕所个数（个）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>执业（助理）医师数（人）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>垃圾集中堆放点个数（个）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>行政村卫生室面积（平方米）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>是否有诊断室治疗室公共卫生室和药房</td>
+                    <td></td>
+                </tr>               
+                <tr>
+                    <td style='text-align: center;'>文化建设</td>
+                    <td style='background: #F7F7F7;'>行政村文化（图书）室个数 （个）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>通广播电视户数（户）</td>
+                    <td></td>
+                    
+                </tr>               
+                <tr>
+                    <td rowspan="2" style='text-align: center;'>贫困村信息化</td>
+                    <td style='background: #F7F7F7;'>通宽带户数（户）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>能用手机上网的户数（户）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>已通电自然村(20户以上)中通宽带的村数（个)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>通宽带的村小学个数（个）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>行政村信息员（人）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan="2" style='text-align: center;'>社会保障信息</td>
+                    <td style='background: #F7F7F7;'>参加新型农村合作医疗人数</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>参加城乡居民基本养老保险人数</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>参加城镇职工基本养老保险人数</td>
+                    <td></td>
+                </tr>  
+                <tr>                    
+                    <td style='background: #F7F7F7;'>获得医疗救助人次（人）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>养老保险制度覆盖范围人口数（人）</td>
+                    <td></td>
+                </tr> 
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="income">
+			<tr>
+	            <td style='background: #F7F7F7;'>农民人均纯收入（元）</td>
+	            <td></td>
+	            <td style='background: #F7F7F7;'>村级集体经济收入（万元）</td>
+	            <td></td>
+	        </tr>
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="tudiInfo">
+			<tr>
+                    <td style='background: #F7F7F7;'>耕地面积（亩）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>林果面积（亩）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>水域面积（亩）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>有效灌溉面积（亩）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>林地面积（亩）</td>
+                    <td></td>
+                    <td style='background: #F7F7F7;'>退耕还林面积（亩）</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>牧草地面积（亩）</td>
+                    <td></td>
+                </tr>
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="yulu">
+            <tr>
+                <td style='background: #F7F7F7;'>应届初中毕业未升入普通高中的新成长劳动力数（人）</td>
+                <td></td>
+                <td style='background: #F7F7F7;'>应届高中毕业未升入大学,专科学校的新成长劳动力数（人）</td>
+                <td></td>
+            </tr>
+            <tr>                
+                <td style='background: #F7F7F7;'>当年已经参加雨露计划人数（人）</td>
+                <td></td>
+            </tr> 
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="xindai">
+            <tr>
+           	   <td>批复的扶贫小额信贷户数（户）</td>
+               <td></td>
+               <td>当年贷款户数（户）</td>
+               <td></td>
+           </tr>
+           <tr>
+               <td>逾期未还款户数（户）</td>
+               <td></td>               
+           </tr> 
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="banqian">
+            <tr>
+               <td>纳入易地扶贫搬迁规划户数（户）</td>
+               <td></td>
+               <td>已搬迁户数（户）</td>
+               <td></td>
+           </tr> 
+        </table>
+    </div>
+	<div class="form-04 form-01" style="display: none">
+        <table id="bangfu">
+            <tr>
+                <td>序号</td>
+                <td>帮扶单位名称</td>
+                <td>帮扶单位类型</td>
+                <td>隶属关系</td>
+                <td>联系电话</td>
+				<td>联系人</td>
+                <td>联系人电话</td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none;overflow-x: scroll;width: 1060px;">
+        <table id="team" style="width: 1800px;">
+            <tr>
+                <td>序号</td>
+                <td>队员姓名 </td>
+                <td>派出单位 </td>
+                <td>派出单位职务</td>
+                <td>联系电话</td>
+                <td>第一书记标志 </td>
+                <td>队长标志 </td>
+                <td>包村干部标志</td>
+                <td>副队长标志</td>
+                <td>队员标志</td>
+                <td>性别</td>
+                <td>证件号码</td>
+                <td>学历</td>
+                <td>政治面貌</td>
+                <td>技术特长</td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="huanjing">
+            <tr>
+                <td>是否有公共卫生厕所
+                </td>
+                <td></td>
+                <td>是否有垃圾集中收集点
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>是否有污水处理设施
+                </td>
+                <td></td>
+                <td>是否有集中沼气池
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>是否有两旁绿化
+                </td>
+                <td></td>
+                <td>是否有旅游村停车场
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>是否有路灯
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<script>
+    /*初始化分页*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+
+    })
+    $("body").on('click','.tips',function(){
+        $(this).addClass('on').siblings().removeClass('on');
+        let index=$(this).index();
+        console.log(index)
+        $(".form-04").eq(index).show().siblings(".form-04").hide();
+    })
+</script>
+</body>

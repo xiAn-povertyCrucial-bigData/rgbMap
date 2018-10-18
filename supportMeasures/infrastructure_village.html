@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>西安市脱贫成效监测系统</title>
+	<link rel="stylesheet" href="css/ryg.css">
+	<link rel="stylesheet" href="css/adapter.css">
+	<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/commer.js"></script>
+	<script src="../index/js/jquery.cookie.js"></script>
+	<script src="../index/js/tooltips.js"></script>
+    <script src="js/infrastructure3.js"></script>
+	<script type="text/javascript">
+        var countryName=null;
+        var villageName=null;/********************************************************请求参数截取************************************************************/
+        //截取Url里面的参数
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            url=decodeURI(url);
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                //alert(str);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);//获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>，（unescape只针对数字，中文乱码)
+                }
+            }
+            return theRequest;
+        }
+
+        //通过url取数
+        var data = new Object();
+        data = GetRequest();
+        countryName = data['county'] ;
+        villageName = data['name'] ;
+        villageCode = data['villageCode'];
+	</script>
+</head>
+<style type="text/css">
+	.con{padding: 2% 0.5% 0;}.con-left{width: 28%;}.map-content{width: 43%;}.con-right{width: 28%;}
+	.con .module-1{height: 50%!important;background: rgba(26, 27, 54, 0.37);border-radius:5px;}
+	.con .c-title{width: 100%;line-height:30px;}
+	.con table{
+		width:100%;
+		height: 80%;
+		padding: 0 5%;
+	}
+	.con table tr th{
+		height: 130px;
+		font-size: 14px;
+		border:1px solid #bdf4f1;
+	}
+	.con table tr td{
+		height: 130px;
+		font-size: 14px;
+		color:#fff!important;
+		border:1px solid #bdf4f1;
+		text-align: center;
+	}
+	.innerbox::-webkit-scrollbar {/*滚动条整体样式*/
+		width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+		height: 4px;
+	}
+	.innerbox::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+		border-radius: 5px;
+		-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+		background: rgba(0,0,0,0.2);
+	}
+	.innerbox::-webkit-scrollbar-track {/*滚动条里面轨道*/
+		-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+		border-radius: 0;
+		background: rgba(0,0,0,0.1);
+	}
+</style>
+<body>
+	<div class="container">
+		<!--遮罩-->
+		<div class="box" style="opacity: 0;top:-100%;"></div>
+		<div class="main">
+			<div class="main-title clearfix">
+				<p>西安市脱贫成效监测系统</p>
+			</div>
+				<div class="main-title1">
+					<h3><span id="villageName"></span>基础设施</h3>
+					<div class="a-hrefs clearfix">
+						<!--<form class="s-form" action="" method="get">
+                            <input class="keywords" type="text" name="keywords" placeholder="村民、户名、电话号码..." />
+                            <input class="submit" type="submit" value=" " />
+                        </form>-->
+						<a class="a-item home" href="supportMeasures.html">首页</a>
+						<a class="a-item return	" href="javascript:history.back(-1)">返回</a>
+					</div>
+				</div>
+
+			<!--<div class="btns">
+				<a class="btn" href="">脱贫状态</a>
+				<a class="btn" href="supportMeasures.html" style="background: url('images/bg_4.png') no-repeat center/cover">帮扶措施</a>
+			</div>-->
+			<div class="con">
+				<div class="con-left">
+					<div class="module-1">
+						<h3 class="c-title" style="float: none;">基础设施实施情况</h3>
+						<!--<div id="module-1" class='m-item'></div>-->
+						<div class="total" style="width:100%;height:80%;padding:10% 5% 5% 5%;display:flex;flex-direction: column;justify-content: space-between;position:relative;">
+							<div class="colorLists" style="width:160px;display: flex;justify-content: space-between;float: right;position:absolute;right:10px;top:3%;">
+								<div class="colorlist">
+									<div class="red" style="width:24px;height:15px;background: #DD4F43;border-radius: 4px;float: left;margin-right:5px;"></div>
+									<div style="float: left;line-height: 16px;">未完成</div>
+								</div>
+								<div class="colorlist">
+									<div class="green" style="width:24px;height:15px;background: #1FA463;border-radius: 4px;float: left;margin-right:5px;"></div>
+									<div style="float: left;line-height: 16px;">已完成</div>
+								</div>
+							</div>
+							<div class="grid" style="font-size:16px;height:40px;line-height: 40px;padding-left:20px;">
+								<div style="display: block;line-height: 40px;height:40px;float: left;margin-right:20px;">水利设施</div>
+								<div class="standard1" style="display:block;width:300px;height:40px;background: none;float: left;"></div>
+							</div>
+							<div class="grid" style="font-size:16px;height:40px;line-height: 40px;padding-left:20px;">
+								<div style="display: block;line-height: 40px;height:40px;float: left;margin-right:20px;">电力设施</div>
+								<div class="standard2" style="display:block;width:300px;height:40px;background: none;float: left;"></div>
+							</div>
+							<div class="grid" style="font-size:16px;height:40px;line-height: 40px;padding-left:20px;">
+								<div style="display: block;line-height: 40px;height:40px;float: left;margin-right:20px;">道路设施</div>
+								<div class="standard3" style="display:block;width:300px;height:40px;background: none;float: left;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="module-1">
+						<h3 class="c-title" style="margin-bottom: 14px;">水利设施实施进度详情</h3>
+						<div id="module-2" class='m-item' style="margin-top: 14px;">
+							<table cellspacing="0">
+								<!--<thead>
+									<tr>
+										<th>村道路是否畅通</th>
+										<th>为通历程(KM)</th>
+										<th>贫困村公里是否"油反砂"</th>
+										<th>"油反砂"里程(KM)</th>
+									</tr>
+								</thead>
+								<tbody id="">
+									<tr>
+										<td>是</td>
+										<td>-&#45;&#45;</td>
+										<td>是</td>
+										<td>3.3</td>
+									</tr>
+								</tbody>-->
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="map-content content map-content2">
+					<span class="line left-top"></span>
+					<span class="line left-bottom"></span>
+					<span class="line top-left"></span>
+					<span class="line top-right"></span>
+					<span class="line right-top"></span>
+					<span class="line right-bottom"></span>
+					<span class="line bottom-left"></span>
+					<span class="line bottom-right"></span>
+					<div class="map map3">
+						<iframe src="../dist/index.html" frameborder="0" style="width:800px;height:500px; clear:both;position: relative;top:80px;transform: scale(0.8,1) translate(-13%,0)" id="mapService"></iframe>
+						<div class="mask"></div>
+					</div>
+				</div>
+				<div class="con-right">
+					<div class="module-1" style="height:50%;">
+						<h3 class="c-title" style="margin-bottom: 14px;">电力设施实施进度详情</h3>
+						<div class='m-item innerbox' style="height:90%;overflow-y: auto;">
+							<table cellspacing="0">
+								<thead>
+									<tr>
+										<th>自然村名称</th>
+										<th>是否通生产用电</th>
+										<th>是否通生活用电</th>
+									</tr>
+								</thead>
+								<tbody id="module-3">
+									<!--<tr>
+										<td>是</td>
+										<td>-&#45;&#45;</td>
+										<td>是</td>
+										<td>3.3</td>
+									</tr>-->
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="module-1" style="height:50%;">
+						<h3 class="c-title" style="margin-bottom: 14px;">道路设施实施进度详情</h3>
+						<div id="module-4" class='m-item'>
+							<table cellspacing="0">
+								<!--<thead>
+									<tr>
+										<th>村道路是否畅通</th>
+										<th>为通历程(KM)</th>
+										<th>贫困村公里是否"油反砂"</th>
+										<th>"油反砂"里程(KM)</th>
+									</tr>
+								</thead>
+								<tbody id="">
+									<tr>
+										<td>是</td>
+										<td>-&#45;&#45;</td>
+										<td>是</td>
+										<td>3.3</td>
+									</tr>
+								</tbody>-->
+							</table>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="../index/js/config.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+    var hosts=config.host;
+    var host = hosts+'/supportMeasures/';
+
+    /*权限控制*/
+    /*读取本地用户名*/
+    let loginMessaage=JSON.parse($.cookie('loginMessage'));
+    let uname=loginMessaage.userCode
+    let ucode=loginMessaage.aar008;
+    if(uname!="超级管理员"&&uname!="领导"){
+        $(".home").attr("href","../index/index.html");
+    }
+    /**************** 地图调用 ************************/
+    var gis = null;
+    function giscallback(type, param){
+        switch (type) {
+            case 'mapinit':
+                // 地图初始化完成
+                //   setTimeout(function(){
+                gis.gisapp.zoom(countryName,villageName);
+                //},800)
+                break;
+            case 'county_select':
+                // 区域点击事件
+                break;
+            case 'village_select':
+                // 村点击事件
+                /*var url = host + 'industryPoverty_village.html?county='+ param.county + '&name=' + param.village;
+                window.location.href = url;*/
+                break;
+            case 'city_show':
+                break;
+            default:
+                console.log(type +':' + param)
+                break;
+        }
+    }
+    function gisready(){
+        gis = document.getElementById("mapService").contentWindow;
+        gis.gisapp.init(giscallback,countryName);
+    }
+</script>
+<script src="js/echarts.js"></script>
+<script>
+/*****************module-1******************/
+/*var dom1 = document.getElementById("module-1");
+var myChart = echarts.init(dom1);*/
+var dataC=[
+    {value: 679, name: '未完成'},
+    {value: 1548, name: '正实施'},
+    {value: 335, name: '已完成'}];
+
+option = {
+    color:  ['#DD4F43','#FFCE43','#1FA463'],
+    title: {
+        left: 15,
+        top:10,
+        textStyle: {
+            fontWeight: '800',
+            color: '#ffffff',
+            fontSize: 16
+        }
+    },
+    legend: {
+        //orient: 'vertical',
+        x: '49%',
+        y:"5%",
+        data: ['未实施','正实施','已完成'],
+        textStyle:{
+            fontSize:14,
+            color:"#fff"
+        }
+    },
+    series: [{
+        name: '实施状态',
+        type: 'pie',
+        radius: [0, '41%'],
+        center:["50%","55%"],
+        label: {
+            normal: {
+                formatter: '  {b|{b}：} {per|{d}%}  ',
+                backgroundColor: '#06283A',
+                borderColor: '#06283A',
+                borderWidth: 1,
+                borderRadius: 4,
+                rich: {
+                    a: {
+                        color: '#00cefc',
+                        lineHeight: 22,
+                        align: 'center'
+                    },
+                    b: {
+                        fontSize: 16,
+                        lineHeight: 33
+                    },
+                    per: {
+                        color: '#eee',
+                        fontSize:14,
+                        backgroundColor: '#061a2d',
+                        padding: [2, 4],
+                        borderRadius: 2
+                    }
+                }
+            }
+        },
+        data:[]
+    }]
+};
+/*if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}*/
+</script>
+<script>
+    /*脱贫状态和帮扶措施切换*/
+//	$(document).ready(function(){
+//	    $(".btns>a").click(function(){
+//			$(".btns>a").css("background","url('images/bg_4.png') no-repeat center/cover");
+//	        $(this).css("background","url('images/btn1.png') center/cover");
+//		})
+//
+//      /*界面左下弹出框（红黄绿）*/
+//      $(".container>.pop-up5>.close").click(function(){
+//          $(".pop-up5").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up6>.close").click(function(){
+//          $(".pop-up6").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up7>.close").click(function(){
+//          $(".pop-up7").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      /*界面右上弹出框*/
+//      $(".container>.pop-up>.close").click(function(){
+//          $(".pop-up").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up8>.close").click(function(){
+//          $(".pop-up8").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up9>.close").click(function(){
+//          $(".pop-up9").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up10>.close").click(function(){
+//          $(".pop-up10").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//		/*界面右中弹出框*/
+//      $(".container>.pop-up2>.close").click(function(){
+//          $(".pop-up2").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up11>.close").click(function(){
+//          $(".pop-up11").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up12>.close").click(function(){
+//          $(".pop-up12").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up13>.close").click(function(){
+//          $(".pop-up13").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      /*界面右下弹出框（未培训）*/
+//      $(".container>.pop-up3>.close").click(function(){
+//          $(".pop-up3").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up14>.close").click(function(){
+//          $(".pop-up14").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up15>.close").click(function(){
+//          $(".pop-up15").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up16>.close").click(function(){
+//          $(".pop-up16").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      /*界面右下弹出框（已培训）*/
+//      $(".container>.pop-up4>.close").click(function(){
+//          $(".pop-up4").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up17>.close").click(function(){
+//          $(".pop-up17").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up18>.close").click(function(){
+//          $(".pop-up18").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up19>.close").click(function(){
+//          $(".pop-up19").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up20>.close").click(function(){
+//          $(".pop-up20").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up21>.close").click(function(){
+//          $(".pop-up21").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up22>.close").click(function(){
+//          $(".pop-up22").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//      $(".container>.pop-up23>.close").click(function(){
+//          $(".pop-up23").css({"opacity":0,"top":"-100%"});
+//          $(".container>.box").css({"opacity":0,"top":"-100%"});
+//      })
+//	})
+</script>
+<script>
+    /*列表滚动*/
+    function autoScroll(obj){
+        $(obj).find("ul").animate({
+            marginTop : "-39px"
+        },500,function(){
+            $(this).css({marginTop : "0px"}).find("li:first").appendTo(this);
+        })
+    }
+    $(function(){
+        setInterval('autoScroll(".maquee")',3000);
+    })
+</script>

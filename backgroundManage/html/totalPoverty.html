@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>贫困人口分区县情况</title>
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/echarts.js"></script>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="../js/pintuer.js"></script>
+    <style>
+        body,html,.container{
+            width:99%;
+            height: 98%;
+            font-family: "arial rounded mt bold";
+            font-size: 12px;
+        }
+        .container{display: flex;align-items: center;height: 100%;}
+        #pieElsePoverty,#barElsePoverty{width: 100%;height: 80%;}
+    </style>
+</head>
+<body>
+<div class="panel admin-panel admin-panel1">
+    <div class="panel-head"><strong><span class="icon-key"></span> 贫困人口分区县情况</strong></div>
+    
+    <input class="btn button" id="btnPrint" type="button" value="打印预览" onclick='preview(1)' /> 
+    <input class="btn button" id="btnPrint" type="button" value="打印" onclick="javascript:window.print();" /> 
+
+    <!-- <input class="btn button" type="button" value="数据导出"> -->
+    <div class="container">
+        <div id="barElsePoverty"></div>
+    </div>
+</div>
+    <script type="text/javascript">
+    /**************************************堆积柱状图**************************************/
+    var barElsePovertyChart=echarts.init(document.getElementById("barElsePoverty"));
+    var barElsePovertyOption = {
+        tooltip: {
+            formatter: "{b}: {c}人" // 这里是鼠标移上去的显示数据
+        },
+        legend: {
+            data: []
+        },
+        calculable : true,
+        xAxis : {
+                type : 'category',
+                data : ['周至县','蓝田县','鄠邑区','长安区','临潼区','西咸新区','灞桥区','高陵区','国际港务区','阎良区'],
+                axisLabel:{
+                    textStyle:{
+                        fontSize:16
+                    }
+                },
+        },
+        yAxis : {
+                type: 'value',
+                max: 20000,
+                name:'(人)',
+                axisLabel:{
+                    textStyle:{
+                        fontSize:'16'
+                    }
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: ['#B1C0D2']
+                    }
+                },
+        },
+        series : [
+            {
+                name:'',
+                type:'bar',
+                barWidth : 40,
+                stack: '广告',
+                data:[16280, 15129, 6000, 5500, 3600, 2300, 970, 590, 134,50],
+                label:{
+                    normal: {
+                        show: true,
+                        position: 'top',
+                        textStyle: {
+                            fontSize:14
+                        }
+                    }
+                },
+            }
+        ],
+        color: ['#20b8b4']
+    };
+    barElsePovertyChart.setOption(barElsePovertyOption);
+
+        function preview(oper) { 
+            // $('input:eq(0)').hide();
+            // $('input:eq(1)').hide();
+            if (oper < 10) { 
+                bdhtml=window.document.body.innerHTML;//获取当前页的html代码 
+                sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域 
+                eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域 
+                prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html 
+                 
+                prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html 
+                window.document.body.innerHTML=prnhtml; 
+                window.print(); 
+                window.document.body.innerHTML=bdhtml; 
+            } else { 
+                window.print(); 
+            } 
+        } 
+    </script>
+</body>
+</html>

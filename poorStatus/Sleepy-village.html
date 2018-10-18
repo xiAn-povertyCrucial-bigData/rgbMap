@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>西安市扶贫“红黄绿”电子作战图新红村脱贫状态作战图</title>
+	<link rel="stylesheet" href="css/ryg.css">
+	<link rel="stylesheet" href="css/sleepy-village.css">
+	<link rel="stylesheet" href="css/style2.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/iconfont.js" ></script>
+	<script src="js/commer.js"></script>
+	<script src="js/common.js"></script>
+	<script type="text/javascript">
+		var countryName=null;
+		var villageName=null;
+		var villageCode=null;
+		/********************************************************请求参数截取************************************************************/
+		//截取Url里面的参数   
+		function GetRequest() {  
+		    var url = location.search; //获取url中"?"符后的字串 
+		    url=decodeURI(url);
+		    var theRequest = new Object();  
+		    if (url.indexOf("?") != -1) {  
+		        var str = url.substr(1);  
+		        //alert(str);  
+		        strs = str.split("&");  
+		        for (var i = 0; i < strs.length; i++) {  
+		            theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);//获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>，（unescape只针对数字，中文乱码)  
+		        }  
+		    }  
+		    return theRequest;  
+		}  
+		        
+		//通过url取数   
+        var data = new Object();  
+        data = GetRequest();  
+        countryName = data['county'] ; 
+        villageName = data['name'] ; 
+		villageCode = data['villageCode'] ;
+//		console.log(countryName) 
+//		console.log(villageName)
+//		console.log(villageCode)
+	</script>
+	<script>
+        
+		
+          /**************** 地图调用 ************************/
+        var gis = null;
+        function giscallback(type, param){
+            switch (type) {
+                case 'mapinit':
+                    // 地图初始化完成
+                    setTimeout(function(){
+                      gis.gisapp.zoom(countryName,villageName);   
+                    },1500)
+                    break;
+                case 'county_select':
+                    // 区域点击事件
+                    
+                    break;
+                case 'village_select':
+                    // 村点击事件
+                    var url = host + 'poor-village.html?county='+ param.county + '&name=' + param.village + '&villageCode=' + param.villagecode;
+              		window.location.href = url;
+                    break;
+                case 'city_show':
+                    break;
+                default:
+                    console.log(type +':' + param)
+                    break;
+            }
+        }
+
+        function gisready(){
+            gis = document.getElementById("mapService").contentWindow
+            gis.gisapp.init(giscallback); 
+        }
+    </script>
+</head>
+<body>
+	<div class="main">
+
+		<div class="main-title clearfix">
+			<p><span id="poor-village"></span>脱贫状态</p>
+		</div>
+		<div class="a-hrefs clearfix">
+			<a class="a-item home" href="City1.html"></a>
+			<a class="a-item return	" href="javascript:history.back(-1)"></a>
+		</div>
+		
+		<div id="con-left" style="width: 30.5%;height: 76%;margin-left: 10%;margin-top: 5%;">	
+		<div class="content-1 content">
+			<h3 class="c-title">贫困户情况统计</h3>					   			
+			<div class="echarts clearfix">
+				<div id="echarts-3" style="width: 95%;"></div>
+			</div>
+			<!--<svg class="icon icon1" aria-hidden="true" style="font-size: 12px;color: white;position: absolute;left: 98%;top: 42%;">
+			  <use xlink:href="#icon-dayuhao"></use>
+			</svg>-->
+		</div>
+		
+		<!--<div id="open">								
+			<div id="scroll-y" style="overflow-y: scroll;height:250px;">
+			<table width="98%" class="table" id="table0">  
+	        <thead>  
+	            <tr>  
+	                <th>  户主  </th>  			                 
+	                <th>  年龄  </th>  			                 
+	                <th>  家庭人数  </th>  			                 
+	                <th>  达标情况</th>  	
+	                <th>  致贫原因  </th> 
+	            </tr>  
+	        </thead>  
+	          			                 
+		   </table> 
+		   </div>
+		   <svg class="icon icon2" aria-hidden="true" style="font-size: 14px;color: white;position: absolute;left: 92%;top: 44%;">
+			  <use xlink:href="#icon-xiaoyu"></use>
+			</svg>
+		</div>-->
+		
+		<div class="content-2 content">
+			<h3 class="c-title">贫困户五项退出指标达标情况统计</h3>
+			<div class="echarts">
+				<div id="echarts-4"></div>
+			</div>
+		</div>
+		</div>
+		
+		<div class="wuxiang content">			
+			<div id="wuxiang-left">							    			    
+			    <div class="t-list">
+			    	<h3 class="c-title" style="text-indent: 0px;"><span id="huming"></span>五项退出指标达标情况 得分(<span id="hu-score"></span>)分</h3>
+			        <div class="itme-des active" >
+			        	<a class="t-item " style="position:absolute;left: 7px;" id="color1">
+			        		<div class="tubiao">
+				        		<img src="images/icon_8.png"/>
+				        	</div>
+				        	<div class="zhibiao">				        		
+				        		<p style="font-size: 20px;">人均纯收入(20分 得分<span id="hudefen1"></span>)</p><p >家庭年人均纯收入超过3070元</p>
+				        	</div>				        		
+			        	</a><span style="display: block;"></span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color2">
+			        		<div class="tubiao">
+				        		<img src="images/icon_4.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">有安全住房(20分 得分<span id="hudefen2"></span>)</p><p >有安全住房</p>				        		
+				        	</div>				        		
+			        	</a><span style="display: none;"></span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color3">
+			        	<div class="tubiao">
+				        		<img src="images/icon_5.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">无义务教育阶段辍学学生(20分 得分<span id="hudefen3"></span>)</p><p >无义务教育阶段辍学学生</p>
+				        	</div>				        	
+			        	</a><span style="display: none;"></span>
+			        </div>
+			        <div class="itme-des">
+			        	<a class="t-item " id="color4">
+			        		<div class="tubiao">
+				        		<img src="images/icon_6.png"/>
+				        	</div>
+				        	<div class="zhibiao">				        		
+				        		<p style="font-size: 20px;">新农合或大病保险(20分 得分<span id="hudefen4"></span>)</p><p >家庭成员全部参加新型农村合作医疗和大病保险</p>
+				        	</div>				        		
+			        	</a><span style="display: none;"></span>
+			        </div>			        
+			        <div class="itme-des">
+			        	<a class="t-item " id="color5">
+			        		<div class="tubiao">
+				        		<img src="images/icon_7.png"/>
+				        	</div>
+				        	<div class="zhibiao">
+				        		<p style="font-size: 20px;">有安全饮水(20分 得分<span id="hudefen5"></span>)</p><p >有安全饮水</p>
+				        	</div>	        		
+			        	</a><span style="display: none;"></span>
+			        </div>
+			        <div class="reason" id="reason0"> </div>
+			    </div>
+			</div>
+			<div id="wuxiang-right">
+				<h3 class="c-title">贫困户五项退出指标达标情况统计<span class="wuxiang-close" style="float: right;padding-right: 15px;">X</span></h3>				
+					<div id="scroll-y" style="overflow-y: scroll;height:330px;">
+					<table width="98%" class="table" id="table0">  
+			        <thead>  
+			            <tr>  
+			                <th>  户主  </th>  
+			                <th>  性别  </th>  
+			                <th>  年龄  </th>  			                 
+			                <th>  家庭人口  </th>  			                 
+			                <th>  达标情况</th>  			                 
+			            </tr>  
+			        </thead>  
+			         			                 
+			   </table> 
+			   </div>
+			</div>
+		</div>
+		
+		<div class="xiangqing content">			
+			<div id="xiangqing-left">							    			    			   
+			    <h3 class="c-title"><span id="titreason"></span>未达标原因</h3>    
+			    <div class="reason" id="wxreason"> </div>			   
+			</div>
+			<div id="xiangqing-right">
+				<h3 class="c-title">贫困户五项退出指标达标情况统计表<span class="xiangqing-close" style="float: right;padding-right: 15px;">X</span></h3>				
+					<div id="scroll-y" style="overflow-y: scroll;height:360px;">
+					<table width="98%" class="table" id="table1">  
+			        <thead>  
+			            <tr>  
+			                <th>  户主  </th>  
+			                <th>  性别  </th>  
+			                <th>  年龄  </th>  			                 
+			                <th>  家庭人口  </th>  			                 
+			                <th>  达标情况</th>  			                 
+			            </tr>  
+			        </thead>  
+			        		                 
+			   </table> 
+			   </div>
+			</div>
+		</div>
+		
+		<div class="map-content map-sleepy">			
+		    <iframe id="mapService" class="mapservice-sleepy" src="dist/index.html" frameborder="0"></iframe>            
+		</div>		
+	</div>
+	
+	<div id="zhezhao"></div>
+	
+</body>
+</html>
+
+<script src="js/echarts.js"></script>
+<script src="js/sleepy-village.js"></script>
+<script>
+
+var pieRadius=['50%', '62%'];
+var yHeight='38%';
+/****************************echarts-3*************************************/
+
+var p_list_span=$(".p-list .itme-des .t-item");
+    for (var i=0;i<p_list_span.length;i++) {
+			p_list_span[i].onclick=function(){					
+				$(".p-list .reason").html($(this).next('span').text());
+			};	
+    };
+
+  
+ $(".xiangqing-close").click(function(){
+ 	$('#zhezhao').hide();
+    	$(".xiangqing").css('display','none');
+    	$("#xiangqing-left").css('display','none')
+    	$("#xiangqing-right").css('display','block')
+    })
+ $('.icon1').click(function(){
+ 	$('#open').show(300);
+ })
+ $('.icon2').click(function(){
+ 	$('#open').hide(300);
+ })
+ 
+ for(var i=0; i<=$("#wuxiang-right table tr").length; i++){ 
+	   $("#wuxiang-right table tr").eq(i).find("td:first").click(function(){
+	   $("#wuxiang-left").css('display','block');
+	   });	   
+	  } 
+    $(".wuxiang-close").click(function(){
+    	$('#zhezhao').hide();
+    	$(".wuxiang").css('display','none');
+    	$("#wuxiang-left").css('display','none')
+    	$("#wuxiang-right").css('display','block')
+    })
+ var wuxiangspan=$("#wuxiang-left .t-list .itme-des");
+   for (var i=0;i<wuxiangspan.length;i++) {
+			wuxiangspan[i].onclick=function(){											
+				$("#wuxiang-left .reason").html($(this).children('span').text());
+			};	
+   }; 
+</script>

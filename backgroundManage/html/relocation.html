@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>乡村旅游信息</title> 
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <style>
+    	.form-01-add button{width: 100px;height: 34px;line-height:34px;font-size: 18px;background: #2698FB;color: white;display: block;text-align: center;margin:3% auto;border-radius: 6px}
+      	#xingzheng{
+      		float: left;
+		    width: 12.5%;
+		    height: 31px;
+		    line-height: 40px;
+		    display: inline-block;
+		    font-size: 16px;
+		    padding-left: 10px;
+      	}
+      	.form-x .form-group .label {
+		    width: 25%;		   
+		    line-height: 20px;		   
+		}
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+	
+	<div class="form-group" style="margin-bottom: 30px;">               
+        <div class="field1" style="margin-top: 15px;">               
+            <label id="xingzheng">行政区划：</label>	             
+            <select name="county" class="input w50">
+                <option value="">陕西省</option>
+            </select>
+            <select name="town" class="input w50">
+                <option value="">西安市</option>
+            </select>
+            <select name="village" class="input w50" id="country">
+                <option value="">县(区)</option>
+                <option value="610124000000">周至县</option>
+                <option value="610122000000">蓝田县</option>
+                <option value="610104000000">莲湖区</option>
+                <option value="610125000000">鄠邑区</option>
+                <option value="610116000000">长安区</option>
+                <option value="610103000000">碑林区</option>
+                <option value="610115000000">临潼区</option>                        
+                <option value="610112000000">未央区</option>
+                <option value="610102000000">新城区</option>
+                <option value="610111000000">灞桥区</option>
+                <option value="610113000000">雁塔区</option>
+                <option value="610126000000">高陵区</option>
+                <option value="610192000000">国际港务区</option>
+                <option value="610191000000">沣渭新区</option>
+                <option value="610114000000">阎良区</option>
+            </select>
+        </div>       
+    </div>
+	
+  <div>
+    <form id="formSubmit" class="form-x">
+      <div style="width:100%;border-bottom: 1px solid #b1bfd1;margin-bottom: 2%;" >
+      		<p class="form-01-p form-001-p" style="width: 20%;border-bottom: none !important;margin-bottom: 5px;">乡村旅游</p>
+      </div>  
+      <!--<div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>开展乡村旅游的贫困村数(个)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" data-validate="required:请输入姓名" placeholder="" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>乡村旅游游客接待量(万人次)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>-->
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>乡村旅游游客接待量(万人次)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>乡村旅游总收入(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+
+     
+      
+      <p class="form-01-p form-001-p">特色产业增收</p>
+      <!--<div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>农民专业合作组织数(个)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>有农民专业合作组织的行政村数(个)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>-->
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>有互助资金组织的行政村数(个)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>参加贫困村互助资金组织户数(户)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>互助资金借款户数(户)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>贫困户借款户数(户)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>互助资金累计借款人次(人次)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>互助资金累计发放借款(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>贫困户借款(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>互助资金累计还款(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>贫困户还款(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>农业、林业部门资金投入(万元) ：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>农林部门中央资金投入(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>农林部门省级资金投入(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>农林部门市县资金投入(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>农村青年创业小额贷款(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>妇女小额担保贷款(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>残疾人康复扶贫贷款(万元)：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+    </form>
+    </div>
+		<div class="form-01-add">
+	    <button id="add">提交</button>
+  </div>
+  </div>
+</div>
+</body>
+
+<script type="text/javascript">
+	
+	var k = [];
+ 	var i = 0;
+	var country=$('#country')
+ $("#add").click(function(){
+ 	      
+    	$("input").each(function(){
+		  //k[i] = $(this).eq(i).val();
+		  i++;
+		  k.push($(this).val())
+		  
+		})
+    	//console.log(k)
+	
+    $.ajax({
+        url:url+"addfpdx/addTour/query",       
+        data:{'aae001':country.val(),'aae362':k[0],'aae364':k[1],'aae343':k[2],'aae344':k[3],'aae345':k[4],
+        'aae346':k[5],'aae347':k[6],'aae348':k[7],'aae349':k[8],'aae350':k[9],'aae351':k[10],'aae352':k[11],
+        'aae353':k[12],'aae354':k[13],'aae355':k[14],'aae356':k[15],'aae357':k[16],'aae358':k[17]},
+        type:"get", 
+        dataType:"json",
+        success: function(data){
+            if (data.code == 2000){
+            alert ("添加成功");
+            }else{
+            alert("添加失败");
+            }
+        }
+    
+    })
+    
+})
+	
+</script>
+
+</html>

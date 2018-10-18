@@ -1,0 +1,568 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困县</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+  <!--  <link rel="stylesheet" href="../css/bootstrap.css" />-->
+   <!-- <link rel="stylesheet" href="../css/multiple-select.css" />-->
+    <link href="../css/multiple-select.css" rel="stylesheet"/>
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/multiple-select.js"></script>
+    <script src="../js/selectCounty.js"></script>
+    <script src="../js/showPoveryCountries.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr th{height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table tr td{height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        /*.form-04 table tr td {width:11%}*/
+        .form-01 table tr td a{
+            display: inline-block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+        }
+        .form-01 table tr td a:first-child{
+            background: #229ffd;
+        }
+        .form-01 table tr td a:last-child{
+            background: #ff7680;
+        }
+        .marginR{
+            margin-right: 14px;
+        }
+        .black_overlay{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index:1001;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=88);
+        }
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 55%;
+            height: 30%;
+            padding: 20px;
+            border: 5px solid #ccc;
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr th{height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table tr td{height: 30px;border: 1px solid #d2d2d2;line-height: 30px;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-05{display: none}
+        .form-04 table tr td {width:11%}
+        .no-pass{color: #ee3333}
+        .form-01 table tr td a{
+            display: inline-block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+        }
+        .form-01 table tr td a:first-child{
+            background: #229ffd;
+        }
+        .form-01 table tr td a:last-child{
+            background: #ff7680;
+        }
+        .marginR{
+            margin-right: 14px;
+        }
+        .black_overlay{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index:1001;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=88);
+        }
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 55%;
+            height: 30%;
+            padding: 20px;
+            border: 5px solid #ccc;
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
+        .drzb>li{
+            list-style: none;
+            width: 100%;
+            float: left;
+        }
+        .jbqk>li,.wgqk>li{
+            width: 38%;
+            float: left;
+            list-style: none;
+            height: 35px;
+            line-height: 35px;
+            margin-right: 100px;
+        }
+        .jbqk>li label,.wgqk>li label{
+            width: 44%;
+            display: inline-block;
+            margin-left: 10px;
+            cursor: default;
+        }
+        .jbqk>li input,.wgqk>li input{
+            width: 46%;
+            border: 1px solid #c9d7e0;
+            background-color: #fff;
+            padding: 3px 0;
+            border-radius: 3px;
+            vertical-align: middle;
+            outline: 0;
+            color: #555;
+            font-size: 12px;
+            margin-right: 3px;
+            text-indent: 10px;
+            margin-left: 5px;
+            height: 24px;
+        }
+        .jbqk>li select,.wgqk>li select{
+            width: 46%;
+            border: 1px solid #c9d7e0;
+            background-color: #fff;
+            padding: 3px 0;
+            border-radius: 3px;
+            vertical-align: middle;
+            outline: 0;
+            color: #555;
+            font-size: 12px;
+            margin-right: 3px;
+            text-indent: 10px;
+        }
+        .btn_blue1{
+            color: #fff;
+            background: #428bca;
+            border: 1px solid #2698FB;
+            width: 70px;
+            text-align: center;
+            margin: 10px;
+            border-radius: 3px;
+        }
+        .btn_orange1{
+            color: #fff;
+            background: #f0ad4e;
+            border: 1px solid #FFAC37;
+            width: 50px;
+            text-align: center;
+            margin: 10px;
+            border-radius: 3px;
+        }
+        .zbclick,.zbclick1{
+            text-indent: 10px;
+            background: #00aaee;
+            color: white;
+        }
+        .xixian dt dl{
+        	float: left;
+        	width: 100px;
+        	text-align: center;
+        	margin-left: 15px;
+        }
+        .active{background: #70c1ff!important;color: #fff!important;border-radius: 12px;}
+
+        #person{
+			width:100%;
+		}
+		#input{
+			border:none;
+			margin-left: 10px;
+		}
+		input[type="button"]{
+			margin-left: 10px;
+			}
+		#show{	
+			margin-top:10px;
+			margin-bottom: 20px;
+			border-collapse:collapse;  
+			width: 100%;
+		}
+		#show tr th, #show tr td{
+			border: 1px solid black;
+			}
+		#show tr input{
+			border:none;
+			}
+		#selectFind{
+			margin-right: 30px; 
+			padding: 0px auto; 
+			margin-bottom: 10px;
+		}
+		#selectFind select{
+				margin-right: 20px;
+				width: 120px;
+		}
+		#selectFind label{
+			margin-right: 10px;
+		}
+		#empty,#delete,#add{
+			width: 100px;
+			height: 24px;
+			line-height: 24px;
+			background-color: #2f8ee5;
+			color:#fff;
+			border: none;
+			border-radius: 2px;
+			margin-left: 30px;
+		}
+		#add{
+			margin-left: 80px;
+		}
+		span{cursor: pointer};
+		/*加载动画*/
+        #spinner {
+            margin: 5% auto;
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+        .container1 > div, .container2 > div, .container3 > div {
+            width: 14px;
+            height: 14px;
+            background-color: #858585;
+            border-radius: 100%;
+            position: absolute;
+            -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+            animation: bouncedelay 1.2s infinite ease-in-out;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        .spinner .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .container2 {
+            -webkit-transform: rotateZ(45deg);
+            transform: rotateZ(45deg);
+        }
+        .container3 {
+            -webkit-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+        }
+        .circle1 { top: 0; left: 0; }
+        .circle2 { top: 0; right: 0; }
+        .circle3 { right: 0; bottom: 0; }
+        .circle4 { left: 0; bottom: 0; }
+        .container2 .circle1 {
+            -webkit-animation-delay: -1.1s;
+            animation-delay: -1.1s;
+        }
+        .container3 .circle1 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+        .container1 .circle2 {
+            -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s;
+        }
+        .container2 .circle2 {
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+        }
+        .container3 .circle2 {
+            -webkit-animation-delay: -0.7s;
+            animation-delay: -0.7s;
+        }
+        .container1 .circle3 {
+            -webkit-animation-delay: -0.6s;
+            animation-delay: -0.6s;
+        }
+        .container2 .circle3 {
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        }
+        .container3 .circle3 {
+            -webkit-animation-delay: -0.4s;
+            animation-delay: -0.4s;
+        }
+        .container1 .circle4 {
+            -webkit-animation-delay: -0.3s;
+            animation-delay: -0.3s;
+        }
+        .container2 .circle4 {
+            -webkit-animation-delay: -0.2s;
+            animation-delay: -0.2s;
+        }
+        .container3 .circle4 {
+            -webkit-animation-delay: -0.1s;
+            animation-delay: -0.1s;
+        }
+        @-webkit-keyframes bouncedelay {
+            0%, 80%, 100% { -webkit-transform: scale(0.0) }
+            40% { -webkit-transform: scale(1.0) }
+        }
+        @keyframes bouncedelay {
+            0%, 80%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 40% {
+                  transform: scale(1.0);
+                  -webkit-transform: scale(1.0);
+              }
+        }
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>扶贫对象-贫困县(涉贫县)</strong><a href="addPoveryCountries.html" class="button border-main icon-plus-square-o">添加内容</a><div class="data_tracking">
+      <!--<a href="" class="button border-main marginR" id="btn-orange">导入</a>--><span class="button border-main marginR" id="btn-orange dataImport">导出</span><a href="County_data_tracking.html" class="button border-main">数据追踪</a></div></div>
+      <div class="form-01"> 
+        <div class="search searchs" style="display: block;">
+              <div>
+                  <label for="">行政区划</label>
+                  <input type="text" value="陕西省" disabled>
+                  <!--<input type="text" value="西安市" disabled>-->
+                  <select name="" id="p_shi">
+                  </select>
+                  <select name="" id="p_qv">
+                  </select>
+                  <select  id="p_year">
+                    	<option value="">年度</option>
+                    	<option value="201808">2018年</option>
+                    	<option value="201712">2017年</option>
+                    	<option value="2017">2016年</option>
+                        <option value="2016">2015年</option>
+                        <option value="2015">2014年</option>                 
+                  </select>
+              </div>
+              <div>
+         	  <div class="form-group">
+                      <label for="">县属性</label>
+                      <select id="p_shuxing">
+                          <option value="">--请选择--</option>
+                          <option value="01">国家重点县</option>
+                          <option value="02">片区规划县</option>
+                          <option value="03">省级重点县</option>
+                          <option value="04">非贫困县</option>
+                          <option value="99">其他</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="">是否摘帽</label>
+                      <select name=""  id="p_zhaimao">
+                          <option value="">--请选择--</option>
+                          <option value="0">否</option>
+                          <option value="1">是</option>                         
+                      </select>
+                  </div>
+              </div>
+          </div>
+      </div>
+  <div class="form-01">
+      <div class="con" id="con" style="width: 100%;height: auto;overflow:scroll;display: none;">
+          <div style="width: 100%;float: left; ">
+              <!--<p class="zbclick">基本情况查询 <span>+</span></p>-->
+              <div id="person" >
+			  <div id="selectFind">  
+				<label>指标类型</label><select id="cmbProvince" name="cmbProvince"></select>    
+				<label>操作符</label><select id="cmbCity" name="cmbCity"></select>    
+				<label>指标值</label><select id="cmbArea" style="width:120px;height:21px;"  name="cmbArea"></select>    
+				<input id="input" style="width:80px;height:16px;margin-left:-140px;"  type="text" value="全选" />  
+				<input id = "add" type="button" value="添加条件"> 
+				<input id = "delete" type="button" value="删除条件"> 
+				<input id = "empty" type="button" value="清空条件"> 
+				<input type="text" style="display:none" value="详" onblur="if(this.value=''){this.value=''}" onfocus="if(this.value=''){this.value='';this.style.color='#ff0000'}">  
+			 </div>
+			 <table id="show" style="display: none">
+				<tbody>
+				<tr>
+					<th>序号</th>
+					<th>指标类型</th>
+					<th>操作符</th>
+					<th>指标值</th>
+				</tr>
+				<tr>
+						<td class="td"></td>
+						<td class="p"><input type="" name=""></td>
+						<td class="c"><input type="" name=""></td>
+						<td class="a"><input type="" name=""></td>
+				</tr>
+				</tbody>
+				</table>
+		</div>
+          </div>
+      </div>
+      <div>
+          <input type="button" class="btn_orange1" style="float: right" name="" value="查询">
+          <input type="button" class="btn_blue1" style="float: right" name="" value="重置条件"/>
+      </div>
+      <div class="spinner" style="display: none;z-index: 999;margin: 5% auto;width: 80px;height: 80px;position: relative;">
+	          <div class="spinner-container container1">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	          <div class="spinner-container container2">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	          <div class="spinner-container container3">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	    </div>
+      <!--数据渲染-->
+      <table id="formSubmit2" style="border-collapse: collapse">
+      </table>
+      <div class="pages">
+          <div class="paging" style="width:100%;height:40px;">
+             <div class="searchPage" style="float: none;text-align: center;">
+                  <!--<span class="page-sum">共<strong class="allPage">15</strong>页</span>-->
+				  <span id="total" style="margin:0 auto;">贫困县(涉贫县)总数：</span>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<script>
+    $(document).ready(function(){
+    	 let token=$.cookie("token");
+        var pageCount = 1500;   //总记录数
+        var pageSize = 12;
+        $("#Pagination").pagination(pageCount,{
+             callback:PageCallback,         //pageCallback() 为翻页调用函数
+             items_per_page:pageSize,                //每页显示条目数
+             num_display_entries: 4,                //连续分页显示分页条目数
+             num_edge_entries: 1          //两侧显示的首尾分页的条目数
+        });
+        //ajax分页请求,page_index :页码
+        function PageCallback(page_index,jq){
+            console.info(page_index);
+            page_init(page_index);      //第一页为0
+        }
+
+        function page_init(index) {
+            $.ajax({
+                url:"",
+                type:"post",
+                data:{},
+                beforeSend:function(request){
+	                  request.setRequestHeader("Authorization",token);
+	                  request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+	              },
+                dataType:"json",
+                success:function (data) {
+                    //表单渲染
+                },
+                error:function () {
+                }
+            })
+        }
+
+})
+    /**
+     * 清空按钮
+     */
+    $(".btn_blue1").on("click",function () {
+        $(".zbshow select").each(function () {
+         $(this).find("option").eq(0).prop("selected",true);
+        });
+        $(".zbshow input").each(function () {
+            $(this).val("");
+        });
+        $(".zbshow1 select").each(function () {
+            $(this).find("option").eq(0).prop("selected",true);
+        });
+        $(".zbshow1 input").each(function () {
+            $(this).val("");
+        });
+    });
+    /**
+     *  ajax查询
+    */
+    $(".btn_orange1").on("click",function () {
+       /* 获取表单查询条件*/
+    });
+
+     /**
+     * 筛选条件展开
+     */
+    $(".pack_up").click(function () {
+        //$(".search").toggle();
+        $(".pack_up").text($(".pack_up").text()=="展开+"?"收起-":"展开+");
+        $("#con").toggle(500);
+    })
+    $(".xixian dt >dl:nth-child(2)").siblings().click(function(){
+               $(this).parent().children(':nth-child(2)').removeClass("active");
+               $(this).toggleClass("active");
+              //给点击对象添加类
+      });
+     $(".xixian dt >dl:nth-child(2)").click(function(){
+         	$(this).toggleClass("active")
+       		$(this).siblings().removeClass('active');
+       		if ($(".xixian dt ").children().hasClass("active")) {
+       			$(":checkbox").attr("checked",true);
+       		} else{
+       			$(":checkbox").attr("checked",false);
+       		}
+       })
+    $(":checkbox").change(function () {
+    if($(this).is(':checked')){
+        $(this).parent().parent().parent().children(':nth-child(2)').addClass("active");
+    }
+});
+</script>
+</body>
+</html>

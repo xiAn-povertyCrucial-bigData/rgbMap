@@ -1,0 +1,545 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>易地搬迁</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/tooltips.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/messages_zh.min.js"></script>
+    <script src="../js/additional-methods.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>易地搬迁</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+  <div class="form-01">
+    <form id="formSubmit" class="form-x">
+      <input name="identification" type="hidden" value="industrySupport">
+      <!--*************************************基本信息*********************************************-->
+      <p class="form-01-p">基本信息</p>
+      <div class="basic">
+        <!--**************************第一行*****************************************-->
+        <div class="form-group">
+          <div class="label">
+            <label>行政区划：</label>
+          </div>
+          <div class="field">
+            <select name="county" class="input w50">
+              <option value="">陕西省</option>
+            </select>
+            <select name="town" class="input w50">
+              <option value="">西安市</option>
+            </select>
+            <select name="village" class="input w50" id="country">
+
+            </select>
+            <select name="village" class="input w50" id="township">
+              <option value="">请选择</option>
+            </select>
+            <select name="village" class="input w50" id="village">
+              <option value="">请选择</option>
+            </select>
+          </div>
+          <div class="tips"></div>
+        </div>
+        <div id="" class="form-x">
+          <p class="form-01-p form-001-p">基本信息</p>
+          <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label">
+                <label>户主姓名：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="name" id="formD"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label" style="width: 20%;">
+                <label>户主身份证号：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="idNumber" id="formE"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label">
+                <label>集中安置：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="" id="formF"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label">
+                <label>分散安置：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="" id="formG"/>
+                </div>
+                <div class="tips"></div>
+              </div>
+            </div>
+        <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label">
+                <label>是否开工：</label>
+              </div>
+              <div class="field1 label" style="width: 20%;">
+                <div class="arrangeMent">
+                  <li><input type="radio" name="formH" value="是"><label for="">是</label></li><li><input type="radio" name="formH" value="否"><label for="">否</label></li></div>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label">
+                <label>开工时间：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="" id="formI"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+          </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否竣工：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+              <li><input type="radio" name="formJ" value="是"><label for="">是</label></li><li><input type="radio" name="formJ" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>竣工时间：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <input type="text" class="input w51" value="" name="" id="formK"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否验收：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+              <li><input type="radio" name="formL" value="是"><label for="">是</label></li><li><input type="radio" name="formL" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>验收时间：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="" id="formM"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否入住：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formN" value="是"><label for="">是</label></li><li><input type="radio" name="formN" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>入住时间：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="" id="formO"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>住房面积（M2）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number" id="formP"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>建房补助（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number2" id="formQ"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="left">
+            <div class="label label2">
+              <label>个人自筹（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="number3" id="formR"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否交钥匙：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formX" value="是"><label for="">是</label></li><li><input type="radio" name="formN" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>交钥匙时间：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="" id="formY"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+        <div class="left">
+          <div class="label">
+            <label>备注：</label>
+          </div>
+          <div class="field1">
+            <input type="text" class="input w51" value="" name="" id="formW"/>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="right">
+
+        </div>
+      </div>
+        <div class="form-group" style="text-align: center;margin-top: 20px;">
+          <input class="submit bg-main icon-check-square-o button" type="submit" value="保存">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+<script>
+  $(document).ready(function(){
+      let url=config.url;
+      /*区划选择渲染*/
+      let county=$("#country");
+      let township=$("#township");
+      let cunship=$("#village");
+      let years=$("#year");
+      let token=$.cookie("token");
+      /*页面初始化调用*/
+      let obj=JSON.parse($.cookie('loginMessage'));
+      let aar008=obj.aar008;
+      tianqu();
+      county.change(function(){
+          tianzhen();
+          tiancun();
+      })
+      township.change(function(){
+          tiancun();
+      })
+      function tianqu(){
+          $.ajax({
+              url: url+"/background/helpmeasures/relocation/init",
+              data:{"aar008":aar008},
+              async:false,
+              method:"post",
+              type:"json",
+              success:function(data){
+                  if(data.code === 2000){
+                      // showCounty(county,data.data.area);  //行政区划
+                      showYear(years,data.data.year)   //年份
+                      let type=data.data.type;
+                      if(type==1){
+                          showCounty(county,data.data.area);
+                      }else if(type==2){
+                          showFixed(county,data.data.q);
+                          tianzhen();
+                      }else if(type==3){
+                          showFixed(county,data.data.q);
+                          showFixed(township,data.data.x);
+                          tiancun();
+                      }else if(type==4){
+                          showFixed(county,data.data.q);
+                          showFixed(township,data.data.x);
+                          showFixed(cunship,data.data.c);
+                      }
+                  }
+              }
+          })
+      }
+      function tianzhen(){
+          var countyName=$("#country").val();
+          $.ajax({
+              url: url+"/background/helpmeasures/common/arealist",
+              data:{"aaa113":countyName},
+              async:false,
+              method:"post",
+              type:"json",
+              success:function(data){
+                  if(data.code === 2000){
+                      showCounty(township,data.data);
+                  }
+              }
+          })
+      }
+      function tiancun(){
+          var townName=$("#township").val();
+          $.ajax({
+              url: url+"/background/helpmeasures/common/arealist",
+              data:{"aaa113":townName},
+              async:false,
+              method:"post",
+              type:"json",
+              success:function(data){
+                  if(data.code === 2000){
+                      showCounty(cunship,data.data);
+                  }
+              }
+          })
+      }
+      function showCounty(obj,data){
+          obj.empty();
+          let str=`<option value="">请选择</option>`;
+          for(let i=0;i<data.length;i++){
+              str+=`
+                 <option value="${data[i]['AAR008']}">${data[i]['AAR009']}</option>
+                `;
+          }
+          obj.html(function(i,value){
+              return value+str;
+          })
+      }
+      function showFixed(obj,data){
+          obj.empty();
+          let str=`
+                 <option value="${data.AAR008}">${data.AAR009}</option>
+                `;
+          obj.html(str);
+      }
+      /*年份渲染函数*/
+      function showYear(obj,data){
+          obj.empty();
+          let str=``;
+          for(let i=0;i<data.length;i++){
+              str+=`
+                 <option value="${data[i]}">${data[i]}</option>
+                `;
+          }
+          obj.html(function(i,value){
+              return value+str;
+          })
+      }
+      /*点击添加内容*/
+      $(".submit").click(function(){
+          let formA=$("#country").val();
+          let formA1=$("#country option:selected").text();
+          let formB=$("#township").val();
+          let formB1=$("#township option:selected").text();
+          let formC=$("#village").val();
+          let formC1=$("#village option:selected").text();
+          let formD=$("#formD").val().replace(/\s+/g,"");
+          let formE=$("#formE").val().replace(/\s+/g,"");
+          let formF=$("#formF").val().replace(/\s+/g,"");
+          let formG=$("#formG").val().replace(/\s+/g,"");
+          let formH=getRadioButtonCheckedValue("formH");
+          let formI=$("#formI").val().replace(/\s+/g,"");
+          let formJ=getRadioButtonCheckedValue("formJ");
+          let formK=$("#formK").val().replace(/\s+/g,"");
+          let formL=getRadioButtonCheckedValue("formL");
+          let formM=$("#formM").val().replace(/\s+/g,"");
+          let formN=getRadioButtonCheckedValue("formN");
+          let formO=$("#formO").val().replace(/\s+/g,"");
+          let formP=$("#formP").val().replace(/\s+/g,"");
+          let formQ=$("#formQ").val().replace(/\s+/g,"");
+          let formR=$("#formR").val().replace(/\s+/g,"");
+          let formX=getRadioButtonCheckedValue("formX");
+          let formY=$("#formY").val().replace(/\s+/g,"");
+          let formW=$("#formW").val();
+          /*获取input类型为radio的选中值*/
+          function getRadioButtonCheckedValue(tagNameAttr){
+              var radio_tag = document.getElementsByName(tagNameAttr);
+              for(var i=0;i<radio_tag.length;i++){
+                  if(radio_tag[i].checked){
+                      var checkvalue = radio_tag[i].value;
+                      return checkvalue;
+                  }
+              }
+          }
+          /*验证表单*/
+          $.validator.setDefaults({
+              submitHandler: function() {
+                  alert("确认添加");
+              }
+          });
+          /*户主姓名自定义校验*/
+          jQuery.validator.addMethod("isName", function(value, element) {
+              return this.optional(element) || /^[\u4E00-\u9FA5]{1,6}$/.test(value);
+          }, "请输入正确的户主姓名");
+          /*身份证号自定义校验*/
+          jQuery.validator.addMethod("isIdCardNo", function(value, element) {
+              //var idCard = /^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/;
+              return this.optional(element) || isIdCardNo(value);
+          }, "请输入正确的身份证号码");
+          //身份证验证
+          function isIdCardNo(num){
+              //if (isNaN(num)) {alert("输入的不是数字！"); return false;}
+              var len = num.length, re;
+              if (len == 15)
+                  re = new RegExp(/^(\d{6})()?(\d{2})(\d{2})(\d{2})(\d{2})(\w)$/);
+              else if (len == 18)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/);
+              else if (len == 20)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)(\d{2})$/);
+              else if (len == 22)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\d{3})(\w)(\d{1})$/);
+              else {
+                  //alert("输入的数字位数不对。");
+                  return false;
+              }
+              var a = num.match(re);
+              if (a != null)
+              {
+                  if (len==15)
+                  {
+                      var D = new Date("19"+a[3]+"/"+a[4]+"/"+a[5]);
+                      var B = D.getYear()==a[3]&&(D.getMonth()+1)==a[4]&&D.getDate()==a[5];
+                  }
+                  else
+                  {
+                      var D = new Date(a[3]+"/"+a[4]+"/"+a[5]);
+                      var B = D.getFullYear()==a[3]&&(D.getMonth()+1)==a[4]&&D.getDate()==a[5];
+                  }
+                  if (!B) {
+                      //alert("输入的身份证号 "+ a[0] +" 里出生日期不对。");
+                      return false;
+                  }
+              }
+              if(!re.test(num)){
+                  //alert("身份证最后一位只能是数字和字母。");
+                  return false;
+              }
+              return true;
+          }
+          /*数量自定义校验*/
+          jQuery.validator.addMethod("isDigits", function(value, element) {
+              return this.optional(element) || /^\d+$/.test(value);
+          }, "只能输入整数");
+          /*数值自定义校验*/
+          jQuery.validator.addMethod("isIntGteZero", function(value, element) {
+              value=parseInt(value);
+              return this.optional(element) || value>=0;
+          }, "请输入正确的数值");
+
+          $("#formSubmit").validate({
+              rules:{
+                  name:{
+                      required:true,
+                      minlength:2,
+                      isName:true
+                  },
+                  idNumber:{
+                      required:true,
+                      minlength:18,
+                      isIdCardNo:true
+                  },
+                  number:{
+                      isIntGteZero:true
+                  },
+                  number2:{
+                      isIntGteZero:true
+                  },
+                  number3:{
+                      isIntGteZero:true
+                  }
+              },
+              submitHandler:function(){
+                  /*ajax校验数据是否重复*/
+                  if(formE.val!==""){
+                      $.ajax({
+                          url: url+"/background/helpmeasures/relocation/check",
+                          data:{"formE":formE},
+                          method:"post",
+                          type:"json",
+                          success:function(data){
+                              if(data.code === 2000){
+									$.ajax({
+					                      url: url+"/background/helpmeasures/relocation/add",
+					                      data:{"formA":formA1,"formB":formB1,"formC":formC1,"formD":formD,"formE":formE,"formF":formF,"formG":formG,"formH":formH,"formI":formI,"formJ":formJ,"formK":formK,"formL":formL,"formM":formM,"formN":formN,"formO":formO,"formP":formP,"formQ":formQ,"formR":formR,"formX":formX,"formY":formY,"formW":formW},
+					                      method:"post",
+					                      type:"json",
+					                      beforeSend:function(request){
+					                          request.setRequestHeader("Authorization",token);
+					                          request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+					                      },
+					                      success:function(data){
+					                          if(data.code === 2000){
+					                             
+					                              show_msg('添加成功','show_relocation_within.html');
+					                          }else{
+					                              alert(data.message);
+					                          }
+					                      }
+					                  })
+                              }else{
+                              	alert(data.message)
+                              }
+                          }
+                      })
+                  }
+                  
+              },
+              messages:{
+                  name:{
+                      required:"请输入姓名",
+                      minlength:"请输入最少两位字符",
+                  },
+                  idNumber:{
+                      required:"请输入身份证号码",
+                      minlength:"请输入18/20/22位字符",
+                  },
+              }
+          })
+      })
+  })
+</script>
+</html>

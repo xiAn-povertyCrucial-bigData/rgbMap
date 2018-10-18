@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>贫困人口身体健康情况</title>
+        <script src="../js/echarts.js"></script>
+        <script src="../js/commer.js"></script>
+        <link rel="stylesheet" href="../css/pintuer.css">
+        <link rel="stylesheet" href="../css/admin.css">
+        <style>
+            body,html,.container{
+                width:99%;
+                height: 98%;
+                font-family: "arial rounded mt bold";
+                font-size: 12px;
+            }
+            .container{display: flex;align-items: center;height: 100%;}
+            #pieElsePoverty,#barElsePoverty{width: 100%;height: 80%;}
+        </style>
+    </head>
+    <body>
+        <div class="panel admin-panel admin-panel1">
+        <div class="panel-head"><strong><span class="icon-key"></span> 贫困人口身体健康状况</strong></div>
+    
+    <input class="btn button" id="btnPrint" type="button" value="打印预览" onclick='preview(1)' /> 
+    <input class="btn button" id="btnPrint" type="button" value="打印" onclick="javascript:window.print();" /> 
+
+        <div class="container">
+          <div id="pieElsePoverty"></div>
+          <div id="barElsePoverty"></div>
+        </div>
+        </div>
+        <script type="text/javascript">
+          var pieElsePovertyChart=echarts.init(document.getElementById("pieElsePoverty"));
+          var pieElsePovertyOption = {
+              tooltip : {
+                  trigger: 'item',
+                  formatter: "{a} <br/>{b} : {c}人 ({d}%)"
+              },
+              legend: {
+                  left: 'center',
+                  data: ['健康','长期慢性病','患有大病','残疾'],
+                  textStyle: {
+                      fontSize:16,
+                  }
+              },
+              series : [
+                  {
+                      name: '贫困人口身体健康情况',
+                      type: 'pie',
+                      radius : '55%',
+                      center: ['50%', '60%'],
+                      label:{fontSize:16},
+                      data:[
+                          {value:28475, name:'健康'},
+                          {value:9438, name:'长期慢性病'},
+                          {value:1678, name:'患有大病'},
+                          {value:11407, name:'残疾'}
+                      ],
+                      itemStyle: {
+                          emphasis: {
+                              shadowBlur: 10,
+                              shadowOffsetX: 0,
+                              shadowColor: 'rgba(0, 0, 0, 0.5)'
+                          }
+                      }
+                  }
+              ],
+              color: ['#39A2B2','#20B8B4','#68E39D','#F9CF86']
+          };
+          pieElsePovertyChart.setOption(pieElsePovertyOption);
+
+           /**************************************堆积柱状图**************************************/
+          var barElsePovertyChart=echarts.init(document.getElementById("barElsePoverty"));                
+          var barElsePovertyOption = {
+              tooltip: {
+                  formatter: "{a} <br/>{b}: {c}人" // 这里是鼠标移上去的显示数据
+              },
+              legend: {
+                  data: ['健康','长期慢性病','患有大病','残疾'],
+                  textStyle: {
+                      fontSize:16,
+                  }
+              },    
+              calculable : true,
+              xAxis : [
+                  {
+                      type : 'category',
+                      axisLabel: {
+                          interval:0,
+                          rotate:40,
+                          textStyle:{
+                              fontSize:16
+                          }
+                      },
+                      data : ['周至县','蓝田县','鄠邑区','长安区','临潼区','西咸新区','灞桥区','高陵区','国际港务区','阎良区'],
+                  }
+              ],
+              yAxis : {
+                  type: 'value',
+                  max: 20000,
+                  name:'(人)',
+                  axisLabel:{
+                      textStyle:{
+                          fontSize:'16'
+                      }
+                  },
+                  splitLine: {
+                      show: true,
+                      lineStyle: {
+                          color: ['#B1C0D2']
+                      }
+                  },
+              },
+              series : [
+                  {
+                      name:'健康',
+                      type:'bar',
+                      barWidth : 40,
+                      stack: '广告',
+                      data:[10028,9381,3414,2428,1528,994,423,241,38,20]
+                  },
+                  {
+                      name:'长期慢性病',
+                      type:'bar',
+                      barWidth : 15,
+                      stack: '广告',
+                      data:[2784,2772,1265,925,785,559,207,107,34,14]
+                  },
+                  {
+                      name:'患有大病',
+                      type:'bar',
+                      barWidth : 15,
+                      stack: '广告',
+                      data:[478,472,206,211,98,157,43,9,4,1]
+                  },
+                  {
+                      name:'残疾',
+                      type:'bar',
+                      barWidth : 15,
+                      stack: '广告',
+                      data:[2990,2504,1405,2015,1276,620,298,238,61,20]
+                  }
+              ],
+        color: ['#39A2B2','#20B8B4','#68E39D','#F9CF86']
+          };
+          barElsePovertyChart.setOption(barElsePovertyOption);
+
+           function preview(oper) { 
+            // $('input:eq(0)').hide();
+            // $('input:eq(1)').hide();
+            if (oper < 10) { 
+                bdhtml=window.document.body.innerHTML;//获取当前页的html代码 
+                sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域 
+                eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域 
+                prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html 
+                 
+                prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html 
+                window.document.body.innerHTML=prnhtml; 
+                window.print(); 
+                window.document.body.innerHTML=bdhtml; 
+            } else { 
+                window.print(); 
+            } 
+        } 
+        </script>
+    </body>
+</html>

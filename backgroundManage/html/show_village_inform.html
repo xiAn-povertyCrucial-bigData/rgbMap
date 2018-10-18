@@ -1,0 +1,747 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困村统计</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <!--<link rel="stylesheet" href="../css/multiple-select.css" />-->
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../js/commer.js"></script>
+    <!--<link rel="stylesheet" href="../css/table.css" />-->
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <!--<script src="../js/inputJavaScript.js"></script>-->
+    <script src="../js/jquery.pagination.js"></script>
+	<script src="../js/show_village_inform.js"></script>
+    <style>
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;/*border: 1px solid #000000*/}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr th{height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table tr td{height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .marginR{
+            margin-right: 14px;
+        }
+     
+         .black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 55%; 
+            height: 30%; 
+            padding: 20px; 
+            border: 5px solid #ccc; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        }    
+        .form-02{width: 100%;height: 100%;margin-top: 10px}
+        .form-05{display: none}
+        .form-04 table tr td {width:11%}
+        .no-pass{color: #ee3333}
+        .form-01 table tr td a{
+            display: inline-block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+        }
+        .form-01 table tr td a:first-child{
+            background: #229ffd;
+        }
+        .form-01 table tr td a:last-child{
+            background: #ff7680;
+        }
+        .marginR{
+            margin-right: 14px;
+        }
+        .black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 55%; 
+            height: 30%; 
+            padding: 20px; 
+            border: 5px solid #ccc; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        } 
+        .drzb>li{
+				list-style: none;
+				width: 100%;
+				float: left;
+			}
+			.jbqk>li,.wgqk>li{
+				width: 38%;
+				float: left;
+				list-style: none;
+				height: 35px;
+				line-height: 35px;	
+                margin-right: 100px;			
+			}
+			.jbqk>li label,.wgqk>li label{
+				width: 44%;
+				display: inline-block;
+				margin-left: 10px;
+				cursor: default;
+			}
+			.jbqk>li input,.wgqk>li input{
+				width: 46%;
+				border: 1px solid #c9d7e0;
+			    background-color: #fff;
+			    padding: 3px 0;
+			    border-radius: 3px;
+			    vertical-align: middle;
+			    outline: 0;
+			    color: #555;
+			    font-size: 12px;
+			    margin-right: 3px;
+			    text-indent: 10px;
+			    margin-left: 5px;
+                height: 24px;
+			}
+			.jbqk>li select,.wgqk>li select{
+				width: 46%;
+				border: 1px solid #c9d7e0;
+			    background-color: #fff;
+			    padding: 3px 0;
+			    border-radius: 3px;
+			    vertical-align: middle;
+			    outline: 0;
+			    color: #555;
+			    font-size: 12px;
+			    margin-right: 3px;
+			    text-indent: 10px;
+			}
+			#btn_blue1{
+				color: #fff;
+			    background: #428bca;
+			    border: 1px solid #2698FB;
+			    width: 70px;
+			    text-align: center;
+			    margin: 10px;
+			    border-radius: 3px;
+				text-indent: 0;
+			}
+			#btn_orange1{
+				color: #fff;
+			    background: #f0ad4e;
+			    border: 1px solid #FFAC37;
+			    width: 50px;
+			    text-align: center;
+			    margin: 10px;
+			    border-radius: 3px;
+				text-indent: 0;
+			}
+			.zbclick,.zbclick1{
+				text-indent: 10px;
+				background: #00aaee;
+				color: white;
+			}
+    
+            .container .select{padding: 0.5%;border-bottom: 1px solid #b1bfd1;}
+            .container .select li{padding: 8px 0;color: #767272;}
+            .container li label{width: 100px;display: inline-block;vertical-align: middle;}
+            .container li dt{display: inline-block;vertical-align: middle;}
+            .container li dt dl{float: left;margin-right: 10px;border-radius: 12px;text-align: center;padding: 2px 6px;cursor: pointer;position: relative;color: #555;}          
+            .active{background: #70c1ff!important;color: #fff!important;}
+            .obtn{position: absolute;top: 45%;right: 4%;}
+            .obtn input{background: #e9ebef;border:0;border: 1px solid #D2D2D2;line-height: 14px;padding: 6px 12px;border-radius: 3px;cursor: pointer;}
+            .obtnActive{background: #428bca!important;color: #fff!important;border-radius: 1px solid #2698FB!important;}
+			
+            .box{display: flex;align-items: center;height: 50%;width: 100%;padding-top: 2%;}
+            #pieElsePoverty,#barElsePoverty{width: 100%;height: 100%;}
+            .search li{width: 100%;}
+			#groups li{
+				color:#70c1ff;
+				width: 230px;
+				 height: 30px;
+				line-height: 26px;
+				float: left;
+				margin-right: 16px;
+				border: 1px solid #c9d7e0;
+				margin-bottom: 8px;
+				border-radius: 12px;
+				text-align: center;
+				padding: 2px 6px;
+				cursor: pointer;
+				position: relative;
+				}
+		.active1{background: #70c1ff!important;color: #fff!important;}
+		.search .select label{width:100px;display:inline-block;vertical-align:middle;}
+		.search .select dt {display: inline-block;vertical-align:middle;}
+		.search .select dt dl{ vertical-align:middle;margin-bottom:0px;float:left;margin-left: 10px;border-radius: 12px;text-align: center;padding: 2px 6px;cursor: pointer;position: relative;color: #555;}
+	     .panel>.form-01>.search div{
+			 margin-top:-34px;
+		 }
+		 .button{cursor: pointer;}
+		 /*加载动画*/
+        .spinner {
+            margin: 5% auto;
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+        .container1 > div, .container2 > div, .container3 > div {
+            width: 14px;
+            height: 14px;
+            background-color: #858585;
+            border-radius: 100%;
+            position: absolute;
+            -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+            animation: bouncedelay 1.2s infinite ease-in-out;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        .spinner .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .container2 {
+            -webkit-transform: rotateZ(45deg);
+            transform: rotateZ(45deg);
+        }
+        .container3 {
+            -webkit-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+        }
+        .circle1 { top: 0; left: 0; }
+        .circle2 { top: 0; right: 0; }
+        .circle3 { right: 0; bottom: 0; }
+        .circle4 { left: 0; bottom: 0; }
+        .container2 .circle1 {
+            -webkit-animation-delay: -1.1s;
+            animation-delay: -1.1s;
+        }
+        .container3 .circle1 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+        .container1 .circle2 {
+            -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s;
+        }
+        .container2 .circle2 {
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+        }
+        .container3 .circle2 {
+            -webkit-animation-delay: -0.7s;
+            animation-delay: -0.7s;
+        }
+        .container1 .circle3 {
+            -webkit-animation-delay: -0.6s;
+            animation-delay: -0.6s;
+        }
+        .container2 .circle3 {
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        }
+        .container3 .circle3 {
+            -webkit-animation-delay: -0.4s;
+            animation-delay: -0.4s;
+        }
+        .container1 .circle4 {
+            -webkit-animation-delay: -0.3s;
+            animation-delay: -0.3s;
+        }
+        .container2 .circle4 {
+            -webkit-animation-delay: -0.2s;
+            animation-delay: -0.2s;
+        }
+        .container3 .circle4 {
+            -webkit-animation-delay: -0.1s;
+            animation-delay: -0.1s;
+        }
+        @-webkit-keyframes bouncedelay {
+            0%, 80%, 100% { -webkit-transform: scale(0.0) }
+            40% { -webkit-transform: scale(1.0) }
+        }
+        @keyframes bouncedelay {
+            0%, 80%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 40% {
+                  transform: scale(1.0);
+                  -webkit-transform: scale(1.0);
+              }
+        }
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+	  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>贫困村统计</strong><div class="data_tracking">
+	  	<span  id="dataImport" class="button border-main  one" >数据分析报告</span></div>
+	  </div> 
+       
+    <div class="form-01">
+        <p>数据筛选 <span class="pack_up">收起-</span></p>
+         <div id="search" class="search searchs" style="display: block;">
+           <ul class="select"> 
+				  <label  class="label1"> 年份</label>
+                 <dt >
+                    <dl sleep="2015">2014年</dl>
+                    <dl sleep="2016">2015年</dl>
+                    <dl sleep="2017">2016年</dl>
+                    <dl sleep="201712">2017年</dl>
+					<dl sleep="201808" class="active1">2018年</dl>
+                </dt>
+			  </ul>
+      <ul class="select"> 
+				  <label  class="label1"> 是否出列</label>
+                 <dt >
+                    <dl  sleep="" class="active1">全部</dl>
+                    <dl sleep="1">是</dl>
+                    <dl sleep="0">否</dl>
+                </dt>
+			  </ul>
+           
+		<div>
+	        <input type="button" id="btn_orange1" class="btn_orange1" style="float: right;" name="" value="查询">
+	        <input type="button" id="btn_blue1" class="btn_blue1" style="float: right;" name="" value="重置条件">
+	 	</div>        
+		</div>	
+<div class="wrap"> 
+  <ul class="tabs group" id="groups">
+    <li  class="active" id="one1" sleep="one" num='0'>贫困村发展方向分类统计</li>
+    <li id="two1" sleep="two" num='1'>贫困村识别标准统计</li>
+    <li id="three1" sleep="three" num='2'>贫困村地形地貌分类统计</li>
+    <li id="four1" sleep="four" num='3'>贫困村村官和党员情况统计</li>
+    <li id="five1" sleep="five" num='4'>贫困村土地资源情况统计</li>
+    <li id="six1" sleep="six" num='5'>贫困村人口状况统计</li>
+    <li id="seven1" sleep="seven" num='6'>贫困村年人均纯收入分组情况统计</a></li>
+    <li id="eight1" sleep="eight" num='7'>贫困村集体经济收入分组情况统计</a></li>
+    <li id="nine1" sleep="nine" num='8'>贫困村未脱贫人口统计</a></li>
+    <li  id="ten1" sleep="ten" num='9'>贫困村参加社会保险分组统计</a></li>
+    <li  id="eleven1" sleep="eleven" num='10'>贫困村道路硬化及通班车情况统计</a></li>
+    <li  id="twelve1" sleep="twelve" num='11'>贫困村饮水情况统计</a></li>
+    <li  id="thirteen1" sleep="thirteen" num='12'>贫困村电力保障情况统计</a></li>
+    <li  id="fourteen1" sleep="fourteen" num='13'>贫困村危房改造情况统计</a></li>
+    <li  id="fifteen1" sleep="fifteen" num='14'>贫困村贫困发生率统计</a></li>
+    <li  id="sixteen1" sleep="sixteen" num='15'>贫困村特色产业增收情况统计</a></li>
+    <li  id="seventeen1" sleep="seventeen" num='16'>贫困村开展乡村旅游情况统计</a></li>
+    <li  id="eighteen1" sleep="eighteen" num='17'>贫困村卫计情况统计</a></li>
+    <li  id="nineteen1" sleep="nineteen" num='18'>贫困村文化建设情况统计</a></li>
+    <li  id="twenty1" sleep="twenty" num='19'>贫困村信息化建设情况统计</a></li>
+  </ul>
+	</div>   
+	<hr />   
+	<div style="margin-bottom: 8px;color:#FFAC37;" id="selectCity" class="selectCity"><span>西安市</span><span id="countyName"></span><span id="townName"></span><span id="villageName"></span></div>
+	<div  style="width: 100%;clear:both"><span></span></div> 
+      <div id="content">
+      	<div class="spinner" style="display: none;z-index: 999">
+	          <div class="spinner-container container1">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	          <div class="spinner-container container2">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	          <div class="spinner-container container3">
+	              <div class="circle1"></div>
+	              <div class="circle2"></div>
+	              <div class="circle3"></div>
+	              <div class="circle4"></div>
+	          </div>
+	    </div>
+	    <div id="one" style="display: block;">
+			 <table class="cc" border="" cellspacing="" cellpadding="">		   
+	    		<tr>
+					<td  rowspan="2" valign="middle">序号</td>
+					<td  rowspan="2" valign="middle">地区</td>
+					<td  rowspan="2" valign="middle">总贫困村数</td>
+					<td colspan="2">中心村镇</td>						
+					<td colspan="2">一般村镇</td>						
+					<td colspan="2">过渡村镇</td>						
+				</tr>					
+				
+			 </table>
+	    </div>
+	    
+	    <div id="two" style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总贫困村数</td>
+					<td colspan="2">经济薄弱村数</td>						
+					<td colspan="2">十二五贫困村</td>						
+					<td colspan="2">十三五贫困村</td>						
+				</tr>					
+				
+	    	</table>
+	    </div>
+	    <div id="three"  style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总贫困村数</td>
+					<td colspan="2">山区村镇</td>						
+					<td colspan="2">丘陵村镇</td>						
+					<td colspan="2">平坝村镇</td>						
+				</tr>					
+				
+	    	</table>
+	    </div>
+	     <div id="four" style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总贫困村数</td>
+					<td rowspan="2" valign="middle">大学生村官数量</td>						
+					<td rowspan="2" valign="middle">中共党员数量</td>						
+					<td colspan="2">有村官的贫困村</td>	
+					<td colspan="2">有党员的贫困村</td>						
+				</tr>					
+				
+	    	</table>
+	    </div>
+	    <div id="five" style="display: none;">
+	       <table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总贫困村数</td>					
+					<td colspan="2">耕地面积（亩）</td>	
+					<td colspan="2">有效灌溉面积（亩）</td>	
+					<td colspan="2">林地面积（亩）</td>	
+					<td colspan="2">退耕还林面积（亩）</td>
+					<td colspan="2">林果面积（亩）</td>	
+					<td colspan="2">牧草地面积（亩）</td>	
+					<td colspan="2">水域面积（亩）</td>							
+				</tr>					
+				
+	    	</table>	
+	    </div>
+	    <div id="six"  style="display: none;">
+	    	  <table border="" cellspacing="" cellpadding="">		   
+	    		<tr>
+					<td valign="middle">序号</td>
+					<td >地区</td>
+					<td >总贫困村数</td>					
+					<td>自然村数</td>	
+					<td>总户数</td>	
+					<td>总人数</td>	
+					<td>贫困户数</td>
+					<td>贫困人口数</td>	
+					<td>五保户数</td>	
+					<td>五保人口数</td>	
+					<td>低保户数</td>	
+					<td>低保人口数</td>	
+					<td>少数民族人口数</td>
+					<td>妇女人口数</td>		
+					<td>残疾人口数</td>	
+					<td>劳动力人数</td>
+					<td>外出务工人数</td>							
+				</tr>					
+					
+	    	</table>	
+	    </div>
+	    <div id="seven" style="display: none;">
+	    	  <table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总贫困村数</td>					
+					<td colspan="2">1000元（不含）以下贫困村</td>	
+					<td colspan="2">1000（含）-2000元（不含）贫困村</td>	
+					<td colspan="2">2000（含）-3000元（不含）贫困村</td>	
+					<td colspan="2">3000（含）-4000元（不含）贫困村</td>
+					<td colspan="2">4000（含）-5000元（不含）贫困村</td>	
+					<td colspan="2">5000元（含）以上贫困村</td>						
+				</tr>					
+				
+	    	</table>	
+	    </div>
+	    <div id="eight" style="display: none;">
+	    	 <table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总贫困村数</td>					
+					<td colspan="2">村均集体收入（万元）</td>	
+					<td colspan="2">无集体收入贫困村数（万元）</td>	
+					<td colspan="2">0-50万元贫困村</td>	
+					<td colspan="2">50-100万元贫困村</td>
+					<td colspan="2">100-200万元贫困村</td>	
+					<td colspan="2">200-300万元贫困村</td>	
+					<td colspan="2">300万元以上贫困村</td>						
+				</tr>					
+				
+	    	</table>	
+	    </div>
+	    <div id="nine" style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总户数</td>
+					<td rowspan="2" valign="middle">总人数</td>					
+					<td colspan="2">贫困村户数</td>	
+					<td colspan="2">贫困村人数</td>	
+					<td colspan="2">非贫困村户数</td>	
+					<td colspan="2">非贫困村人数</td>					
+				</tr>					
+			
+	    	</table>	
+	    </div>
+	    <div id="ten" style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总人数</td>					
+					<td colspan="2">参加新型农村合作医疗人数（人）</td>	
+					<td colspan="2">参加城镇职工基本养老保险人数（人）</td>	
+					<td colspan="2">参加城乡居民基本养老保险人数（人）</td>					
+				</tr>					
+				
+	    	</table>	
+	    </div>
+	    <div id="eleven"  style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="">		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">贫困村总数</td>					
+					<td colspan="2">到乡镇未通沥青（水泥）村数</td>	
+					<td colspan="2">贫困村未通客运班车数</td>					
+				</tr>					
+				
+	    	</table>	
+	    </div>
+	    <div id="twelve" style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总户数</td>					
+					<td colspan="2">未实现饮水安全户数（户）</td>	
+					<td colspan="2">饮水安全户数（户）</td>					
+				</tr>					
+			
+	    	</table>	
+	    </div>
+	    <div id="thirteen"  style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="">		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">贫困村总数</td>					
+					<td colspan="2">未通生活用电的自然村数（个）</td>	
+					<td colspan="2">未通生产用电的自然村数（个）</td>					
+				</tr>					
+				
+	    	</table>	
+	    </div>
+	    <div id="fourteen" style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总户数</td>					
+					<td colspan="2">危房户数</td>					
+				</tr>					
+				
+	    	</table>	
+	    </div>
+	    <div id="fifteen"  style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="">		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">总人数</td>					
+					<td colspan="2">贫困村人数</td>					
+				</tr>					
+				
+	    	</table>
+	    </div>
+	    <div id="sixteen" style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">贫困村总数</td>	
+					<td rowspan="2" valign="middle">总户数</td>
+					<td rowspan="2" valign="middle">农村专业合作社个数（个）</td>				
+					<td colspan="2">无农民专业合作社贫困村数量</td>	
+					<td colspan="2">有1个农民专业合作社贫困村数量</td>
+					<td colspan="2">有2个-5个专业合作社贫困村数量</td>
+					<td colspan="2">有5个以上专业合作社贫困村数量</td>
+					<td colspan="2">参加农民专业合作社贫困户数（户）</td>				
+				</tr>					
+			
+	    	</table>
+	    </div>
+	    <div id="seventeen"  style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="">		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">开展乡村旅游的贫困村数（有1户以上）</td>	
+					<td rowspan="2" valign="middle">开展乡村旅游的户数（户）</td>
+					<td rowspan="2" valign="middle">农家乐经营户数（户）</td>				
+					<td rowspan="2" valign="middle">乡村旅游从业人员数（人）</td>
+					<td rowspan="2" valign="middle">农家乐经营户户均年收入（元）</td>	
+				</tr>					
+				
+	    	</table>
+	    </div>
+	    <div id="eighteen"  style="display: none;">
+	    	<table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">贫困村总数</td>	
+					<td rowspan="2" valign="middle">卫生室个数（个）</td>
+					<td rowspan="2" valign="middle">公共卫生厕所个数（个）</td>				
+					<td rowspan="2" valign="middle">垃圾集中堆放点个数	</td>
+					<td colspan="2">无卫生室贫困村个数</td>	
+					<td colspan="2">无公共卫生厕所贫困村个数（个）</td>
+					<td colspan="2">无垃圾集中堆放点贫困村个数（个）</td>
+					<td rowspan="2">执页（助理）医师数（人）</td>
+					<td rowspan="2">千人执业（助理）医师数（人）</td>	
+				</tr>					
+				
+	    	</table>
+	    </div>
+	    <div id="nineteen"  style="display: none;">
+	    	 <table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">贫困村总数</td>	
+					<td rowspan="2" valign="middle">文化（图书）室个数（个）</td>
+					<td rowspan="2" valign="middle">村均文化（图书）室个数（个）</td>				
+					<td colspan="2">有文化（图书）室贫困村个数（个）</td>	
+				</tr>					
+				
+	    	</table>
+	    </div>
+	    <div id="twenty"  style="display: none;">
+	    	 <table border="" cellspacing="" cellpadding="" >		   
+	    		<tr>
+					<td rowspan="2" valign="middle">序号</td>
+					<td rowspan="2" valign="middle">地区</td>
+					<td rowspan="2" valign="middle">贫困村总数</td>	
+					<td rowspan="2" valign="middle">自然村数</td>
+					<td rowspan="2" valign="middle">总户数</td>				
+					<td colspan="2">通宽带户数（户）</td>	
+					<td rowspan="2" valign="middle">通宽带的村小学个数（个）</td>	
+					<td rowspan="2" valign="middle">能用手机上网的户数（户）</td>
+					<td rowspan="2" valign="middle">信息员数</td>	
+				</tr>					
+				
+	    	</table>
+	    </div>
+	  </div>
+        <div class="pages">
+            <div class="paging">
+                <div id="Pagination" style="margin-top: -20px;"></div>
+                <div class="searchPage" >
+                    <span class="page-sum"><strong class="allPage">共1页</strong></span>
+                    <!--<span class="page-go">到<input type="text">页</span>
+                    <a href=" " class="page-btn">确定</a>-->
+					<span id="total">总数： 0</span>
+                </div>
+            </div>
+        </div>
+</div>
+<script>
+    $("#groups li").on("click",function(){
+		$(this).addClass("active").siblings().removeClass("active");
+	})
+     $("body").on("click",".search .select  dt  dl",function(){
+		$(this).addClass("active1").siblings().removeClass("active1");
+	})
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("1");
+ 
+		/*筛选条件收起展开*/
+		$(".pack_up").click(function(){	
+			$(".search").toggle();
+			$(".pack_up").text($(".pack_up").text()=="查询+"?"收起-":"查询+");
+			$('#con').toggle();
+			$('#con1').toggle();
+		})
+		/* $("li dt >dl:nth-child(1)").siblings().click(function(){
+				$(this).parent().children(':first').removeClass("active");
+				$(this).toggleClass("active");
+				//给点击对象添加类
+			});
+			$("li dt >dl:nth-child(1)").click(function(){
+             	$(this).toggleClass("active")
+           		$(this).siblings().removeClass('active');
+           })*/
+          
+		// $(".zbclick").click(function(){		
+		// 		var x=document.getElementById("con");
+		// 		$(".zbshow").toggle(500);	
+		// 		$(".zbclick ").text($(".zbclick ").text()=="收起-"?"基本情况查询+":"收起-");
+		// 		x.offsetHeight==250?x.style.height="auto":x.style.height="250px";
+		// 	});
+		// $(".zbclick1").click(function(){
+		// 		var x=document.getElementById("con");
+		// 		$(".zbshow1").toggle(500)
+		// 		$(".zbclick1 ").text($(".zbclick1 ").text()=="收起-"?"其他情况查询+":"收起-");
+		// 		x.offsetHeight==250?x.style.height="auto":x.style.height="250px";
+		// 	});
+		})
+</script>
+</body>
+</html>

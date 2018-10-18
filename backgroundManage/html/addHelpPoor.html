@@ -1,0 +1,959 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>帮困户添加</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/addHelpPoor.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{width: 25%;height: 40px;border: 1px solid #d2d2d2;vertical-align: middle; line-height: 40px;font-size: 14px;padding-left: 5px}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px;height:20px;}
+        .form-02 span{width:20%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-right: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-04 table tr th {/*width:5%;*/vertical-align: middle;word-wrap:break-word;word-break:break-all;text-align: center}
+        .form-04 table tr td {/*width:5%;*/vertical-align: middle;text-align: center;}
+        .form-04 table tr td a{
+            display: block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+            margin-bottom: 4px;
+        }
+        .form-04 tr td a:first-child{
+            background: #FEAE1B;
+        }
+        .form-04 tr td a:nth-child(2){
+            background: #229ffd;
+        }
+        .form-04 tr td a:last-child{
+            background: #ff7680;
+        }
+        .form-05 table tr td {width:25%;padding-right:14px;}
+        .form-05 table tr td#title,.form-05 table tr td#title2,.form-05 table tr td#title3{
+            text-align: left;
+        }
+        .form-05 table tr td:nth-child(2n+1){
+            text-align: right;
+        }
+        .form-05 table tr td:nth-child(2n){
+            text-align: left;
+        }
+        .form-05 table tr th{width:20%;}
+        .form-05 table tr td{width:20%;}
+        .form-05 table tr td img{width:100%;height:200px;}
+        .form-05 .btns{width:200px;margin: 20px auto;display: flex;justify-content: space-between;}
+        .form-05 .btns a{color: #fff;background: #428bca;width: 60px;text-align: center;margin-right: 10px;text-indent: 0;height:28px;line-height: 28px;border-radius: 4px;}
+        .form-05 .btns a:last-child{
+            background: #f0ad4e;
+        }
+        .form-08 table tr th{width:10%}
+        .form-08 table tr td{width:10%;text-align: center;}
+        .on{
+            color: #fff!important;
+		    background: #00aaee!important;
+        }
+        .form-02 .tips{
+        	margin-bottom: 10px;        	
+        }
+        input::-webkit-input-placeholder {   
+        color: #aab2bd;      
+        text-indent: 4px;       
+     	}
+	    input{
+	     	text-indent: 4px; 
+	    }
+	    .form-table{background: #F7F7F7;}
+	    .gundong{overflow-x: scroll;width: 100%;}
+	    .gundong table tr th{line-height: 25px;background: #F7F7F7;border: 1px solid #ddd;}
+        .gundong table tr td{height:60px;}	    
+	    select{
+	        text-align: center;text-align-last: center;  
+	      }
+      #red{
+      width:40px;
+      font-size:16px;
+      border:1px solid #00aaee;
+      margin-top:6px;
+      margin-left:8px;
+      font-weight: bold;
+      color:#00aaee;
+      }
+      td{
+          border:1px solid #d2d2d2;
+      }
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>帮困户信息添加</strong>
+      <a href="javascript:history.go(-1)" class="data_tracking button border-main">返回</a>
+       	<span class="button border-main marginR upload"  style="float:right;margin-right:20px;">
+		<a href="helpfour.html" style="color:#229ffd">添加四书四照 </a>
+		</span>
+  </div>
+    <div class="form-01">
+      
+      <table id="basicInfo">
+          <caption style="border-bottom: solid 1px #dbdbdb;">基础信息</caption>
+         <tr>
+              <td class="form-table">行政区<span class="must">（*必选项）</span></td>
+               <td >
+               	<select name="" id="p_shi">
+                </select>
+                <select id="p_qv" style="width:80px;">
+                    <option value="">--县区--</option>
+                </select>
+                <select  id="p_x" style="width:80px;">
+                    <option  value="">--乡镇--</option>
+                </select>
+                <select class="must1" id="p_cun" style="width:80px;">
+                    <option  value="">--村--</option>
+                </select>
+                </td>
+               <td colspan="" class="form-table">年份<span class="must">（*必选项）</span></td>
+              <td colspan="">
+                <select id="year"  class="must1">
+                  <option value="">--请选择--</option>
+                  <option value="201712">2017年</option>
+                  <option value="201808">2018年</option>
+                  <option value="2019">2019年</option>
+                  <option value="2020">2020年</option>
+                </select>
+                </td>
+          </tr>
+          <tr>
+              <td class="form-table">户主姓名<span class="must">（*必选项）</span></td>
+              <td><input type="text" id="name1" class="must1" placeholder="请输入" style="border: none;"/></td>
+              <td class="form-table">
+                	户主证件类型
+                <select  class="must1" id="type1" style="margin-left:6px;width:80px;">
+                  <option value="">--请选择--</option>
+                  <option value="01"> 居民身份证</option>
+                  <option value="09">残疾人证</option>
+                  <option value="03">中国人民解放军军官证</option>
+                  </select>  <span class="must">（*必选项）</span>  </td>
+              <td><input id="idCode" type="text"  class="must1 number"  placeholder="请输入证件号码" style="border: none;width:170px;"/><span class="must">（*必选项）</span> </td>
+          </tr>
+          <tr>
+              <td class="form-table ">联系电话</td>
+              <td><input type="text" id="number1" class="number" placeholder="请输入" style="border: none;"/></td>
+              <td class="form-table">开户银行</td>
+              <td><input type="text" placeholder="请输入" style="border: none;"/></td>
+          </tr>
+          <tr>
+              <td class="form-table ">银行卡号</td>
+              <td><input type="text" class="number" placeholder="请输入" style="border: none;width: 180px;"/></td>
+              <td class="form-table  ">家庭人口数 <span class="must">（*必选项）</span></td>
+              <td><input type="text" class="number must1" id="family" placeholder="请输入" style="border: none;"/></td>
+          </tr>
+          <tr>
+              <td class="form-table">贫困户属性<span class="must">（*必选项）</span></td>
+              <td >
+                  <select  class="must1" name="" id="poorHouseType">
+                      <option value="">--请选择--</option>
+                      <option value="01">一般贫困户</option>
+                      <option value="02">低保户</option>
+                      <option value="03">五保户</option>
+                      <option value="04">低保贫困户</option>
+                      <option value="06">五保贫困户</option>
+                      <option value="05">一般农民</option>
+                  </select>
+              </td>
+              <td class="form-table">脱贫状态<span class="must">（*必选项）</span></td>
+              <td> 
+                  <select name=""   class="must1" id="poorStyle">
+                      <option value="">--请选择--</option>
+                      <option value="0">未脱贫</option>
+                      <option value="1">已脱贫（享受政策）</option>
+                      <option value="2">预脱贫</option>
+                      <option value="3">返贫</option>
+                      <option value="4">已脱贫（不再享受政策）</option>
+                  </select>
+                  </td>
+          </tr>
+          <tr>
+              <td class="form-table">是否军烈属 <span class="must">（*必选项）</td>
+              <td>
+                  <select class="must1">
+                      <option value="">--请选择--</option>
+                      <option value="0">否</option>
+                      <option value="1">是</option>
+                  </select>
+              </td>
+               <td class="form-table">主要致贫原因<span class="must">（*必选项）</span></td>
+              <td>
+                  <select  class="must1" name="" id="mainReason">
+                      <option value="">--请选择--</option>
+                      <option value="01">因病</option>
+                      <option value="02">因残</option>
+                      <option value="03">因学</option>
+                      <option value="04">因灾</option>
+                      <option value="05">缺土地</option>
+                      <option value="06">缺水</option>
+                      <option value="07">缺技术</option>
+                      <option value="08">缺劳力</option>
+                      <option value="09">缺资金</option>
+                      <option value="10">交通条件落后</option>
+                      <option value="11">自身发展力不足</option>
+                      <option value="12">其他</option>
+                  </select>
+              </td>
+          </tr>
+             <tr>
+              <td class="form-table">其他致贫原因 <span class="must">（*必选项）</td>
+              <td>
+                  <select name="" id="otherReason" class="must1">
+                      <option value="">--请选择--</option>
+                      <option value="01">因病</option>
+                      <option value="02">因残</option>
+                      <option value="03">因学</option>
+                      <option value="04">因灾</option>
+                      <option value="13">因婚</option>
+                      <option value="05">缺土地</option>
+                      <option value="06">缺水</option>
+                      <option value="07">缺技术</option>
+                      <option value="08">缺劳力</option>
+                      <option value="09">缺资金</option>
+                      <option value="10">交通条件落后</option>
+                      <option value="11">自身发展力不足</option>
+                      <option value="12">其他</option>
+                  </select>
+              </td>
+                <td class="form-table">返贫原因</td>
+                <td>
+                  <select name="" id="rePoorReason">
+                      <option value="">--请选择--</option>
+                      <option value="01">因病</option>
+                      <option value="02">因残</option>
+                      <option value="03">因学</option>
+                      <option value="04">因灾</option>
+                      <option value="13">因婚</option>
+                      <option value="05">缺土地</option>
+                      <option value="06">缺水</option>
+                      <option value="07">缺技术</option>
+                      <option value="08">缺劳力</option>
+                      <option value="09">缺资金</option>
+                      <option value="10">交通条件落后</option>
+                      <option value="11">自身发展力不足</option>
+                      <option value="12">其他</option>
+                  </select>
+              </td>
+          </tr>
+             <tr>
+         <td class="form-table">识别标准<span class="must">（*必选项）</span></td>
+              <td>
+                  <select  class="must1" name="" id="">
+                      <option value="">--请选择--</option>
+                      <option value="01">国家标准</option>
+                      <option value="02">省定标准</option>
+                      <option value="03">市定标准</option>
+                  </select>
+              </td>
+         </tr>
+      </table>
+      <div class="form-02">
+          <span class="tips on">家庭成员信息(上年务工状况)</span>       
+          <span class="tips" id="life">生产生活条件</span>
+           <span class="tips">上年度收入</span>           
+          <span class="tips">易地搬迁</span>
+          <!--<span class="tips">发展意愿</span>
+          <span class="tips">扶持情况</span>
+          <span class="tips">护林员意愿</span> 
+          <span class="tips" style="width: 200px;">耕地面积（亩）补充信息</span>
+          <span class="tips" style="width: 200px;">林地面积（亩）补充信息</span>                           -->
+      </div>
+    </div>
+    <div class="form-04 form-03 gundong" style="display: block;">
+        <table id="homeBaseInfo" style="width: 1500px;height: auto;">
+           <span id="red" >添加成员+</span>
+            <tr>
+                <th>序号</th>
+                <th>姓名<span class="mustp1">（*必选项）</span></th>
+                <th>证件类型<span class="mustp2">（*必选项）</span></th>
+                <th>证件号码<span class="mustp3">（*必选项）</span></th>
+                <th>性别<span class="mustp4">（*必选项）</span></th>                
+                <th>联系电话<span class="mustp04"></span></th>                
+                <th>与户主关系<span class="mustp5">（*必选项）</span></th>
+                <!--<th>生存状态<span class="mustp6">（*必选项）</span></th>-->
+                <th>民族</th>
+                <th>文化程度</th>
+                <th>在校生状况</th>
+                <th>健康状况</th>
+                <th>劳动技能</th>
+                <th>政治面貌</th>
+                <th>是否现役军人</th>
+                <th>是否参加大病保险</th>
+                <th>是否享受低保</th>
+                <th>是否享受五保</th>
+                <th>疾病名称</th>
+                <th>疾病等级</th>
+                <th>上年务工所在省</th>
+                <th>上年务工所在市</th>
+                <th>上年务工所在县</th>
+                <th>上年务工所在乡</th>
+                <th>上年务工企业名称</th>
+          	</tr>
+               <!-- <th>操作</th>-->
+            </tr>
+            <tr>
+                <td><input class="input1 number" type="text" placeholder="1" disabled style="border: none;width:70px;"/></td>
+                <td><input class="input2 mustp11" id="name2" type="text" placeholder="请输入" style="border: none;width:100px;"/></td>
+                 <td>
+                <select  class="select110 mustp12" id="type2" style="margin-left:6px;">
+                  <option value="">--请选择--</option>
+                  <option value="01"> 居民身份证</option>
+                  <option value="09">残疾人证</option>
+                  <option value="03">中国人民解放军军官证</option>
+                  </select></td>
+                <td><input class="input3 mustp13 number" id="idCode2" type="text" placeholder="请输入" style="border: none;width:160px;"/></td>
+                <td>
+                    <select class="select1 mustp14">
+                        <option value="">请选择</option>
+                        <option value="01">男</option>
+                        <option value="02">女</option>
+                    </select>
+                </td> 
+                <td><input class="input03 mustp013 number" id="number2" type="text" placeholder="请输入" style="border: none;width:160px;"/></td>
+                <td>
+            	<select class="select2 mustp15">
+							<option value="">请选择</option>
+							<option value="01">本人或户主</option>
+							<option value="02">配偶</option>
+							<option value="03">之子</option>
+							<option value="04">之女</option>
+							<option value="05">之儿媳</option>
+							<option value="06">之女婿</option>
+							<option value="07">之孙子</option>
+							<option value="08">之孙女</option>
+							<option value="09">之外孙子</option>
+							<option value="10">之外孙女</option>
+							<option value="11">之父</option>
+							<option value="12">之母</option>
+							<option value="13">之岳父</option>
+							<option value="14">之岳母</option>
+							<option value="15">之公公</option>
+							<option value="16">之婆婆</option>
+							<option value="17">之祖父</option>
+							<option value="18">之祖母</option>
+							<option value="19">之外祖父</option>
+							<option value="20">之外祖母</option>
+							<option value="99">其他</option>
+						</select>
+                </td>
+                 <!--<td>  <select name="" class="select14 mustp16">
+                        <option value="">--请选择--</option>
+                        <option value="1">	正常</option>
+                        <option value="2">死亡</option>
+                        <option value="3">转出</option>
+                        <option value="4">转入</option>
+                        <option value="5">减少</option>
+                        <option value="9">删除</option>
+                        <option value="10">户清退时清退人员</option>
+                        <option value="11">人员清退</option>
+                        <option value="12">人员清退(新识别人员调整)</option>
+                        <option value="13">户清退时人员清退(新识别人员调整)</option>
+                    </select>
+                </td>-->
+                <td>
+						<select class="select3" value="01">
+							<option value="">请选择</option>
+							<option value="01">汉族</option>
+							<option value="02">满族</option>
+							<option value="03">回族</option>
+							<option value="04">蒙古族</option>
+							<option value="05">藏族</option>
+							<option value="06">维吾尔族</option>
+							<option value="07">苗族</option>
+							<option value="08">彝族</option>
+							<option value="09">壮族</option>
+							<option value="10">布依族</option>
+							<option value="11">朝鲜族</option>
+							<option value="12">侗族</option>
+							<option value="13">瑶族</option>
+							<option value="14">白族</option>
+							<option value="15">土家族</option>
+							<option value="16">哈尼族</option>
+							<option value="17">哈萨克族</option>
+							<option value="18">傣族</option>
+							<option value="19">黎族</option>
+							<option value="20">傈僳族</option>
+							<option value="21">佤族</option>
+							<option value="22">畲族</option>
+							<option value="23">高山族</option>
+							<option value="24">拉祜族</option>
+							<option value="25">水族</option>
+							<option value="26">东乡族</option>
+							<option value="27">纳西族</option>
+							<option value="28">景颇族</option>
+							<option value="29">柯尔克孜族</option>
+							<option value="30">土族</option>
+							<option value="31">达斡尔族</option>
+							<option value="32">仫佬族</option>
+							<option value="33">羌族</option>
+							<option value="34">布朗族</option>
+							<option value="35">撒拉族</option>
+							<option value="36">毛南族</option>
+							<option value="37">仡佬族</option>
+							<option value="38">锡伯族</option>
+							<option value="39">阿昌族</option>
+							<option value="40">普米族</option>
+							<option value="41">塔吉克族</option>
+							<option value="42">怒族</option>
+							<option value="43">乌孜别克族</option>
+							<option value="44">俄罗斯族</option>
+							<option value="45">鄂温克族</option>
+							<option value="46">德昂族</option>
+							<option value="47">保安族</option>
+							<option value="48">裕固族</option>
+							<option value="49">京族</option>
+							<option value="50">塔塔儿族</option>
+							<option value="51">独龙族</option>
+							<option value="52">鄂伦春族</option>
+							<option value="53">赫哲族</option>
+							<option value="54">门巴族</option>
+							<option value="55">珞巴族</option>
+							<option value="56">基诺族</option>
+							<option value="99">其他</option>
+						</select>
+                </td>
+                <td>
+                    <select name="" class="select4">
+                        <option value="">--请选择--</option>
+                        <option value="01">文盲</option>
+                        <option value="02">小学</option>
+                        <option value="03">初中</option>
+                        <option value="04">高中</option>
+                        <option value="05">大专及以上</option>
+                        <option value="06">学龄前儿童</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="" class="select5">
+                        <option value="">--请选择--</option>
+                        <option value="01">非在校生</option>
+                        <option value="02">学前教育</option>
+                        <option value="03">小学</option>
+                        <option value="04">七年级</option>
+                        <option value="05">八年级</option>
+                        <option value="06">九年级</option>
+                        <option value="07">高中一年级</option>
+                        <option value="08">高中二年级</option>
+                        <option value="09">高中三年级</option>
+                        <option value="10">中职一年级</option>
+                        <option value="11">中职二年级</option>
+                        <option value="12">中职三年级</option>
+                        <option value="13">高职一年级</option>
+                        <option value="14">高职二年级</option>
+                        <option value="15">高职三年级</option>
+                        <option value="16">大专及以上</option>
+                    </select>
+                </td>
+                <td>
+                      <select name="" class="select6">
+                        <option value="">--请选择--</option>
+                        <option value="01">健康</option>
+                        <option value="02">长期慢性病</option>
+                        <option value="03">患有大病</option>
+                        <option value="04">残疾</option>
+                    </select>
+                </td>
+                <td>
+                       <select name="" class="select7">
+                        <option value="">--请选择--</option>
+                        <option value="01">普通劳动力</option>
+                        <option value="02">技能劳动力</option>
+                        <option value="03">散失劳动力</option>
+                        <option value="04">无劳动力</option>
+                    </select>
+                </td>               
+                <td> 
+                     <select name="" class="select10">
+                        <option value="">--请选择--</option>
+                        <option value="01">中共党员</option>
+                        <option value="02">中共预备党员</option>
+                        <option value="03">共青团员</option>
+                        <option value="04">民革会员</option>
+                        <option value="05">民盟盟员</option>
+                        <option value="06">民建会员</option>
+                        <option value="07">民进会员</option>
+                        <option value="08">农工党党员</option>
+                        <option value="09">致公党党员</option>
+                        <option value="10">九三学社社员</option>
+                        <option value="11">台盟盟员</option>
+                        <option value="12">无党派民主人士</option>
+                        <option value="13">群众</option>
+                    </select>
+                    </td>
+                <td>
+                    <select class="select11">
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="select12">
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+                <td>
+                  <select class="select13">
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td> 
+                <td>
+                  <select class="select013">
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>    
+                <td><input class="input05"  type="text" placeholder="请输入" style="border: none;"/></td>
+                <td>
+                  <select class="select05">
+                        <option value="">--请选择--</option>
+                        <option value="1">一级</option>
+                        <option value="2">二级</option>
+                    </select>
+                </td>  
+                <td><input class="input5"  type="text" placeholder="请输入" style="border: none;width:100px;"/></td>
+                <td><input class="input6"  type="text" placeholder="请输入" style="border: none;width:100px;"/></td>
+                <td><input class="input7"  type="text" placeholder="请输入" style="border: none;width:100px;"/></td>
+                <td><input class="input8" type="text" placeholder="请输入" style="border: none;width:100px;"/></td>
+                <td><input class="input9"  type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-06 form-03 form-01" style="display: none">
+        <table id="lifeProduct">
+            <tr>
+                <td class="form-table">耕地面积(亩)</td>
+                <td><input type="text" placeholder="请输入" class="number" style="border: none;"/></td>
+                 <td class="form-table">有效灌溉面积(亩)</td>
+                <td><input type="text" placeholder="请输入" class="number"  style="border: none;"/></td>
+            </tr>           
+            <tr>
+                <td class="form-table">林地面积(亩)</td>
+                <td><input type="text" placeholder="请输入" class="number"  style="border: none;"/></td>
+                <td class="form-table">退耕还林面积(亩)</td>
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td>
+            </tr>           
+            <tr>
+                <td class="form-table">林果面积(亩)</td>
+                <td><input type="text" placeholder="请输入" class="number"  style="border: none;"/></td>
+                <td class="form-table">牧草地面积(亩)</td>
+                <td><input type="text" placeholder="请输入" class="number"  style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td class="form-table">水面面积(亩)</td>
+                <td><input type="text" placeholder="请输入" class="number"  style="border: none;"/></td>
+                <td class="form-table">是否通生产用电(亩)</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-table">是否通广播电视</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+                <td class="form-table">是否加入农民专业合作社</td>
+                <td>
+                   <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-table">与村主干路距离（公里）</td>
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td>
+                <td class="form-table">入户路类型</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="01">泥土路</option>
+                        <option value="02">砂石路</option>
+                        <option value="03">水泥路</option>
+                        <option value="04">沥青路</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-table">住房面积(平方米)</td>
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td>
+                <td class="form-table">是否通生活用电</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-table">饮水是否困难</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+                <td class="form-table">饮水是否安全</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-table">危房户</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+                <td class="form-table">危房级别</td>
+                <td>
+                    <select>
+                        <option value="1">A级</option>
+                        <option value="2">B级</option>
+                        <option value="3">C级</option>
+                        <option value="4">D级</option>
+                        <option value="9">其他</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-table">主要燃料类型</td>
+                <td>
+                    <select>
+                        <option value="01">柴草</option>
+                        <option value="02">干畜粪</option>
+                        <option value="03">煤炭</option>
+                        <option value="04">清洁能源</option>
+                        <option value="99">其他</option>
+                    </select>
+                </td>
+                <td class="form-table">有无卫生厕所</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>            
+        </table>
+
+    </div>
+    <div class="form-07 form-03 form-01" style="display: none">
+        <table id="homeIncome">
+        	<tr>                
+                <td style='background: #F7F7F7;' title="">年收入(元)</td>
+                <td style='background: #F7F7F7;' disabled="disabled" class="income1">0<!--<input class="number"  type="text" disabled="disabled" placeholder="请输入" style="border: none;"/>--></td>
+                <td style='background: #F7F7F7;'>年纯收入(元)</td>
+                <td style='background: #F7F7F7;' disabled="disabled" class="income2">0<!--<input class="number"  type="text" disabled="disabled" placeholder="请输入" style="border: none;"/>--></td>
+            </tr>
+      		<tr>                
+                <td style='background: #F7F7F7;'>年人均纯收入(元)</td>
+                <td style='background: #F7F7F7;' disabled="disabled" class="income4">0<!--<input class="number"  type="text" disabled="disabled" placeholder="请输入" style="border: none;"/>--></td>
+                <td style='background: #F7F7F7;'>工资性收入(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+            </tr>
+            <tr>                
+                <td style='background: #F7F7F7;'>生产经营性收入(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+                <td style='background: #F7F7F7;'>生产经营性支出(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+            </tr>
+            <tr>
+                <td style='background: #F7F7F7;'>财产性收入(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+                <td style='background: #F7F7F7;'>计划生育金(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+            </tr>
+            <tr>
+                <td style='background: #F7F7F7;'>低保金(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+                <!--<td style='background: #F7F7F7;'>一年期以下低保金(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>-->
+            	<td style='background: #F7F7F7;'>五保金(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>            
+                
+            </tr>
+            <tr>
+            	<td style='background: #F7F7F7;'>养老保险金(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>                
+            	<td style='background: #F7F7F7;'>生态补偿金(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+                
+            </tr>
+            <tr>
+            	<td style='background: #F7F7F7;'>其他稳定长期的转移性收入(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>                
+            	<td style='background: #F7F7F7;'>转移性收入(元)</td>
+                <td style='background: #F7F7F7;' disabled="disabled" class="income3">0<!--<input class="number"  type="text" disabled="disabled" placeholder="请输入" style="border: none;"/>--></td>
+                
+            </tr>                       
+            <tr>
+            	<td style='background: #F7F7F7;'>离退休金(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+            	<td style='background: #F7F7F7;'>赡养金(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>            
+                
+            </tr>
+            <tr>
+            	<td style='background: #F7F7F7;'>高龄补贴(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+            	<td style='background: #F7F7F7;'>长期抚恤金(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>            
+                
+            </tr>
+            <tr>
+            	<td style='background: #F7F7F7;'>残疾补贴(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+           		<td style='background: #F7F7F7;'>贫困户家中现役军人（士官或军官）的工资(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>          
+                
+            </tr>
+            <tr>
+            	<td style='background: #F7F7F7;'>稳定性的补贴(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>                
+            	<td style='background: #F7F7F7;'>三年以上的资产性收入(元)</td>
+                <td><input class="number"  type="text" placeholder="请输入" style="border: none;" value="0"/></td>
+            
+            </tr>                     
+        </table>
+    </div>
+    <div class="form-08 form-03 form-01" style="display: none">
+        <table id="banqian">
+            <tr>
+                <th class="form-table">是否搬迁户</th>
+                <th>
+                    <select id="relo">
+                        <option value="">--请选择--</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </th>
+                <th class="form-table">搬迁方式</th>
+                <th>
+                	<select >
+                        <option value="">--请选择--</option>
+                        <option value="1">行政村整体搬迁</option>
+                        <option value="2">自然村(村民小组)整体搬迁</option>
+                        <option value="3">建档立卡贫困户个别搬迁</option>
+                    </select>
+                </th>
+                <th class="form-table">安置方式</th>
+                <th>
+                	<select >
+                        <option value="">--请选择--</option>
+                        <option value="1">集中安置</option>
+                        <option value="2">分散安置</option>
+                    </select>
+                </th>                
+            </tr>
+            <tr>
+            	<th class="form-table">安置地点</th>
+                <th>
+                	<select >
+                        <option value="">--请选择--</option>
+                        <option value="1">县城安置</option>
+                        <option value="2">乡镇安置</option>
+                        <option value="3">村内安置</option>
+                        <option value="4">村外安置</option>
+                        <option value="5">县外安置</option>
+                    </select>
+                </th>
+                <th class="form-table">搬迁可能存在的困难</th>
+                <th>
+                	<select >
+                        <option value="">--请选择--</option>
+                        <option value="1">缺乏资金</option>
+                        <option value="2">搬迁后找不到工作</option>
+                        <option value="3">搬迁后生活没着落</option>
+                        <option value="4">其他</option>
+                    </select>
+                </th>
+        </table>
+    </div>
+     <div class="form-07 form-03 form-01" style="display: none">
+        <table>
+            <tr>               
+                <td class="form-table">是否有产业或就业创业意愿</td>
+                <td class="form-table">发展制约因素</td>                        
+            </tr>    
+            <tr>              
+                <td>      
+                   <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                    </td>                         
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                    </td>                         
+            </tr>                                 
+        </table>
+    </div>    
+    <div class="form-07 form-03 form-01" style="display: none">
+        <table>
+            <tr>               
+                <td class="form-table">是否加入互助资金协会</td>
+                <td>
+                     <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                    </td>     
+                <td class="form-table">扶贫资金到户总金额（元）</td>                        
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td>   
+            </tr>                
+            <tr>              
+                <td class="form-table">互助资金是否借款</td>                        
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                    </td>  
+                <td class="form-table">享受的扶贫贴息贷款（元）</td>                        
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td> 
+            </tr>                                            
+        </table>
+    </div>
+     <div class="form-07 form-03 form-01" style="display: none">
+        <table>
+            <tr>               
+                <td class="form-table">是否具备生态护林员选聘条件</td>
+                <td>
+                     <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                    </td>                                      
+            </tr>    
+            <tr>              
+                <td class="form-table">是否愿意承担森林管护任务</td>                        
+                <td>
+                   <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                    </td>                         
+            </tr>                                           
+        </table>
+    </div>
+     <div class="form-07 form-03 form-01" style="display: none" placeholder="请输入">
+        <table>
+            <tr>               
+                <td class="form-table">宜林地面积（亩）</td>
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td>                                      
+            </tr>    
+            <tr>              
+                <td class="form-table">公益林面积（亩）</td>                        
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td>                         
+            </tr> 
+            <tr>               
+                <td class="form-table">待补公益林面积（亩）</td>
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td>                                      
+            </tr>                                                       
+        </table>
+    </div>
+     <div class="form-07 form-03 form-01" style="display: none">
+        <table>
+            <tr>               
+                <td class="form-table">25°以上基本农田面积（亩）</td>
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td>   
+                <td class="form-table">25°以上非基本农田面积（亩）</td>                        
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td> 
+            </tr>               
+            <tr>               
+                <td class="form-table">15°至25°基本农田面积（亩）</td>
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td>   
+                <td class="form-table">15°至25°非基本农田面积（亩）</td>                        
+                <td><input type="text" placeholder="请输入" class="number"  style="border: none;"/></td>
+            </tr>               
+            <tr>               
+                <td class="form-table">拟退耕还林面积（亩）</td>
+                <td><input type="text" placeholder="请输入"  class="number"  style="border: none;"/></td>  
+                <td class="form-table">是否愿意参与新一轮退耕还林</td>                        
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                    </td> 
+            </tr>                                                       
+        </table>
+    </div>
+    </div>
+</div>
+<div id="" style="text-align: center;margin-top: 15px;">    
+      	<button id="submit" style="width: 80px; height: 30px;background: #00aaee;color: white;">提交</button>
+       </div>
+<script>
+    /*初始化分页*/
+
+    /*详细情况点击事件*/
+    $(".tips").click(function(){
+        $(this).addClass('on').siblings().removeClass('on');
+        let index=$(this).index();
+        console.log(index)
+        $(".form-03").eq(index).show().siblings(".form-03").hide();
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>驻村工作队</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <!--<script src="../js/showDetailsPoor.js"></script>-->
+    <script src="../js/show_village_detail_workingteam.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        #basicInfo tr td{text-align: center; height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;padding-left: 5px}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .xiugai,.shanchu{   
+        	background: #ff7680;
+    	    display: inline-block;
+		    border-radius: 3px;		  
+		    border: none;
+		    color: #fff;
+		    width: 48px;
+		    height: 22px;
+		    text-align: center;
+		    line-height: 22px;
+        }
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>驻村工作队</strong>
+      <a href="javascript:history.go(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+    <div class="form-01" style="overflow-x: scroll;">
+
+      <table id="basicInfo" style="width: 1500px;">
+          <caption style="margin-bottom: 30px;">驻村工作队详细信息</caption>
+            <tr>
+                <td>序号</td>
+                <td>姓名</td>
+                <td>派出单位</td>
+                <td>派出单位职务</td>
+                <td>联系电话</td>
+                <td>第一书记标志</td>
+                <td>队长标志</td>
+                <td>包村干部标志</td>
+                <td>副队长标志</td>
+                <td>队员标志</td>
+                <td>性别</td>
+                <td>证件号码</td>
+                <td>学历</td>
+                <td>政治面貌</td>
+                <td>技术特长</td>
+                <td>操作</td>
+            </tr>
+            
+      </table>
+    </div>
+</div>
+<script>
+    /*初始化分页*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+
+    })
+    /*详细情况点击事件*/
+    $(".tips").click(function(){
+        $(this).addClass('on').siblings().removeClass('on');
+        let index=$(this).index();
+        console.log(index)
+        $(".form-03").eq(index).show().siblings(".form-03").hide();
+    })
+</script>
+</body>
+</html>

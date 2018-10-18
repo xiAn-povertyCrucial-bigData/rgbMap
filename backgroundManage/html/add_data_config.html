@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>添加用户信息</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+</head>
+<style>
+    .panel>.form-01>form>.form-group>.field>input{width:300px;}
+</style>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>添加数据审批配置</strong></div>
+    <div class="form-01">
+      <form method="post" class="form-x" action="">
+        <div class="form-group">
+          <div class="label">
+            <label>审核类别：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input w50" value="" name="aname" data-validate="required:请输入审核类别" />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>审核部门：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input w50" value="" name="aenglish" data-validate="required:请输入审核部门" />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>审核责任人：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input w50" value="" name="aenglish" data-validate="required:请输入审核责任人" />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label></label>
+          </div>
+          <div class="field">
+            <button class="button bg-main icon-check-square-o" type="submit" id="sub"> 提交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+</body>
+</html>

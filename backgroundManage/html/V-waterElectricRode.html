@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>网站信息</title> 
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div>
+    <form id="formSubmit" class="form-x">
+      <p class="form-01-p form-001-p">饮水安全</p>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>未实现饮水安全户数：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" data-validate="required:请输入姓名" placeholder="" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>饮水困难户数：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="NewTab">
+          <table>
+            <tr>
+              <th>建设项目</th>
+              <th>单位</th>
+              <th>数量</th>
+              <th>总投资（万元）</th>
+              <th>财政专项扶贫资金</th>
+              <th>行业部门资金</th>
+              <th>社会帮扶资金</th>
+              <th>信贷资金</th>
+              <th>群众自筹资金</th>
+              <th>其他资金</th>
+              <th>受益户数（户）</th>
+              <th>项目业主单位</th>
+            </tr>
+            <tr>
+              <td>新建自来水入户</td>
+              <td>户</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>新建蓄水池(窖)</td>
+              <td>个</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>新建村级水厂</td>
+              <td>座</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+      </div>
+     <!--*************************************************************************************************************************-->
+      <p class="form-01-p form-001-p">村级道路畅通</p>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>到乡镇是否通沥青（水泥）路：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>行政村到乡镇未通沥青(水泥)路里程（公里）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>自然村到行政村未通沥青(水泥)路村数（个）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>自然村到行政村未通沥青(水泥)路里程（公里）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;width: 50%!important;">
+          <div class="left">
+            <div class="label">
+              <label>是否通客运班车：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+      </div>      
+      <div class="NewTab">
+          <table>
+            <tr>
+              <th>建设项目</th>
+              <th>单位</th>
+              <th>数量</th>
+              <th>总投资（万元）</th>
+              <th>财政专项扶贫资金</th>
+              <th>行业部门资金</th>
+              <th>社会帮扶资金</th>
+              <th>信贷资金</th>
+              <th>群众自筹资金</th>
+              <th>其他资金</th>
+              <th>受益户数（户）</th>
+              <th>项目业主单位</th>
+            </tr>
+            <tr>
+              <td>新建通村沥青(水泥)路</td>
+              <td>公里</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>新建村内道路</td>
+              <td>公里</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+      </div>
+     <!--*************************************************************************************************************************-->
+      <p class="form-01-p form-001-p">农村电力保障</p>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>未通生活用电的自然村数（个）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>未通生产用电的自然村数（个）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;width: 50%!important;">
+          <div class="left">
+            <div class="label">
+              <label>未通生活用电的户数（户） ：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>    
+      <div class="NewTab">
+          <table>
+            <tr>
+              <th>建设项目</th>
+              <th>单位</th>
+              <th>数量</th>
+              <th>总投资（万元）</th>
+              <th>财政专项扶贫资金</th>
+              <th>行业部门资金</th>
+              <th>社会帮扶资金</th>
+              <th>信贷资金</th>
+              <th>群众自筹资金</th>
+              <th>其他资金</th>
+              <th>受益户数（户）</th>
+              <th>项目业主单位</th>
+            </tr>
+            <tr>
+              <td>新建农村电网改造</td>
+              <td>处</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>解决无电户</td>
+              <td>户</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+      </div>
+      <!--*************************************************************************************************************************-->
+      <p class="form-01-p form-001-p">人居环境</p>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否有公共卫生厕所：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>是否有垃圾集中收集点：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否有污水处理设施：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>是否有集中沼气池：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否有两旁绿化：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>是否有旅游村停车场：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;width: 50%!important;text-align: left;">
+          <div class="left">
+            <div class="label">
+              <label>是否有路灯：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,535 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>西安市脱贫攻坚指挥系统</title>
+	<link rel="stylesheet" href="css/ryg.css">
+    <link rel="stylesheet" href="css/outoLayout.css">
+	<script src="js/ports.js"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../index/js/jquery.cookie.js"></script>
+    <script src="../index/js/tooltips.js"></script>
+    <!-- <script src="js/common.js"></script> -->
+	<script type="text/javascript">
+		/********************************************************请求参数截取************************************************************/
+		//截取Url里面的参数
+		function GetRequest() {
+		    var url = location.search; //获取url中"?"符后的字串
+		    url=decodeURI(url);
+		    var theRequest = new Object();
+		    if (url.indexOf("?") != -1) {
+		        var str = url.substr(1);
+		        //alert(str);
+		        strs = str.split("&");
+		        for (var i = 0; i < strs.length; i++) {
+		            theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);//获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>，（unescape只针对数字，中文乱码)
+		        }
+		    }
+		    return theRequest;
+		}
+
+		//通过url取数
+        var data = new Object();
+        data = GetRequest();
+        countryNames = data['county'] ;
+        villageNames = data['name'] ;
+        countryName=GetChinese(countryNames);
+        villageName=GetChinese(villageNames);
+        function GetChinese(strValue) {
+            if(strValue!= null && strValue!= ""){
+                var reg = /[\u4e00-\u9fa5]/g;
+                return strValue.match(reg).join("");
+            }
+            else
+                return "";
+        }
+        townCode = data['townCode'] ;
+        villageCode = data['code'] ;
+	</script>
+</head>
+<style>
+	.villageTotal{padding-left: 10%;}
+	.map .item-1 {
+	    background: url(images/img_5.png) 6px center no-repeat;}
+	.map .item-2 {
+	    background: url(images/img_6.png) 6px center no-repeat;}
+	.map .item-3 {
+	    background: url(images/img_7.png) 6px center no-repeat;}
+	.map .item-4 {
+	    background: url(images/img_8.png) 6px center no-repeat;}
+	.map .item{
+		background-size: 40px 24px;
+		text-indent: 50px;
+	}
+	.main .pop-up p,.main .pop-up i{font-size: 24px;}
+    .map{padding-top:1%;border:none;}
+    .map .module-1{height:9%;}
+    .map .item {margin-top:0;}
+    .content .wrap2 li {
+        height: 13%;
+        padding: 0px 0;
+    }
+    .content .wrap table tr td:first-child {
+        width: 50%;
+    }
+    .content .c-title {
+        height: 33px;
+        line-height: 33px;
+        text-indent: 20px;
+    }
+</style>
+<body>
+	<div class="logdetails" style="width:600px;height:400px;background: #086BC4;box-shadow: 0px 0px 3000px 3000px rgba(0,0,0,0.8);padding:1% 2%;position:fixed;z-index:999;top:50%;left:50%;transform: translate(-50%,-50%);display: none;">
+		<div class="close" style="width:24px;height:24px;position:absolute;top:7px;right:7px;"><img src="images/close.png" alt="" style="width:100%;height:100%;cursor:pointer"></div>
+		<p style="text-align: center;line-height: 44px;font-size: 22px;border-bottom:1px solid #fff;">日志详情</p>
+		<div class="logbox" style="height:calc(100% - 46px);padding:2% 4%;overflow-y: auto;">
+			<p class="name">帮扶责任人: <span></span></p>
+			<p class="time">帮扶时间: <span></span></p>
+			<p class="place">帮扶地点: <span></span></p>
+			<p class="con">日志内容: <span></span></p>
+			<div><label for="" style="float: left;">日志图片: </label><div class="imglists" style="display: inline-block;width:80%;height: 180px;"></div></div>
+		</div>
+	</div>
+	<div class="main">
+		<!--遮罩-->
+		<div class="box" style="opacity: 0;top:-100%;"></div>
+		<!--弹框-->
+			<!--左上-->
+		<div id="pop-up1" class="pop-up" style="opacity: 0;top:-100%;">
+			<div id="close1" class="close"></div>
+			<h1 class="title big-title"><a></a>概况</h1>
+			<p class="desc wordExp">
+				<i class="v-name"></i>，位于<i class="C-name"></i>，总耕地面积<i class="v-area"></i>亩，全村总户数<i class="v-family"></i>户，全村总人口数<i class="All-person"></i>人，其中在册贫困户<i class="poor-family"></i>户，<i class="poor-person"></i>人，低保户<i class="db-family"></i>户，五保户<i class="wb-family"></i>户。
+			</p>
+		</div>
+		<div id="Four-pop-up" class="pop-up" style="opacity: 0;top:-100%;">
+			<div id="Four-close" class="close"></div>
+			<h1 class="title">四支队伍/日志</h1>
+			<ul class="logs logdetail">
+
+			</ul>
+		</div>
+		<div class="main-title clearfix">
+			<h3>西安市脱贫攻坚指挥系统</h3>
+			<p class="TopTitle"></p>
+		</div>
+		<div class="a-hrefs clearfix">
+			<div class="search">
+				<form class="s-form" action="" method="get">
+					<input class="keywords" type="text" name="keywords" placeholder="户主名、电话号码、证件号码..." />
+					<input class="submit" value=" "/>
+				</form>
+				<div class="searchBox">
+					<table width="100%">
+						<thead>
+							<tr>
+								<th width="10">村名</th>
+								<th width="10">户主名</th>
+								<th width="5">操作</th>
+							</tr>
+						</thead>
+						<tbody id="ZZsearchInfo">
+
+						</tbody>
+					</table>
+				</div>
+
+                    <a class="a-item home" href="../index/index.html">首页</a>
+                    <a class="a-item return " href="javascript:history.back(-1)">返回</a>
+			</div>
+		</div>
+		<div class="container">
+			<div class="container-left">
+				<div class="content-1 content">
+					<h3 class="c-title">概况</h3>
+					<div class="wrap">
+						<p class="wordExp">
+							<i class="v-name"></i>，位于<i class="C-name"></i>，总耕地面积<i class="v-area"></i>亩，全村总户数<i class="v-family"></i>户，全村总人口数<i class="All-person"></i>人，其中在册贫困户<i class="poor-family"></i>户，<i class="poor-person"></i>人，低保户<i class="db-family"></i>户，五保户<i class="wb-family"></i>户。
+							<a class="details">[更多]</a>
+						</p>
+					</div>
+				</div>
+				<!--四支队伍日志-->
+				<div class="content-6 content r-con" style="margin-bottom:3%;margin-top:3%;">
+					<h3 class="c-title">村四支队伍 <span class="detail" id="Fourdetail">详情</span></h3>
+					<div class="wrap wrap3" style="overflow:hidden;">
+						<table cellspacing="0">
+							<tr>
+								<td>驻村工作队队长</td>
+								<td><div class="captain" ></div></td>
+							</tr>
+							<tr>
+								<td>第一书记</td>
+								<td><div class="Secretary" ></div></td>
+							</tr>
+							<tr>
+								<td>驻村工作队副队长</td>
+								<td><div class="ViceCaptain"></div></td>
+							</tr>
+							<tr>
+								<td>驻村工作队队员</td>
+								<td><div class="TeamMember" ></div></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<!--驻村日志-->
+				<div class="content-6 content r-con" style="margin-bottom:3%;">
+					<h3 class="c-title">驻村日志</h3>
+					<div class="wrap wrap3">
+						<ul class="grids2 helpLog2" id="heloLog2">
+							<!--<li>
+								<span style="width:30%;"></span>
+								<span style="width:30%;"></span>
+								<span style="width:30%;">详情</span>
+							</li>-->
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<div class="container-center">
+				<div class="map">
+					<div class="module-1 clearfix villageTotal" id="totalInfo">
+						<div class="item-3 item">
+							<p class="words-1">建档立卡户</p>
+							<p class="words-2">
+                                <span class="poorFamily num3"></span>户 |
+                                <span class="num num301"></span>人
+                            </p>
+						</div>
+						<div class="item-4 item">
+							<p class="words-1">在册贫困户</p>
+							<p class="words-2">
+                                <span class="poorPeople num4"></span>户 |
+                                <span class="num num401"></span>人
+                            </p>
+						</div>
+					</div>
+					<!--贫困户列表-->
+                    <div class="VillageMap" style="height:90%;">
+						<div class="boxCon" style="width:90%;height:35%;background: #0a2952;margin:0 auto;">
+							<div id="poorList" style="width:100%;height:100%;padding:0;">
+								<div class="Top_Record" style="width:100%;height: 100%;">
+									<div class="topRec_List" style="width:100%;height: 100%;">
+										<dl style="display: flex;justify-content: space-between;text-align: center;line-height: 35px;background: #20507d;">
+											<dd style="width:50%;color:#fff;">户主姓名</dd>
+											<dd style="width:50%;color:#fff;">贫困户属性</dd>
+										</dl>
+										<div class="maquee maquee1 maquee101" style="height:calc(100% - 35px);overflow: auto;">
+											<ul style="height:180px;" id="poorlists">
+
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <!--<iframe id="wholemap" src="dist/index.html" frameborder='0'></iframe>-->
+						<!--退出指标-->
+						<div class="content content2 r-con" style="width:90%;height:67%;margin:1% auto;">
+							<h3 class="c-title">村贫困村七项退出指标情况 (<span class="exitTotal"></span>分)</h3>
+							<div class="wrap wrap2 grids" style="height:89%;overflow: hidden;">
+								<li class="aac331">
+									<div class="left">
+										<i class="icon_img"></i>
+									</div>
+									<div class="title" style="width:80%;">
+										<h1 style="font-size: 20px;font-weight:normal;text-align: left;display:inline-block;width:auto;line-height:40px;">贫困发生率 (<span></span>分)：<div style="width:20px;display: inline;"></div>贫困发生率低于3%</h1>
+									</div>
+								</li>
+								<li class="aad328">
+									<div class="left">
+										<i class="icon_img"></i>
+									</div>
+									<div class="title">
+										<h1 style="font-size: 16px;font-weight:normal;text-align: left;line-height:40px;">通沥青（水泥）路 (<span></span>分)：<div style="width:30px;display: inline;"></div>通沥青（水泥）路行政村比例达到90%</h1>
+									</div>
+								</li>
+								<li class="aac313">
+									<div class="left">
+										<i class="icon_img"></i>
+									</div>
+									<div class="title">
+										<h1 style="font-size: 16px;font-weight:normal;text-align: left;line-height:40px;">电力入户率 (<span></span>分)：<div style="width:20px;display: inline;"></div>电力入户率达到100%</h1>
+									</div>
+								</li>
+								<li class="aad391">
+									<div class="left">
+										<i class="icon_img"></i>
+									</div>
+									<div class="title" style="float: none;">
+										<h1 style="font-size: 16px;font-weight:normal;text-align: left;line-height: 40px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">标准化村卫生室 (<span></span>分)：<div style="width:20px;display: inline;"></div>97%以上的贫困人口参加新型农村合作医疗和大病保险</h1>
+									</div>
+								</li>
+								<li class="aae113">
+									<div class="left">
+										<i class="icon_img"></i>
+									</div>
+									<div class="title" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;float: none;">
+										<h1 style="font-size: 16px;font-weight:normal;text-align: left;line-height:40px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:720px;">人均可支配收入 (<span></span>分)：<div style="width:20px;display: inline;"></div>农村居民人均可支配收入达到当年全省农村居民人均可支配收入70%以上</h1>
+									</div>
+								</li>
+								<li class="aac312">
+									<div class="left">
+										<i class="icon_img"></i>
+									</div>
+									<div class="title">
+										<h1 style="font-size: 16px;font-weight:normal;text-align: left;line-height:40px;">安全饮水 (<span></span>分)：<div style="width:20px;display: inline;"></div>农村自来水普及率不低于90%</h1>
+									</div>
+								</li>
+								<li class="aad371">
+									<div class="left">
+										<i class="icon_img"></i>
+									</div>
+									<div class="title">
+										<h1 style="font-size: 16px;font-weight:normal;text-align: left;line-height:40px;">农民专业合作社 (<span></span>分)：<div style="width:20px;display: inline;"></div>有安全住房农户达到97%</h1>
+									</div>
+								</li>
+								<div class="reason2" style="display: none;">
+									<div id="close2" style="position: absolute;top:15px;right:15px;width:20px;height:20px;"><img src="images/close.png" alt="" style="width:100%;height:100%;cursor: pointer;"></div>
+									<h3 style="text-align: center;line-height: 44px;font-size: 22px;">原因</h3>
+									<div id="reason2" style="width:100%;height:80%;text-indent:30px;font-size: 18px;padding-top:14px;">
+
+									</div>
+								</div>
+							</div>
+					<!-- <div class="boxes" style="display: none;">
+						<div class="top">
+							<div class="left">
+								<i class="icon_img"></i>
+							</div>
+
+							<div class="title">
+								<h1 style="font-size: 20px;font-weight:600;" class="VReasonTitle"></h1>
+							</div>
+						</div>
+						<div class="reason REDreason"></div>
+					</div> -->
+				</div>
+                    </div>
+				</div>
+			</div>
+			<div id="slide" style='overflow-y:auto;'>
+				<div class="container-right" id="slide1" style="height:268%">
+					<div class="content-2 content PoorProperty enlarge1">
+					<h3 class="c-title c-title1 B-title">
+						<span title="点击放大">村贫困户属性分析 (单位：户)</span>
+						<a>X</a>
+					</h3>
+					<div class="wrap">
+						<div class="echarts" id="echarts-3"></div>
+					</div>
+				</div>
+					<div class="content-3 content enlarge2">
+					<h3 class="c-title c-title2 B-title">
+						<span title="点击放大">贫困户主要致贫原因 (单位：户)</span>
+						<a>X</a>
+					</h3>
+					<div class="wrap">
+						<div class="echarts" id="echarts-4"></div>
+					</div>
+				</div>
+					<div class="content-6 content r-con enlarge6">
+						<h3 class="c-title c-title6 B-title">
+							<span title="点击放大">贫困户土地资源情况 (单位：亩)</span>
+							<a>X</a>
+						</h3>
+						<div class="wrap">
+							<div class="echarts" id="echarts-30"></div>
+						</div>
+					</div>
+					<div class="content-7 content r-con enlarge7">
+						<h3 class="c-title c-title7 B-title">
+							<span title="点击放大">贫困户人口规模情况(单位：户)</span>
+							<a>X</a>
+						</h3>
+						<div class="wrap">
+							<div class="echarts" id="echarts-40"></div>
+						</div>
+					</div>
+					<div class="content-8 content r-con enlarge8">
+						<h3 class="c-title c-title8 B-title">
+							<span title="点击放大">贫困户生产生活困难 (单位：户)</span>
+							<a>X</a>
+						</h3>
+						<div class="wrap">
+							<div class="echarts" id="echarts-50"></div>
+						</div>
+					</div>
+					<div class="content-9 content r-con enlarge9">
+						<h3 class="c-title c-title9 B-title">
+							<span title="点击放大">贫困人口健康状况 (单位：人)</span>
+							<a>X</a>
+						</h3>
+						<div class="wrap">
+							<div class="echarts" id="echarts-60"></div>
+						</div>
+					</div>
+					<div class="content-10 content r-con enlarge10">
+						<h3 class="c-title c-title10 B-title">
+							<span title="点击放大">贫困人口劳动力类型(单位：人)</span>
+							<a>X</a>
+						</h3>
+						<div class="wrap">
+							<div class="echarts" id="echarts-70"></div>
+						</div>
+					</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="pop-up EnlargeBox" style="opacity: 0;top:-100%;"></div> -->
+</body>
+</html>
+<script type="text/javascript">
+      /**************** 地图调用 ************************/
+    var gis = null;
+    function giscallback(type, param){
+        switch (type){
+            case 'mapinit':
+                // 地图初始化完成
+                setTimeout(function(){
+                	gis.gisapp.zoom(countryName,villageName);
+                },1000)
+                break;
+            case 'county_select':
+                // 区域点击事件
+                break;
+            case 'village_select':
+                // 村点击事件// 村点击事件
+                var url = host + '/households.html?county='+ param.county + '&name=' + param.village+ '&code=' + param.villagecode
+                window.location.href = url;
+                break;
+            case 'city_show':
+                break;
+            default:
+                //console.log(type +':' + param)
+                break;
+        }
+    }
+
+    function gisready(){
+        gis = document.getElementById("wholemap").contentWindow
+        gis.gisapp.init(giscallback,countryName);
+    }
+    $('.TopTitle').append(countryName+'('+villageName+')');
+	$('.c-title').append('<span style="float:left;margin-right:-23px;">'+villageName+'</span>');
+    $('.big-title a').append(villageName);
+</script>
+<script src="js/echarts.js"></script>
+<script src="js/Every.js"></script>
+<script>
+
+    /*帮扶日志详情关闭*/
+    $(".logdetails .close").click(function(){
+        $(".logdetails").css("display","none");
+    })
+
+    /*户列表渲染*/
+    let nameList=$("#poorlists");
+    console.log(url);
+    var die=[];
+    $.ajax({
+        url:url+"/visual/houseInfo/query",
+        method:"post",
+        dataType:"json",
+        data:{"aar040":201808,"aaa001":villageCode},
+        success:function (result) {
+            let data = result.data;
+            showList(nameList,data);
+        }
+    })
+    function showList(obj,data){
+        obj.empty();
+        console.log(data);
+        for(let i=0;i<data.length;i++){
+            let str=`
+                     <li style="display: flex;justify-content: space-between;text-align: center;line-height: 40px;border-bottom:1px dashed #1B1147;cursor:pointer;" id="${data[i]['AAC001']}">
+												<div style="width:50%;" sleep='${data[i]['ISSTANDARDOK']}'>${data[i]['AAC029']}</div>
+												<div style="width:50%;">${data[i]['AAC006']}</div>
+					</li>
+                  `;
+            obj.html(function (i,value) {
+                return value+str;
+            })
+        }
+        for(var i=0;i<$('#poorlists li').length;i++){
+            die.push($('#poorlists li').eq(i).children('div:nth-child(1)').attr('sleep'));
+            //console.log(die)
+            //console.log(die[i])
+            if(die[i]=='0'){
+                $('#poorlists li').eq(i).children('div').css('color','red')
+            }else if(die[i]=='1'){
+                $('#poorlists li').eq(i).children('div').css('color','green')
+            }else if(die[i]=='2'){
+                $('#poorlists li').eq(i).children('div').css('color','yellow')
+            }else{
+                $('#poorlists li').eq(i).children('div').css('color','white')
+            }
+       }
+    }
+    /*点击户列表跳转至户一级*/
+	$(document).on("click","#poorlists li",function(){
+	    let homeCode=$(this).attr("id");
+	    console.log(homeCode);
+        /*var url = host + '/households.html?county='+ countryName + '&name=' + villageName+ '&code=' + villageCode+'&Pcode='+personCode+'&personName='+personName;*/
+        var url = host + '/households.html?county='+ countryName + '&name=' + villageName+ '&villageCode=' + villageCode+'&homeCode=' + homeCode;
+        window.location.href = url;
+	})
+</script>
+<script type="text/javascript">
+	$('.c-title1 span').click(function(e){ClickEnlarge($('.enlarge1'),'2%','158%');});
+	$('.c-title2 span').click(function(e){ClickEnlarge($('.enlarge2'),'-32%','158%');});
+
+	CUNsearchEvent(url+'/cun/Search',$('.submit'),$('.searchBox'),$('#ZZsearchInfo'),countryName,villageName,villageCode);//搜索调用
+	VGKJS(url+'/cun/bigInfo?aad001='+villageCode)//贫困村概况
+	VillageXXTJ(url+'/cun/totalNum?aad001='+villageCode);
+	PKHSX(url+'/cun/property?aad001='+villageCode);
+	ZPYY(url+'/cun/poorReason?aad001='+villageCode);
+	VillageTCZB(url+'/villSeven/villIndexs?code='+villageCode);//村七项退出指标
+	FOURTEAM(url+'/cun/fourArmy?aad001='+villageCode);//村四支队伍  610116020032
+	FOURTEAMDetail(url+'/cun/fourArmyInfo?aad001='+villageCode);//四支队伍详情   cun/fourArmyInfo
+	//ClickEnlarge($('.PoorProperty'),$('.content-3'));//点击放大
+    zhucunLog(url+'/family/queryZCLog?aad001='+villageCode)
+	console.log(villageCode);
+
+    getLand2(villageCode);
+    getPopulation2(villageCode,'echarts-40','/povStat/holdperscale',['一人户','二人户','三人户','四人户','五人户','六人户以上'],'贫困户人口规模统计');
+    getPopulation2(villageCode,'echarts-50','/povStat/holdlife',['饮水困难户数','无安全饮水户数','未通生活用电户数','未通广播电视户数','住房是危房户数','无卫生厕所户数'],'贫困户生产生活困难');
+    getPopulation2(villageCode,'echarts-60','/povStat/bodystat',['健康','长期慢性病','大病','残疾'],'贫困人口身体健康');
+    getPopulation2(villageCode,'echarts-70','/povStat/worktypestat',['普通劳动力','技能劳动力','丧失劳动力','无劳动力'],'贫困人口劳动力类型');
+
+    lunboRight();
+    // personResort();
+
+	/******村概况***************打开弹框*************************/
+	$(".details").click(function(){
+        $(".main>.box").css({"opacity":"1","top":"0"});
+        $("#pop-up1").css({"opacity":"1","top":"50%"});
+	})
+	/*关闭弹框*/
+    $(".main>#pop-up1>#close1").click(function(){
+        $("#pop-up1").css({"opacity":0,"top":"-100%"});
+        $(".main>.box").css({"opacity":0,"top":"-100%"});
+    })
+
+    /****************************四支队伍*********************************/
+	$("#Fourdetail").click(function(){
+        $(".main>.box").css({"opacity":"1","top":"0"});
+        $("#Four-pop-up").css({"opacity":"1","top":"50%"});
+	})
+	/*关闭弹框*/
+    $(".main>#Four-pop-up>#Four-close").click(function(){
+        $("#Four-pop-up").css({"opacity":0,"top":"-100%"});
+        $(".main>.box").css({"opacity":0,"top":"-100%"});
+    })
+	/*点击村的七项退出指标查看原因*/
+	$(".grids li").click(function(){
+	    $('.reason2').css("display","block");
+	})
+	$("#close2").click(function(){
+	    $(".reason2").hide();
+	})
+</script>

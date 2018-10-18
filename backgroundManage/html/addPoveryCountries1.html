@@ -1,0 +1,293 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困县添加</title>  
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/addPoveryCountries.js"></script>
+ 	<style>
+ 		.form-x .form-group .label {
+		    width: 25%;		  
+		}
+ 	</style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>贫困县添加内容</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+  <div class="form-01">
+    <form id="formSubmit" class="form-x">
+        <input name="identification" type="hidden" value="industrySupport">
+        <!--*************************************基本信息*********************************************-->
+        <p class="form-01-p">基本信息</p>
+        <div class="basic">
+            <!--**************************第一行*****************************************-->
+            <div class="form-group">
+                <div class="label" style="width: 12.5%;">
+                    <label >行政区划：</label>
+                </div>
+                <div class="field1">
+                    <select name="county" class="input w50">
+                        <option value="">陕西省</option>
+                    </select>
+                    <select name="town" class="input w50">
+                        <option value="">西安市</option>
+                    </select>
+                    <select name="village" class="input w50" id="country">
+                        <option value="">县(区)</option>
+                        <option value="610124000000">周至县</option>
+                        <option value="610122000000">蓝田县</option>
+                        <option value="610104000000">莲湖区</option>
+                        <option value="610125000000">鄠邑区</option>
+                        <option value="610116000000">长安区</option>
+                        <option value="610103000000">碑林区</option>
+                        <option value="610115000000">临潼区</option>                        
+                        <option value="610112000000">未央区</option>
+                        <option value="610102000000">新城区</option>
+                        <option value="610111000000">灞桥区</option>
+                        <option value="610113000000">雁塔区</option>
+                        <option value="610126000000">高陵区</option>
+                        <option value="610192000000">国际港务区</option>
+                        <option value="610191000000">沣渭新区</option>
+                        <option value="610114000000">阎良区</option>
+                    </select>
+                </div>
+                <div class="tips"></div>
+            </div>
+            <!--**************************第二行*****************************************-->
+            <div class="form-group" style="display: flex;">
+                <div class="left">
+                    <div class="label">
+                        <label>县属性：</label>
+                    </div>
+                    <div class="field1">
+                        
+                       <select name="village" class="input w50" style="width: 94%;" id="shuxing">
+                          <option value="">--请选择--</option>
+                          <option value="01">国家重点县</option>
+                          <option value="02">片区规划县</option>
+                          <option value="03">省级重点县</option>
+                          <option value="04">非贫困县</option>
+                          <option value="99">其他</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="label">
+                        <label>拟摘帽年度：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="name" id="niandu"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+            </div>
+            <!--**************************第三行*****************************************-->
+            <!--<div class="form-group" style="display: flex;">
+                <div class="left">
+                    <div class="label">
+                        <label>乡/镇数（个）：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="name"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="label">
+                        <label>行政村数（个）：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="name"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+            </div>-->
+            <!--**************************第四行*****************************************-->
+            <!--<div class="form-group" style="display: flex;">
+                <div class="left">
+                    <div class="label">
+                        <label>贫困村数（个）：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="name"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="label">
+                        <label>自然村数（个）：</label>
+                    </div>
+                    <div class="field1">
+                        <input type="text" class="input w51" value="" name="cordId"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+            </div>-->
+
+            <div class="form-group" style="text-align: right;border-bottom: 1px solid #00aaee;margin-bottom: 8px;">
+                <button class="button bg-main icon-check-square-o" id="save" type="button">保存</button>
+            </div>
+
+            <!--*************************************帮扶措施录入*********************************************-->
+            <!-- <p class="form-01-p" style="border-bottom: 0;">添加帮扶措施</p> -->
+            <div class="form-group" style="display: flex;">
+                <ul class="helpMeasureContent">
+                    <li class="helpMeasureTag" onclick="helpMeasure(001)">土地信息</li>
+                    <li onclick="helpMeasure(002)">财政信息</li>
+                    <li onclick="helpMeasure(003)">水路电情况</li>
+                    <li onclick="helpMeasure(004)">乡村旅游及特色产业</li>
+                    <li onclick="helpMeasure(005)">危房改造及易地搬迁</li>
+                    <li onclick="helpMeasure(006)">教育</li>
+                    <li onclick="helpMeasure(007)">雨露计划及扶贫小额信贷</li>
+                    <li onclick="helpMeasure(008)">卫生和计划生育</li>
+                    <li onclick="helpMeasure(009)">文化建设及贫困村信息化</li>
+                    <!-- <li style="border-right: 0;" onclick="helpMeasure(100)">基础设施</li> -->
+                </ul>
+            </div>
+
+            <label>
+                <div class="form-group helpContent box" style="height: 600px;display: block;" id="help1">
+                    <iframe src="industrySupport.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 550px;" id="help2">
+                    <iframe src="finance.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 1185px;" id="help3">
+                    <iframe src="waterElectricRode.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 920px;" id="help4">
+                    <iframe src="relocation.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 780px;" id="help5">
+                    <iframe src="houseReconstruction.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 500px;" id="help6">
+                    <iframe src="medicalAssistance.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 1160px;" id="help7">
+                    <iframe src="educationSupport.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 780px;" id="help8">
+                    <iframe src="outToEnsure.html" scrolling="no"></iframe>
+                </div>
+                <div class="form-group helpContent box" style="height: 780px;" id="help9">
+                    <iframe src="FinancialSupport.html" scrolling="no"></iframe>
+                </div>
+            </label>
+
+
+            <!--<div class="form-group" style="text-align: center;">
+                <button class="button bg-main icon-check-square-o" type="submit">提交</button>
+            </div>-->
+    </form>
+</div>
+</div>
+<script type="text/javascript">
+  //ExcelUtils.exportexcel("#formSubmit")
+  
+  $(function () {
+    $("#save").click(function(){
+        // alert('保存成功！');
+        $("#save").text('已保存');
+        $("#save").removeClass("icon-check-square-o");
+    })
+    $("#formSubmit").submit(function () {
+        if(confirm("确定提交？")){
+            form=$("#formSubmit").serializeArray();
+            var sign=form[0].value;
+            console.log(form);
+            var urls=new Array();
+            urls[0]="http://192.168.10.15:8080/infoEntry/industrySupport";
+            urls[1]="http://192.168.10.15:8080/infoEntry/workingCondition";
+            urls[2]="http://192.168.10.15:8080/infoEntry/ecologicalCompensation";
+            urls[3]="http://192.168.10.15:8080/infoEntry/houseReconstruction";
+            urls[4]="http://192.168.10.15:8080/infoEntry/medicalAssistance";
+            urls[5]="http://192.168.10.15:8080/infoEntry/educationSupport";
+            urls[6]="http://192.168.10.15:8080/infoEntry/outToEnsure";
+            //console.log(urls[0].substring(urls[0].lastIndexOf("/")+1));
+            for(var i=0;i<urls.length;i++){
+                var subStr=urls[i].substring(urls[i].lastIndexOf("/")+1);
+                if(sign==subStr){
+                    if(form[4].value==""||form[5].value==""){
+                        alert("姓名或者身份证号不能为空");
+                        return;
+                    }
+                    $.ajax({
+                        type:"post",
+                        url:urls[i],
+                        data:form,
+                        traditional:true,
+                        async:"false",
+                        dataType:"jsonp",
+                        success:function(result){
+                            alert("提交成功");
+                        }
+                    })
+                }else{
+                    continue;
+                }
+            }
+        }else{
+            return;
+        }
+    });
+    $(".helpMeasureContent li").click(function(){
+        $(this).siblings().removeClass("helpMeasureTag");
+        //点击对象的父级（li）的兄弟级（li）的子集（a）移除类
+        $(this).addClass("helpMeasureTag");
+        //给点击对象添加类
+    });
+
+});
+function helpMeasure(a){
+    if(a==001){
+        $('#help1').show();
+        $('#help1').siblings().hide();
+    }else if(a==002){
+        $('#help2').show();
+        $('#help2').siblings().hide();
+    }else if(a==003){
+        $('#help3').show();
+        $('#help3').siblings().hide();
+    }else if(a==004){
+        $('#help4').show();
+        $('#help4').siblings().hide();
+    }else if(a==005){
+        $('#help5').show();
+        $('#help5').siblings().hide();
+    }else if(a==006){
+        $('#help6').show();
+        $('#help6').siblings().hide();
+    }else if(a==007){
+        $('#help7').show();
+        $('#help7').siblings().hide();
+    }else if(a==008){
+        $('#help8').show();
+        $('#help8').siblings().hide();
+    }else if(a==009){
+        $('#help9').show();
+        $('#help9').siblings().hide();
+    }else if(a==100){
+        $('#help10').show();
+        $('#help10').siblings().hide();
+    }
+
+}
+  
+</script>
+</body>
+</html>

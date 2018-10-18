@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>四书四照</title> 
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="form-01">
+    <form id="formSubmit" class="form-x">
+      <p class="form-01-p form-001-p">四书四照</p>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>家庭情况真实性承诺书：</label>
+            </div>
+            <!--**********************************************照片添加**********************************************-->
+            <div class="field1">
+                <ul>
+                    <li>
+                        <p></p>
+                    </li>
+                </ul>
+                <div class="z_photo">
+                    <div class="z_file">
+                        <input type="file" name="file" id="file" value="" accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
+                    </div>
+                </div>
+                <!--遮罩层-->
+                <div class="z_mask">
+                    <div class="z_alert">
+                        <p>确定要删除这张图片吗？</p>
+                        <p>
+                            <span class="z_cancel">取消</span>
+                            <span class="z_sure">确定</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>自主创业意愿书：</label>
+            </div>
+            <!--**********************************************照片添加**********************************************-->
+            <div class="field1">
+                <ul>
+                    <li>
+                        <p></p>
+                    </li>
+                </ul>
+                <div class="z_photo">
+                    <div class="z_file">
+                        <input type="file" name="file" id="file" value="" accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
+                    </div>
+                </div>
+                <!--遮罩层-->
+                <div class="z_mask">
+                    <div class="z_alert">
+                        <p>确定要删除这张图片吗？</p>
+                        <p>
+                            <span class="z_cancel">取消</span>
+                            <span class="z_sure">确定</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+      <!--*********************************************************************************************************************-->
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>自愿就业承诺书：</label>
+            </div>
+            <!--**********************************************照片添加**********************************************-->
+            <div class="field1">
+                <ul>
+                    <li>
+                        <p></p>
+                    </li>
+                </ul>
+                <div class="z_photo">
+                    <div class="z_file">
+                        <input type="file" name="file" id="file" value="" accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
+                    </div>
+                </div>
+                <!--遮罩层-->
+                <div class="z_mask">
+                    <div class="z_alert">
+                        <p>确定要删除这张图片吗？</p>
+                        <p>
+                            <span class="z_cancel">取消</span>
+                            <span class="z_sure">确定</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>干部帮扶责任书：</label>
+            </div>
+            <!--**********************************************照片添加**********************************************-->
+            <div class="field1">
+                <ul>
+                    <li>
+                        <p></p>
+                    </li>
+                </ul>
+                <div class="z_photo">
+                    <div class="z_file">
+                        <input type="file" name="file" id="file" value="" accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
+                    </div>
+                </div>
+                <!--遮罩层-->
+                <div class="z_mask">
+                    <div class="z_alert">
+                        <p>确定要删除这张图片吗？</p>
+                        <p>
+                            <span class="z_cancel">取消</span>
+                            <span class="z_sure">确定</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+
+
+      <!--*********************************************************************************************************************-->
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>大门口：</label>
+            </div>
+            <!--**********************************************照片添加**********************************************-->
+            <div class="field1">
+                <ul>
+                    <li>
+                        <p></p>
+                    </li>
+                </ul>
+                <div class="z_photo">
+                    <div class="z_file">
+                        <input type="file" name="file" id="file" value="" accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
+                    </div>
+                </div>
+                <!--遮罩层-->
+                <div class="z_mask">
+                    <div class="z_alert">
+                        <p>确定要删除这张图片吗？</p>
+                        <p>
+                            <span class="z_cancel">取消</span>
+                            <span class="z_sure">确定</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>灶台：</label>
+            </div>
+            <!--**********************************************照片添加**********************************************-->
+            <div class="field1">
+                <ul>
+                    <li>
+                        <p></p>
+                    </li>
+                </ul>
+                <div class="z_photo">
+                    <div class="z_file">
+                        <input type="file" name="file" id="file" value="" accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
+                    </div>
+                </div>
+                <!--遮罩层-->
+                <div class="z_mask">
+                    <div class="z_alert">
+                        <p>确定要删除这张图片吗？</p>
+                        <p>
+                            <span class="z_cancel">取消</span>
+                            <span class="z_sure">确定</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+
+      <!--*********************************************************************************************************************-->
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>厅堂：</label>
+            </div>
+            <!--**********************************************照片添加**********************************************-->
+            <div class="field1">
+                <ul>
+                    <li>
+                        <p></p>
+                    </li>
+                </ul>
+                <div class="z_photo">
+                    <div class="z_file">
+                        <input type="file" name="file" id="file" value="" accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
+                    </div>
+                </div>
+                <!--遮罩层-->
+                <div class="z_mask">
+                    <div class="z_alert">
+                        <p>确定要删除这张图片吗？</p>
+                        <p>
+                            <span class="z_cancel">取消</span>
+                            <span class="z_sure">确定</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>卧室：</label>
+            </div>
+            <!--**********************************************照片添加**********************************************-->
+            <div class="field1">
+                <ul>
+                    <li>
+                        <p></p>
+                    </li>
+                </ul>
+                <div class="z_photo">
+                    <div class="z_file">
+                        <input type="file" name="file" id="file" value="" accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
+                    </div>
+                </div>
+                <!--遮罩层-->
+                <div class="z_mask">
+                    <div class="z_alert">
+                        <p>确定要删除这张图片吗？</p>
+                        <p>
+                            <span class="z_cancel">取消</span>
+                            <span class="z_sure">确定</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+      <!--*********************************************************************************************************************-->
+      <div class="form-group" style="display: flex;width: 50%!important;text-align: left;">
+          <div class="left">
+            <div class="label">
+              <label>大门口：</label>
+            </div>
+            <!--**********************************************照片添加**********************************************-->
+            <div class="field1">
+                <ul>
+                    <li>
+                        <p></p>
+                    </li>
+                </ul>
+                <div class="z_photo">
+                    <div class="z_file">
+                        <input type="file" name="file" id="file" value="" accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
+                    </div>
+                </div>
+                <!--遮罩层-->
+                <div class="z_mask">
+                    <div class="z_alert">
+                        <p>确定要删除这张图片吗？</p>
+                        <p>
+                            <span class="z_cancel">取消</span>
+                            <span class="z_sure">确定</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src="../js/filePop.js"></script>
+</body>
+</html>

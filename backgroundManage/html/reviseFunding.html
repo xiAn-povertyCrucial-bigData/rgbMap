@@ -1,0 +1,570 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困村修改</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/reviseFunding.js"></script>
+    <!--<script src="../js/showDetailsFunding.js"></script>-->
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{width: 1.2%;height: 35px;border: 1px solid #d2d2d2;vertical-align: middle;  line-height: 35px;font-size: 14px;padding-left: 5px}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px;height: 20px;}
+        .form-02 span{width:12%;height:35px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 35px;text-align: center;margin-right: 5px}
+        .form-02 span:hover{cursor: pointer}
+        /*.form-04 table tr td {text-align: center;}*/
+        .on{
+        	color: #fff!important;
+		    background: #00aaee!important;
+        }
+        .form-02 .tips{
+        	margin-bottom: 10px;
+        }
+        input::-webkit-input-placeholder {
+        color: #aab2bd;
+        text-indent: 10px;
+     	}
+	    table tr td{
+          text-align: center;
+        }
+        table tr td input{
+          text-align: center;
+        }
+	    .form-table{background: #F7F7F7;}
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>贫困村详情修改</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+
+    <div class="form-01">
+      <h1 id="year" style="color: #65bbf3;border-bottom: 1px solid #cfebff;">2017年</h1>
+      <table id="baseInfo">
+          <caption style="border-bottom: solid 1px #dbdbdb;">基础信息</caption>
+          <tr>
+              <td class="form-table">行政区划</td>
+              <td colspan="9" id="citys" disabled="disabled"></td>
+          </tr>
+          <tr>
+              <td class="form-table">村负责人</td>
+              <td colspan="3"><input type="text" placeholder="请输入" style="border: none;"/></td>
+              <td colspan="2" class="form-table">村办公电话</td>
+              <td colspan="3"><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+          </tr>
+          <tr>
+              <td class="form-table">村负责人职务</td>
+              <td colspan="3">
+                  <select>
+                        <option value="">--请选择--</option>
+                        <option value="101">国家级正职</option>
+                        <option value="102">国家级副职</option>
+                        <option value="111">省部级正职</option>
+                        <option value="112">省部级副职</option>
+                        <option value="121">厅局级正职</option>
+                        <option value="122">厅局级副职</option>
+                        <option value="131">县处级正职</option>
+                        <option value="132">县处级副职</option>
+                        <option value="141">乡科级正职</option>
+                        <option value="142">乡科级副职</option>
+                        <option value="150">科员级</option>
+                        <option value="160">办事员级</option>
+                        <option value="199">未定职</option>
+                  </select>
+              </td>
+              <td colspan="2" class="form-table">村官人数</td>
+              <td colspan="3"><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+          </tr>
+          <tr>
+              <td class="form-table">中共党员人数</td>
+              <td colspan="3"><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+              <td colspan="2" class="form-table">牲畜存栏数（头）</td>
+              <td colspan="3"><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+          </tr>
+          <tr>
+              <td class="form-table">经度</td>
+              <td colspan="3"><input class="number jingdu" type="text" placeholder="请输入" style="border: none;"/></td>
+              <td colspan="2" class="form-table">纬度</td>
+              <td colspan="3"><input  class="number jingdu" type="text" placeholder="请输入" style="border: none;"/></td>
+          </tr>
+          <tr>
+              <td class="form-table">发展方向</td>
+              <td colspan="3">
+                     <select name="" id="">
+                            <option value="">--请选择--</option>
+                            <option value="1">中心村镇</option>
+                            <option value="2">一般村镇</option>
+                            <option value="3">过渡村镇</option>
+                        </select>
+              </td>
+              <td colspan="2" class="form-table">地形地貌</td>
+              <td colspan="3">
+                      <select name="" id="">
+                            <option value="">--请选择--</option>
+                            <option value="1">山区村镇</option>
+                            <option value="2">丘陵村镇</option>
+                            <option value="3">平坝村镇</option>
+                        </select>
+              </td>
+          </tr>
+          <tr>
+              <td class="form-table">村属性</td>
+              <td colspan="3">
+                <select id="p_shuxing">
+                          <option value="">--请选择--</option>
+                          <option value="01">贫困村</option>
+                          <option value="02">非贫困村</option>
+                          <option value="03">经济薄弱村</option>
+                          <option value="04">十二五贫困村</option>
+                          <option value="05">十三五贫困村</option>
+                      </select>
+              	</td>
+              <td colspan="2" class="form-table">计划脱贫退出年份（年）</td>
+              <td colspan="3">
+                <select id="p_nianfen">
+                          <option value="">--请选择--</option>
+                          <option value="2018">2018</option>
+                          <option value="2019">2019</option>
+                          <option value="2020">2020</option>
+                      </select>
+              	</td>
+          </tr>
+          <tr>
+              <td class="form-table">高程</td>
+              <td colspan="3"></td>
+          </tr>
+      </table>
+     <div class="form-02">
+          <span class="tips on">人口信息</span>
+          <span class="tips">十项重点工作</span>
+          <span class="tips">收入信息</span>
+          <span class="tips">土地信息</span>
+          <span class="tips">雨露计划</span>
+          <span class="tips">扶贫小额信贷</span>
+          <span class="tips">易地扶贫搬迁</span>
+          <!--<span class="tips">帮扶单位</span>
+          <span class="tips">驻村工作队</span>
+          <span class="tips">人居环境</span>-->
+      </div>
+    </div>
+    <div class="form-04 form-01" style="display: block">
+        <table id="population">
+            <tr>
+                <td style='background: #F7F7F7;'>总户数（户）</td>
+                <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                <td style='background: #F7F7F7;'>总人口数（人）</td>
+                <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+            </tr>
+            <tr>
+                    <td style='background: #F7F7F7;'>低保户数（户）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>低保人口数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>                   
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>低保贫困户数（户）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>低保贫困人口数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>                   
+                </tr>
+                <tr>                    
+                    <td style='background: #F7F7F7;'>五保户数（户）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>五保人口数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                </tr>
+                <tr>                    
+                    <td style='background: #F7F7F7;'>五保贫困户数（户）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>五保贫困人口数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                </tr>
+                <tr>
+                	<td style='background: #F7F7F7;'>贫困户数（户）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>贫困人口数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                </tr>
+                <tr>
+                	<td style='background: #F7F7F7;'>一般贫困户数（户）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>一般贫困人口数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>自然村（村民小组）数（个）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>残疾贫困人口数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                </tr>           
+                <tr>
+                    <td style='background: #F7F7F7;'>少数民族人口数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>妇女人口数（个）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>残疾人人口数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>劳动力人数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                </tr>
+                <!--<tr>
+                    <td style='background: #F7F7F7;'>贫困家庭劳动力人数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>未务工的贫困家庭劳动力愿意务工人数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>贫困家庭劳动力创业人数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>未创业的贫困家庭劳动力愿意创业人数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>农村常住人口数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                    <td style='background: #F7F7F7;'>学前三年在校幼儿数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>
+                </tr>
+                <tr>
+                    <td style='background: #F7F7F7;'>3-5岁学龄儿童总数（人）</td>
+                    <td  ><input  class="number" type="text"  placeholder="请输入"  style="border: none;"/></td>  
+                </tr>                                         -->
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display:none">
+        <table id="work10">
+            <tr>
+                <td rowspan="3" class="form-04-td form-table" style='text-align: center;'>村级道路通畅</td>
+                <td colspan="2" class="form-table">到乡镇是否通沥青（水泥）路</td>
+                <td><select>
+                    <option value="">--请选择--</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                    </select>
+                </td>
+                <td colspan="2" class="form-table">是否通客运班车（水泥）路</td>
+                <td>
+                    <select>
+                    <option value="">--请选择--</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                    </select>
+                  </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="form-table">自然村到行政村未通沥青(水泥)路村数（个）</td>
+                <td><input class="number" type="text"  placeholder="请输入" style="border: none;"/></td>
+                <td colspan="2" class="form-table">自然村到行政村未通沥青(水泥)路里程（公里）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+           	<tr><td colspan="2" class="form-table">行政村到乡镇未通沥青(水泥)路里程（公里）</td>
+                <td ><input class="number" type="text" placeholder="请输入" style="border: none;"/></td></tr>
+
+            <tr>
+            	<td class="form-table" style='text-align: center;'>饮水安全</td>
+                <td colspan="2" class="form-table">未实现饮水安全户数</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+                <td colspan="2" class="form-table">饮水困难户数（个）</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2" class="form-table" style='text-align: center;'>农村电力保障</td>
+                <td colspan="2" class="form-table">已通生产用电自然村(20户以上)数</td>
+                <td style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+                <td colspan="2" class="form-table">未通生活用电的自然村数（个）</td>
+                <td style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="form-table">未通生产用电的自然村数（人）</td>
+                <td style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+                <td colspan="2" class="form-table">未通生活用电的户数（户）</td>
+                <td style=""><input  class="number" type="text" placeholder=""  style="border: none;"/></td>
+            </tr>           
+            <tr>
+                <td class="form-table" style='text-align: center;'>危房改造</td>
+                <td colspan="2" class="form-table">危房户数（户）</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+                <td colspan="2" class="form-table">危房户涉及到的贫困人数（人）</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="form-table" style='text-align: center;'>特色产业增收</td>
+                <td colspan="2" class="form-table"> 农民专业合作社个数</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td colspan="2" class="form-table">加入农民合作社的贫困户数（户）</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="form-table">互助资金协会数量（个）</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+                <td colspan="2" class="form-table">互助资金规模量（万元）</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="form-table" style='text-align: center;'>乡村旅游</td>
+                <td colspan="2" class="form-table">开展乡村旅游的户数</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td colspan="2" class="form-table">乡村旅游从业人员数</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="form-table">经营农家乐的户数</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td colspan="2" class="form-table">经营农家乐户年均收入</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td rowspan="3" class="form-table" style='text-align: center;'>卫生和计划生育</td>
+                <td colspan="2" class="form-table">卫生室个数(个)</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td colspan="2" class="form-table">公共卫生厕所个数（个）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+            	<td colspan="2" class="form-table">执业（助理）医师数（人）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td colspan="2" class="form-table">垃圾集中堆放点个数（个）</td>
+                <td><input  class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+            	<td colspan="2" class="form-table">行政村卫生室面积（平方米）</td>
+                <td  style=""><input class="number" type="text" placeholder="请输入"  style="border: none;"/></td>
+                <td colspan="2" class="form-table">是否有诊断室治疗室公共卫生室和药房</td>
+                <td  style=""><input  class="number" type="text" placeholder="请输入"  style="border: none;"/></td></tr>
+            </tr>
+            <tr>
+                <td class="form-table" style='text-align: center;'>文化建设</td>
+                <td colspan="2" class="form-table">行政村文化（图书）室个数 （个）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td colspan="2" class="form-table">通广播电视户数（户）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td rowspan="3" class="form-table" style='text-align: center;'>贫困村信息化</td>
+                <td colspan="2" class="form-table">通宽带户数（户）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td colspan="2" class="form-table">能用手机上网的户数（户）</td>
+                <td><input  class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+            	<td colspan="2" class="form-table">已通电自然村(20户以上)中通宽带的村数（个)</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td colspan="2" class="form-table">通宽带的村小学个数（个）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+            	<td colspan="2" class="form-table">行政村信息员（人）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td rowspan="3" class="form-table" style='text-align: center;'>社会保障信息</td>
+                <td colspan="2" class="form-table">参加新型农村合作医疗人数</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+                <td colspan="2" class="form-table">参加城乡居民基本养老保险人数</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="form-table">参加城镇职工基本养老保险人数</td>
+                <td  style=""><input  class="number" type="text" placeholder=""  style="border: none;"/></td>
+                <td colspan="2" class="form-table">获得医疗救助人次（人）</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="form-table">养老保险制度覆盖范围人口数（人）</td>
+                <td  style=""><input class="number" type="text" placeholder=""  style="border: none;"/></td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="income">
+            <tr>
+                <td class="form-table">农民人均纯收入（元）</td>
+                <td><input type="text" placeholder="请输入" style="border: none;"/></td>
+                <td class="form-table">村级集体经济收入（万元）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <!--<tr>
+                <td class="form-table">农民年人均可支配收入（元）</td>
+                <td><input type="text" placeholder="请输入" style="border: none;"/></td>
+
+            </tr>                                    -->
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="tudiInfo">
+            <!--<tr>
+                <td>行政区域土地面积（平方公里）</td>
+                <td></td>
+                <td>国有林场数</td>
+                <td></td>
+            </tr>-->
+            <tr>
+                <td class="form-table">林果面积（亩）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td class="form-table">耕地面积（亩）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td class="form-table">水域面积（亩）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td class="form-table">有效灌溉面积（亩）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td class="form-table">林地面积（亩）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td class="form-table">退耕还林面积（亩）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td class="form-table">牧草地面积（亩）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none" placeholder="请输入">
+        <table id="yulu">
+            <tr>
+                <td class="form-table">应届初中毕业未升入普通高中的新成长劳动力数（人）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td class="form-table">应届高中毕业未升入大学、专科学校的新成长劳动力数（人）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+            	<td class="form-table">当年已经参加雨露计划人数（人）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+
+            </tr>
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="xindai">
+            <tr>
+                <td class="form-table">批复的扶贫小额信贷户数（户）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+                <td class="form-table">当年贷款户数（户）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+            <tr>
+                <td class="form-table">逾期未还款户数（户）</td>
+                <td><input class="number" type="text" placeholder="请输入" style="border: none;"/></td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="banqian">
+            <tr>
+             	<td>纳入易地扶贫搬迁规划户数（户）</td>
+                <td><input  class="number" type="text" placeholder="请输入" style="border: none;"/></td>               
+                <td>已搬迁户数（户）</td>
+                <td><input  class="number" type="text" placeholder="请输入" style="border: none;"/></td>               
+            </tr>                                   
+        </table>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="huanjing">
+            <tr>
+                <td class="form-table">是否有公共卫生厕所</td>
+                <td>
+                    <select>
+                    <option value="">--请选择--</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                    </select>
+                </td>
+                <td class="form-table">是否有垃圾集中收集点</td>
+                <td>
+                    <select>
+                    <option value="">--请选择--</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-table">是否有污水处理设施</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+                <td class="form-table">是否有集中沼气池</td>
+                <td>
+                   <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-table">是否有两旁绿化</td>
+                <td>
+                   <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                    </td>
+                <td class="form-table">是否有旅游村停车场</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-table">是否有路灯</td>
+                <td>
+                    <select>
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                    </td>
+            </tr>
+        </table>
+    </div>
+	<div id="" style="text-align: center;margin-top: 15px;">
+      	<button id="submit" style="width: 80px; height: 30px;background: #00aaee;color: white;">提交</button>
+       </div>
+</div>
+<script>
+    /*初始化分页*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("0");
+
+    })
+    $("body").on('click','.tips',function(){
+        $(this).addClass('on').siblings().removeClass('on');
+        let index=$(this).index();
+        console.log(index)
+        $(".form-04").eq(index).show().siblings(".form-04").hide();
+    })
+</script>
+</body>

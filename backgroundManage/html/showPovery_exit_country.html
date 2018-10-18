@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>县脱贫退出指标分析</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/showPovery_exit_country.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr .no-pass{cursor: pointer;}
+        .form-01 table tr td{/*width: 10%;*/height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-01 a{display: inline-block;border-radius: 3px;background: #FEAE1B;border: none;color: #fff;
+        	     width: 48px;height: 22px;text-align: center;line-height: 22px;}
+        .form-02{width: 100%;height: 100%;margin-top: 10px}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-04 table tr td {width:11%}
+        .no-pass{color: #ee3333}
+        .container_not_standard{width:500px;height:350px;background: #fff;position:fixed;top:50%;left:50%;transform: translate(-50%,-50%);padding: 2% 2%;box-shadow: 0px 0px 12px 2px rgba(0,0,0,0.6);border-radius: 4px;}
+        .container_not_standard h1{line-height: 40px;text-align: center;margin-bottom: 14px;}
+        .container_not_standard p{font-size: 14px;line-height: 30px;text-indent: 30px;}
+        .container_not_standard .close{position:absolute;top:0;right:10px;cursor: pointer;}
+        .container_not_standard .close:before{font-size: 34px;}
+        #base div .btn_blue1{
+			color: #fff;
+			background-color: #428bca;
+			border: 1px solid #2698FB;
+			width: 70px;
+			text-align: center;
+			margin: 10px;
+			border-radius: 3px;
+            text-indent: 0;
+		}
+	   #base div	.btn_orange1{
+			color: #fff;
+			background-color: #f0ad4e;
+			border: 1px solid #FFAC37;
+			width: 50px;
+			text-align: center;
+			margin: 10px;
+			border-radius: 3px;
+            text-indent: 0;
+		}
+      #dataImport{
+        float:right;
+        margin-right:40px;
+        cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>县摘帽监管</strong>
+    	<span  id="dataImport" class="button border-main" >导出</span> </div>
+  <div class="form-01">
+      <div class="search searchs" style="display: block;">
+              <div>
+
+              </div>
+              <div id="base" style="width: 100%;height: 60px;line-height: 45px;">
+              	<div class="" style="float: left;">
+              	<!--<div>
+                  <label for="" >贫困发生率</label>
+                  <select name="" id="">
+                      <option value="0">--是否达标--</option>
+                      <option value="0">未达标</option>
+                      <option value="1">已达标</option>
+                  </select>
+                  <label for="" >人均可支配收入</label>
+                  <select name="" id="">
+                  	 <option value="0">--是否达标--</option>
+                      <option value="0">未达标</option>
+                      <option value="1">已达标</option>
+                  </select>
+                  <label for="" >通沥青（水泥）路</label>
+                  <select name="" id="">
+                  	 <option value="0">--是否达标--</option>
+                      <option value="0">未达标</option>
+                      <option value="1">已达标</option>
+                  </select>
+                  <label for="" >农村自来水普及率</label>
+                  <select name="" id="">
+                  	 <option value="0">--是否达标--</option>
+                      <option value="0">未达标</option>
+                      <option value="1">已达标</option>
+                  </select>
+                  </div>
+                  <div>
+                  <label for="" >电力入户率</label>
+                  <select name="" id="">
+                  	 <option value="0">--是否达标--</option>
+                      <option value="0">未达标</option>
+                      <option value="1">已达标</option>
+                  </select>
+                  <label for="">安全住房</label>
+                  <select name="" id="">
+                  	 <option value="0">--是否达标--</option>
+                      <option value="0">未达标</option>
+                      <option value="1">已达标</option>
+                  </select>
+                  <label for="">农村医疗保险</label>
+                  <select name="" id="">
+                  	 <option value="0">--是否达标--</option>
+                      <option value="0">未达标</option>
+                      <option value="1">已达标</option>
+                  </select>
+              </div>
+              <div id="" style="margin-bottom: 15px;">
+              	<label for="">指标得分</label>
+              	<select id="soreSection">
+                      <option value="">--请选择--</option>
+                      <option value="0-20">0-20分</option>
+                      <option value="20-40">20-40分</option>
+                      <option value="40-60">40-60分</option>
+                      <option value="60-80">60-80分</option>
+                      <option value="80-100">80-100分</option>
+                  </select>
+                  <label for="">是否达标</label>
+                  <select id="isReach">
+                      <option value="">--请选择--</option>
+                      <option value="0">否</option>
+                      <option value="1">是</option>
+                  </select>
+              </div>-->
+             <!--<div style="height: 30px;">
+                 <input type="button" class="btn_orange1" style="float: right;" name="" value="查询">
+                 <input type="button" class="btn_blue1" style="float: right;" name="" value="重置条件">
+             </div> -->
+              <div id="tpjg" style="width: 100%;height: 70px;line-height: 45px;background: #cfd9db;">
+              	<!--<div class="" style="float: left;">
+              		<label>年份</label>
+              		<select>
+                      <option value="">年份</option>
+                      <option value="2014">2014年</option>
+                      <option value="2015">2015年</option>
+                      <option value="2016">2016年</option>
+                      <option value="2017">2017年</option>
+                      <option value="2018">2018年</option>
+                  </select>
+              	</div>-->
+              	 <div id="xiantuopin" style="float: left;margin-top: 7px;">
+              		<ul>
+              			<li style="width: 170px;height: 55px; border: 1px solid #dedede;text-align: center;background: #f6fcf6;">
+              				<p style="margin: 0;"><span id="allLifecounty" style="font-size: 20px;">12</span>县</p>
+              				<p style="margin: 0;color: #777777;">全部</p>
+              			</li>
+              			<li style="width: 170px;height: 55px;border: 1px solid #54cb54;text-align: center;background: #f6fcf6;">
+              				<p style="margin: 0;"><span>已达标</span><span id="isReachcounty" style="font-size: 20px;">11</span>县</p>
+              				<p style="margin: 0;color: #777777;"><span>达标率</span><apan style="color:#54cb54 ;font-size: 22px;">91.7%</apan></p>
+              			</li>
+              			<li style="width: 170px;height: 55px;border: 1px solid #f00;text-align: center;background: #f6fcf6;">
+              				<p style="margin: 0;"><span>未达标</span><span id="noReachcounty" style="font-size: 20px;">1</span>县</p>
+              				<p style="margin: 0;color: #777777;"><span>未达标率</span><apan style="color:#f00 ;font-size: 22px;">8.3%</apan></p>
+              			</li>
+              		</ul>
+              	</div>
+              </div>
+              </div>
+          </div>
+          </div>
+    <div class="form-01" style="overflow-x: scroll;">
+      <table id="table"  style="border-collapse: collapse;width:1600px;overflow-x: auto;">
+        <!--<tr>
+            <td>序号</td>
+            <td>贫困县</td>
+            <td>贫困发生率（30分）</td>
+            <td>人均可支配收入（20分）</td>
+            <td>通沥青（水泥）路（10分）</td>
+            <td>农村自来水普及率（10分）</td>
+            <td>电力入户率（10分）</td>
+            <td>安全住房（10分）</td>
+            <td>农村医疗保险（10分）</td>
+            <td>综合得分</td>
+        </tr>
+          <tr>
+              <td>1</td>
+              <td>鄠邑区</td>
+              <td>30</td>
+              <td>20</td>
+              <td>10</td>
+              <td>10</td>
+              <td>10</td>
+              <td>10</td>
+              <td>10</td>
+              <td>100分</td>
+          </tr>
+        -->
+      </table>
+</div>
+ <div class="pages">
+          <div class="paging">
+              <div id="Pagination"></div>
+              <div class="searchPage">
+                  <span class="page-sum">共<strong class="allPage">1</strong>页</span>
+                  <!--<span class="page-go">到<input type="text">页</span>
+                  <a href=" " class="page-btn">确定</a>-->
+				  <span id="total">总县数：0</span>
+              </div>
+          </div>
+      </div>
+</div>
+<div class="container_not_standard" style="display: none;">
+    <h1>未达标原因</h1>
+    <p>1.这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因</p>
+    <p>2.这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因这是未达标原因</p>
+    <div class="close"><strong></strong></div>
+</div>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("1");
+    })
+    $(".no-pass").click(function(){
+        $(".container_not_standard").show();
+    })
+    $(".close").click(function(){
+        $(".container_not_standard").hide();
+    })
+</script>
+</body>
+</html>

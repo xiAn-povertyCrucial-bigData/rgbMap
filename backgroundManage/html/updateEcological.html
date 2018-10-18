@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>生态扶贫</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/tooltips.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/messages_zh.min.js"></script>
+    <script src="../js/additional-methods.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>生态扶贫</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+  <div class="form-01">
+    <form id="formSubmit" class="form-x">
+      <input name="identification" type="hidden" value="industrySupport">
+      <!--*************************************基本信息*********************************************-->
+      <p class="form-01-p">基本信息</p>
+      <div class="basic">
+        <!--**************************第一行*****************************************-->
+        <div class="form-group">
+          <div class="label">
+            <label>行政区划：</label>
+          </div>
+          <div class="field">
+            <select name="county" class="input w50">
+              <option value="">陕西省</option>
+            </select>
+            <select name="town" class="input w50">
+              <option value="">西安市</option>
+            </select>
+            <select name="village" class="input w50" id="country" disabled="disabled">
+              
+            </select>
+            <select name="village" class="input w50" id="township" disabled="disabled">
+             
+            </select>
+            <select name="village" class="input w50" id="village" disabled="disabled">
+              
+            </select>
+          </div>
+          <div class="tips"></div>
+        </div>
+        <div id="" class="form-x">
+          <p class="form-01-p form-001-p">基本信息</p>
+          <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label">
+                <label>户主姓名：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="name" id="formD"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label">
+                <label>身份证号：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="idNumber" id="formE"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label">
+                <label>与户主关系：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="" id="formF"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+            
+          </div>
+          <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label label3">
+                <label>是否退耕还林：</label>
+              </div>
+              <div class="field1 label">
+                <div class="arrangeMent">
+                  <li><input type="radio" name="formH" value="是"><label for="">是</label></li><li><input type="radio" name="formH" value="否"><label for="">否</label></li></div>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label label3">
+                <label>退耕还林面积（亩）：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="area" id="formI"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+          </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>退耕还林补助金（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="amount" id="formJ"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label3">
+              <label>是否生态林公益补偿：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formK" value="是"><label for="">是</label></li><li><input type="radio" name="formK" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label3">
+              <label>生态林公益面积：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="area2" id="formL"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>生态林公益补偿每年（元）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="amount2" id="formM"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label3">
+              <label>护林员就业（元/月）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="amount3" id="formN"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>备注：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="" id="formO"/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" style="text-align: center;margin-top: 20px;">
+        <input class="submit bg-main icon-check-square-o button" type="submit" value="修改">
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+<script>
+  $(document).ready(function(){
+      let url=config.url;
+      /*页面内容初始化*/
+      var id=localStorage.getItem("updateId");
+      var year="201806";
+      let token=$.cookie("token");
+      $.ajax({
+          url: url+"/background/helpmeasures/ecological/detail",
+          data:{"id":id},
+          method:"post",
+          beforeSend:function(request){
+              request.setRequestHeader("Authorization",token);
+              request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+          },
+          type:"json",
+          success:function(data){
+              if(data.code === 2000){
+              	
+                  $("#country").append('<option value='+data.data.A+'>'+data.data.A+'</option>');
+                  $("#township").append('<option value='+data.data.B+'>'+data.data.B+'</option>');
+                  $("#village").append('<option value='+data.data.C+'>'+data.data.C+'</option>');
+                  $("#formD").val(data.data.D);
+                  $("#formE").val(data.data.E);
+                  $("#formF").val(data.data.F);
+                  
+                  $("#formI").val(data.data.I);
+                  $("#formJ").val(data.data.J);
+                  $("#formL").val(data.data.L);
+                  $("#formM").val(data.data.M);
+                  $("#formN").val(data.data.N);
+                  $("#formO").val(data.data.O);
+                  var box1 = document.getElementsByName("formH");
+                  for(let i=0;i<box1.length;i++){
+                      if(box1[i].value == data.data.H){
+                          box1[i].checked = true;
+                          break
+                      }else{
+                          box1.value="否"
+                      }
+                  }
+                  var box2 = document.getElementsByName("formK");
+                  for(let i=0;i<box2.length;i++){
+                      if(box2[i].value == data.data.K){
+                          box2[i].checked = true;
+                          break
+                      }else{
+                          box2.value="否"
+                      }
+                  }
+              }else if(data.code===4000){
+                  alert(data.message);
+              }
+          }
+      })
+      /*点击提交修改后的内容*/
+      $(".submit").click(function(){
+          let formA=$("#country option:selected").text();
+          let formB=$("#township option:selected").text();
+          let formC=$("#village option:selected").text();
+          let formD=$("#formD").val();
+          let formE=$("#formE").val();
+          let formF=$("#formF").val();
+          let formH=getRadioButtonCheckedValue("formH");
+         
+          let formI=$("#formI").val();
+          let formJ=$("#formJ").val();
+          let formK=getRadioButtonCheckedValue("formK");
+          let formL=$("#formL").val();
+          let formM=$("#formM").val();
+          let formN=$("#formN").val();
+          let formO=$("#formO").val();
+          /*获取input类型为radio的选中值*/
+          function getRadioButtonCheckedValue(tagNameAttr){
+              var radio_tag = document.getElementsByName(tagNameAttr);
+              for(var i=0;i<radio_tag.length;i++){
+                  if(radio_tag[i].checked){
+                      var checkvalue = radio_tag[i].value;
+                      return checkvalue;
+                  }
+              }
+          }
+          /*验证表单*/
+          $.validator.setDefaults({
+              submitHandler: function() {
+                  alert("确认添加");
+              }
+          });
+          /*户主姓名自定义校验*/
+          jQuery.validator.addMethod("isName", function(value, element) {
+              return this.optional(element) || /^[\u4E00-\u9FA5]{1,6}$/.test(value);
+          }, "请输入正确的户主姓名");
+          /*身份证号自定义校验*/
+          jQuery.validator.addMethod("isIdCardNo", function(value, element) {
+              //var idCard = /^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/;
+              return this.optional(element) || isIdCardNo(value);
+          }, "请输入正确的身份证号码");
+          //身份证验证
+          function isIdCardNo(num){
+              //if (isNaN(num)) {alert("输入的不是数字！"); return false;}
+              var len = num.length, re;
+              if (len == 15)
+                  re = new RegExp(/^(\d{6})()?(\d{2})(\d{2})(\d{2})(\d{2})(\w)$/);
+              else if (len == 18)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/);
+              else if (len == 20)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)(\d{2})$/);
+              else if (len == 22)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\d{3})(\w)(\d{1})$/);
+              else {
+                  //alert("输入的数字位数不对。");
+                  return false;
+              }
+              var a = num.match(re);
+              if (a != null)
+              {
+                  if (len==15)
+                  {
+                      var D = new Date("19"+a[3]+"/"+a[4]+"/"+a[5]);
+                      var B = D.getYear()==a[3]&&(D.getMonth()+1)==a[4]&&D.getDate()==a[5];
+                  }
+                  else
+                  {
+                      var D = new Date(a[3]+"/"+a[4]+"/"+a[5]);
+                      var B = D.getFullYear()==a[3]&&(D.getMonth()+1)==a[4]&&D.getDate()==a[5];
+                  }
+                  if (!B) {
+                      //alert("输入的身份证号 "+ a[0] +" 里出生日期不对。");
+                      return false;
+                  }
+              }
+              if(!re.test(num)){
+                  //alert("身份证最后一位只能是数字和字母。");
+                  return false;
+              }
+              return true;
+          }
+          /*数量自定义校验*/
+          jQuery.validator.addMethod("isDigits", function(value, element) {
+              return this.optional(element) || /^\d+$/.test(value);
+          }, "只能输入整数");
+          /*收益自定义校验*/
+          jQuery.validator.addMethod("isIntGteZero", function(value, element) {
+              value=parseInt(value);
+              return this.optional(element) || value>=0;
+          }, "请输入不小于0的数字");
+
+          $("#formSubmit").validate({
+              rules:{
+                  name:{
+                      required:true,
+                      minlength:2,
+                      isName:true
+                  },
+                  name2:{
+                      required:true,
+                      minlength:2,
+                      isName:true
+                  },
+                  idNumber:{
+                      required:true,
+                      minlength:18,
+                      isIdCardNo:true
+                  },
+                  /*面积*/
+                  area:{
+                      isIntGteZero:true
+                  },
+                  area2:{
+                      isIntGteZero:true
+                  },
+                  amount:{
+                      isIntGteZero:true
+                  },
+                  amoun2:{
+                      isIntGteZero:true
+                  },
+                  amoun3:{
+                      isIntGteZero:true
+                  },
+              },
+              submitHandler:function(){
+                  /*ajax校验数据是否重复,主要判断身份证号*/
+                  
+                  $.ajax({
+                      url: url+"/background/helpmeasures/ecological/update",
+                      data:{"formA":formA,"formB":formB,"formC":formC,"formD":formD,"formE":formE,"formF":formF,"formH":formH,"formI":formI,"formJ":formJ,"formK":formK,"formL":formL,"formM":formM,"formN":formN,"formO":formO,"id":id},
+                      method:"post",
+                      type:"json",
+                      beforeSend:function(request){
+                          request.setRequestHeader("Authorization",token);
+                          request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                      },
+                      success:function(data){
+                          if(data.code === 2000){
+
+                              show_msg('修改成功','show_ecological_compensation.html');
+                          }else {
+                              alert(data.message);
+                          }
+                      }
+                  })
+              },
+              messages:{
+                  name:{
+                      required:"请输入姓名",
+                      minlength:"请输入最少两位字符",
+                  },
+                  name2:{
+                      required:"请输入户主姓名",
+                      minlength:"请输入最少两位字符",
+                  },
+                  idNumber:{
+                      required:"请输入身份证号码",
+                      minlength:"请输入18/20/22位字符",
+                  },
+              }
+          });
+      })
+  })
+</script>
+</html>

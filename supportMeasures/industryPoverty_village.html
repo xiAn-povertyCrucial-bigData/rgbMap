@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>西安市脱贫成效监测系统</title>
+	<link rel="stylesheet" href="css/ryg.css">
+	<link rel="stylesheet" href="css/adapter.css">
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="../supportMeasures/js/commer.js"></script>
+	<script src="../index/js/config.js"></script>
+	<script src="../index/js/jquery.cookie.js"></script>
+	<script src="../index/js/tooltips.js"></script>
+	<script type="text/javascript">
+        var countryName=null;
+        var villageName=null;/********************************************************请求参数截取************************************************************/
+        //截取Url里面的参数
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            url=decodeURI(url);
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                //alert(str);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);//获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>，（unescape只针对数字，中文乱码)
+                }
+            }
+            return theRequest;
+        }
+
+        //通过url取数
+        var data = new Object();
+        data = GetRequest();
+        countryName = data['county'] ;
+        villageName = data['name'] ;
+        villageCode = data['villageCode'];
+	</script>
+	<script src="js/industryPoverty3.js"></script>
+</head>
+<body>
+	<div class="container">
+		<!--遮罩-->
+		<div class="box" style="opacity: 0;top:-100%;"></div>
+		<!--右上-->
+			<!--点击村查看所有户-->
+		<div class="pop-up10" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="villageName2">东石门村</span>各户<span id="project4">苗木花卉</span>产业实施情况</h1>
+			<div class="module-box">
+				<div class="Top_Record" style="width:100%">
+					<div class="topRec_List" style="width:100%;">
+						<p id="peopleNum3" style="width:100%;height:40px;text-align:center;line-height:40px;"><span id="peopleNums3"></span>人</p>
+						<div class="maquee maquee2 maquee3" style="height:385px;">
+							<ul style="height:346px;overflow-y: auto;" id="nameList2" class="scroll">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--右中-->
+			<!--点击村查看所有户-->
+		<div class="pop-up13" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="villageName3">东石门村</span>各户<span id="project5">自主发展</span>扶贫发展方式分类统计</h1>
+			<div class="module-box">
+				<div class="Top_Record" style="width:100%">
+					<div class="topRec_List" style="width:100%;">
+						<p id="peopleNum" style="width:100%;height:40px;text-align:center;line-height:40px;"><span id="peopleNums"></span>人</p>
+						<div class="maquee maquee2" style="height:385px;">
+							<ul style="height:342px;overflow-y: auto;" id="nameList3" class="scroll">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--右下（未培训）-->
+			<!--点击村到户-->
+		<div class="pop-up16" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="houseName3"></span>各户产业扶贫技术培训情况</h1>
+			<div class="module-box">
+				<div class="Top_Record" style="width:100%">
+					<div class="topRec_List" style="width:100%;">
+						<dl>
+							<dd style="width:50%;color:#fff;border:1px solid #fff;">姓名</dd>
+							<dd style="width:50%;color:#fff;border:1px solid #fff;border-left:none;">培训情况</dd>
+						</dl>
+						<div class="maquee maquee2 maquee3" style="height:346px;">
+							<ul style="height:346px;overflow-y: auto;" id="nameList4" class="scroll">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--右下（已培训）-->
+			<!--点击村到户-->
+		<!--<div class="pop-up19" style="opacity: 0;top:-100%;">
+			<div class="close"></div>
+			<h1 class="title"><span id="villageName5">东石门村</span>各户产业扶贫技术已培训情况</h1>
+			<div class="module-box">
+				<div class="Top_Record" style="width:100%">
+					<div class="topRec_List" style="width:100%;">
+						<dl style="background: url('images/title.png') no-repeat center/cover">
+							<dd style="width:50%;color:#fff;border:1px solid #fff;border-right:none;">姓名</dd>
+							<dd style="width:50%;color:#fff;border:1px solid #fff;border-left:none;">达标情况</dd>
+						</dl>
+						<div class="maquee maquee2 maquee3" style="height:346px;">
+							<ul style="height:346px;overflow-y: auto;" id="nameList5">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+		<div class="main">
+			<div class="main-title clearfix">
+				<p>西安市脱贫成效监测系统</p>
+			</div>
+				<div class="main-title1">
+					<h3><span id="villageName"></span>产业扶贫</h3>
+					<div class="a-hrefs clearfix">
+						<a class="a-item home" href="supportMeasures.html">首页</a>
+						<a class="a-item return	" href="javascript:history.back(-1)">返回</a>
+					</div>
+				</div>
+			<div class="con">
+				<div class="con-left">
+					 <div class="module-1">
+						<h3 class="c-title"><span class="fpVill"></span>产业扶贫实施情况统计</h3>
+						<div id="module-1" class='m-item'></div>
+					</div>
+					<div class="module-1" style="height:52%">
+						<h3 class="c-title"><span class="fpVill"></span>各户产业扶贫实施情况</h3>
+						<div class="Top_Record" style="padding-top: 10%;">
+						<div class="topRec_List" id="personInfo">
+							<dl>
+								<dd style="border:1px solid #fff;">姓名</dd>
+								<dd style="border:1px solid #fff;">参与行业</dd>
+								<dd style="border:1px solid #fff;">行业规模</dd>
+								<dd style="border:1px solid #fff;">收入</dd>
+							</dl>
+							<div class="maquee maquee2 maquee3" style="height:233px;">
+								<ul style="height:233px;overflow-y: auto;" id="nameList5" class="scroll">
+
+								</ul>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				<div class="map-content content map-content2">
+					<span class="line left-top"></span>
+					<span class="line left-bottom"></span>
+					<span class="line top-left"></span>
+					<span class="line top-right"></span>
+					<span class="line right-top"></span>
+					<span class="line right-bottom"></span>
+					<span class="line bottom-left"></span>
+					<span class="line bottom-right"></span>
+					<div class="map map3">
+						<iframe src="../dist/index.html" frameborder="0" style="width:800px;height:500px; clear:both;position: relative;top:80px;" id="mapService" class="maps"></iframe>
+						<div class="mask"></div>
+					</div>
+				</div>
+				<div class="con-right">
+					<div class="module-1">
+						<h3 class="c-title"><span class="fpVill"></span>十大主导产业实施情况</h3>
+						<div id="module-3" class='m-item'></div>
+					</div>
+
+					<div class="module-1">
+						<h3 class="c-title"><span class="fpVill"></span>产业扶贫发展方式分类统计</h3>
+						<div id="module-4" class='m-item'></div>
+					</div>
+
+					<div class="module-1">
+						<h3 class="c-title"><span class="fpVill"></span>产业技术培训情况</h3>
+						<div id="module-5" class='m-item'></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+    var hosts=config.host;
+    var host = hosts+'/supportMeasures/';
+
+    /*权限控制*/
+    /*读取本地用户名*/
+    let loginMessaage=JSON.parse($.cookie('loginMessage'));
+    let uname=loginMessaage.userCode
+    let ucode=loginMessaage.aar008;
+    if(uname!="超级管理员"&&uname!="领导"){
+        $(".home").attr("href","../index/index.html");
+    }
+    /**************** 地图调用 ************************/
+    var gis = null;
+    function giscallback(type, param){
+        switch (type) {
+            case 'mapinit':
+                // 地图初始化完成
+                //   setTimeout(function(){
+                gis.gisapp.zoom(countryName,villageName);
+                //},800)
+                break;
+            case 'county_select':
+                // 区域点击事件
+                break;
+            case 'village_select':
+                // 村点击事件
+                /*var url = host + 'industryPoverty_village.html?county='+ param.county + '&name=' + param.village;
+                window.location.href = url;*/
+                break;
+            case 'city_show':
+                break;
+            default:
+                console.log(type +':' + param)
+                break;
+        }
+    }
+    function gisready(){
+        gis = document.getElementById("mapService").contentWindow;
+        gis.gisapp.init(giscallback,countryName);
+    }
+</script>
+<script src="js/echarts.js"></script>
+<script>
+/*****************module-1******************/
+var dom1 = document.getElementById("module-1");
+var myChart = echarts.init(dom1);
+//var dataC=[
+//  {value: 335, name: '已完成'},
+//  {value: 679, name: '未实施'},
+//  {value: 1548, name: '正实施'}];
+//option = {
+//  color:  ['#1FA463','#DD4F43','#FFCE43'],
+//  title: {
+//      text: '东石门村产业扶贫实施情况统计',
+//      left: 15,
+//      top:10,
+//      textStyle: {
+//          fontWeight: '800',
+//          color: '#ffffff',
+//          fontSize: 16
+//      }
+//  },
+//  legend: {
+//      //orient: 'vertical',
+//      x: '49%',
+//      y:"5%",
+//      data: ['已完成', '未实施', '正实施'],
+//      textStyle:{
+//          fontSize:14,
+//          color:"#fff"
+//      }
+//  },
+//  series: [{
+//      name: '实施状态',
+//      type: 'pie',
+//      radius: [0, '41%'],
+//      center:["50%","67%"],
+//      label: {
+//          normal: {
+//              formatter: '  {b|{b}：} {per|{d}%}  ',
+//              backgroundColor: '#06283A',
+//              borderColor: '#06283A',
+//              borderWidth: 1,
+//              borderRadius: 4,
+//              rich: {
+//                  a: {
+//                      color: '#00cefc',
+//                      lineHeight: 22,
+//                      align: 'center'
+//                  },
+//                  b: {
+//                      fontSize: 16,
+//                      lineHeight: 33
+//                  },
+//                  per: {
+//                      color: '#eee',
+//                      fontSize:14,
+//                      backgroundColor: '#061a2d',
+//                      padding: [2, 4],
+//                      borderRadius: 2
+//                  }
+//              }
+//          }
+//      },
+//      data:dataC
+//  }]
+//};
+//if (option && typeof option === "object") {
+//  myChart.setOption(option, true);
+//}
+/****************************module-2*************************************/
+
+/****************************module-3*************************************/
+var dom3 = document.getElementById("module-3");
+var myChart3 = echarts.init(dom3);
+//option = {
+//  color: ['#4ddead'],
+//  title: {
+//      text: '东石门村十大主导产业实施情况',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['苗木花卉','乡村旅游','电子商务','设施瓜菜','猕猴桃','奶山羊','中蜂','核桃','葡萄','石榴','其他'],
+//          axisLabel:{
+//          interval:0,
+//          rotate:-30,
+//           textStyle:{
+//              fontSize:10
+//          }  
+//      },
+//          axisLine:{  
+//              lineStyle:{  
+//                  color:'#fff'
+//              }  
+//          }  
+//      }
+//  ],
+//  grid: {
+//      top: "30%",
+//      left: '2%',
+//      right: '5%',
+//      bottom: '5%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：户',
+//          min: 0,
+//          max: 2,
+//          interval: 0.5,
+//          axisLabel: {
+//              formatter: '{value} 万'
+//          },
+//          axisLine:{  
+//              lineStyle:{  
+//                  color:'#fff'
+//              }  
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//            show:false
+//          },  
+//      },
+//      
+//
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//           label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,1.8,1.7],
+//          itemStyle: {
+//                      //a柱形图圆角，鼠标移上去效果
+//                      emphasis: {
+//                          barBorderRadius: [3, 3, 0, 0]
+//                      },
+//                       
+//                      normal: {
+//                          //柱形图圆角，初始化效果
+//                          barBorderRadius:[3, 3, 0, 0]
+//                      }
+//                  }
+//      },
+//     
+//  ]
+//};
+//function eConsole(param) {
+//  $(".pop-up").css({"opacity":"1","top":"50%"});
+//  console.log(param.dataIndex);
+//}
+//myChart3.on("click", eConsole);
+//if (option && typeof option === "object") {
+//  myChart3.setOption(option, true);
+//}
+/****************************module-4*************************************/
+var dom4 = document.getElementById("module-4");
+var myChart4 = echarts.init(dom4);
+//option = {
+//  color: ['#d420c8'],
+//  title: {
+//      text: '东石门村产业扶贫发展方式分类统计',
+//      left: 10,
+//      top:5,
+//      textStyle: {
+//          color: '#fff',
+//          fontSize: 16,
+//      },
+//  },
+//  tooltip: {
+//      trigger: 'axis'
+//  },
+//
+//  xAxis: [
+//      {
+//          triggerEvent:true,
+//          type: 'category',
+//          data: ['自主发展','主体带动','资金入股','土地流转','务工','其他'],
+//          axisLabel:{
+//          interval:0,
+//          rotate:-30,
+//           textStyle:{
+//              fontSize:10
+//          }  
+//      },
+//          axisLine:{  
+//              lineStyle:{  
+//                  color:'#fff'
+//              }  
+//          }  
+//      }
+//  ],
+//  grid: {
+//      top: "30%",
+//      left: '2%',
+//      right: '5%',
+//      bottom: '5%',
+//      containLabel: true
+//  },
+//  yAxis: [
+//      {
+//          type: 'value',
+//          name: '单位：户',
+//          min: 0,
+//          max: 2,
+//          interval: 0.5,
+//          axisLabel: {
+//              formatter: '{value} 万'
+//          },
+//          axisLine:{  
+//              lineStyle:{  
+//                  color:'#fff'
+//              }  
+//          },
+//          boundaryGap: false,
+//          splitLine:{
+//            show:false
+//          },  
+//      },
+//      
+//
+//  ],
+//  series: [
+//      {
+//          name:'受益户数',
+//          type:'bar',
+//          barWidth : 15,//柱图宽度
+//           label: {
+//              normal: {
+//                  show: true,
+//                  position: 'top'
+//              }
+//          },
+//          data:[1.1,1.2,1.3,1.4,1.5,1.6],
+//          itemStyle: {
+//                      //a柱形图圆角，鼠标移上去效果
+//                      emphasis: {
+//                          barBorderRadius: [3, 3, 0, 0]
+//                      },
+//                       
+//                      normal: {
+//                          //柱形图圆角，初始化效果
+//                          barBorderRadius:[3, 3, 0, 0]
+//                      }
+//                  }
+//      },
+//     
+//  ]
+//};
+//if (option && typeof option === "object") {
+//  myChart4.setOption(option, true);
+//}
+/****************************module-5*************************************/
+//var pieRadius=['45%', '62%'];
+//var yHeight='38%';
+var dom5 = document.getElementById("module-5");
+var myChart5 = echarts.init(dom5);
+//var data = [{
+//  value: 3661,
+//  name: '未培训'
+//}, {
+//  value: 4938,
+//  name: '已培训'
+//}];
+//option = {
+//  title: {
+//      text: '东石门村产业技术培训情况',
+//      left: 15,
+//      top:10,
+//      textStyle: {
+//          fontWeight: '800',
+//          color: '#ffffff',
+//          fontSize: 16
+//      }
+//  },
+//  legend: {
+//      data: ['未培训', '已培训'],
+//      x: '65%',
+//      y:"10%",
+//      textStyle:{    //图例文字的样式
+//          color:'#fff'
+//      }
+//  },
+//  tooltip: {
+//      show: true,
+//      trigger: 'item',
+//      position:"right",
+//      formatter: "{b}: {c} ({d}%)"
+//  },
+//  series: [{
+//      type: 'pie',
+//      selectedMode: 'single',
+//      radius: pieRadius,
+//      color: ['#DD4F43','#1FA463'],
+//      label: {
+//          normal: {
+//              position: 'inner',
+//              formatter: '{b}:{d}%',
+//              textStyle: {
+//                  color: '#00cefc',
+//                  fontWeight: 'bold',
+//                  fontSize: 12
+//              }
+//          }
+//      },
+//      labelLine: {
+//          normal: {
+//              show: false
+//          }
+//      },
+//      data: data
+//  }]
+//};
+//if (option && typeof option === "object") {
+//  myChart5.setOption(option, true);
+//}
+</script>
+<script src="js/common.js"></script>
+<script>
+    /*脱贫状态和帮扶措施切换*/
+	/*$(document).ready(function(){
+	    $(".btns>a").click(function(){
+			$(".btns>a").css("background","url('images/bg_4.png') no-repeat center/cover");
+	        $(this).css("background","url('images/btn1.png') center/cover");
+		})
+	})*/
+</script>
+<script>
+	/*echarts点击事件*/
+    /*右上点击村到户*/
+//  myChart3.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#villageName2").text(params.value);
+//          $("#project4").text($("#project3").text());
+//          $(".container>.box").css({"opacity":"1","top":"0"});
+//          $(".pop-up9").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up10").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+//  /*右中点击村到户*/
+//  myChart4.on("click",function(params){
+//      console.log(params)
+//      if(params.componentType == "xAxis"){
+//          $("#villageName3").text(params.value);
+//          $("#project5").text($("#method3").text());
+//          $(".container>.box").css({"opacity":"1","top":"0"});
+//          $(".pop-up12").css({"opacity":0,"top":"-100%"});
+//          $(".pop-up13").css({"opacity":"1","top":"50%"});
+//          // alert("单击了"+params.value+"x轴标签");
+//      }else{
+//          // alert("单击了"+params.name+"柱状图");
+//      }
+//  })
+	/*右下点击村的未培训和已培训情况*/
+    /*myChart5.on("click",function(params){
+        console.log(params)
+        $(".container>.box").css({"opacity":"1","top":"0"});
+        if(params.dataIndex==0){
+            // $("#countyName5").text(params.name);
+            $(".pop-up3").css({"opacity":0,"top":"-100%"});
+            $(".pop-up16").css({"opacity":"1","top":"50%"});
+        }else if(params.dataIndex==1){
+            // $("#countyName7").text(params.value);
+            $(".pop-up4").css({"opacity":0,"top":"-100%"});
+            $(".pop-up19").css({"opacity":"1","top":"50%"});
+        }
+    })*/
+	/*弹出框关闭*/
+ $(".container>.pop-up10>.close").click(function(){
+     $(".pop-up10").css({"opacity":0,"top":"-100%"});
+     $(".container>.box").css({"opacity":0,"top":"-100%"});
+ })
+ $(".container>.pop-up13>.close").click(function(){
+     $(".pop-up13").css({"opacity":0,"top":"-100%"});
+     $(".container>.box").css({"opacity":0,"top":"-100%"});
+ })
+ $(".container>.pop-up16>.close").click(function(){
+     $(".pop-up16").css({"opacity":0,"top":"-100%"});
+     $(".container>.box").css({"opacity":0,"top":"-100%"});
+ })
+ $(".container>.pop-up19>.close").click(function(){
+     $(".pop-up19").css({"opacity":0,"top":"-100%"});
+     $(".container>.box").css({"opacity":0,"top":"-100%"});
+ })
+</script>
+<!--<script>
+    /*列表滚动*/
+    function autoScroll(obj){
+        $(obj).find("ul").animate({
+            marginTop : "-39px"
+        },500,function(){
+            $(this).css({marginTop : "0px"}).find("li:first").appendTo(this);
+        })
+    }
+    $(function(){
+        setInterval('autoScroll(".maquee")',3000);
+    })
+</script>-->

@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>驻村工作队信息修改</title>
+    <link rel="stylesheet" href="../css/pintuer.css">   
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/revise_village_working.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr th{height: 40px;border: 1px solid #d2d2d2;font-size: 14px;text-align: center}
+        .form-01 table tr td{height: 40px;border: 1px solid #d2d2d2;font-size: 14px;text-align: center}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .no-pass{color: #ee3333}
+        .form-01 table tr td a{
+            display: inline-block;
+            border-radius: 3px;
+            background: #fff;
+            border:none;
+            color: #fff;
+            width: 48px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+        }
+        .form-01 table tr td a:first-child{
+            background: #229ffd;
+        }
+        .form-01 table tr td a:last-child{
+            background: #ff7680;
+        }
+       /* 新加样式*/
+        .form-01 input{width: 90%;height: 40px;border: 0px;text-align: center;}      
+        .form-01-add #add{width: 100px;height: 34px;line-height:34px;font-size: 18px;background: #2698FB;color: white;display: block;text-align: center;margin:3% auto;border-radius: 6px}
+         select{
+        	border: 1px solid #c9d7e0;
+		    background-color: #fff;
+		    padding: 3px 0;
+		    border-radius: 3px;
+		    vertical-align: middle;
+		    outline: 0;
+		    color: #555;
+		    font-size: 12px;
+		    width: 100px;
+		    margin-bottom: 5px;
+		    text-indent: 10px;
+		}
+		#button_add{
+	      
+	      font-size:16px;
+	      border:1px solid #00aaee;
+	      
+	      margin-left:10px;
+	      font-weight: bold;
+	      color:#00aaee;
+	      cursor: pointer;
+	    }
+	    #start,#end{
+	    	    border: 1px solid #c9d7e0;
+			    background-color: #fff;
+			    padding: 3px 0;
+			    border-radius: 3px;
+			    vertical-align: middle;
+			    outline: 0;
+			    color: #555;
+			    font-size: 12px;
+			    width: 130px;
+			    margin-bottom: 5px;
+			    height: 26px;
+	    }
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>驻村工作队信息修改</strong><a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a></div>
+   
+   <div class="form-01" style="overflow-x: scroll;">   	
+      <table class="table" id="basicInfo" style="width: 2000px;">     	
+            <tr>              
+                <td>姓名<span class="must">(*必填项)</span></td>
+                <td>派出单位 </td>
+                <td>派出单位职务</td>               
+                <td>联系电话<span class="must">(*必填项)</span></td>   
+                <td>第一书记标志</td>
+                <td>队长标志</td>               
+                <td>包村干部标志</td>               
+                <td>副队长标志</td>  
+                <td>队员标志</td>  
+                <td>性别</td>
+                <td>证件号码</td>  
+                <td>学历</td>  
+                <td>政治面貌</td>  
+                <td>技术特长</td>  
+                <td>开始时间</td>  
+                <td>结束时间</td>  
+            </tr>
+            <tr>              
+                <td><input type="text" placeholder="请输入" class="input2 required" /> </td>
+                <td><input type="text" placeholder="请输入" class="input3"/> </td>
+                <td><input type="text" placeholder="请输入" class="input4"/> </td>               
+                <td><input type="text" placeholder="请输入" class="input5 required" id="required1"/> </td>   
+                <td>
+                	<select class="select1">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td>
+                	<select class="select2">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td>
+                	<select class="select3">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td>
+                	<select class="select4">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td>
+                	<select class="select5">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>            
+                <td>
+                	<select class="select6">
+                        <option value="">请选择</option>
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+			<option value="9">未说明性别</option>
+                    </select>
+                </td>  
+                <td><input type="text" placeholder="请输入" class="input6"/> </td>  
+                <td>
+                	<select name="" class="select7">
+                       <option value="">--请选择--</option>                       
+	                    <option value="10">研究生及以上</option>
+	                    <option value="11">博士研究生</option>                        
+	                    <option value="14">硕士研究生</option>                        
+	                    <option value="20">大学本科</option>                        
+	                    <option value="30">大学专科</option>                        
+	                    <option value="40">中专技校</option>                        
+	                    <option value="41">中等专科</option>                        
+	                    <option value="44">职业高中</option>                        
+	                    <option value="47">技工学校</option>                        
+	                    <option value="60">普通高中</option>                        
+	                    <option value="70">初中</option>                        
+	                    <option value="80">小学</option>                        
+	                    <option value="90">其他</option> 
+                    </select>
+                </td>  
+                <td>
+                	<select name="" class="select8">
+                        <option value="">--请选择--</option>
+                        <option value="01">中共党员</option>
+                        <option value="02">中共预备党员</option>
+                        <option value="03">共青团员</option>
+                        <option value="04">民革会员</option>
+                        <option value="05">民盟盟员</option>
+                        <option value="06">民建会员</option>
+                        <option value="07">民进会员</option>
+                        <option value="08">农工党党员</option>
+                        <option value="09">致公党党员</option>
+                        <option value="10">九三学社社员</option>
+                        <option value="11">台盟盟员</option>
+                        <option value="12">无党派民主人士</option>
+                        <option value="13">群众</option>
+                    </select>
+                </td>  
+                <td>
+                	<select name="" class="select9">
+	                	<option value="">--请选择--</option>                       
+	                    <option value="01">种植</option>
+	                    <option value="02">养殖</option>
+	                    <option value="03">林果</option>
+	                    <option value="04">服务</option> 
+                    </select>
+                </td>
+                <td>
+                	<input type="date" id="start"/>
+                </td>
+                <td>
+                	<input type="date" id="end"/>
+                </td>
+                
+            </tr>
+      </table>       
+</div>
+	<div class="form-01-add">
+         <button id="add">修改</button>
+   </div>
+</body>
+</html>

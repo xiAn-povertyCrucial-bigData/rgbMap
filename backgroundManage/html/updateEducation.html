@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>教育扶贫</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/tooltips.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/messages_zh.min.js"></script>
+    <script src="../js/additional-methods.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>教育扶贫</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+  <div class="form-01">
+    <form id="formSubmit" class="form-x">
+      <input name="identification" type="hidden" value="industrySupport">
+      <!--*************************************基本信息*********************************************-->
+      <p class="form-01-p">基本信息</p>
+      <div class="basic">
+        <!--**************************第一行*****************************************-->
+        <div class="form-group">
+          <div class="label">
+            <label>行政区划：</label>
+          </div>
+          <div class="field">
+            <select name="county" class="input w50">
+              <option value="">陕西省</option>
+            </select>
+            <select name="town" class="input w50">
+              <option value="">西安市</option>
+            </select>
+            <select name="village" class="input w50" id="country" disabled="disabled">
+
+            </select>
+            <select name="village" class="input w50" id="township" disabled="disabled">
+
+            </select>
+            <select name="village" class="input w50" id="village" disabled="disabled">
+
+            </select>
+          </div>
+          <div class="tips"></div>
+        </div>
+        <div id="" class="form-x">
+          <p class="form-01-p form-001-p">基本信息</p>
+          <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label">
+                <label>姓名：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="name" id="formD"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label">
+                <label>性别：</label>
+              </div>
+              <div class="field1">
+                <div class="arrangeMent">
+                  <li><input type="radio" name="formE" value="男"><label for="">男</label></li><li><input type="radio" name="formE" value="女"><label for="">女</label></li></div>
+                <div class="tips"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label">
+                <label>身份证号码：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="idNumber" id="formF"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label label2">
+                <label>义务教育阶段是否辍学：</label>
+              </div>
+              <div class="field1">
+                <div class="arrangeMent">
+                  <li><input type="radio" name="formG" value="是"><label for="">是</label></li><li><input type="radio" name="formG" value="否"><label for="">否</label></li></div>
+                <div class="tips"></div>
+              </div>
+            </div>
+          </div>
+          <p class="form-01-p form-001-p">就读情况</p>
+          <div class="form-group" style="display: flex;">
+            <div class="left">
+              <div class="label">
+                <label>就读年级：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="" id="formH"/>
+                <div class="tips"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="label label3">
+                <label>就读学校名称：</label>
+              </div>
+              <div class="field1">
+                <input type="text" class="input w51" value="" name="" id="formI"/>
+              </div>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <p class="form-01-p form-001-p">特教情况</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>是否送教：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formJ" value="是"><label for="">是</label></li><li><input type="radio" name="formJ" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>是否跟班就读：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formK" value="是"><label for="">是</label></li><li><input type="radio" name="formK" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>是否特教学校：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formL" value="是"><label for="">是</label></li><li><input type="radio" name="formL" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <p class="form-01-p form-001-p">在校生享受的教育资助政策和帮扶措施</p>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>是否享受学前家庭经济困难幼儿生活补助：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formM" value="是"><label for="">是</label></li><li><input type="radio" name="formM" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>是否享受义务教育家庭经济困难寄宿生生活补助：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formN" value="是"><label for="">是</label></li><li><input type="radio" name="formN" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>是否享受普通高中国家助学金：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formO" value="是"><label for="">是</label></li><li><input type="radio" name="formO" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>是否享受中等职业国家助学金：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formP" value="是"><label for="">是</label></li><li><input type="radio" name="formP" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>是否享受中职国家免学费：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formQ" value="是"><label for="">是</label></li><li><input type="radio" name="formQ" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>是否享受中职扶贫助学补助：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formR" value="是"><label for="">是</label></li><li><input type="radio" name="formR" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>是否享受高职扶贫助学补助：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formS" value="是"><label for="">是</label></li><li><input type="radio" name="formS" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label label2">
+              <label>是否享受贫困家庭营养改善计划：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formT" value="是"><label for="">是</label></li><li><input type="radio" name="formT" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label label2">
+              <label>是否享受免保教费或学费：</label>
+            </div>
+            <div class="field1">
+              <div class="arrangeMent">
+                <li><input type="radio" name="formU" value="是"><label for="">是</label></li><li><input type="radio" name="formU" value="否"><label for="">否</label></li></div>
+              <div class="tips"></div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="form-group" style="text-align: center;margin-top: 20px;">
+        <input class="submit bg-main icon-check-square-o button" type="submit" value="修改">
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+<script>
+  $(document).ready(function(){
+      let url=config.url;
+      /*页面内容初始化*/
+      var id=localStorage.getItem("updateId");
+      var year="201806";
+      let token=$.cookie("token");
+      $.ajax({
+          url: url+"/background/helpmeasures/education/detail",
+          data:{"id":id},
+          method:"post",
+          type:"json",
+          beforeSend:function(request){
+              request.setRequestHeader("Authorization",token);
+              request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+          },
+          success:function(data){
+              if(data.code === 2000){
+                  $("#country").append('<option value='+data.data.A+'>'+data.data.A+'</option>');
+                  $("#township").append('<option value='+data.data.B+'>'+data.data.B+'</option>');
+                  $("#village").append('<option value='+data.data.C+'>'+data.data.C+'</option>');
+                  $("#formD").val(data.data.D);
+                  $("#formF").val(data.data.F);
+                  $("#formH").val(data.data.H);
+                  $("#formI").val(data.data.I);
+                  var box1 = document.getElementsByName("formE");
+                  for(let i=0;i<box1.length;i++){
+                      if(box1[i].value == data.data.E){
+                          box1[i].checked = true;
+                          break
+                      }else{
+                          box1.value="否"
+                      }
+                  }
+                  var box2 = document.getElementsByName("formG");
+                  for(let i=0;i<box2.length;i++){
+                      if(box2[i].value == data.data.G){
+                          box2[i].checked = true;
+                          break
+                      }else{
+                          box2.value="否"
+                      }
+                  }
+                  var box3 = document.getElementsByName("formJ");
+                  for(let i=0;i<box3.length;i++){
+                      if(box3[i].value == data.data.J){
+                          box3[i].checked = true;
+                          break
+                      }else{
+                          box3.value="否"
+                      }
+                  }
+                  var box4 = document.getElementsByName("formK");
+                  for(let i=0;i<box4.length;i++){
+                      if(box4[i].value == data.data.K){
+                          box4[i].checked = true;
+                          break
+                      }else{
+                          box4.value="否"
+                      }
+                  }
+                  var box5 = document.getElementsByName("formL");
+                  for(let i=0;i<box5.length;i++){
+                      if(box5[i].value == data.data.L){
+                          box5[i].checked = true;
+                          break
+                      }else{
+                          box5.value="否"
+                      }
+                  }
+                  var box6 = document.getElementsByName("formM");
+                  for(let i=0;i<box6.length;i++){
+                      if(box6[i].value == data.data.M){
+                          box6[i].checked = true;
+                          break
+                      }else{
+                          box6.value="否"
+                      }
+                  }
+                  var box7 = document.getElementsByName("formN");
+                  for(let i=0;i<box7.length;i++){
+                      if(box7[i].value == data.data.N){
+                          box7[i].checked = true;
+                          break
+                      }else{
+                          box7.value="否"
+                      }
+                  }
+                  var box8 = document.getElementsByName("formO");
+                  for(let i=0;i<box8.length;i++){
+                      if(box8[i].value == data.data.O){
+                          box8[i].checked = true;
+                          break
+                      }else{
+                          box8.value="否"
+                      }
+                  }
+                  var box9 = document.getElementsByName("formP");
+                  for(let i=0;i<box9.length;i++){
+                      if(box9[i].value == data.data.P){
+                          box9[i].checked = true;
+                          break
+                      }else{
+                          box9.value="否"
+                      }
+                  }
+                  var box10 = document.getElementsByName("formQ");
+                  for(let i=0;i<box10.length;i++){
+                      if(box10[i].value == data.data.Q){
+                          box10[i].checked = true;
+                          break
+                      }else{
+                          box10.value="否"
+                      }
+                  }
+                  var box11 = document.getElementsByName("formR");
+                  for(let i=0;i<box11.length;i++){
+                      if(box11[i].value == data.data.R){
+                          box11[i].checked = true;
+                          break
+                      }else{
+                          box11.value="否"
+                      }
+                  }
+                  var box12 = document.getElementsByName("formS");
+                  for(let i=0;i<box12.length;i++){
+                      if(box12[i].value == data.data.S){
+                          box12[i].checked = true;
+                          break
+                      }else{
+                          box12.value="否"
+                      }
+                  }
+                  var box13 = document.getElementsByName("formT");
+                  for(let i=0;i<box13.length;i++){
+                      if(box13[i].value == data.data.T){
+                          box13[i].checked = true;
+                          break
+                      }else{
+                          box13.value="否"
+                      }
+                  }
+                  var box14 = document.getElementsByName("formU");
+                  for(let i=0;i<box14.length;i++){
+                      if(box14[i].value == data.data.U){
+                          box14[i].checked = true;
+                          break
+                      }else{
+                          box14.value="否"
+                      }
+                  }
+              }else if(data.code===4000){
+                  alert(data.message);
+              }
+          }
+      })
+      /*点击提交修改后的内容*/
+      $(".submit").click(function(){
+          let formA=$("#country").val();
+          let formB=$("#township").val();
+          let formC=$("#village").val();
+          let formD=$("#formD").val().replace(/\s+/g,"");
+          let formE=getRadioButtonCheckedValue("formE");
+          let formF=$("#formF").val().replace(/\s+/g,"");
+          let formG=getRadioButtonCheckedValue("formG");
+          let formH=$("#formH").val().replace(/\s+/g,"");
+          let formI=$("#formI").val().replace(/\s+/g,"");
+          let formJ=getRadioButtonCheckedValue("formJ");
+          let formK=getRadioButtonCheckedValue("formK");
+          let formL=getRadioButtonCheckedValue("formL");
+          let formM=getRadioButtonCheckedValue("formM");
+          let formN=getRadioButtonCheckedValue("formN");
+          let formO=getRadioButtonCheckedValue("formO");
+          let formP=getRadioButtonCheckedValue("formP");
+          let formQ=getRadioButtonCheckedValue("formQ");
+          let formR=getRadioButtonCheckedValue("formR");
+          let formS=getRadioButtonCheckedValue("formS");
+          let formT=getRadioButtonCheckedValue("formT");
+          let formU=getRadioButtonCheckedValue("formU");
+          
+          /*获取input类型为radio的选中值*/
+          function getRadioButtonCheckedValue(tagNameAttr){
+              var radio_tag = document.getElementsByName(tagNameAttr);
+              for(var i=0;i<radio_tag.length;i++){
+                  if(radio_tag[i].checked){
+                      var checkvalue = radio_tag[i].value;
+                      return checkvalue;
+                  }
+              }
+          }
+          /*验证表单*/
+          $.validator.setDefaults({
+              submitHandler: function() {
+                  alert("确认添加");
+              }
+          });
+          /*户主姓名自定义校验*/
+          jQuery.validator.addMethod("isName", function(value, element) {
+              return this.optional(element) || /^[\u4E00-\u9FA5]{1,6}$/.test(value);
+          }, "请输入正确的户主姓名");
+          /*身份证号自定义校验*/
+          jQuery.validator.addMethod("isIdCardNo", function(value, element) {
+              //var idCard = /^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/;
+              return this.optional(element) || isIdCardNo(value);
+          }, "请输入正确的身份证号码");
+          //身份证验证
+          function isIdCardNo(num){
+              //if (isNaN(num)) {alert("输入的不是数字！"); return false;}
+              var len = num.length, re;
+              if (len == 15)
+                  re = new RegExp(/^(\d{6})()?(\d{2})(\d{2})(\d{2})(\d{2})(\w)$/);
+              else if (len == 18)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/);
+              else if (len == 20)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)(\d{2})$/);
+              else if (len == 22)
+                  re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\d{3})(\w)(\d{1})$/);
+              else {
+                  //alert("输入的数字位数不对。");
+                  return false;
+              }
+              var a = num.match(re);
+              if (a != null)
+              {
+                  if (len==15)
+                  {
+                      var D = new Date("19"+a[3]+"/"+a[4]+"/"+a[5]);
+                      var B = D.getYear()==a[3]&&(D.getMonth()+1)==a[4]&&D.getDate()==a[5];
+                  }
+                  else
+                  {
+                      var D = new Date(a[3]+"/"+a[4]+"/"+a[5]);
+                      var B = D.getFullYear()==a[3]&&(D.getMonth()+1)==a[4]&&D.getDate()==a[5];
+                  }
+                  if (!B) {
+                      //alert("输入的身份证号 "+ a[0] +" 里出生日期不对。");
+                      return false;
+                  }
+              }
+              if(!re.test(num)){
+                  //alert("身份证最后一位只能是数字和字母。");
+                  return false;
+              }
+              return true;
+          }
+          /*数量自定义校验*/
+          jQuery.validator.addMethod("isDigits", function(value, element) {
+              return this.optional(element) || /^\d+$/.test(value);
+          }, "只能输入整数");
+          /*数值自定义校验*/
+          jQuery.validator.addMethod("isIntGteZero", function(value, element) {
+              value=parseInt(value);
+              return this.optional(element) || value>=0;
+          }, "请输入正确的数值");
+          $("#formSubmit").validate({
+              rules:{
+                  name:{
+                      required:true,
+                      minlength:2,
+                      isName:true
+                  },
+                  idNumber:{
+                      required:true,
+                      minlength:18,
+                      isIdCardNo:true
+                  },
+                  number:{
+                      isIntGteZero:true
+                  },
+                  number2:{
+                      isIntGteZero:true
+                  },
+                  number3:{
+                      isIntGteZero:true
+                  }
+              },
+              submitHandler:function(){
+                  /*ajax校验数据是否重复,主要判断身份证号*/
+                  
+                  $.ajax({
+                      url: url+"/background/helpmeasures/education/update",
+                      data:{"formA":formA,"formB":formB,"formC":formC,"formD":formD,"formE":formE,"formF":formF,"formG":formG,"formH":formH,"formI":formI,"formJ":formJ,"formK":formK,"formL":formL,"formM":formM,"formN":formN,"formO":formO,"formP":formP,"formQ":formQ,"formR":formR,"formS":formS,"formT":formT,"formU":formU,"id":id},
+                      method:"post",
+                      type:"json",
+                      beforeSend:function(request){
+                          request.setRequestHeader("Authorization",token);
+                          request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                      },
+                      success:function(data){
+                          if(data.code === 2000){
+                              show_msg('修改成功','show_education_poverty.html');
+                          }else if(data.code===4000){
+                              alert(data.message);
+                          }
+                      }
+                  })
+              },
+              messages:{
+                  name:{
+                      required:"请输入姓名",
+                      minlength:"请输入最少两位字符",
+                  },
+                  idNumber:{
+                      required:"请输入身份证号码",
+                      minlength:"请输入18/20/22位字符",
+                  },
+              }
+          })
+      })
+  })
+</script>
+</html>

@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>西安市脱贫攻坚指挥系统</title>
+	<link rel="stylesheet" href="css/ryg.css">
+    <link rel="stylesheet" href="css/outoLayout.css">
+	<script src="js/ports.js"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../index/js/jquery.cookie.js"></script>
+    <script src="../index/js/tooltips.js"></script>
+    <!-- <script src="js/common.js"></script> -->
+	<script type="text/javascript">
+		var countryName=null;
+		var villageName=null;
+		/********************************************************请求参数截取************************************************************/
+		//截取Url里面的参数
+		function GetRequest() {
+		    var url = location.search; //获取url中"?"符后的字串
+		    url=decodeURI(url);
+		    var theRequest = new Object();
+		    if (url.indexOf("?") != -1) {
+		        var str = url.substr(1);
+		        //alert(str);
+		        strs = str.split("&");
+		        for (var i = 0; i < strs.length; i++) {
+		            theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);//获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>，（unescape只针对数字，中文乱码)
+		        }
+		    }
+		    return theRequest;
+		}
+
+		//通过url取数
+        var data = new Object();
+        data = GetRequest();
+        countryNames = data['county'] ;
+        villageNames = data['name'] ;
+        countryName=GetChinese(countryNames);
+        villageName=GetChinese(villageNames);
+        function GetChinese(strValue) {
+            if(strValue!= null && strValue!= ""){
+                var reg = /[\u4e00-\u9fa5]/g;
+                return strValue.match(reg).join("");
+            }
+            else
+                return "";
+        }
+        villageCode = data['code'] ;
+        personName = data['personName'] ;
+        personCode = data['Pcode'] ;
+        console.log(personCode)
+	</script>
+</head>
+<style>
+	.map .item {width: 117px;}
+	.map .item-1 {background: url(images/img_5.png) 6px center no-repeat;}
+	.map .item-2 {background: url(images/img_6.png) 6px center no-repeat;}
+	.map .item-3 {background: url(images/img_7.png) 6px center no-repeat;}
+	.map .item-4 {background: url(images/img_8.png) 6px center no-repeat;}
+	.map .item{background-size: 40px 24px;text-indent: 50px;}
+	.PersonMap{height: 48%!important;width: 100%;border: 2px solid #053c77!important;overflow: hidden;}
+	.PersonMap select{width: 15%;height: 85%;border: 1px solid #769fad;background: rgba(3,15,31,0);color: #fff;margin-left: 5%;border-radius: 5px;}
+	.PersonMap select option{color: #000;}
+	.PersonMap iframe{height: 90%;width: 100%;float: right;border-radius: 5px;padding: 1%;}
+	.boxs ul li{display: block;float: left;width: 320px;height: 200px!important;margin-right: -1px;background-size: cover;background-position: center center;}
+	.boxs ul li img{
+		width:300px;
+		height: 200px;
+	}
+	.boxs{height: 300px;width:3010px;}
+	#box1,#box2{float: left}
+	.wrap{position: relative;width: 800px;margin: auto;height: 400px;overflow: hidden}
+	.boxs{position: absolute;left: 0;}
+    .content-8 .wrap10 .grids3 .item {margin:1%;height:35px;line-height:35px;}
+    .content .wrap7 .item,.content .wrap7 .itemReason{
+        width: 100%;
+        height: 40px;
+        padding: 10px 0;
+    }
+    .content .wrap7 .left {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        position: relative;
+        bottom: 10px;
+    }
+	.logdetail p{
+		line-height: 32px;
+	}
+</style>
+<body>
+	<div class="logdetail" style="width:600px;height:400px;background: #086BC4;box-shadow: 0px 0px 3000px 3000px rgba(0,0,0,0.8);padding:1% 2%;position:fixed;z-index:999;top:50%;left:50%;transform: translate(-50%,-50%);display: none;">
+		<div class="close" style="width:24px;height:24px;position:absolute;top:7px;right:7px;"><img src="images/close.png" alt="" style="width:100%;height:100%;cursor:pointer"></div>
+		<p style="text-align: center;line-height: 44px;font-size: 22px;border-bottom:1px solid #fff;">日志详情</p>
+		<div class="logbox" style="height:calc(100% - 46px);padding:2% 4%;overflow-y: auto;">
+			<p class="name">帮扶责任人: <span></span></p>
+			<p class="time">帮扶时间: <span></span></p>
+			<p class="place">帮扶地点: <span></span></p>
+			<p class="con">日志内容: <span></span></p>
+			<div><label for="" style="float: left;">日志图片: </label><div class="imglists" style="display: inline-block;width:80%;height: 180px;"></div></div>
+		</div>
+	</div>
+	<div class="main">
+		<div class="main-title clearfix">
+			<h3>西安市脱贫攻坚指挥系统</h3>
+            <p class="TopTitle"></p>
+		</div>
+		<div class="a-hrefs clearfix">
+			<div class="search">
+				<!-- <form class="s-form" action="" method="get">
+					<input class="keywords" type="text" name="keywords" placeholder="村民、户名、电话号码..." />
+					<input class="submit" type="submit" value=" "/>
+				</form> -->
+                <a class="a-item home" href="../index/index.html">首页</a>
+                <a class="a-item return " href="javascript:history.back(-1)">返回</a>
+			</div>
+		</div>
+		<div class="container">
+			<div class="container-left2">
+                <div class="PersonMap content">
+					<h3 class="c-title"><span class="vPersonName"></span>户主列表
+						<!--<select id="PersonSelect"></select>-->
+					</h3>
+					<div class="boxCon" style="width:100%;height:92%;background: #0a2952">
+						<div id="poorList" style="width:100%;height:100%;padding:0;">
+							<div class="Top_Record" style="width:100%;height:100%;">
+								<div class="topRec_List" style="width:100%;height:100%;">
+									<dl style="display: flex;justify-content: space-between;text-align: center;line-height: 40px;background: #20507d;">
+										<dd style="width:50%;color:#fff;">户主姓名</dd>
+										<dd style="width:50%;color:#fff;">贫困户属性</dd>
+									</dl>
+									<div class="" style="height:100%;overflow-y: auto;">
+										<ul style="height:330px;" id="poorlists">
+
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <!--<iframe id="wholemap" src="dist/index.html" frameborder='0'></iframe>-->
+                </div>
+				<div class="container-4 content">
+					<h3 class="c-title">五项退出指标达标情况</h3>
+					<div class="wrap wrap7">
+						<div class="exitBZ item isStudent">
+							<div class="left"><i></i></div>
+							<div class="right">
+								<h2>无义务教育阶段辍学学生</h2>
+								<!-- <p style="overflow: hidden;height: 48px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;">贫困户子女义务教育阶段无因家庭贫困不能入学或辍学</p> -->
+							</div>
+						</div>
+						<div class="exitBZ item isJoin">
+							<div class="left"><i></i></div>
+							<div class="right">
+								<h2>新农合及大病保险</h2>
+								<!-- <p>家庭成员全部参加新型农村合作医疗和大病保险</p> -->
+							</div>
+						</div>
+						<div class="exitBZ item isReach">
+							<div class="left"><i></i></div>
+							<div class="right">
+								<h2>人均纯收入</h2>
+								<!-- <p>家庭人均纯收入超过扶贫标准</p> -->
+							</div>
+						</div>
+						<div class="exitBZ item isWater">
+							<div class="left"><i></i></div>
+							<div class="right">
+								<h2>有安全饮水</h2>
+								<!-- <p>水质符合国家《生活饮水用水标准》</p> -->
+							</div>
+						</div>
+						<div class="exitBZ item isSafeHouse">
+							<div class="left"><i></i></div>
+							<div class="right">
+								<h2>有安全住房</h2>
+								<!-- <p>指家庭现有住房能保证安全居住</p> -->
+							</div>
+						</div>
+						<div class="reason2" style="display: none;">
+							<div id="close2" style="position: absolute;top:15px;right:15px;width:20px;height:20px;"><img src="images/close.png" alt="" style="width:100%;height:100%;cursor: pointer;"></div>
+							<h3 style="text-align: center;line-height: 44px;font-size: 22px;">原因</h3>
+							<div id="reason2" style="width:100%;height:80%;text-indent:30px;font-size: 18px;padding-top:14px;">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container-center2">
+				<div class="content-1 content" style="height: 40%;">
+					<h3 class="c-title">基本信息</h3>
+					<div class="wrap wrap4 baseWrap">
+						<table>
+							<thead>
+								<tr>
+									<th style="width:5%!important;">姓名</th>
+									<th style="width:5%!important;">性别</th>
+									<!-- <th style="width:25%!important;">身份证号</th> -->
+									<th style="width:10%!important;">关系</th>
+									<th style="width:15%!important;">劳动能力</th>
+									<th style="width:12%!important;">在校生情况</th>
+									<th style="width:10%!important;">健康情况</th>
+								</tr>
+							</thead>
+							<tbody id="PbaseInfo"></tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="content-2 content" style="height: 25%;">
+					<h3 class="c-title">基本情况</h3>
+					<div class="wrap wrap5 baseSatiation">
+						<div class="item">主要致贫原因：<span></span></div>
+						<div class="item">其他致贫原因：<span></span></div>
+						<div class="item">贫困户属性：<span></span></div>
+						<div class="item">是否搬迁户：<span></span></div>
+						<div class="item">是否危房户：<span></span></div>
+					</div>
+				</div>
+
+				<div class="content-3 content">
+					<h3 class="c-title">帮扶纪实</h3>
+                    <!-- 根据户编号传递对应的帮扶纪实图片 -->
+					<div class="wrap wrap6" style="overflow:hidden;">
+						<div class="boxs">
+							<ul id="box1" class="documentary">
+								<li><img src="images/sihu1.jfif" alt=""></li>
+								<li><img src="images/sishu2.jpg" alt=""></li>
+								<li><img src="images/sishu3.jpg" alt=""></li>
+								<li><img src="images/sishu4.jpg" alt=""></li>
+							</ul>
+							<ul id="box2"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container-right2">
+				<div class="content-6 content r-con" style="height:30%;">
+					<h3 class="c-title">帮扶干部
+                        <div class="details" style="float: right;margin-right:10px;height: 36px;">
+    						<a id="userId" style="color: #fff;">
+                                <img src="images/dingding.png" alt="" style="margin-right:4px;margin-top:-5px;vertical-align: middle;">钉钉视频
+                            </a>
+    						<!-- <span style="margin-left:10px;">详情</span> -->
+    					</div>
+                    </h3>
+                    <!-- 接口中添加帮扶干部图片 -->
+					<div class="wrap wrap8" id="bangfu">
+						<!--<div class="grid">
+							<div class="left">
+								<img src="images/touxiang.png" alt="" style="width:100%;height:90%;margin-top:3%;">
+							</div>
+							<div class="right helpInfo" style="width:calc(100% - 6% - 82px)">
+								<p>姓名：<span></span></p>
+								<p>单位：<span></span></p>
+								<p>职务：<span></span></p>
+								<p>联系方式：<span></span></p>
+								<p style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:250px;">帮扶起止时间：<span></span></p>
+							</div>
+						</div>-->
+					</div>
+				</div>
+
+				<div class="content-7 content r-con">
+					<h3 class="c-title">帮扶日志</h3>
+					<div class="wrap wrap9">
+						<ul class="grids2 helpLog" id="heloLog">
+							<!--<li>
+								<span style="width:30%;"></span>
+								<span style="width:30%;"></span>
+								<span style="width:30%;">详情</span>
+							</li>-->
+						</ul>
+					</div>
+				</div>
+
+				<div class="content-8 content r-con">
+					<h3 class="c-title">帮扶措施落实情况</h3>
+					<div class="wrap wrap10" style="overflow: hidden;">
+						<ul class="grids3">
+							<li class="item Item Item01">产业扶贫</li>
+							<li class="item Item Item02">就业扶贫</li>
+							<li class="item Item Item03">生态扶贫</li>
+							<li class="item Item Item04">兜底保障</li>
+							<li class="item Item Item05">危房改造</li>
+							<li class="item Item Item06">健康扶贫</li>
+							<li class="item Item Item07">易地搬迁</li>
+							<li class="item Item Item08">教育扶贫</li>
+						</ul>
+						<div class="reason3" style="display: none;">
+							<div id="close" style="position: absolute;top:15px;right:15px;width:20px;height:20px;"><img src="images/close.png" alt="" style="width:100%;height:100%;cursor: pointer;"></div>
+							<h3 style="text-align: center;line-height: 44px;font-size: 22px;">原因</h3>
+							<div id="reason" style="width:100%;height:80%;text-indent:30px;font-size: 18px;padding-top:14px;">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="boxImg" style="position:absolute;width:100%;height:100%;top:0;left:0;display: none;">
+	<div class="mask" style="width:100%;height:100%;background: rgba(0,0,0,0.8)"></div>
+	<div class="imgClose" style="position:absolute;top:5%;right:2%;width:40px;height:40px;border:1px solid #fff;border-radius: 50%;cursor: pointer;"><img src="images/close.png" alt="" style="width:20px;height:20px;margin-top:10px;margin-left:10px;"></div>
+	<img src="images/sishu.png" alt="" id="imgtip" style="width:800px;height:500px;position:absolute;top:50%;left:50%;transform: translate(-50%,-50%)">
+</div>
+</body>
+</html>
+<script>
+	/*帮扶日志详情关闭*/
+	$(".logdetail .close").click(function(){
+	    $(".logdetail").css("display","none");
+	})
+
+    /*列表滚动*/
+    var die=[];
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    //调用方法
+    let homeCode=getQueryString("homeCode");
+    function autoScroll(obj){
+        $(obj).find("ul").animate({
+            marginTop : "-39px"
+        },500,function(){
+            $(this).css({marginTop : "0px"}).find("li:first").appendTo(this);
+        })
+    }
+    $(function(){
+        setInterval('autoScroll(".maquee")',3000);
+    })
+	/*左上角户列表渲染*/
+    let nameList=$("#poorlists");
+    let villageCode=getQueryString("villageCode");
+    $.ajax({
+        url:url+"/visual/houseInfo/query",
+        method:"post",
+        dataType:"json",
+        data:{"aar040":201808,"aaa001":villageCode},
+        success:function (result) {
+            let data = result.data;
+            showList(nameList,data);
+        }
+    })
+    function showList(obj,data){
+        obj.empty();
+        for(let i=0;i<data.length;i++){
+            let str=`
+                     <li style="display: flex;justify-content: space-between;text-align: center;line-height: 40px;border-bottom:1px dashed #1B1147;cursor:pointer;" id="${data[i]['AAC001']}">
+												<div style="width:50%;" sleep='${data[i]['ISSTANDARDOK']}'>${data[i]['AAC029']}</div>
+												<div style="width:50%;">${data[i]['AAC006']}</div>
+					</li>
+                  `;
+            obj.html(function (i,value) {
+                return value+str;
+            })
+        }
+        for(var i=0;i<$('#poorlists li').length;i++){
+            die.push($('#poorlists li').eq(i).children('div:nth-child(1)').attr('sleep'));
+            if(die[i]=='0'){
+                $('#poorlists li').eq(i).children('div').css('color','red')
+            }else if(die[i]=='1'){
+                $('#poorlists li').eq(i).children('div').css('color','green')
+            }else if(die[i]=='2'){
+                $('#poorlists li').eq(i).children('div').css('color','yellow')
+            }else{
+                $('#poorlists li').eq(i).children('div').css('color','white')
+            }
+       }
+    }
+	$(document).on("click","#poorlists li",function(){
+	    let personCode=$(this).attr("id");
+	    $("#PbaseInfo").empty();
+        PersonChange(url+'/family/name?aad001='+personCode,personCode);
+	})
+	/*左下角五项退出指标情况*/
+    $(".wrap7 .item").click(function(){
+        $(".reason2").css("display","block");
+    })
+    $("#close2").click(function(){
+        $(".reason2").hide();
+    })
+	/*右下角帮扶措施落实情况*/
+	$(".grids3 .item").click(function(){
+		$(".reason3").css("display","block");
+	})
+
+
+	$("#close").click(function(){
+	    $(".reason3").hide();
+	})
+</script>
+<script>
+	/*帮扶纪实*/
+    var timer='';//设置一个定时器
+    var $box1=$('#box1').children().clone(true);
+    $('#box2').append($box1);
+    var $left=parseInt($('.boxs').css('left'));
+    var scroll=function(){
+        $left-=2;
+        $('.boxs').css('left',$left+'px');
+        if($left<-1276){
+            $('.boxs').css('left','0');
+            $left=0;
+        }
+        timer =setTimeout(scroll,30);
+    }
+    setTimeout(scroll,10);
+    $('.wrap6').hover(function(){
+        clearTimeout(timer);
+    },function(){
+        setTimeout(scroll,10);
+    });
+    /*点击图片放大居中显示*/
+	let imgBox=$(".boxs li img");
+	console.log(imgBox);
+	$(".boxs li").click(function(){
+	    let index=$(this).index();
+		$(".boxImg").css("display","block");
+		$("#imgtip").attr("src",$(this).children("img")[0].src);
+	})
+	$(".imgClose").click(function(){
+	    $(".boxImg").hide();
+	})
+</script>
+<script type="text/javascript">
+      /**************** 地图调用 ************************/
+    var gis = null;
+    function giscallback(type, param){
+        switch (type) {
+            case 'mapinit':
+                // 地图初始化完成
+                setTimeout(function(){
+                	gis.gisapp.zoom(countryName,villageName);
+                },1000)
+                break;
+            case 'county_select':
+                // 区域点击事件
+                // var url = host + '/county.html?name=' + param
+                // window.location.href = url;
+                break;
+            case 'village_select':
+                // 村点击事件
+	            // var url = host + '/village.html?county='+ param.county + '&name=' + param.village+ '&code=' + param.villagecode
+	            // window.location.href = url;
+                break;
+            case 'city_show':
+                break;
+            default:
+                //console.log(type +':' + param)
+                break;
+        }
+    }
+    function gisready(){
+        gis = document.getElementById("wholemap").contentWindow
+        gis.gisapp.init(giscallback)
+    }
+	$('.vPersonName').append(villageName);
+	//console.log(villageCode);
+    $('.TopTitle').append(countryName+'('+villageName+')');
+</script>
+<script src="js/Every.js"></script>
+
+<script>
+	//console.log(villageCode)
+let personCode=homeCode;
+console.log(personCode)
+if (personCode) {
+    $('#PbaseInfo').empty();
+	SeaechPersonChange(url+'/family/name?aad001='+villageCode,personName,personCode);
+}else{
+    $('#PbaseInfo').empty();
+    PersonSelect(url+'/family/name?aad001='+personCode);
+}
+
+$("#PersonSelect").change(function(){
+	//alert(1)
+	$('#PbaseInfo').html("");
+	var options=$("#PersonSelect option:selected"); //获取选中的项
+	var personCode=options.val();
+	//alert(personCode); //拿到选中项的值
+	PersonChange(url+'/family/name?aad001='+villageCode,personCode);
+    // PersonbaseInfo(url+'/family/baseInfo?aac001='+personCode);
+    // PersonSatiation(url+'/family/satiation?aac001='+personCode);
+    // PersonHelpJob(url+'/family/helpJob?number='+personCode);
+    // PersonTCZB(url+'/map/five/house/five?aac001='+personCode+'&year=201808',personCode);
+    // helpLog(url+'/family/queryhelplog?aac001='+personCode);
+})
+</script>

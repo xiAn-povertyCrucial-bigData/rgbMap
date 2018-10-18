@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>综合统计表</title>
+         <script src="../js/commer.js"></script>
+        <script src="../js/echarts.js"></script>
+        <script src="../js/jquery.js"></script>
+        <link rel="stylesheet" href="../css/pintuer.css">
+        <link rel="stylesheet" href="../css/admin.css">
+        <style>
+            body,html,.container{
+                width:99%;
+                height: 98%;
+                font-family: "arial rounded mt bold";
+                font-size: 14px;
+            }
+            .container .select{padding: 0.5%;border-bottom: 1px solid #b1bfd1;}
+            .container .select li{padding: 8px 0;color: #767272;}
+            .container li label{width: 100px;display: inline-block;vertical-align: middle;}
+            .container li dt{display: inline-block;vertical-align: middle;}
+            .container li dt dl{float: left;margin-right: 10px;border-radius: 12px;text-align: center;padding: 2px 6px;cursor: pointer;position: relative;color: #555;}
+            .active{background: #70c1ff!important;color: #fff!important;}
+            .obtn{position: absolute;top: 45%;right: 4%;}
+            .obtn input{background: #e9ebef;border:0;border: 1px solid #D2D2D2;line-height: 14px;padding: 6px 12px;border-radius: 3px;cursor: pointer;}
+            .obtnActive{background: #428bca!important;color: #fff!important;border-radius: 1px solid #2698FB!important;}
+
+            .box{display: flex;align-items: center;height: 50%;width: 100%;padding-top: 2%;}
+            #pieElsePoverty,#barElsePoverty{width: 100%;height: 100%;}
+        </style>
+    </head>
+    <body>
+        <div class="panel admin-panel admin-panel1">
+        <div class="panel-head"><strong><span class="icon-key"></span> 综合统计表</strong></div>
+    
+    <input class="btn button" id="btnPrint" type="button" value="打印预览" onclick='preview(1)' /> 
+    <input class="btn button" id="btnPrint" type="button" value="打印" onclick="javascript:window.print();" /> 
+
+        <div class="container">
+          <ul class="select">
+            <li>
+              <label class="label1">贫困户属性：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>一般贫困户</dl>
+                <dl>低保贫困户</dl>
+                <dl>五保贫困户</dl>
+              </dt>
+            </li><li>
+              <label class="label1">主要致贫原因：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>因病</dl>
+                <dl>因残</dl>
+                <dl>因学</dl>
+              </dt>
+            </li><li>
+              <label class="label1">其他致贫原因：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>因灾</dl>
+                <dl>缺土地</dl>
+                <dl>缺水</dl>
+                <dl>缺技术</dl>
+                <dl>缺劳动力</dl>
+                <dl>缺资金</dl>
+                <dl>交通条件落后</dl>
+                <dl>自身发展力不足</dl>
+                <dl>因婚</dl>
+              </dt>
+            </li><li>
+              <label class="label1">劳动能力类型：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>普通劳动力</dl>
+                <dl>技能劳动力</dl>
+                <dl>丧失劳动力</dl>
+                <dl>无劳动力</dl>
+              </dt>
+            </li><li>
+              <label class="label1">务工状况：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>乡（镇）内务工</dl>
+                <dl>乡（镇）外县内务工</dl>
+                <dl>县外省内务工</dl>
+                <dl>省外务工</dl>
+              </dt>
+            </li><li>
+              <label class="label1">身体健康情况：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>健康</dl>
+                <dl>患有长期慢性病</dl>
+                <dl>患有大病</dl>
+                <dl>残疾</dl>
+              </dt>
+            </li><li>
+              <label class="label1">年龄段：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>16岁以下</dl>
+                <dl>16岁（含）-30岁</dl>
+                <dl>30岁（含）-40岁</dl>
+                <dl>40岁（含）-50岁</dl>
+                <dl>50岁（含）-60岁</dl>
+                <dl>60岁（含）以上</dl>
+              </dt>
+            </li><li>
+              <label class="label1">文化程度：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>文盲半文盲</dl>
+                <dl>小学</dl>
+                <dl>初中</dl>
+                <dl>高中</dl>
+                <dl>大专及以上</dl>
+              </dt>
+            </li><li>
+              <label class="label1">党员情况：</label>
+              <dt>
+                <dl class="active">全部</dl>
+                <dl>党员</dl>
+                <dl>非党员</dl>
+              </dt>
+            </li>
+          </ul>
+          <div class="obtn">
+            <input type="button" name="查询" value="查询" class="obtnActive">
+            <input type="button" name="重置" value="重置">
+          </div>
+
+          <div class="box">
+            <div id="pieElsePoverty"></div>
+            <div id="barElsePoverty"></div>
+          </div>
+        </div>
+        </div>
+        <script type="text/javascript">
+          var pieElsePovertyChart=echarts.init(document.getElementById("pieElsePoverty"));
+          var pieElsePovertyOption = {
+              tooltip : {
+                  trigger: 'item',
+                  formatter: "{a} <br/>{b} : {c} ({d}%)"
+              },
+              legend: [
+                  {
+                      x:'center',
+                      top:'0',
+                      data: ['周至县','蓝田县','鄠邑区','长安区','临潼区','西咸新区','灞桥区'],
+                      textStyle: {
+                          fontSize:16,
+                      }
+                  },
+                  {
+                      x:'center',
+                      top:'6%',
+                      data:['高陵区','国际港务区','阎良区'],
+                      textStyle: {
+                          fontSize:16,
+                      }
+                  }
+              ],
+              series : [
+                  {
+                      name: '各区县人数占比',
+                      type: 'pie',
+                      radius : '55%',
+                      center: ['50%', '60%'],
+                      label:{fontSize:16},
+                      data:[
+                          {value:335, name:'周至县'},
+                          {value:310, name:'蓝田县'},
+                          {value:234, name:'鄠邑区'},
+                          {value:135, name:'长安区'},
+                          {value:234, name:'临潼区'},
+                          {value:135, name:'西咸新区'},
+                          {value:234, name:'灞桥区'},
+                          {value:135, name:'高陵区'},
+                          {value:234, name:'国际港务区'},
+                          {value:135, name:'阎良区'}
+                      ],
+                      itemStyle: {
+                          emphasis: {
+                              shadowBlur: 10,
+                              shadowOffsetX: 0,
+                              shadowColor: 'rgba(0, 0, 0, 0.5)'
+                          }
+                      }
+                  }
+              ],
+              color: ['#2a89bd','#39A2B2','#20B8B4','#6ED1B2','#68E39D','#A6F093','#F9CF86','#e58350','#FD9FB6','#ee7694']
+          };
+          pieElsePovertyChart.setOption(pieElsePovertyOption);
+
+           /**************************************堆积柱状图**************************************/
+          var barElsePovertyChart=echarts.init(document.getElementById("barElsePoverty"));                
+          var barElsePovertyOption = {
+              tooltip: {
+                  formatter: "{a} <br/>{b}: {c}户" // 这里是鼠标移上去的显示数据
+              },
+              legend: [
+                  {
+                      x:'center',
+                      top:'0',
+                      data: ['各区县人数'],
+                      textStyle: {
+                          fontSize:16,
+                      }
+                  }
+              ],
+              calculable : true,
+              xAxis : [
+                  {
+                      type : 'category',
+                      axisLabel: {
+                          interval:0,
+                          rotate:40,
+                          textStyle:{
+                              fontSize:16
+                          }
+                      },
+                      data : ['周至县','蓝田县','鄠邑区','长安区','临潼区','西咸新区','灞桥区','高陵区','国际港务区','阎良区'],
+                  }
+              ],
+              yAxis : {
+                  type: 'value',
+                  max: 200,
+                  name:'(户)',
+                  axisLabel:{
+                      textStyle:{
+                          fontSize:'16'
+                      }
+                  },
+                  splitLine: {
+                      show: true,
+                      lineStyle: {
+                          color: ['#B1C0D2']
+                      }
+                  },
+              },
+              series : [
+                  {
+                      name:'各区县人数',
+                      type:'bar',
+                      barWidth : 40,
+                      stack: '广告',
+                      data:[120, 132, 101, 134, 90, 120, 132, 101, 134,100]
+                  }
+              ],
+              color: ['#39A2B2','#20B8B4','#6ED1B2','#68E39D','#A6F093','#F9CF86','#FD9FB6','#ee7694']
+          };
+          barElsePovertyChart.setOption(barElsePovertyOption);
+
+          function preview(oper) { 
+            // $('input:eq(0)').hide();
+            // $('input:eq(1)').hide();
+            if (oper < 10) { 
+                bdhtml=window.document.body.innerHTML;//获取当前页的html代码 
+                sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域 
+                eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域 
+                prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html 
+                 
+                prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html 
+                window.document.body.innerHTML=prnhtml; 
+                window.print(); 
+                window.document.body.innerHTML=bdhtml; 
+            } else { 
+                window.print(); 
+            } 
+        } 
+        </script>
+        <script type="text/javascript">
+          
+          $(".btn input").click(function(){
+              $(this).siblings().removeClass("btnActive");
+              //点击对象的父级（li）的兄弟级（li）的子集（a）移除类
+              $(this).addClass("btnActive");
+              //给点击对象添加类
+          });
+         $("li dt >dl:nth-child(1)").siblings().click(function(){
+               $(this).parent().children(':first').removeClass("active");
+               $(this).toggleClass("active");
+              //给点击对象添加类
+          });
+           $("li dt >dl:nth-child(1)").click(function(){
+             	$(this).toggleClass("active")
+           		$(this).siblings().removeClass('active');
+           })
+        </script>
+    </body>
+</html>

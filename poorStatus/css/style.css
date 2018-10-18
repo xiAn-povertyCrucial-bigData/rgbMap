@@ -1,0 +1,59 @@
+@media screen and (max-width:1380px){
+.content .c-title{font-size: 1.25em;}
+#reason1 p{font-size: 16px;}	
+/*city*/
+.map-content{
+	width:42%;height: 75%;position: absolute;top: 20%;
+    left: 29%;/*border: 1px solid #0fa5cf;*/
+}
+#mapService{
+    width: 800px;height: 500px;transform: scale(0.7);margin-left: -20%;
+}
+/*rgy-3*/
+.map-content3{
+	width: 42%;height: 75%;position: absolute;top: 20%;left: 29%;z-index: 9000;
+}
+/*rgy-4*/
+.map-content4{
+	width: 40%;height: 70%;position: absolute;top: 25%;left: 49%;border: none;z-index: 9000;
+}
+/*rgy-5*/
+.map-content5{
+	width: 42%;height: 72%;position: absolute;top: 18%;left: 29%;border: 1px solid #0fa5cf;z-index: 9000;
+}
+#right-s1 p:nth-child(1){
+	width: 43px;margin-left: 35px
+}
+#right-s1 p:nth-child(2){
+	width: 56px;
+}
+#right-s1 p:nth-child(3){
+	width: 43px;
+}
+#right-s1 p:nth-child(4){
+	width: 70px;
+}
+#right-s1 p:nth-child(5){
+	width: 60px;margin-top: 12px;margin-left: 35px
+}
+#right-s1 p:nth-child(6){
+	width: 113px;margin-top: 12px;line-height: 35px
+}
+#right-s1 p:nth-child(7){
+	width: 60px;margin-top: 12px;line-height: 35px
+}
+/*poor-village*/
+.map-poor{
+	width: 41%;height: 72%;position: absolute;top: 23%;left: 29%;
+	border: 1px solid #0fa5cf;/*z-index: 9000;*/
+}
+.mapService-poor{
+	width: 800px;height: 500px;transform: scale(0.7);margin-left: -20%;
+}
+.map-sleepy{
+	left: 42%;
+}
+
+
+
+}

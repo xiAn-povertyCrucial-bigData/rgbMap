@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>非贫困村</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>s    
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>非贫困村</strong><a href="addFunding.html" class="button border-main icon-plus-square-o">添加内容</a><a href="data_tracking.html" class="data_tracking button border-main ">数据追踪</a>
+  </div>
+  <div class="form-01">
+      <p>高级搜索</p>
+      <div class="search">
+          <p>
+              <label for="">请选择地区</label>
+              <input type="text" value="陕西省" disabled>
+              <input type="text" value="西安市" disabled>
+              <select name="" id="country">
+                  <option value="">县（区）</option>
+                  <option value="">新城区</option>
+                  <option value="">碑林区</option>
+                  <option value="">莲湖区</option>
+                  <option value="">灞桥区</option>
+                  <option value="">未央区</option>
+                  <option value="">雁塔区</option>
+                  <option value="">阎良区</option>
+                  <option value="">临潼区</option>
+                  <option value="">长安区</option>
+                  <option value="">蓝田县</option>
+                  <option value="">周至县</option>
+                  <option value="">鄠邑区</option>
+              </select>
+              <select name="" id="township">
+                  <option value="">乡（镇）</option>
+                  <option value="">板房子镇</option>
+                  <option value="">陈河镇</option>
+                  <option value="">翠峰镇</option>
+                  <option value="">富仁镇</option>
+                  <option value="">广济镇</option>
+                  <option value="">厚畛子镇</option>
+                  <option value="">集贤镇</option>
+                  <option value="">九峰镇</option>
+                  <option value="">楼观镇</option>
+                  <option value="">骆峪镇</option>
+                  <option value="">马召镇</option>
+                  <option value="">王家河镇</option>
+              </select>
+              <select name="" id="village">
+                  <option value="">村</option>
+                  <option value="">东石门村</option>
+                  <option value="">高潮村</option>
+                  <option value="">清水河村</option>
+                  <option value="">新红村</option>
+                  <option value="">长坪村</option>
+                  <option value="">公兴村</option>
+                  <option value="">黑虎村</option>
+                  <option value="">金井村</option>
+                  <option value="">孙六村</option>
+                  <option value="">新兴村</option>
+                  <option value="">陈北村</option>
+                  <option value="">东红村</option>
+              </select>
+              <input type="text" value="非贫困" disabled>
+              <select name="" id="chulie">
+                  <option value="">是</option>
+                  <option value="">否</option>
+              </select>
+          </p>
+          <p>
+              <input type="button" class="btn_blue" style="float:right;margin-bottom: 10px;" name="" value="查询">
+              <input type="button" class="btn_orange" style="float: right;" name="" value="导入">
+              <input type="button" class="btn_orange" id="btn-orange" style="float: right;" name="" value="导出">
+          </p>
+      </div>
+      <!--startprint-->
+      <table id="formSubmit2" class="form-x" style="border-collapse: collapse;">
+          <tr >
+              <th>序号</th>
+              <th>非贫困村名称</th>
+              <th>非贫困村所在地</th>
+              <th>村属性</th>
+              <th>村负责人</th>
+              <th>村办公电话</th>
+              <th>有（无）帮扶措施</th>
+              <th>操作</th>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>炮岭村</td>
+              <td>西安市-临潼区-小金街道</td>
+              <td>非贫困村</td>
+              <td>张明春</td>
+              <td>02891487253</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>2</td>
+              <td>侯王村</td>
+              <td>西安市-鄠邑区-甘河镇</td>
+              <td>非贫困村</td>
+              <td>张启超</td>
+              <td>02691487253</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>3</td>
+              <td>郝家寨村</td>
+              <td>西安市-鄠邑区-蒋村镇</td>
+              <td>非贫困村</td>
+              <td>余求求</td>
+              <td>02891412363</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>4</td>
+              <td>白龙沟村</td>
+              <td>西安市-鄠邑区-蒋村镇</td>
+              <td>非贫困村</td>
+              <td>李箐</td>
+              <td>02891487253</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>5</td>
+              <td>甘峪口村</td>
+              <td>西安市-鄠邑区-蒋村镇</td>
+              <td>非贫困村</td>
+              <td>张琦</td>
+              <td>02891487253</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>6</td>
+              <td>柳泉口村</td>
+              <td>西安市-鄠邑区-蒋村镇</td>
+              <td>非贫困村</td>
+              <td>李斐</td>
+              <td>02562487253</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>7</td>
+              <td>八里坪村</td>
+              <td>西安市-鄠邑区-景区管理局</td>
+              <td>非贫困村</td>
+              <td>展起飞</td>
+              <td>02891487352</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>8</td>
+              <td>三庙村</td>
+              <td>西安市-临潼区-穆寨街道</td>
+              <td>非贫困村</td>
+              <td>齐飞</td>
+              <td>02487289153</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>9</td>
+              <td>西岳村</td>
+              <td>西安市-临潼区-穆寨街道</td>
+              <td>非贫困村</td>
+              <td>连晓三</td>
+              <td>02891562345</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>10</td>
+              <td>业池村</td>
+              <td>西安市-鄠邑区-穆寨街道</td>
+              <td>非贫困村</td>
+              <td>李根生</td>
+              <td>02891465236</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>11</td>
+              <td>东岳村</td>
+              <td>西安市-鄠邑区-穆寨街道</td>
+              <td>非贫困村</td>
+              <td>齐天</td>
+              <td>02896327253</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+          <tr>
+              <td>12</td>
+              <td>西岳村</td>
+              <td>西安市-鄠邑区-穆寨街道</td>
+              <td>非贫困村</td>
+              <td>张天雄</td>
+              <td>06321487253</td>
+              <td>有</td>
+              <td>
+                  <a href="showDetailsPoveryCountries.html">详情</a>
+                  <a href="addFunding.html">修改</a>
+                  <a href="">删除</a>
+              </td>
+          </tr>
+      </table>
+      <!--endprint-->
+      <div class="pages">
+          <div class="paging">
+              <div id="Pagination"></div>
+              <div class="searchPage">
+                  <span class="page-sum">共<strong class="allPage">15</strong>页</span>
+                  <span class="page-go">到<input type="text">页</span>
+                  <a href=" " class="page-btn">确定</a>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+    })
+    
+     //导出
+    window.onload=function(){
+    	 var btnPrint = document.getElementById("btn-orange");
+            btnPrint.onclick = function(){
+                printTable();//打印表格
+            }       		
+       /* function printTable(oper) { 
+            if (oper < 10) { 
+                bdhtml=window.document.body.innerHTML;//获取当前页的html代码 
+                sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域 
+                eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域 
+                prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html 
+                 
+                prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html 
+                window.document.body.innerHTML=prnhtml; 
+                window.print(); 
+                window.document.body.innerHTML=bdhtml; 
+            } else { 
+                window.print(); 
+            } 
+        } */       
+        function printTable(){      
+        bdhtml=window.document.body.innerHTML;
+         sprnstr="<!--startprint-->";
+         eprnstr="<!--endprint-->";
+         prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+17);
+         prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+         var newwin = window.open("");
+         var css="<style>#formSubmit2>tbody{width: 100%;font-size: 14px;}"      
+         +"#formSubmit2>tbody>tr>th{border:1px solid #ccc;}"
+         +"#formSubmit2>tbody>tr>th:first-child{width: 10%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(2){width: 15%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(3){width: 20%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(4){width: 15%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(5){width: 15%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(6){width: 15%;}"
+         +"#formSubmit2>tbody>tr>th:nth-child(7){width: 10%;}"
+         +"#formSubmit2>tbody>tr>th:last-child{width: 0%;}"
+         +"#formSubmit2>tbody tr td{height: 34px;line-height: 34px;text-align: center;border:1px solid #ccc; border-collapse:collapse;border-spacing:0;border-padding:0;}"
+         +"#formSubmit2>tbody tr td a{display: inline-block;border-radius: 3px;background: #fff;border:none;color: #fff;width: 48px;height: 22px;text-align: center;line-height: 22px;}"
+         +"#formSubmit2>tbody tr td a:nth-child(2){background-color: #229ffd;}"
+		 +"#formSubmit2>tbody tr td a:last-child{background-color: #ff7680;}"
+         +"#formSubmit2>tbody tr td a:first-child{background-color: #FEAE1B;}</style>"           
+         newwin.document.body.innerHTML=prnhtml+css;
+         newwin.print();   
+         newwin.close();
+        }        
+    }
+</script>
+</body>
+</html>

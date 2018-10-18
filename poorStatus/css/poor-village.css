@@ -1,0 +1,107 @@
+.icon {
+	   width: 1.5em; height: 1.5em;
+	   vertical-align: -1em;
+	   fill: currentColor;
+	   overflow: hidden;
+	}
+.content-1, .content-2 {
+    height: 43%;
+	top:15%;
+}
+.content-2 {
+    top: auto;
+    bottom:4%;
+}
+.main-title h3{
+	height: 92%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.8em;
+	margin-left: -1%;
+	margin-top: 1.5%;
+}
+.content-1 .echarts, .content-2 .echarts {
+    height: 90%;
+}
+.content-4 {
+    height: 82%;
+}
+.p-list p{
+	font-size:12px;-webkit-transform:scale(0.9);
+}
+.p-list .t-item{
+	margin-top: 5px;
+	/*width: 462px;*/
+}
+.p-list .reason{
+	margin: 10px auto;
+}
+.wuxiang{
+	width: 900px;height: 450px;display:none ;border: none;z-index: 9999;
+	left: 50%;top: 50%;margin-top: -250px;margin-left: -450px;
+}
+#wuxiang-left{
+	width:50%;height: 100%;/*background: #2F518A;*/ float: right;
+	border: 1px solid #0B3F62;border-radius: 3px;display: none;
+}
+#wuxiang-right{
+	float: left;width:49%;height: 100%;/*background: #2F518A;*/display:block ;
+}
+.wuxiang >table,.xiangqing table ,#open table{  
+    border-collapse: collapse;  
+    margin: 0 auto;  
+    text-align: center;      
+}  
+.wuxiang table thead th,.xiangqing table thead th,#open table thead th{
+	 background: linear-gradient(#0D4770, #000103);
+     border: none;
+}
+.wuxiang table tr:nth-child(odd),.xiangqing table tr:nth-child(odd),#open table tr:nth-child(odd) {  
+    background: #5e5e5fc4;
+    /*background: #1867A2;*/ 
+}  
+.wuxiang table tr:nth-child(even),.xiangqing table tr:nth-child(even),#open table tr:nth-child(even){  
+    background: #50505287;
+    /*background: #245C96;*/  
+}  
+.xiangqing{
+	width: 985px;
+    height: 470px;
+    display: none;
+    border: none;
+    z-index: 9999;
+    left: 50%;
+    top: 50%;
+    margin-top: -230px;
+    margin-left: -500px;
+}
+#xiangqing-left{
+	width:440px;height: 380px;/*background: #2F518A;*/ float: right;
+	border: 1px solid #0B3F62;border-radius: 3px;display: none;
+}
+#xiangqing-right{
+	float: left;width:540px;height: 380px;/*background: #2F518A;*/display:block ;
+}
+.xiangqing table tr{
+	border-bottom: none;
+}
+.wuxiang p{
+	font-size:12px;-webkit-transform:scale(0.9);
+}
+#open{
+	width:350px;height: 250px;background: #2F518A;position: absolute;left: 28%;display: none;
+}
+#open table tr{
+	border-bottom: none;
+}
+.content-4{
+	width: 27%;
+	top:15%;
+}
+/*.reason{
+	width: 470px;
+}*/
+#wxreason{
+	width: 345px;
+}

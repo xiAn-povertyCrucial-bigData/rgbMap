@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>西安市脱贫攻坚大数据管理平台</title>
+    <link rel="shortcut icon" href="images/tpgj.png">
+    <link rel="stylesheet" href="css/pintuer.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/jquery.js"></script>
+    <!--<script src="js/commer.js"></script>-->
+    <script src="js/pintuer.js"></script>
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src='js/jquery.jnotify.js'></script>
+    <script src="js/iconfont.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/tooltips.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/config.js"></script>
+</head>
+<style>
+    .icon {
+        width: 1em; height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+    }
+    .margin-big-right:hover #tips{
+        display: block;
+    }
+    .margin-big-right p{
+        height: 50%;
+    }
+    .margin-big-right p a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 30px;
+        text-align: center;
+        color: #6C6C6C;
+        cursor: pointer;
+    }
+    .margin-big-right p a:hover{
+        background: #ccc;
+        color: #fff;
+    }
+    .margin-big-right .imgBox{
+        height: 40px;
+    }
+    .margin-big-right .mainCon{
+        position: relative;
+    }
+    .margin-big-right .mainCon:after{
+        content:'';
+        position: absolute;
+        left:-61%;
+        top:-1px;
+        width: 25px;
+        height: 20px;
+        background: url("images/home.png") no-repeat center/cover;
+    }
+    .updatePass{
+        width: 500px;
+        height: 412px;
+        background: #f5f5f5;
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        z-index: 999;
+        display: none;
+        border-radius: 6px;
+    }
+    .updatePass .close:before{
+        content:'';
+        top: 0;
+        right: 0;
+    }
+    .updatePass .close{
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        color: #fff;
+    }
+    .updatePass .form-group{
+        padding: 0 30px;
+    }
+    .updatePass header{
+        width: 100%;
+        height: 56px;
+        background: #03b6fd;
+        color: #fff;
+        font-size: 22px;
+        line-height: 56px;
+        text-indent: 20px;
+        margin-bottom: 30px;
+    }
+    #updatePass{z-index: 1000;height: auto;}
+    #updatePass .form-x .label{
+        width: 100px;
+        display: inline-block;
+        text-align: right;
+    }
+    #updatePass .form-x a{
+        color: #fff;
+        float: right;
+        margin-right:3%;
+        cursor: pointer;
+    }
+    #updatePass .field{
+        width: 300px;
+    }
+    #updatePass .field button{
+        width: 100%;
+        height: 40px;
+        margin-top: 10px;
+    }
+    #updatePass .form-x .w50{
+        width: 100%;
+    }
+    .tixing ul{
+        background: #fff;
+        width: 75px;
+        height: 72px;
+        padding: 0;
+        margin:0;
+        list-style: none;
+    }
+    .tixing ul li{
+        list-style: none;
+        height: 20px;
+        color: #6c6c6c;
+        padding: 0;
+        margin:0;
+    }
+    .warning{
+        width: 500px;
+        height: 300px;
+        background: #D3E9FF;
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        z-index: 999;
+        display: none;
+        border-radius: 6px;
+        box-shadow: 10px 10px 5px #888888;
+    }
+    #table-1 thead, #table-1 tr {
+        border: 1px solid black;
+
+
+    }
+    #table-1 {
+        width: 430px;
+        margin: 0 auto;
+        height: 230px;
+        margin-top: 15px;
+
+    }
+    #table-1 td, #table-1 th {
+        padding: 5px 10px;
+        font-family: Verdana;
+        color: black;
+        width: 50%;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+
+    }
+    .house1{
+        text-indent: 22px;
+        height: 30px;
+        line-height: 30px;
+        display: none;
+    }
+    /*.house2{
+          margin-top: 6px;
+          margin-bottom: 4px;
+    }*/
+    .house_base{
+        text-indent: 14px;
+        display: none;
+    }
+    .house_base1{
+        text-indent: 14px;
+        display: none;
+    }
+    .house_base2{
+        text-indent: 10px;
+    }
+    .house_base3{
+        text-indent: 20px;
+    }
+    .navContent .house1 a{
+        padding-left: 0;
+    }
+    #house1show:before {
+        content: "\f0da";
+        font-family: "FontAwesome";
+        margin-right: 8px;
+    }
+    #house1show{
+        margin-top: 4px;
+        margin-bottom: 4px;
+        padding-left: 30px;
+    }
+    ul li{cursor: pointer;}
+</style>
+<script>
+    $(document).ready(function(){
+        $(".margin-big-right>.imgBox>img").mouseover(function(){
+            $(".tips").slideDown(200);
+        })
+        $(".margin-big-right>.imgBox").mouseleave(function(){
+            $(".tips").slideUp(200);
+        })
+        $(".update").click(function(){
+            $(".updatePass").show();
+        })
+          $(".iconclick").click(function(){
+            $(".tixing").toggle(300);
+        });
+		$(".tixing").click(function(){
+            $(".tixing").slideUp(200);
+        });
+
+        $(".close").click(function(){
+            $(".updatePass").hide();
+        })
+        $(".iconclick").click(function(){
+        	$(".warning").toggle(500);
+        })
+         $(".warning").slideDown(500);
+         $(".warndown").click(function(){
+         	$(".warning").slideUp(500)
+         })
+         $("#house1show").click(function(){
+             $(".house1").toggle();
+             $(".house_base").hide();
+             $(".house_base1").hide();
+         })
+         $("#house2show").click(function(){
+             $(".house_base").toggle();
+         })
+        $("#house3show").click(function(){
+             $(".house_base1").toggle();
+         })
+    })
+</script>
+<body>
+<div class="updatePass" id="updatePass">
+    <div class="form-x">
+        <header>修改密码<a>X</a></header>
+        <div class="form-group">
+            <div class="label">
+                <label>原密码：</label>
+            </div>
+            <div class="field">
+                <input type="password" id="oldWord" class="input w50" value="" name="aname" data-validate="required:请输入原密码" />
+                <div class="tips"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label>新密码：</label>
+            </div>
+            <div class="field">
+                <input type="password" id="newWord1" class="input w50" value="" name="aenglish" data-validate="required:请输入新密码" />
+                <div class="tips"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label>确认新密码：</label>
+            </div>
+            <div class="field">
+                <input type="password" id="newWord2" class="input w50" value="" name="aenglish" data-validate="required:请再次输入新密码" />
+                <div class="tips"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label></label>
+            </div>
+            <div class="field">
+                <button class="button bg-main icon-check-square-o" id="sub"> 提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="warning" id="warning" >
+	<h3 style="height: 35px;line-height: 35px;background-image: linear-gradient(to left, #AE98A4,#0976AE);color: white;text-indent: 10px;">需要处理的信息<span class="warndown" style="width: 20px;height: 20px;color: white;position: absolute;right: 15px;top: 0px;cursor: pointer;"><strong>X</strong></span></h3>
+   <table id="table-1" border="1">
+		<thead>
+			<th>信息项</th>
+			<th>信息内容</th>
+		</thead>
+		<tbody>
+		<tr>
+			<td><a href="#nav2">签到</a></td>
+			<td><a href="#nav2">New York</a></td>
+		</tr>
+		<tr>
+			<td><a href="#nav2">信息审核</a></td>
+			<td><a href="#nav2">Rome</a></td>
+		</tr>
+		<tr>
+			<td><a href="#nav2">日志统计</a></td>
+			<td><a href="#nav2">Greece</a></td>
+		</tr>
+		<tr>
+			<td><a href="#nav2">信息提交情况</a></td>
+			<td><a href="#nav2">Greece</a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>-->
+<div class="header bg-main">
+    <div class="logo margin-big-left fadein-top">
+        <h1 style="font-size:26px;">西安市脱贫攻坚大数据管理平台</h1>
+    </div>
+    <div class="margin-big-right">
+    	<svg class="icon iconclick" aria-hidden="true" style="font-size: 24px;">
+		  <use xlink:href="#icon-xiaoxitixing-xinxiaoxi"></use>
+		</svg>　
+        <div class="imgBox" style="display: inline-block;position: relative;height:80px;">
+            <img src="images/adminer.jpg"  alt="" style="margin-right: 4px;cursor: pointer;border-radius: 50%;height: 40px;"/>
+            <div class="tips" style="position:absolute;left:-18px;background: #fff;display: none;width: 84px;height: 60px;border:1px solid #ccc;">
+                <p>
+                    <a class="update">修改密码</a>
+                </p>
+                <p>
+                    <a style="margin-right: 10px;" id="loginout">注销</a>
+                </p>
+            </div>
+        </div>
+        <span style="color: #fff;margin-right: 53px;">欢迎登录：<strong id="user_name"></strong></span>
+        <a href="../index/index.html" class="mainCon">主界面</a>
+    </div>
+</div>
+
+<div class="leftnav">
+    <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
+    <h2 id="nav1" class="nav"><span class="icon-user"></span>扶贫对象</h2>
+    <ul class="nav1content navContent" style="display:none">
+        <li><a href="html/showPoveryCountries.html" target="right"><span class="icon-caret-right"></span>贫困县(涉贫县)</a></li>
+        <li><a href="html/showFunding.html" target="right"><span class="icon-caret-right"></span>贫困村(行政村)</a></li>
+        <li><a href="html/showPoor.html" target="right"><span class="icon-caret-right"></span>贫困户</a></li>
+        <li><a href="html/showHelpPoor.html" target="right"><span class="icon-caret-right"></span>帮困户</a></li>
+        <li><a href="html/showObject.html" target="right"><span class="icon-caret-right"></span>自然村</a></li>
+    </ul>
+    <h2 id="nav2" class="nav"><span class="icon-user"></span>扶贫措施</h2>
+    <ul class="nav2content navContent" style="display:none">
+        <li><a href="html/show_industry_povery.html" target="right"><span class="icon-caret-right"></span>产业扶贫</a></li>
+        <li><a href="html/show_employment_povery.html" target="right"><span class="icon-caret-right"></span>就业扶贫</a></li>
+        <li><a href="html/show_ecological_compensation.html" target="right"><span class="icon-caret-right"></span>生态扶贫</a></li>
+        <li><a href="html/show_relocation_within.html" target="right"><span class="icon-caret-right"></span>易地搬迁</a></li>
+        <li><a href="html/show_house_renovation.html" target="right"><span class="icon-caret-right"></span>危房改造</a></li>
+        <li><a href="html/show_health_poverty.html" target="right"><span class="icon-caret-right"></span>健康扶贫</a></li>
+        <li><a href="html/show_education_poverty.html" target="right"><span class="icon-caret-right"></span>教育扶贫</a></li>
+        <li><a href="html/show_out_ensure.html" target="right"><span class="icon-caret-right"></span>兜底保障</a></li>
+        <li><a href="html/show_financial_povery.html" target="right"><span class="icon-caret-right"></span>金融扶贫</a></li>
+        <li><a href="html/show_infrastructure.html" target="right"><span class="icon-caret-right"></span>基础设施</a></li>
+    </ul>
+    <h2 id="nav4" class="nav"><span class="icon-user"></span>扶贫主体</h2>
+    <ul class="nav4content navContent" style="display:none">
+        <li><a href="html/show_team_inform.html" target="right"><span class="icon-caret-right"></span>帮扶单位</a></li>
+        <li><a href="html/show_member_inform.html" target="right"><span class="icon-caret-right"></span>帮扶责任人</a></li>
+        <li><a href="html/show_Village working team.html" target="right"><span class="icon-caret-right"></span>驻村工作队</a></li>
+        <li><a href="html/show_pairing_support.html" target="right"><span class="icon-caret-right"></span>结对帮扶管理</a></li>
+        <li><a href="html/show_log_ranking1.html" target="right"><span class="icon-caret-right"></span>日志管理</a></li>
+        <li><a href="html/show_sign_ranking.html" target="right"><span class="icon-caret-right"></span>签到管理</a></li>
+    </ul>
+    <h2 id="nav5" class="nav"><span class="icon-user"></span>脱贫监管</h2>
+    <ul class="nav8conent navContent" style="display:none">
+    	<li><a href="html/showPovery_exit_lift.html" target="right"><span class="icon-caret-right"></span>户脱贫监管</a></li>
+        <li><a href="html/showPovery_exit_village.html" target="right"><span class="icon-caret-right"></span>村退出监管</a></li>
+        <li><a href="html/showPovery_exit_country.html" target="right"><span class="icon-caret-right"></span>县摘帽监管</a></li>
+    </ul>
+    <h2 id="nav6" class="nav"><span class="icon-user"></span>统计分析</h2>
+    <ul class="nav6content navContent" style="display:none">
+        <li><a href="html/show_village_inform.html" target="right"><span class="icon-caret-right"></span>贫困村统计</a></li>
+        <li id="house1show"></span>贫困户统计</li>
+          <li class="house1" id="house2show"><span class="icon-caret-right"></span>人口指标统计</li>
+              <!--<ul id="house_base"> -->
+                 <li class="house_base"><a href="html/show_household_inform11.html" target="right"><span class="icon-caret-right"></span>贫困人口基本信息</a></li>
+                <li class="house_base"><a href="html/show_household_inform12.html" target="right"><span class="icon-caret-right"></span>贫困人口年龄分组</a></li>
+                <li class="house_base"><a href="html/show_household_inform13.html" target="right"><span class="icon-caret-right"></span>贫困人口身体健康</a></li>
+                <li class="house_base"><a href="html/show_household_inform14.html" target="right"><span class="icon-caret-right"></span>贫困人口文化程度</a></li>
+                <li class="house_base"><a href="html/show_household_inform15.html" target="right"><span class="icon-caret-right"></span>贫困人口劳动力类型</a></li>
+                <li class="house_base"><a href="html/show_household_inform16.html" target="right"><span class="icon-caret-right"></span>贫困人口上年度务工状况</a></li>
+                <li class="house_base"><a href="html/show_household_inform17.html" target="right"><span class="icon-caret-right"></span>贫困人口上年度务工情况</a></li>
+                <li class="house_base"><a href="html/show_household_inform18.html" target="right"><span class="icon-caret-right"></span>贫困人口在校生情况</a></li>
+                <li class="house_base"><a href="html/show_household_inform19.html" target="right"><span class="icon-caret-right"></span>贫困人口统计</a></li>
+                <li class="house_base"><a href="html/show_household_inform20.html" target="right"><span class="icon-caret-right"></span>贫困人口年龄分段情况</a></li>
+              <!--</ul>-->
+          <li  class="house1 " id="house3show"><span class="icon-caret-right"></span>户指标统计</li>
+                <li class="house_base1"><a href="html/show_household_inform21.html" target="right"><span class="icon-caret-right"></span>贫困户贫困属性统计</a></li>
+                <li class="house_base1"><a href="html/show_household_inform22.html" target="right"><span class="icon-caret-right"></span>贫困户收支分类统计</a></li>
+                <li class="house_base1"><a href="html/show_household_inform23.html" target="right"><span class="icon-caret-right"></span>贫困户转移性收入分类</a></li>
+                <li class="house_base1"><a href="html/show_household_inform24.html" target="right"><span class="icon-caret-right"></span>贫困户主要致贫原因</a></li>
+                <li class="house_base1"><a href="html/show_household_inform25.html" target="right"><span class="icon-caret-right"></span>贫困户其他致贫原因</a></li>
+                <li class="house_base1"><a href="html/show_household_inform26.html" target="right"><span class="icon-caret-right"></span>贫困户帮扶责任人落实</a></li>
+                <li class="house_base1"><a href="html/show_household_inform27.html" target="right"><span class="icon-caret-right"></span>贫困户生产生活困难</a></li>
+                <li class="house_base1"><a href="html/show_household_inform28.html" target="right"><span class="icon-caret-right"></span>贫困户土地资源情况</a></li>
+                <li class="house_base1"><a href="html/show_household_inform29.html" target="right"><span class="icon-caret-right"></span>贫困户上年度人均收入</a></li>
+                <li class="house_base1"><a href="html/show_household_inform30.html" target="right"><span class="icon-caret-right"></span>贫困户主要燃料统计</a></li>
+                <li class="house_base1"><a href="html/show_household_inform31.html" target="right"><span class="icon-caret-right"></span>贫困户入户路情况统计</a></li>
+                <li class="house_base1"><a href="html/show_household_inform32.html" target="right"><span class="icon-caret-right"></span>贫困户上年度家庭收入</a></li>
+                <li class="house_base1"><a href="html/show_household_inform33.html" target="right"><span class="icon-caret-right"></span>贫困户上年度转移性收入</a></li>
+                <li class="house_base1"><a href="html/show_household_inform34.html" target="right"><span class="icon-caret-right"></span>贫困户人口规模统计</a></li>
+                <li class="house_base1"><a href="html/show_household_inform35.html" target="right"><span class="icon-caret-right"></span>贫困户党员情况统计</a></li>
+                <li class="house_base1"><a href="html/show_household_inform36.html" target="right"><span class="icon-caret-right"></span>贫困户住房面积情况分类</a></li>
+                <li class="house_base1"><a href="html/show_household_inform37.html" target="right"><span class="icon-caret-right"></span>贫困户与村主干路距离</a></li>
+          <li  class="house1"><a href="html/show_household_inform4.html" target="right"><span class="icon-caret-right"></span>稳定脱贫户统计</a></li>
+          <li  class="house1"><a href="html/show_household_inform3.html" target="right"><span class="icon-caret-right"></span>自然变更统计</a></li>
+        <li><a href="html/show_support_measures.html" target="right"><span class="icon-caret-right"></span>八个一批统计</a></li>
+        <!--<li><a href="html/show_support_measures2.html" target="right"><span class="icon-caret-right"></span>计划脱贫统计</a></li>-->
+        <li><a href="html/show_log_statistics.html" target="right"><span class="icon-caret-right"></span>日志统计</a></li>
+        <li><a href="html/show_sign_statistics.html" target="right"><span class="icon-caret-right"></span>签到统计</a></li>
+        <li><a target="right" id="dataShow2"><span class="icon-caret-right"></span>信息审核统计</a></li>
+        <div class="datashow2" style="display: none;">
+            <li class="house_base2" id="dataShow3"><a target="right"><span class="icon-caret-right"></span>贫困户</a></li>
+            <div class="datashow3" style="display: none;">
+                <li class="house_base3"><a href="html/show_statistics_poverty.html" target="right"><span class="icon-caret-right"></span>基础信息</a></li>
+                <li class="house_base3"><a href="html/show_data_eight.html" target="right"><span class="icon-caret-right"></span>八个一批添加</a></li>
+                <li class="house_base3"><a href="html/show_data_zuozheng.html" target="right"><span class="icon-caret-right"></span>佐证审核</a></li>
+                <li class="house_base3"><a href="html/show_statistics_all.html" target="right"><span class="icon-caret-right"></span>总统计分析</a></li>
+            </div>
+            <li class="house_base2"><a href="html/show_statistics_village.html" target="right"><span class="icon-caret-right"></span>贫困村</a></li>
+        </div>
+
+    </ul>
+
+    <h2 id="nav7" class="nav"><span class="icon-user"></span>系统权限管理</h2>
+    <ul class="nav7content navContent" style="display:none">
+        <li><a href="html/show_user_system.html" target="right"><span class="icon-caret-right"></span>系统用户管理</a></li>
+        <li><a href="html/show_role_system.html" target="right"><span class="icon-caret-right"></span>角色权限管理</a></li>
+        <!--<li><a href="html/show_permisson_system.html" target="right"><span class="icon-caret-right"></span>角色权限管理</a></li>-->
+        <!--<li><a href="html/show_organization.html" target="right"><span class="icon-caret-right"></span>组织机构管理</a></li>
+        <li><a href="html/show_administrative_area.html" target="right"><span class="icon-caret-right"></span>行政区划管理</a></li>
+        <li><a href="html/show_role_system.html" target="right"><span class="icon-caret-right"></span>系统角色管理</a></li>
+        <li><a href="html/show_data_config.html" target="right"><span class="icon-caret-right"></span>移动端数据审批配置</a></li>
+        <li><a href="html/show_povery_indicators.html" target="right"><span class="icon-caret-right"></span>脱贫指标管理</a></li>
+        <li><a href="html/show_message.html" target="right"><span class="icon-caret-right"></span>消息管理</a></li>
+        <li><a href="html/show_banners.html" target="right"><span class="icon-caret-right"></span>轮播图管理</a></li>-->
+    </ul>
+    <h2 id="nav8" class="nav"><span class="icon-user"></span>信息审核管理</h2>
+    <ul class="nav8content navContent" style="display:none">
+        <li id="dataShows"><a target="right"><span class="icon-caret-right"></span>信息审核</a></li>
+        <div class="dataShows house_base2" id="dataShowsCon" style="display: none">
+            <li><a target="right" id="dataShow" class="house_base2"><span class="icon-caret-right"></span>贫困户</a></li>
+            <div class="datashow" style="display: none;">
+                <li class="house_base3"><a href="html/show_poor_audit.html" target="right"><span class="icon-caret-right"></span>基础信息</a></li>
+                <li class="house_base3"><a href="html/show_eight_batch.html" target="right"><span class="icon-caret-right"></span>八个一批</a></li>
+                <li class="house_base3"><a href="html/show_eightAdd_audit.html" target="right"><span class="icon-caret-right"></span>八个一批添加</a></li>
+                <li class="house_base3"><a href="html/show_evidence.html" target="right"><span class="icon-caret-right"></span>佐证审核</a></li>
+            </div>
+            <li><a href="html/show_funding_audit.html" target="right"><span class="icon-caret-right"></span>贫困村</a></li>
+        </div>
+
+        <li><a target="right" id="dataShows2"><span class="icon-caret-right"></span>数据管理</a></li>
+        <div class="dataShows2 house_base2" id="dataShows2Con" style="display: none">
+            <li><a target="right" id="dataShow4"><span class="icon-caret-right"></span>贫困户</a></li>
+            <div class="datashow4" style="display: none;">
+                <li class="house_base3"><a href="html/show_data_poverty.html" target="right"><span class="icon-caret-right"></span>基础信息</a></li>
+                <li class="house_base3"><a href="html/show_data_eightAdd.html" target="right"><span class="icon-caret-right"></span>八个一批添加</a></li>
+                <li class="house_base3"><a href="html/show_data_evidence.html" target="right"><span class="icon-caret-right"></span>佐证</a></li>
+                <li class="house_base3"><a href="html/show_data_all.html" target="right"><span class="icon-caret-right"></span>总数据管理</a></li>
+            </div>
+            <li><a href="html/show_data_village.html" target="right"><span class="icon-caret-right"></span>贫困村</a></li>
+        </div>
+
+    </ul>
+
+    <!--<h2 id="nav9" class="nav"><span class="icon-pencil-square-o"></span>统计情况</h2>-->
+    <!--<ul class="nav9content navContent" style="display: none">-->
+        <!--<li><a href="html/totalPoverty.html" target="right"><span class="icon-caret-right"></span>贫困人口分区县情况</a></li>-->
+        <!--<li><a href="html/poorHouseholdAttribute.html" target="right"><span class="icon-caret-right"></span>贫困户属性</a></li>-->
+        <!--<li><a href="html/mainPoverty.html" target="right"><span class="icon-caret-right"></span>贫困户主要致贫原因</a></li>-->
+        <!--<li><a href="html/elsePoverty.html" target="right"><span class="icon-caret-right"></span>贫困户其他致贫原因</a></li>-->
+        <!--<li><a href="html/laborCapacity.html" target="right"><span class="icon-caret-right"></span>贫困人口劳动能力类型</a></li>-->
+        <!--<li><a href="html/workCondition.html" target="right"><span class="icon-caret-right"></span>贫困人口务工状况</a></li>-->
+        <!--<li><a href="html/healthyCondition.html" target="right"><span class="icon-caret-right"></span>贫困人口身体健康情况</a></li>-->
+        <!--<li><a href="html/ageCohort.html" target="right"><span class="icon-caret-right"></span>贫困人口年龄分组情况</a></li>-->
+        <!--<li><a href="html/educationDegree.html" target="right"><span class="icon-caret-right"></span>贫困人口文化程度</a></li>-->
+        <!--<li><a href="html/partyMember.html" target="right"><span class="icon-caret-right"></span>贫困户党员情况</a></li>-->
+        <!--<li><a href="html/supportMeasure.html" target="right"><span class="icon-caret-right"></span>“八个一批”帮扶措施</a></li>-->
+        <!--<li><a href="html/assistLog.html" target="right"><span class="icon-caret-right"></span>帮扶日志</a></li>-->
+    <!--</ul>-->
+    <h2 id="nav9" class="nav"><span class="icon-user"></span>数据核实</h2>
+      <ul class="nav8content navContent" style="display:none">
+        <li><a href="html/data_cleaning.html" target="right"><span class="icon-caret-right"></span>数据清洗管理</a></li>
+        <li><a href="html/data_quality_ranking.html" target="right"><span class="icon-caret-right"></span>数据质量排名</a></li>
+        <li><a href="html/rule.html" target="right"><span class="icon-caret-right"></span>规则库</a></li>
+         <li><a href="html/data_mange.html" target="right"><span class="icon-caret-right"></span>对象监管</a></li>
+       <!--  <li><a href="html/data_correction.html" target="right"><span class="icon-caret-right"></span>数据修正历史数据</a></li> -->
+    </ul>
+    <h2 id="nav10" class="nav"><span class="icon-user"></span><a href="html/download_module.html" target="right">模板下载</a></h2>
+    <!--<h2 id="nav10" class="nav"><span class="icon-user"></span><a href="html/dynamicChart.html" target="right">综合统计表</a></h2>-->
+</div>
+<script type="text/javascript">
+$(function(){
+    $(".nav").click(function(){
+        if(!$(this).next().is(":animated")){
+            $(".nav").removeClass("on");
+            $(this).next().siblings(".navContent").slideUp(200);
+            $(this).next().slideToggle(200);
+            $(this).addClass("on");
+        }
+    })
+    $(".leftnav ul li a").click(function(){
+	    $("#a_leader_txt").text($(this).text());
+  		$(".leftnav ul li a").removeClass("on");
+		$(this).addClass("on");
+    })
+    $("#dataShow").click(function(){
+        $(".datashow").slideToggle(200);
+    })
+    $("#dataShow2").click(function(){
+        $(".datashow2").slideToggle(200);
+    })
+    $("#dataShow3").click(function(){
+        $(".datashow3").slideToggle(200);
+    })
+    $("#dataShow4").click(function(){
+        $(".datashow4").slideToggle(200);
+    })
+    $("#dataShows").click(function(){
+        $("#dataShowsCon").slideToggle(200);
+    })
+    $("#dataShows2").click(function(){
+        $("#dataShows2Con").slideToggle(200);
+    })
+});
+</script>
+<ul class="bread">
+  <li><a href="html/show_index.html" target="right" class="icon-home"> 首页</a></li>
+</ul>
+<div class="admin">
+  <iframe scrolling="auto" rameborder="0" src="html/show_index.html" name="right" width="100%" height="100%"></iframe>
+</div>
+</body>
+<script>
+    /*注销*/
+    let url=config.url;
+    let token=$.cookie("token");
+    $("#loginout").click(function(){
+        $.ajax({
+            url:url+"/user/logout",
+            data:{"token":token},
+            method:"post",
+            dataType:"json",
+            success:function(data){
+                if(data.code===2000){
+                    $.cookie("loginMessage",null);
+                    $.cookie("token",null);
+                    location.href="login.html";
+                }
+            }
+        })
+    })
+    /*读取本地用户名*/
+    let loginMessaage=JSON.parse($.cookie('loginMessage'));
+    let uname=loginMessaage.userCode;
+    $("#user_name").text(uname);
+    /*let aname=localStorage.getItem("message");
+    let message=JSON.parse(aname);
+    console.log(aname,message);
+    $("#user_name").text(message.userCode);*/
+    /*检查是否登录*/
+    // let token=localStorage.getItem("token");
+    // let url=config.url;
+    $.ajax({
+        url:url+"/user/check/token",
+        data:{"token":token},
+        method:"post",
+        beforeSend:function(request){
+            request.setRequestHeader("Authorization",token);
+            request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+        },
+        dataType:"json",
+        success:function(data){
+            if(data.code===2000){
+                console.log(data.data);
+                // var message=JSON.stringify(data.data);
+            }else if(data.code===3000){
+                location.href="login.html";
+            }
+        }
+    })
+    /*浏览器关闭时清除localStorage本地缓存*/
+   /* window.onbeforeunload=function(){
+        localStorage.clear();
+    };*/
+   /*修改密码*/
+    $("header a").click(function(){
+        $("#updatePass").hide();
+    })
+    $('#sub').click(function(){
+        var pattern = /^[\w_-]{6,16}$/;
+        var oldPassWord=$('#oldWord').val();
+        var newPassWord1=$('#newWord1').val();
+        var newPassWord2=$('#newWord2').val();
+        if(pattern.test(oldPassWord)||pattern.test(oldPassWord)||pattern.test(oldPassWord)){
+            if(newPassWord1===newPassWord2){
+                newPassWord1=newPassWord2;
+                $.ajax({
+                    url:url+"/user/update/pwd",
+                    data:{"oldPwd":oldPassWord,"newPwd":newPassWord1},
+                    method:"post",
+                    beforeSend:function(request){
+                        request.setRequestHeader("Authorization",token);
+                        request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        if(data.code===2000){
+                            alert('密码修改成功！');
+                            console.log(data)
+                            // window.location.reload();
+                        }else{
+                            alert('原密码错误！');
+                            console.log(data)
+                        }
+                    }
+                })
+            }
+            else{alert('两次密码不一致！')}
+
+
+        }else{
+            alert('密码格式错误！')
+        }
+
+        console.log(oldPassWord+'---'+newPassWord1+'---'+newPassWord2);
+
+    })
+</script>
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>系统用户</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/formReset2.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/tooltips.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{width: 10%;height: 40px;border: 1px solid #d2d2d2;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-01 tr td a{display: inline-block;border-radius: 3px;background: #fff; /*border: 1px solid #00aaee;*/border:none;color: #fff;width: 48px;height: 22px;text-align: center;line-height: 22px;}
+        .form-01 tr td a:first-child{background: #229ffd;}
+        .form-01 tr td a:last-child{background: #ff7680;}
+        .form-01 tr td img{width:50px;height:50px;}
+        .pop-up{
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            width:500px;
+            height:300px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            z-index: 999;
+            border:1px solid #ccc;
+            display: none;
+        }
+        .pop-up .container{
+            width:100%;
+            height:100%;
+            position:relative;
+            padding:3% 0;
+            overflow-y: auto;
+        }
+        .pop-up .closes{
+            font-size:22px;
+            cursor: pointer;
+            position:absolute;
+            top:6px;
+            right:10px;
+            z-index: 5;
+        }
+        .pop-up table{
+            width:100%;
+            height: 80%;
+        }
+        .pop-up table .lietou{
+            margin-bottom: 10px;
+        }
+        .pop-up table .lietou td{
+            font-size:16px;
+        }
+        .pop-up tbody tr{
+            padding:0 10%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .pop-up tbody tr td{
+            width:40%;
+            float:left;
+            margin-bottom:14px;
+        }
+        .pop-up table .lietou{
+            width:100%;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .pop-up .container .saveBtn{
+            width:100%;
+            text-align: center;
+        }
+        .pop-up #save{
+
+        }
+        </style>
+</head>
+<body>
+<!--修改弹出框-->
+<div class="pop-up">
+    <div class="closes"><strong>×</strong></div>
+    <div class="container" style="overflow-y: auto;">
+        <table>
+            <thead class="lietou">
+            <td width="100%" colspan="2">系统权限</td>
+            </thead>
+            <tbody id="rolesLists">
+
+            </tbody>
+        </table>
+        <div class="saveBtn">
+            <button class="button bg-main icon-check-square-o" id="save" type="button">保存</button>
+        </div>
+    </div>
+</div>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>系统用户</strong>
+      <!--<a href="add_user_system.html" class="button border-main icon-plus-square-o">添加角色</a>-->
+  </div>
+    <div class="form-01">
+        <div class="search searchs" style="display: block;">
+            <div>
+                <label for="">行政区划</label>
+                <input type="text" value="陕西省" disabled>
+                <input type="text" value="西安市" disabled>
+                <select name="" id="country">
+                    <option value="">县（区）</option>
+                </select>
+                <select name="" id="township">
+                    <option value="">乡（镇）</option>
+
+                </select>
+                <select name="" id="village">
+                    <option value="">村</option>
+
+                </select>
+            </div>
+            <div>
+                <label>用户名</label>
+                <input type="text" id="user_name"/>
+            </div>
+            <div style="float: right;">
+                <input type="button" class="btn_orange" style="float: right;" name="" value="查询" id="searchs">
+                <input type="button" class="btn_blue" style="float: right;" name="" value="重置条件" id="reset">
+            </div>
+        </div>
+        <table id="formSubmit2" class="form-x">
+
+      </table>
+</div>
+    <div class="pages">
+        <div class="paging">
+            <div id="Pagination"></div>
+            <div class="searchPage">
+                <span class="page-sum"></span>
+                <!--<span class="page-go">到<input type="text" id="currentPage">页</span>
+                <a class="page-btn" style="cursor:pointer;">确定</a>-->
+                <span id="allTotal"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        let url=config.url;
+        /*区划选择渲染*/
+        let county=$("#country");
+        let township=$("#township");
+        let cunship=$("#village");
+        /*页面初始化调用*/
+        /*页面初始化调用*/
+        let obj=JSON.parse($.cookie('loginMessage'));
+        let aar008=obj.aar008;
+        tianqu();
+        county.change(function(){
+            tianzhen();
+            tiancun();
+        })
+        township.change(function(){
+            tiancun();
+        })
+        /*页面初始化接口*/
+        function tianqu(){
+            $.ajax({
+                url: url+"/background/helpmeasures/industry/init",
+                data:{"aar008":aar008},
+                async:false,
+                method:"post",
+                type:"json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // showCounty(county,data.data.area);  //行政区划
+                        // showYear(years,data.data.year)   //年份
+                        let type=data.data.type;
+                        if(type==1){
+                            showCounty(county,data.data.area);
+                        }else if(type==2){
+                            showFixed(county,data.data.q);
+                            tianzhen();
+                        }else if(type==3){
+                            showFixed(county,data.data.q);
+                            showFixed(township,data.data.x);
+                            tiancun();
+                        }else if(type==4){
+                            showFixed(county,data.data.q);
+                            showFixed(township,data.data.x);
+                            showFixed(cunship,data.data.c);
+                        }
+                    }
+                }
+            })
+        }
+        function showFixed(obj,data){
+            obj.empty();
+            let str=`
+                 <option value="${data.AAR008}">${data.AAR009}</option>
+                `;
+            obj.html(str);
+        }
+        /*镇/街道渲染接口*/
+        function tianzhen(){
+            var countyName=$("#country").val();
+            $.ajax({
+                url: url+"/background/helpmeasures/common/arealist",
+                data:{"aaa113":countyName},
+                async:false,
+                method:"post",
+                type:"json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        showCounty2(township,data.data);
+                    }
+                }
+            })
+        }
+        /*村渲染接口*/
+        function tiancun(){
+            var townName=$("#township").val();
+            // console.log(townName)
+            $.ajax({
+                url: url+"/background/helpmeasures/common/arealist",
+                data:{"aaa113":townName},
+                async:false,
+                method:"post",
+                type:"json",
+                success:function(data){
+                    if(data.code === 2000){
+                        showCounty3(cunship,data.data);
+                    }
+                }
+            })
+        }
+        /*行政区划渲染函数*/
+        function showCounty(obj,data){
+            obj.empty();
+            let str=`<option value="">县（区）</option>`;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                 <option value="${data[i]['AAR008']}">${data[i]['AAR009']}</option>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        function showCounty2(obj,data){
+            obj.empty();
+            let str=`<option value="">乡（镇）</option>`;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                 <option value="${data[i]['AAR008']}">${data[i]['AAR009']}</option>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        function showCounty3(obj,data){
+            obj.empty();
+            let str=`<option value="">村</option>`;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                 <option value="${data[i]['AAR008']}">${data[i]['AAR009']}</option>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        /*页面主体内容渲染*/
+        let formList=$("#formSubmit2");
+        let datas={"pageNum":1,"pageSize":12};
+        let datas2=JSON.stringify(datas);
+        let token=$.cookie("token");
+        $.ajax({
+            url: url+"/user/system/user/manager/query",
+            data:datas2,
+            beforeSend:function(request){
+                request.setRequestHeader("Authorization",token);
+                request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+            },
+            dataType:"json",
+            method:"post",
+            contentType:"application/json",
+            success:function(data){
+                if(data.code === 2000){
+                    showList(formList,data.data.list);
+                    for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                        if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                            $("#formSubmit2 tr td").eq(i).text("");
+                        }
+                    }
+                    $(".page-sum").text("共"+data.data.pages+"页");
+                    $("#allTotal").text("总条数："+data.data.total);
+                    showPage($(".searchPage"),data.data.total);
+                }else if(data.code===4000){
+                    alert(data.message);
+                }
+            }
+        })
+        $("#searchs").click(function(){
+            /*查询条件*/
+            /*必需*/
+            let pageSize=12;
+            /*获取选中筛选条件值*/
+            function getValue(obj,arr){
+                // let arr=[];
+                for(let i=0;i<obj.length;i++){
+                    arr.push(obj.eq(i).attr("abc"));
+                }
+                return arr;
+            }
+            /*非必需*/
+            let q=$("#country").val();
+            let x=$("#township").val();
+            let c=$("#village").val();
+            let data={"pageNum":1,"pageSize":pageSize,"q":q,"x":x,"c":c,'userName':$('#user_name').val()};
+            let datas=JSON.stringify(data);
+            /*主体内容渲染*/
+            let formList=$("#formSubmit2");
+            $.ajax({
+                url: url+"/user/system/user/manager/query",
+                data:datas,
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                dataType:"json",
+                method:"post",
+                // async:false,
+                contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        showList(formList,data.data.list);
+                        for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                            if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                                $("#formSubmit2 tr td").eq(i).text("");
+                            }
+                        }
+                        $(".page-sum").text("共"+data.data.pages+"页");
+                        $("#allTotal").text("总户数："+data.data.total);
+                        showPage($(".searchPage"),data.data.total);
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+        /*分页功能*/
+        let indexs;
+        function page_init(index) {
+            let pageSize=12;
+            // let year=$("#year").val();
+            let year="201806";
+            let property=[];
+            let status=[];
+            let reason=[];
+            let propertys=$(".shuxing dl dt.active");
+            let statuss=$(".tuopin dl dt.active");
+            let reasons=$(".reason dl dt.active");
+            getValue(propertys,property);
+            getValue(statuss,status);
+            getValue(reasons,reason);
+            /*获取选中筛选条件值*/
+            function getValue(obj,arr){
+                // let arr=[];
+                for(let i=0;i<obj.length;i++){
+                    arr.push(obj.eq(i).attr("abc"));
+                }
+                return arr;
+            }
+            /*非必需*/
+            let q=$("#country").val();
+            let x=$("#township").val();
+            let c=$("#village").val();
+            let n=$("#povertyName").val();
+            let i=$("#idNumber").val();
+            // console.log(property,status,reason);
+            /*判断贫困户属性、脱贫状态、致贫原因等筛选条件*/
+            if(property[0]==undefined){
+                property=null;
+            }
+            if(status[0]==undefined){
+                status=null;
+            }
+            if(reason[0]==undefined){
+                reason=null;
+            }
+            indexs=index+1;
+            let data={"pageNum":index+1,"pageSize":pageSize,"q":q,"x":x,"c":c,'userName':$('#user_name').val()};
+            let datas=JSON.stringify(data);
+            /*主体内容渲染*/
+            let formList=$("#formSubmit2");
+            $.ajax({
+                url: url+"/user/system/user/manager/query",
+                data:datas,
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                dataType:"json",
+                method:"post",
+                async:false,
+                contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        showList(formList,data.data.list);
+                        for(let i=0;i<$("#formSubmit2 tr td").length;i++){
+                            if($("#formSubmit2 tr td").eq(i).text()=="null" || $("#formSubmit2 tr td").eq(i).text()=="undefined" || $("#formSubmit2 tr td").eq(i).text()==undefined){
+                                $("#formSubmit2 tr td").eq(i).text("");
+                            }
+                        }
+                        $(".page-sum").text("共"+data.data.pages+"页");
+                        $("#allTotal").text("总户数："+data.data.total);
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                }
+            })
+        }
+        function showPage(obj,data){
+            $("#Pagination").pagination(data,{
+                callback:PageCallback,         //pageCallback() 为翻页调用函数
+                items_per_page:12,                //每页显示条目数
+                num_display_entries: 4,                //连续分页显示分页条目数
+                num_edge_entries: 1,          //两侧显示的首尾分页的条目数
+            });
+        }
+        //ajax分页请求,page_index :页码
+        function PageCallback(page_index){
+            page_init(page_index);      //第一页为0
+        }
+        /*页面内容渲染函数*/
+        function showList(obj,data){
+            obj.empty();
+            let str=`<tr>
+                  <th>序号</th>
+                  <th>所属区划</th>
+                  <th>用户名</th>
+                  <th>角色</th>
+                  <th>操作</th>
+            </tr>`;
+            for(let i=0;i<data.length;i++){
+                str+=`
+                    <tr>
+                      <td>${data[i]['ROW_ID']}</td>
+                      <td>${data[i]['USER_CODE']}</td>
+                      <td>${data[i]['AAR009']}</td>
+                      <td>${data[i]['ROLE_NAME']}</td>
+                      <td>
+                          <a hrefs="${data[i]['ID']}" class="update" style="background: #229ffd;cursor:pointer;">修改</a>
+                      </td>
+                    </tr>
+                `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+    })
+</script>
+<script>
+    $(document).ready(function(){
+        /*点击修改弹出框*/
+        let token=$.cookie("token");
+        let url=config.url;
+        $(document).on("click",'.update',function(){
+            $(".pop-up").css("display","block");
+            let id=$(this).attr("hrefs");
+            localStorage.setItem("userId",id);
+            Roles(id);
+            getAreaRoles(id);
+        })
+        /*点击关闭弹出框*/
+        $(".closes").click(function(){
+            $(".pop-up").hide();
+        })
+        /*ajax渲染页面*/
+        function Roles(id) {
+            jQuery.ajax({
+                async: false,
+                cache: false,
+                type: 'POST',
+                data:{"id":id},
+                dataType: "json",
+                url: url+"/user/system/role/manager/query", //要请求数据的地址
+                /*error: function() {//请求失败处理函数
+                    alert('系统权限Checkbox,加载失败！');
+                },*/
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                success: function(datas) { //请求成功后处理函数。此处的data是JSON对象
+                    let data=datas.data;
+                    if (null !== data && data.length > 0) {
+                        var tdfwCon = "";
+                        var index = data.length;//checkbox的总数。下面会判断总数。
+                        if (index % 2 !== 0) {//奇数，数目为奇数的时候
+                            for (var i = 0; i < index - 1; i += 2) {//每次循环的时候+2 这样一行里就能加载两条数据了。循环也不会出问题。
+                                tdfwCon += "<tr>";
+                                tdfwCon += "<td><input type='checkbox' id='" + data[i].ID + "' hrefs='" + data[i].USER_ROLE_ID + "' name='rolesCheckbox' value='" + data[i].ID + "' class='regular-checkbox' /><span>&nbsp;" + data[i].ROLE_NAME + "</span></td>";
+                                tdfwCon += "<td><input type='checkbox' id='" + data[i + 1].ID + "' hrefs='" + data[i+1].USER_ROLE_ID + "' name='rolesCheckbox' value='" + data[i + 1].ID + "' class='regular-checkbox' /><span>&nbsp;" + data[i + 1].ROLE_NAME + "</span></td>";
+                                tdfwCon += "</tr>";
+                            }
+                            tdfwCon += "<tr>";
+                            tdfwCon += "<td><input type='checkbox' id='" + data[index - 1].ID + "' hrefs='" + data[index - 1].USER_ROLE_ID + "' name='rolesCheckbox' value='" + data[index - 1].ID + "' class='regular-checkbox' /><span>&nbsp;" + data[index - 1].ROLE_NAME + "</span></td>";
+                            tdfwCon += "</tr>";
+                            tdfwCon += "</tr>";
+                            jQuery("#rolesLists").html(tdfwCon);
+                        } else { //偶数，数据是偶数的时候，0也是偶数。
+                            for (var i = 0; i < index; i += 2) {
+                                tdfwCon += "<tr>";
+                                tdfwCon += "<td><input type='checkbox' id='" + data[i].ID + "' hrefs='" + data[i].USER_ROLE_ID + "' name='rolesCheckbox' value='" + data[i].ID + "' class='regular-checkbox' /><span>&nbsp;" + data[i].ROLE_NAME + "</span></td>";
+                                tdfwCon += "<td><input type='checkbox' id='" + data[i + 1].ID + "' hrefs='" + data[i+1].USER_ROLE_ID + "' name='rolesCheckbox' value='" + data[i + 1].ID + "' class='regular-checkbox' /><span>&nbsp;" + data[i + 1].ROLE_NAME + "</span></td>";
+                                tdfwCon += "</tr>";
+                            }
+                            jQuery("#rolesLists").html(tdfwCon);
+//加载到哪里？这要看你自己的HTML代码了。
+                        }
+                    } else { alert("系统权限为空，请先添加权限！"); } } });
+        }
+        /*数据库查询出来的数据让选中的checkbox给选中*/
+        function getAreaRoles(id) {
+            jQuery.ajax({
+                async: false,
+                cache: false,
+                type: 'POST',
+                //dataType: "json", //数据格式自动识别
+                data: {"id":id},
+                url: url+"/user/system/role/manager/query", //请求的action路径
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                error: function() {//请求失败处理函数
+                    alert('请求失败！');
+                },
+                success: function(datas) { //请求成功后处理函数。
+                    let data=datas.data;
+                    var str="";
+                    for(let i=0;i<data.length;i++){
+                        if(data[i].IS_CHECK==1){
+                            str+=data[i].ID+",";
+                        }
+                    }
+                    let strs=str.substr(0,str.length-1);
+                    if(null !== data && data.length > 0){
+                        var roleArray = strs.split(",");
+                        var checkboxs = document.getElementsByName("rolesCheckbox");
+                        for (var t = 0; t < checkboxs.length; t++) {
+                            checkboxs[t].checked = false;
+                            for (var i = 0; i < roleArray.length; i++) {
+                                if (roleArray[i] === checkboxs[t].value) {
+                                    checkboxs[t].checked = true;
+                                }
+                            }
+                        }
+                    }else{
+                        var checkboxs = document.getElementsByName("rolesCheckbox");
+                        for (var t = 0; t < checkboxs.length; t++) {
+                            checkboxs[t].checked = false;
+                        }
+                    }
+                }
+            });
+        }
+        /*获取checkbox的值传给后台*/
+        $("#save").click(function(){
+            var checkboxs = document.getElementsByName("rolesCheckbox");//得到这个数组
+            var objArr=[];
+            for (var i = 0; i < checkboxs.length; i++) {
+                var obj ={};
+                if (checkboxs[i].checked === true) {
+                    obj.isCheck=1;
+                }else if(checkboxs[i].checked === false){
+                    obj.isCheck=0;
+                }
+                obj.id=$(checkboxs[i]).attr("id");
+                obj.userId=localStorage.getItem("userId");
+                obj.userRoleId=$(checkboxs[i]).attr("hrefs");
+                console.log(obj)
+                objArr.push(obj);
+            }
+            let tt={roleList:objArr};
+            let datas=JSON.stringify(tt);
+            console.log(datas)
+            $.ajax({
+                url:url+"/user/system/role/manager/update",
+                dataType:"json",
+                data:datas,
+                type:"post",
+                contentType:"application/json",
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },
+                success:function(data){
+                    if(data.code===2000){
+                        show_msg("修改成功",'show_user_system.html');
+                        $(".pop-up").hide();
+                    }else if(data.code===1005){
+                        show_msg("修改失败",'');
+                    }
+                }
+            })
+        })
+
+    })
+</script>
+
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        let pageNum=$(".allPage").text();
+        $("#Pagination").pagination(pageNum);
+    })
+</script>
+</body>
+</html>

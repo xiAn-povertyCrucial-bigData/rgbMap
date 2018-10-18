@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困县修改</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/revisePoveryCountries.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{width: 25%;height: 40px;border: 1px solid #d2d2d2;line-height: 40px; vertical-align: middle;  font-size: 14px;padding-left: 5px}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 20px;margin-top: 10px}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-right: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-04 table tr td {width:11%}
+        .on{
+            color: #fff!important;
+		    background: #00aaee!important;
+        }
+      	.form-02 .tips{
+        	margin-bottom: 10px;
+        }
+        input::-webkit-input-placeholder {
+        color: #aab2bd;
+        text-indent: 10px;
+     	}
+
+	    .form-table{background: #F7F7F7;}
+	    .form-01-add button{width: 100px;height: 34px;line-height:34px;font-size: 18px;background: #2698FB;color: white;display: block;text-align: center;margin:3% auto;border-radius: 6px}
+      	table tr td{
+            text-align: center;
+        }
+        table tr td input{
+            text-align: center;
+        }
+        </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>贫困县信息修改</strong>
+      <a href="javascript:history.back(-1)" class="data_tracking button border-main">返回</a>
+  </div>
+    <div class="form-01" id="form-01">
+      <h1 style="color: #65bbf3;border-bottom: 1px solid #cfebff;" id="year"></h1>
+      <table id="table1">
+
+      </table>
+      <div class="form-01-add">
+		    <button id="add1">提交</button>
+	  </div>
+      <div class="form-02">
+          <span class="tips on">人口信息</span>
+          <span class="tips">十项重点工作</span>
+          <span class="tips">财政信息</span>
+          <span class="tips">土地信息</span>
+          <span class="tips">雨露计划</span>
+          <span class="tips">扶贫小额信贷</span>
+          <span class="tips">易地扶贫搬迁</span>
+      </div>
+    </div>
+    <div class="form-04 form-01" style="display: block" id="form02">
+        <table id="table2">
+
+        </table>
+        <div class="form-01-add">
+		    <button id="add2">提交</button>
+	  </div>
+    </div>
+    <div class="form-04 form-01" placeholder="请输入" style="display: none">
+        <table id="table3">
+
+        </table>
+        <div class="form-01-add">
+		    <button id="add3">提交</button>
+	  </div>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="table4">
+
+        </table>
+        <div class="form-01-add">
+		    <button id="add4">提交</button>
+	  </div>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="table5">
+
+        </table>
+        <div class="form-01-add">
+		    <button id="add5">提交</button>
+	  </div>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="table6">
+
+        </table>
+        <div class="form-01-add">
+		    <button id="add6">提交</button>
+	  </div>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="table7">
+
+        </table>
+        <div class="form-01-add">
+		    <button id="add7">提交</button>
+	  </div>
+    </div>
+    <div class="form-04 form-01" style="display: none">
+        <table id="table8">
+
+        </table>
+
+        <div class="form-01-add">
+		    <button id="add8">提交</button>
+	  </div>
+    </div>
+</div>
+<!--<div id="" style="text-align: center;margin-top: 15px;">
+      	<button style="width: 80px; height: 30px;background: #00aaee;color: white;">提交</button>
+       </div>-->
+<script>
+    /*初始化分页*/
+    $(document).ready(function(){
+        $("#Pagination").pagination("15");
+
+    })
+    /*详细情况点击事件*/
+    $(".tips").click(function(){
+        $(this).addClass('on').siblings().removeClass('on');
+        let index=$(this).index();
+        //console.log(index)
+        $(".form-04").eq(index).show().siblings(".form-04").hide();
+    })
+</script>
+</body>
+</html>

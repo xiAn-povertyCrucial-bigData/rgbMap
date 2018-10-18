@@ -1,0 +1,131 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>数据质量排名</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <!-- <link rel="stylesheet" href="../css/pagination.css"> -->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <!-- <script src="../js/jquery.pagination.js"></script> -->
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{/*width: 10%;*/height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-02{width: 100%;height: 100%;margin-top: 10px}
+        .form-02 span{width:12%;height:40px;display: block;float: left;background: #F3F3F3;font-size: 16px;line-height: 40px;text-align: center;margin-left: 5px}
+        .form-02 span:hover{cursor: pointer}
+        .form-05{display: none}
+        .form-04 table tr td {width:11%}
+        .no-pass{color: #ee3333;cursor: pointer;}
+        #hutuopin>ul>li{
+        	background: #f6fcf6;
+        	border: 1px solid #53cb53;
+        }
+	      #base	.btn_orange1{
+    			color: #fff;
+    			background-color: #f0ad4e;
+    			border: 1px solid #FFAC37;
+    			width: 50px;
+    			text-align: center;
+    			margin: 10px;
+    			border-radius: 3px;
+                text-indent: 0;
+    		}
+        #rule,#rule1{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .panel>.form-01>.search label{width: 70px;color: #555;font-weight: bold;}
+        .active{background: #70c1ff!important;color: #fff!important;border-radius: 12px;}
+        .panel>.form-01>.search select{width: auto!important;}
+        .select,.select dt{display: flex;color: #555}
+        .select{padding:0;margin: 15px 0;}
+        .select dt dl{margin-left: 10px;padding:2px 6px;cursor: pointer;}
+    </style>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>户脱贫退出指标分析</strong></div>
+
+  <div class="form-01">
+      <p>高级搜索 <span class="pack_up">收起-</span></p>
+      <div class="search searchs" style="display: block;">
+          <ul class="select select1">
+              <label  class="label1">年份：</label>
+              <dt >
+                  <dl sleep="2017">2016年</dl>
+                  <dl sleep="201712">2017年</dl>
+                  <dl sleep="201808" class="active">2018年</dl>
+              </dt>
+          </ul>
+          <!-- <ul class="select select2">
+              <label  class="label1">识别标准：</label>
+              <dt >
+                  <dl sleep="2015" class="active">国家标准</dl>
+                  <dl sleep="2016">省定标准</dl>
+              </dt>
+          </ul> -->
+          <p>
+              <input type="button" class="btn_blue btn_orange1" style="float: right;" name="" value="查询">
+          </p>
+      </div>
+      <table id="formSubmit2" class="form-x">
+          <!-- <tr>
+              <th>排行</th>
+              <th>行政区划</th>
+              <th>质量指数</th>
+              <th>有问题贫困户占比</th>
+              <th>最终得分</th>
+              <th>操作</th>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>周至县</td>
+              <td>99.99</th>
+              <td>0.87%</th>
+              <td>99.8098</td>
+              <td>查看</td>
+          </tr> -->
+      </table>
+    <!--     <hr/>
+      <div style="margin-bottom: 10px;">
+          <span>陕西 >
+              <span style="display:inline-block;background-color:#FFAC37;border-radius: 3px;color:#fff; width: 60px;text-align: center;height:20px; line-height: 20px">西安市</span>
+          </span>
+      </div> -->
+    <script src="../js/wyp.js"></script>
+<script>
+    $(".search .select  dt  dl").on("click",function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        //alert($(this).html())
+    })
+    /*筛选条件收起展开*/
+    $(".pack_up").click(function(){
+        $(".search").toggle();
+        $(".pack_up").text($(".pack_up").text()=="展开+"?"收起-":"展开+");
+    })
+
+    showQualityInfo($('#formSubmit2'),201808);
+    $(".select1 dt dl").click(function(){
+        select1=$(this).attr("sleep");
+        // select1=parseInt($(this).html());
+        console.log(select1);
+    })
+    $(".btn_orange1").on("click",function(){//查询事件
+        showQualityInfo($('#formSubmit2'),select1);
+    });
+</script>
+</body>
+</html>

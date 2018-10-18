@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>到人指标</title> 
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/inputStyle.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div>
+    <form id="formSubmit" class="form-x">
+      <p class="form-01-p form-001-p">基本信息</p>
+      <div class="basic">
+        <!--**************************第一行*****************************************-->
+        <div class="form-group">
+          <div class="label">
+            <label>行政区划：</label>
+          </div>
+          <div class="field">
+            <select name="county" class="input w50">
+              <option value="">陕西省</option>
+            </select>
+            <select name="town" class="input w50">
+              <option value="">西安市</option>
+            </select>
+            <select name="village" class="input w50">
+              <option value="">县(区)</option>
+              <option value="">周至县</option>
+              <option value="">蓝田县</option>
+              <option value="">鄠邑区</option>
+              <option value="">长安区</option>
+              <option value="">临潼区</option>
+              <option value="">西咸新区</option>
+              <option value="">灞桥区</option>
+              <option value="">高陵区</option>
+              <option value="">国际港务区</option>
+              <option value="">阎良区</option>
+            </select>
+            <select name="village" class="input w50">
+              <option value="">乡</option>
+              <option value="">板房子镇</option>
+              <option value="">陈河镇</option>
+              <option value="">翠峰镇</option>
+              <option value="">富仁镇</option>
+              <option value="">广济镇</option>
+              <option value="">厚畛子镇</option>
+            </select>
+          </div>
+          <div class="tips"></div>
+        </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>姓名：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" data-validate="required:请输入姓名" placeholder="" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>性别：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>证件类型：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>证件号码：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>出生日期：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>与户主关系：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>民族：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>政治面貌：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>在校生情况：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>文化程度：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>健康状况：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>劳动技能：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否现役军人：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>是否享受低保：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否享受五保：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>联系电话：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>是否参加城乡居民医保：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>是否参加大病保险：</label>
+            </div>
+            <div class="field1">
+              <div class="button-group radio">
+                <label class="button active">
+                  <span class="icon icon-check"></span>
+                  <input name="isTrain" value="1" type="radio">是
+                </label>
+                <label class="button active"><span class="icon icon-times"></span>
+                  <input name="isTrain" value="0"  type="radio">否
+                </label>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="display: flex;">
+          <div class="left">
+            <div class="label">
+              <label>上年务工时间（月）：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="name" />
+              <div class="tips"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">
+              <label>务工企业名称：</label>
+            </div>
+            <div class="field1">
+              <input type="text" class="input w51" value="" name="cordId" />
+              <div class="tips"></div>
+            </div>
+          </div>
+      </div>
+      
+    </form>
+  </div>
+</div>
+</body>
+</html>

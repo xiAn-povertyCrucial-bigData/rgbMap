@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>模板下载</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!--<link rel="stylesheet" href="../css/inputStyle.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/formReset2.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/tooltips.js"></script>
+    <style >
+        .form-01 h1{text-align: center}
+        .form-01 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-01 table tr td{width: 10%;height: 40px;border: 1px solid #d2d2d2;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-01 table caption{font-size: 24px;text-align: left}
+        .form-01 tr td a{display: inline-block;border-radius: 3px;background: #fff; /*border: 1px solid #00aaee;*/border:none;color: #fff;width: 48px;height: 22px;text-align: center;line-height: 22px;}
+        .form-01 tr td a:first-child{background: #229ffd;}
+        .form-01 tr td a:last-child{background: #ff7680;}
+        .form-01 tr td img{width:50px;height:50px;}
+        .pop-up{
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            width:500px;
+            height:300px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            z-index: 999;
+            border:1px solid #ccc;
+            display: none;
+        }
+        .pop-up .container{
+            width:100%;
+            height:100%;
+            position:relative;
+            padding:3% 0;
+        }
+        .pop-up .closes{
+            font-size:22px;
+            cursor: pointer;
+            position:absolute;
+            top:6px;
+            right:10px;
+            z-index: 5;
+        }
+        .pop-up table{
+            width:100%;
+            height: 80%;
+        }
+        .pop-up table .lietou{
+            margin-bottom: 10px;
+        }
+        .pop-up table .lietou td{
+            font-size:16px;
+        }
+        .pop-up tbody tr{
+            padding:0 10%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .pop-up tbody tr td{
+            width:40%;
+            float:left;
+            margin-bottom:14px;
+        }
+        .pop-up table .lietou{
+            width:100%;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .pop-up .container .saveBtn{
+            width:100%;
+            text-align: center;
+        }
+        .pop-up #save{
+
+        }
+        </style>
+</head>
+<body>
+<!--修改弹出框-->
+<div class="pop-up">
+    <div class="closes"><strong>×</strong></div>
+    <div class="container">
+        <table>
+            <thead class="lietou">
+            <td width="100%" colspan="2">模板下载</td>
+            </thead>
+            <tbody id="rolesLists">
+            </tbody>
+        </table>
+        <div class="saveBtn">
+            <button class="button bg-main icon-check-square-o" id="save" type="button">保存</button>
+        </div>
+    </div>
+</div>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>模板下载</strong>
+      <!--<a href="add_user_system.html" class="button border-main icon-plus-square-o">添加角色</a>-->
+  </div>
+<div class="form-01" style="height:40px;">
+    <table id="formSubmit2" class="form-x">
+
+    </table>
+    <div class="pages">
+        <div class="paging">
+            <div id="Pagination"></div>
+            <div class="searchPage">
+                <span class="page-sum"></span>
+                <!--<span class="page-go">到<input type="text" id="currentPage">页</span>
+                <a class="page-btn" style="cursor:pointer;">确定</a>-->
+                <span id="allTotal"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<script>
+    $(document).ready(function(){
+        let token=$.cookie("token");
+        let nameList=$("#formSubmit2");
+        let pageSize=12;
+        let data={"pageSize":pageSize,"pageNum":1};
+        let datas=JSON.stringify(data);
+        $.ajax({
+            url:url+"excel/all",
+            type:"get",
+            dataType:"json",
+            data:data,
+            beforeSend:function(request){
+                request.setRequestHeader("Authorization",token);
+                request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+            },
+            // contentType:"application/json",
+            success:function (result) {
+                let data = result.data.list;
+                showList(nameList,data);
+            }
+        })
+        /*分页功能*/
+        let indexs;
+        function page_init(index) {
+            indexs=index+1;
+            let data={"pageNum":index+1,"pageSize":pageSize};
+            let datas=JSON.stringify(data);
+            /*主体内容渲染*/
+            let formList=$("#lists");
+            $.ajax({
+                url: url+"/excel/all",
+                data:data,
+                /*beforeSend:function(request){
+                    request.setRequestHeader("Authorization",token);
+                    request.setRequestHeader("X-Requested-With","XMLHttpRequest");
+                },*/
+                dataType:"json",
+                method:"post",
+                async:false,
+                // contentType:"application/json",
+                success:function(data){
+                    if(data.code === 2000){
+                        // console.log(data);
+                        showList(formList,data.data.list);
+                        $(".page-sum").text("共"+data.data.pages+"页");
+                        $("#allTotal").text("总户数："+data.data.total);
+                        showPage($(".searchPage"),data.data.total);
+                    }else if(data.code===4000){
+                        alert(data.message);
+                    }
+                }
+            })
+        }
+        function showPage(obj,data){
+            $("#Pagination").pagination(data,{
+                callback:PageCallback,         //pageCallback() 为翻页调用函数
+                items_per_page:12,                //每页显示条目数
+                num_display_entries: 4,                //连续分页显示分页条目数
+                num_edge_entries: 1,          //两侧显示的首尾分页的条目数
+            });
+        }
+        //ajax分页请求,page_index :页码
+        function PageCallback(page_index){
+            page_init(page_index);      //第一页为0
+        }
+        /*数据渲染*/
+        function showList(obj,data){
+            obj.empty();
+            let str=`
+                <tr>
+                    <th>序号</th>
+                    <th>主体类别</th>
+                    <th>详细描述</th>
+                    <th>下载</th>
+                </tr>
+            `
+            for(let i=0;i<data.length;i++){
+                str+=`
+                     <tr id="${data[i]['ID']}">
+                        <td>${data[i]['ROW_ID']}</td>
+                        <td>${data[i]['TREAM']}</td>
+                        <td>${data[i]['DETAIL']}</td>
+                        <td><button class="download" style="width:50px;height:26px;background: #1797f6;color:#Fff;border:none;border-radius: 4px;line-height: 26px;">下载</button></td>
+                    </tr>
+                  `;
+            }
+            obj.html(function(i,value){
+                return value+str;
+            })
+        }
+        /*点击下载*/
+        $(document).on("click","#formSubmit2 .download",function(){
+            let id=$(this).parent().parent().attr("id");
+            let cc=url+"/excel/down?id="+id;
+            console.log(cc)
+            window.location.href=cc;
+        })
+    })
+</script>
+<script>
+    /*分页初始化*/
+    $(document).ready(function(){
+        let pageNum=$(".allPage").text();
+        $("#Pagination").pagination(pageNum);
+    })
+</script>
+</body>
+</html>

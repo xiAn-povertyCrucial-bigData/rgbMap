@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>贫困户信息审核管理</title>
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/commer.js"></script>
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/pintuer.js"></script>
+    <script src="../js/inputJavaScript.js"></script>
+    <script src="../js/jquery.pagination.js"></script>
+    <style >
+        /*#poorPerson{overflow: auto; width: 100%;}*/
+        .form-01 h1{text-align: center}
+        .form-01 table{width:100%;height: 40px;border: 1px solid #000000;empty-cells:show;border-collapse: collapse;margin:0 auto;}
+        .form-01 table tr{width: 100%;height: 40px;border: 1px solid #000000}
+        .form-01 table tr th{height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center}
+        .form-01 table tr td{height: 30px;border: 1px solid #d2d2d2;line-height: 30px;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-01 table tr .detail{color: #09c;}
+        .form-01 table tr .detail:hover{cursor: pointer;text-decoration-line: underline;}
+        .form-01 table tr td a{
+            display: inline-block;
+            border-radius: 3px;
+            background: #fff;
+            /*border: 1px solid #00aaee;*/
+            border:none;
+            color: #fff;
+            width: 50px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+        }
+
+        .form-01 table tr td a:first-child{background: #229ffd;}
+        .form-01 table tr td a:first-child(2){background: #fdec57;}
+        .form-01 table tr td a:last-child{background: #ff7680;}
+       /* 新加样式*/
+        .pass{background-color: #00aa00 !important}
+        .no-authority{background-color: #a0a0a0 !important}
+        #poorPerson ul{overflow: auto;height: 40px;white-space: nowrap!important;display: none;}
+
+
+        .form-02{display: none;margin:10px 3%;}
+        .form-02 h1{text-align: center}
+        .form-02 table{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-02 table tr{width: 100%;height: 100%;border: 1px solid #000000}
+        .form-02 table tr th{width: 10%;height: 40px;border: 1px solid #d2d2d2;line-height: 40px;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-02 table tr td{width: 10%;height: 40px;border: 1px solid #d2d2d2;line-height: 30px;font-size: 14px;text-align: center;vertical-align: middle;}
+        .form-02 table caption{font-size: 24px;text-align: left}
+        .pop-foot{border: 1px solid #d2d2d2;width: 100%;height: 100%;text-align: center;height: 40px;padding: 3px;}
+        .pop-close{background-color: #0099cc;width:80px;height: 34px;color: #fff;border: none;border-radius: 3px;}
+        .alertBox{width:500px;height:300px;background: #f5f5f5;position:fixed;z-index: 999;top:50%;left:50%;transform: translate(-50%,-50%);box-shadow: 0 0 10px 1000px rgba(0,0,0,0.65);border-radius: 4px;padding:2% 2%;display: none;text-align: center;}
+        .alertBox p{text-align: center;line-height: 20px;font-size: 20px;font-weight: bold;margin-bottom:20px;}
+        .alertBox textarea{width:100%;resize: none;outline: none;border:1px solid #ccc;text-indent:26px;padding:3px 6px;}
+        .alertBox button{margin:14px auto;width:100px;height:26px;line-height:26px;border:none;border-radius:4px;outline: none;background: #12adff;color:#fff;}
+        </style>
+</head>
+<body>
+<div class="alertBox">
+    <p>请输入原因</p>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button id="submit">提交</button>
+</div>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>贫困户信息审核管理</strong></div>
+  <div class="form-01" id="poorPerson">
+    <div class="form-01" id="poorPerson">
+      <table id="table">
+      </table>
+    </div>
+    <div class="pages">
+      <div class="paging">
+          <div id="Pagination"></div>
+          <div class="searchPage">
+              <span class="page-sum"></span>
+              <!--<span class="page-go">到<input type="text" id="currentPage">页</span>
+              <a class="page-btn" style="cursor:pointer;">确定</a>-->
+              <span id="allTotal"></span>
+          </div>
+      </div>
+    </div>
+  </div>
+    <div class="form-02">
+        <table id="tab">
+        </table>
+        <div class="pop-foot">
+            <input type="button" value="关闭" class="pop-close"/>
+        </div>
+    </div>
+</div>
+<script>
+    /*$(document).ready(function(){
+        $("#Pagination").pagination("15");
+    })*/
+</script>
+<script src="../js/wyp.js"></script>
+
+<script>
+// var token=localStorage.getItem("token");
+//取到登录成功后，后台传递过来的token值。
+// var token=$.cookie("token");
+// console.log(token)
+    //取到id为table的表格
+showTableInfo(url + 'povertyAduit/select',url + 'povertyAduit/detail',url + 'povertyAduit/updateTownAduit',url + 'povertyAduit/updateDisAduit');
+    // $("body").on("click", ".detail", function () {
+    //     var ids =  $(this).parent().find("td").eq("1").attr("sleep");
+    //     var tableName =  $(this).parent().find("td").eq("1").attr("sleep1");
+    //     showTab(url + 'povertyAduit/detail',ids,tableName);
+    // });
+RequestData(url + 'povertyAduit/select')
+    
+
+    // passMessage($('.pass1'));
+    
+</script>
+</body>
+</html>
